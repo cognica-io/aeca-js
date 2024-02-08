@@ -1,0 +1,333 @@
+//
+// Cognica
+//
+// Copyright (c) 2023-2024 Cognica, Inc.
+//
+
+// clang-format off
+// protoc --cpp_out=. document_db.proto
+// protoc --grpc_out=. --plugin=protoc-gen-grpc=`which grpc_cpp_plugin` document_db.proto
+// clang-format on
+
+syntax = "proto3";
+
+package cognica.rpc.db.document;
+
+import "document.proto";
+
+option cc_enable_arenas = true;
+
+service DocumentDBService {
+  rpc find(FindRequest) returns (FindResponse) {}
+  rpc find_batch(FindBatchRequest) returns (FindBatchResponse) {}
+
+  rpc count(CountRequest) returns (CountResponse) {}
+  rpc contains(ContainsRequest) returns (ContainsResponse) {}
+
+  rpc insert(InsertRequest) returns (InsertResponse) {}
+  rpc update(UpdateRequest) returns (UpdateResponse) {}
+  rpc remove(RemoveRequest) returns (RemoveResponse) {}
+
+  rpc explain(ExplainRequest) returns (ExplainResponse) {}
+
+  rpc create_collection(CreateCollectionRequest)
+      returns (CreateCollectionResponse) {}
+  rpc drop_collection(DropCollectionRequest) returns (DropCollectionResponse) {}
+  rpc rename_collection(RenameCollectionRequest)
+      returns (RenameCollectionResponse) {}
+  rpc get_collection(GetCollectionRequest) returns (GetCollectionResponse) {}
+  rpc get_collections(GetCollectionsRequest) returns (GetCollectionsResponse) {}
+  rpc list_collections(ListCollectionsRequest)
+      returns (ListCollectionsResponse) {}
+  rpc truncate_collection(TruncateCollectionRequest)
+      returns (TruncateCollectionResponse) {}
+
+  rpc create_index(CreateIndexRequest) returns (CreateIndexResponse) {}
+  rpc drop_index(DropIndexRequest) returns (DropIndexResponse) {}
+  rpc rename_index(RenameIndexRequest) returns (RenameIndexResponse) {}
+  rpc get_index(GetIndexRequest) returns (GetIndexResponse) {}
+}
+
+enum IndexType {
+  kPrimaryKey = 0;
+  kSecondaryKey = 1;
+  kClusteredSecondaryKey = 2;
+  kFullTextSearchIndex = 3;
+}
+
+enum IndexStatus {
+  kEnabled = 0;  // Index is in use.
+  kDisabled = 1; // Index is disabled.
+
+  kReadyToUse = 2; // Index is ready to use and will be switched to
+                   // kEnabled.
+
+  kBuildInProgress = 3; // Index is being built.
+  kBuildFinished = 4;   // Index was built successfully and will be
+                        // switched to kReady.
+
+  kDropInProgress = 5; // Index is being dropped.
+  kDropFinished = 6;   // Index was dropped successfully and will be
+                       // removed from catalog.
+};
+
+message IndexDescriptor {
+  uint32 index_id = 1;
+  string index_name = 2;
+  repeated string fields = 3;
+  bool unique = 4;
+  IndexType index_type = 5;
+  IndexStatus status = 6;
+  Document options = 7;
+}
+
+message FTSFieldStats {
+  string field_name = 1;
+
+  int64 total_doc_count = 2;
+  int64 total_doc_size = 3;
+  int64 doc_count = 4;
+  int64 doc_size = 5;
+  int64 sum_term_freq = 6;
+  int64 sum_doc_freq = 7;
+}
+
+message FTSIndexStats {
+  int64 doc_count = 1;
+  int64 doc_size = 2;
+  repeated FTSFieldStats field_stats = 3;
+}
+
+message IndexStats {
+  uint32 index_id = 1;
+  string index_name = 2;
+
+  uint64 approximated_size = 3;
+  uint64 num_docs = 4;
+
+  uint64 accessed = 5;
+  uint64 added = 6;
+  uint64 updated = 7;
+  uint64 deleted = 8;
+  uint64 merged = 9;
+
+  int64 accessed_at = 10;
+  int64 added_at = 11;
+  int64 updated_at = 12;
+  int64 deleted_at = 13;
+  int64 merged_at = 14;
+
+  FTSIndexStats fts_stats = 15;
+}
+
+message CollectionInfo {
+  string collection_name = 1;
+  repeated IndexDescriptor index_descriptors = 2;
+  repeated IndexStats index_stats = 3;
+}
+
+message ProfileInfo {
+  uint64 matched = 1;
+  uint64 scanned = 2;
+  uint64 filtered = 3;
+
+  uint64 query_duration_us = 4;
+  uint64 serialization_duration_us = 5;
+}
+
+message CreateCollectionRequest { CollectionInfo collection = 1; }
+
+message CreateCollectionResponse {
+  int32 status = 1;
+  string message = 2;
+  ProfileInfo profile = 3;
+}
+
+message DropCollectionRequest { string collection_name = 1; }
+
+message DropCollectionResponse {
+  int32 status = 1;
+  string message = 2;
+  ProfileInfo profile = 3;
+}
+
+message RenameCollectionRequest {
+  string old_collection_name = 1;
+  string new_collection_name = 2;
+}
+
+message RenameCollectionResponse {
+  int32 status = 1;
+  string message = 2;
+  ProfileInfo profile = 3;
+}
+
+message GetCollectionRequest { string collection_name = 1; }
+
+message GetCollectionResponse {
+  int32 status = 1;
+  string message = 2;
+  CollectionInfo collection = 3;
+  ProfileInfo profile = 4;
+}
+
+message GetCollectionsRequest { repeated string collection_names = 1; }
+
+message GetCollectionsResponse {
+  int32 status = 1;
+  string message = 2;
+  repeated CollectionInfo collections = 3;
+  ProfileInfo profile = 4;
+}
+
+message CreateIndexRequest {
+  string collection_name = 1;
+  IndexDescriptor index_desc = 2;
+}
+
+message CreateIndexResponse {
+  int32 status = 1;
+  string message = 2;
+  ProfileInfo profile = 3;
+}
+
+message DropIndexRequest {
+  string collection_name = 1;
+  string index_name = 2;
+}
+
+message DropIndexResponse {
+  int32 status = 1;
+  string message = 2;
+  ProfileInfo profile = 3;
+}
+
+message RenameIndexRequest {
+  string collection_name = 1;
+  string old_index_name = 2;
+  string new_index_name = 3;
+}
+
+message RenameIndexResponse {
+  int32 status = 1;
+  string message = 2;
+  ProfileInfo profile = 3;
+}
+
+message GetIndexRequest {
+  string collection_name = 1;
+  string index_name = 2;
+}
+
+message GetIndexResponse {
+  int32 status = 1;
+  string message = 2;
+
+  string collection_name = 3;
+  IndexDescriptor index_desc = 4;
+  IndexStats index_stats = 5;
+
+  ProfileInfo profile = 6;
+}
+
+message Query {
+  string collection_name = 1;
+  Document query = 2;
+}
+
+message FindRequest {
+  Query query = 1;
+  int32 limit = 2;
+  repeated string index_columns = 3;
+  repeated string columns = 4;
+  map<string, string> dtypes = 5;
+}
+
+message FindResponse {
+  int32 num_columns = 1;
+  int32 num_rows = 2;
+  bytes buffer = 3;
+  ProfileInfo profile = 4;
+}
+
+message FindBatchRequest { repeated FindRequest requests = 1; }
+
+message FindBatchResponse { repeated FindResponse responses = 1; }
+
+message CountRequest { Query query = 1; }
+
+message CountResponse {
+  int32 status = 1;
+  string message = 2;
+  int64 count = 3;
+  ProfileInfo profile = 4;
+}
+
+message ContainsRequest { Query query = 1; }
+
+message ContainsResponse {
+  int32 status = 1;
+  string message = 2;
+  bool found = 3;
+  ProfileInfo profile = 4;
+}
+
+message InsertRequest { repeated Query requests = 1; }
+
+message InsertResponse {
+  int32 status = 1;
+  string message = 2;
+  ProfileInfo profile = 3;
+}
+
+message UpdateRequest {
+  string collection_name = 1;
+  Document filter = 2;
+  Document updates = 3;
+}
+
+message UpdateResponse {
+  int32 status = 1;
+  string message = 2;
+  ProfileInfo profile = 3;
+}
+
+message RemoveRequest { repeated Query requests = 1; }
+
+message RemoveResponse {
+  int32 status = 1;
+  string message = 2;
+  ProfileInfo profile = 3;
+}
+
+message ExplainRequest { repeated Query queries = 1; }
+
+message QueryPlan {
+  int32 status = 1;
+  string message = 2;
+  string collection_name = 3;
+  string index_name = 4;
+  string query_plan = 5;
+}
+
+message ExplainResponse {
+  int32 status = 1;
+  repeated QueryPlan query_plans = 2;
+}
+
+message TruncateCollectionRequest { string collection_name = 1; }
+
+message TruncateCollectionResponse {
+  int32 status = 1;
+  string message = 2;
+  ProfileInfo profile = 3;
+}
+
+message ListCollectionsRequest {}
+
+message ListCollectionsResponse {
+  int32 status = 1;
+  string message = 2;
+  repeated string collection_names = 3;
+  ProfileInfo profile = 4;
+}

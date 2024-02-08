@@ -1,0 +1,40 @@
+//
+// Cognica
+//
+// Copyright (c) 2023-2024 Cognica, Inc.
+//
+
+// clang-format off
+// protoc --cpp_out=. document.proto
+// protoc --grpc_out=. --plugin=protoc-gen-grpc=`which grpc_cpp_plugin` document.proto
+// clang-format on
+
+syntax = "proto3";
+
+package cognica.rpc.db.document;
+
+option cc_enable_arenas = true;
+
+message Value {
+  oneof value {
+    bool null = 1;
+    bool bool = 2;
+    int64 int64 = 3;
+    uint64 uint64 = 4;
+    double double = 5;
+    string string = 6;
+    Array array = 7;
+    ObjectType object = 8;
+  }
+}
+
+message Array { repeated Value value = 1; }
+
+message ObjectType { map<string, Value> value = 1; }
+
+message Document {
+  oneof type {
+    ObjectType object = 1;
+    string json = 2;
+  }
+}
