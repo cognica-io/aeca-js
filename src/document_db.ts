@@ -16,7 +16,7 @@ export interface IndexDescriptor {
   options?: Dictionary
 }
 
-export class GrpcClient<ClientType> {
+class GrpcClient<ClientType> {
   protected _channel: Channel
   protected _client: ClientType
   protected _timeout: number | undefined
@@ -84,7 +84,11 @@ export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
   }
 
   getCollection(collection: string) {
-    return this.createPromise(
+    return this.createPromise<
+      proto.CollectionInfo,
+      proto.GetCollectionRequest,
+      proto.GetCollectionResponse
+    >(
       { collectionName: collection } as proto.GetCollectionRequest,
       "getCollection",
       (response: proto.GetCollectionResponse) => {
@@ -97,7 +101,11 @@ export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
   }
 
   getCollections(collections: string[]) {
-    return this.createPromise(
+    return this.createPromise<
+      proto.CollectionInfo[],
+      proto.GetCollectionsRequest,
+      proto.GetCollectionsResponse
+    >(
       { collectionNames: collections } as proto.GetCollectionsRequest,
       "getCollections",
       (response: proto.GetCollectionsResponse) => {
