@@ -1,12 +1,20 @@
 import { Client, Metadata, ServiceError } from "@grpc/grpc-js"
-import {
-  DocumentDBServiceClient,
-  GetCollectionRequest,
-  GetCollectionResponse,
-  ListCollectionsRequest,
-  ListCollectionsResponse,
-} from "@/proto/generated/document_db"
+import * as proto from "@/proto/generated/document_db"
 import { Channel } from "./channel"
+
+type Dictionary = {
+  [x: string]: any | Dictionary
+}
+
+export interface IndexDescriptor {
+  indexType: string
+  fields: string[]
+  indexId?: number
+  indexName?: string
+  unique?: boolean
+  status?: string
+  options?: Dictionary
+}
 
 export class GrpcClient<ClientType> {
   protected _channel: Channel
@@ -20,23 +28,24 @@ export class GrpcClient<ClientType> {
   ) {
     this._channel = channel
     this._client = client
-    if (timeout) {
-      this._timeout = timeout
-    }
+    this._timeout = timeout
   }
 
-  createPromise<Request, Response>(
+  createPromise<ReturnType, Request, Response>(
     request: Request,
     methodName: keyof ClientType,
-    response_mapper: (response: Response) => any,
+    response_mapper: (response: Response) => any | undefined = () => null,
+    waitForReady: boolean = true,
   ) {
     const metadata = new Metadata()
-
+    if (waitForReady) {
+      metadata.setOptions({ waitForReady: waitForReady })
+    }
     if (this._timeout) {
       metadata.set("grpc-timeout", `${this._timeout}m`)
     }
 
-    return new Promise((resove, reject) => {
+    return new Promise<ReturnType>((resove, reject) => {
       ;(this._client[methodName] as Function)(
         request,
         metadata,
@@ -51,14 +60,22 @@ export class GrpcClient<ClientType> {
     })
   }
 
+  get channel() {
+    return this._channel
+  }
+
+  get timeout() {
+    return this._timeout
+  }
+
   close() {
-    (this._client as Client).close()
+    ;(this._client as Client).close()
   }
 }
 
-export class DocumentDB extends GrpcClient<DocumentDBServiceClient> {
+export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
   constructor(channel: Channel, timeout: number | undefined = undefined) {
-    const client = new DocumentDBServiceClient(
+    const client = new proto.DocumentDBServiceClient(
       channel.address,
       channel.credential,
       channel.options,
@@ -68,9 +85,9 @@ export class DocumentDB extends GrpcClient<DocumentDBServiceClient> {
 
   getCollection(collection: string) {
     return this.createPromise(
-      { collectionName: collection } as GetCollectionRequest,
+      { collectionName: collection } as proto.GetCollectionRequest,
       "getCollection",
-      (response: GetCollectionResponse) => {
+      (response: proto.GetCollectionResponse) => {
         if (response) {
           return response.collection
         }
@@ -79,16 +96,62 @@ export class DocumentDB extends GrpcClient<DocumentDBServiceClient> {
     )
   }
 
-  listCollections() {
+  getCollections(collections: string[]) {
     return this.createPromise(
-      {} as ListCollectionsRequest,
+      { collectionNames: collections } as proto.GetCollectionsRequest,
+      "getCollections",
+      (response: proto.GetCollectionsResponse) => {
+        if (response) {
+          return response.collections
+        }
+        return null
+      },
+    )
+  }
+
+  listCollections() {
+    return this.createPromise<
+      string[],
+      proto.ListCollectionsRequest,
+      proto.ListCollectionsResponse
+    >(
+      {} as proto.ListCollectionsRequest,
       "listCollections",
-      (response: ListCollectionsResponse) => {
+      (response: proto.ListCollectionsResponse) => {
         if (response) {
           return response.collectionNames
         }
         return null
       },
+    )
+  }
+
+  createCollection(
+    collectionName: string,
+    indexDescriptors: IndexDescriptor[],
+  ) {
+    const indexes = indexDescriptors.map((index) => {
+      return proto.IndexDescriptor.fromJSON(index)
+    })
+    console.log(indexes)
+    return this.createPromise(
+      {
+        collection: {
+          collectionName: collectionName,
+          indexDescriptors: indexes,
+          indexStats: [],
+        },
+      },
+      "createCollection",
+    )
+  }
+
+  dropCollection(collectionName: string) {
+    return this.createPromise(
+      {
+        collectionName: collectionName,
+      } as proto.DropCollectionRequest,
+      "dropCollection",
     )
   }
 }
