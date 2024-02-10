@@ -1,76 +1,20 @@
-import { Client, Metadata, ServiceError } from "@grpc/grpc-js"
 import * as proto from "@/proto/generated/document_db"
+import { Document } from "@/proto/generated/document"
 import { Channel } from "./channel"
+import { GrpcClient } from "./client"
 
 type Dictionary = {
   [x: string]: any | Dictionary
 }
 
 export interface IndexDescriptor {
-  indexType: string
+  index_type: string
   fields: string[]
+  name?: string
   indexId?: number
-  indexName?: string
   unique?: boolean
   status?: string
   options?: Dictionary
-}
-
-class GrpcClient<ClientType> {
-  protected _channel: Channel
-  protected _client: ClientType
-  protected _timeout: number | undefined
-
-  constructor(
-    channel: Channel,
-    client: ClientType,
-    timeout: number | undefined = undefined,
-  ) {
-    this._channel = channel
-    this._client = client
-    this._timeout = timeout
-  }
-
-  createPromise<ReturnType, Request, Response>(
-    request: Request,
-    methodName: keyof ClientType,
-    response_mapper: (response: Response) => any | undefined = () => null,
-    waitForReady: boolean = true,
-  ) {
-    const metadata = new Metadata()
-    if (waitForReady) {
-      metadata.setOptions({ waitForReady: waitForReady })
-    }
-    if (this._timeout) {
-      metadata.set("grpc-timeout", `${this._timeout}m`)
-    }
-
-    return new Promise<ReturnType>((resove, reject) => {
-      ;(this._client[methodName] as Function)(
-        request,
-        metadata,
-        (error: ServiceError | null, response: Response) => {
-          if (error) {
-            reject(error)
-          } else {
-            resove(response_mapper(response))
-          }
-        },
-      )
-    })
-  }
-
-  get channel() {
-    return this._channel
-  }
-
-  get timeout() {
-    return this._timeout
-  }
-
-  close() {
-    ;(this._client as Client).close()
-  }
 }
 
 export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
@@ -139,9 +83,20 @@ export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
     indexDescriptors: IndexDescriptor[],
   ) {
     const indexes = indexDescriptors.map((index) => {
-      return proto.IndexDescriptor.fromJSON(index)
+      let options
+      if (index.options) {
+        options = Document.fromJSON({ json: JSON.stringify(index.options) })
+      }
+      const descriptor = {
+        indexName: index.name,
+        fields: index.fields,
+        unique: index.unique,
+        indexType: index.index_type,
+        status: index.status,
+        options: options,
+      }
+      return proto.IndexDescriptor.fromJSON(descriptor)
     })
-    console.log(indexes)
     return this.createPromise(
       {
         collection: {
