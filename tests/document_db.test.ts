@@ -1,4 +1,10 @@
-import { Channel, DocumentDB, IndexDescriptor } from "@/index"
+//
+// Cognica
+//
+// Copyright (c) 2023-2024 Cognica
+//
+
+import { Channel, DocumentDB } from "@/index"
 
 describe("DocumentDB", () => {
   const _COLLECTION = "cognica.js.test"
@@ -90,10 +96,11 @@ describe("DocumentDB", () => {
   test("find_fts", async () => {
     const table = await doc_db.find(_COLLECTION, {
       $search: {
-        query: "database",
+        query: "content:database",
       },
     })
-    expect(table.numRows).toBeGreaterThan(0)
+    const result = table.toArray()
+    expect(result[0].content).toContain("database")
   })
 
   test("dropCollections", async () => {

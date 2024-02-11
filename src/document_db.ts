@@ -1,8 +1,16 @@
-import * as proto from "@/proto/generated/document_db"
-import { Channel } from "./channel"
-import { Document, GrpcClient } from "./client"
+//
+// Cognica
+//
+// Copyright (c) 2023-2024 Cognica
+//
+
 import { Table, tableFromIPC } from "apache-arrow"
 import { readParquet } from "parquet-wasm"
+
+import * as proto from "@/proto/generated/document_db"
+
+import { Channel } from "./channel"
+import { Document, GrpcClient } from "./client"
 
 export interface IndexDescriptor {
   index_type: string

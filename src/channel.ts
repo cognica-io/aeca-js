@@ -1,3 +1,9 @@
+//
+// Cognica
+//
+// Copyright (c) 2023-2024 Cognica
+//
+
 import * as grpc from "@grpc/grpc-js"
 
 export class Channel {
@@ -5,7 +11,6 @@ export class Channel {
   private _credential: grpc.ChannelCredentials
   private _useSSL: boolean
 
-  //   private _channel: grpc.Channel
   private static readonly _OPTIONS = {
     "grpc.max_concurrent_streams": 4,
     "grpc.max_send_message_length": -1,

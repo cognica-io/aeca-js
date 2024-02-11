@@ -1,5 +1,13 @@
+//
+// Cognica
+//
+// Copyright (c) 2023-2024 Cognica
+//
+
 import { Client, Metadata, ServiceError } from "@grpc/grpc-js"
+
 import * as proto from "@/proto/generated/document"
+
 import { Channel } from "./channel"
 
 export type Document = {
