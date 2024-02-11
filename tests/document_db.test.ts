@@ -21,6 +21,12 @@ describe("DocumentDB", () => {
         fields: ["doc_id"],
       },
       {
+        name: "sk_author",
+        index_type: "kSecondaryKey",
+        fields: ["author"],
+        unique: false,
+      },
+      {
         name: "sk_fts",
         fields: ["content"],
         unique: false,
@@ -36,6 +42,11 @@ describe("DocumentDB", () => {
       },
     ]
     await doc_db.createCollection(_COLLECTION, indexes)
+    const data = [
+      { doc_id: "1", author: "tim", content: "get started" },
+      { doc_id: "2", author: "finn", content: "vector database cookbook" },
+    ]
+    await doc_db.insert(_COLLECTION, data)
   })
 
   test("createCollection", async () => {
@@ -65,12 +76,24 @@ describe("DocumentDB", () => {
 
   test("insert", async () => {
     const data = [
-      { doc_id: "1", author: "tim", content: "get started" },
-      { doc_id: "2", author: "finn", content: "cookbook" },
       { doc_id: "3", author: "finn", content: "imdb tutorial" },
       { doc_id: "4", author: "tim", content: "vector database" },
     ]
     await doc_db.insert(_COLLECTION, data)
+  })
+
+  test("find", async () => {
+    const table = await doc_db.find(_COLLECTION, { author: "tim" })
+    expect(table.numRows).toBeGreaterThan(0)
+  })
+
+  test("find_fts", async () => {
+    const table = await doc_db.find(_COLLECTION, {
+      $search: {
+        query: "database",
+      },
+    })
+    expect(table.numRows).toBeGreaterThan(0)
   })
 
   test("dropCollections", async () => {

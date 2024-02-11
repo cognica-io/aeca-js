@@ -1,7 +1,8 @@
 import * as proto from "@/proto/generated/document_db"
-import * as proto_doc from "@/proto/generated/document"
 import { Channel } from "./channel"
 import { Document, GrpcClient } from "./client"
+import { Table, tableFromIPC } from "apache-arrow"
+import { readParquet } from "parquet-wasm"
 
 export interface IndexDescriptor {
   index_type: string
@@ -25,25 +26,31 @@ export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
 
   find(
     collection: string,
-    query: Document | Document[],
-    limit: number,
+    query: Document,
+    limit: number | undefined = undefined,
     indexColumns: string[] | undefined = undefined,
     columns: string[] | undefined = undefined,
     dtypes: { [key: string]: string } | undefined = undefined,
   ) {
     const request = proto.FindRequest.fromJSON({
-      collectionName: collection,
-      query: this.toDocument(query),
+      query: {
+        collectionName: collection,
+        query: this.toDocument(query),
+      },
       limit: limit,
       indexColumns: indexColumns,
       columns: columns,
       dtypes: dtypes,
     })
     return this.createPromise<
-      proto.FindResponse,
+      Table<any>,
       proto.FindRequest,
       proto.FindResponse
-    >(request, "find")
+    >(request, "find", (response: proto.FindResponse) => {
+      const arrowBuffer = readParquet(response.buffer)
+      const table = tableFromIPC(arrowBuffer.intoIPCStream())
+      return table
+    })
   }
 
   insert(collection: string, docs: Document[]) {
