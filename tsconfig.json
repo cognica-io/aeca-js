@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es2022",
+    "target": "ES6",
     "lib": ["dom", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -8,16 +8,17 @@
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
-    "module": "nodenext",
-    "moduleResolution": "nodenext",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "incremental": true,
     "paths": {
       "@/*": ["./*"]
     },
-    "baseUrl": "./src"
+    "baseUrl": "./src",
+    "outDir": "./dist/esm",
   },
-  "include": ["**/*.ts", "jest.config.js"],
+  "include": ["**/*.ts", "jest.config.cjs"],
   "exclude": ["node_modules"]
 }

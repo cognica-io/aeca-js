@@ -51,17 +51,23 @@ export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
       dtypes: dtypes,
     })
     return this.createPromise<
-      Table<any>,
+      Table<any> | null,
       proto.FindRequest,
       proto.FindResponse
     >(request, "find", (response: proto.FindResponse) => {
-      const arrowBuffer = readParquet(response.buffer)
-      const table = tableFromIPC(arrowBuffer.intoIPCStream())
-      return table
+      if (response.numRows) {
+        const arrowBuffer = readParquet(response.buffer)
+        const table = tableFromIPC(arrowBuffer.intoIPCStream())
+        return table
+      }
+      return null
     })
   }
 
-  insert(collection: string, docs: Document[]) {
+  insert(collection: string, docs: Document | Document[]) {
+    if (!Array.isArray(docs)) {
+      docs = [docs]
+    }
     const queries = docs.map((doc: Document) => {
       return { collectionName: collection, query: this.toDocument(doc) }
     })
@@ -71,11 +77,7 @@ export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
     return this.createPromise(request, "insert")
   }
 
-  update(
-    collection: string,
-    filter: Document | Document[],
-    updates: Document | Document[],
-  ) {
+  update(collection: string, filter: Document, updates: Document) {
     const request = {
       collectionName: collection,
       filter: this.toDocument(filter),
@@ -85,13 +87,14 @@ export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
   }
 
   remove(collection: string, docs: Document | Document[]) {
+    if (!Array.isArray(docs)) {
+      docs = [docs]
+    }
+    const queries = docs.map((doc: Document) => {
+      return { collectionName: collection, query: this.toDocument(doc) }
+    })
     const request = {
-      requests: [
-        {
-          collectionName: collection,
-          query: this.toDocument(docs),
-        },
-      ],
+      requests: queries,
     } as proto.RemoveRequest
     return this.createPromise(request, "remove")
   }

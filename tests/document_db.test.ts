@@ -88,9 +88,21 @@ describe("DocumentDB", () => {
     await doc_db.insert(_COLLECTION, data)
   })
 
+  test("update", async () => {
+    await doc_db.update(_COLLECTION, { author: "finn" }, { title: "test" })
+    const data = (await doc_db.find(_COLLECTION, { author: "finn" }))!.toArray()
+    expect(data[0].title).toEqual("test")
+  })
+
+  test("remove", async () => {
+    await doc_db.remove(_COLLECTION, { doc_id: "1" })
+    const table = await doc_db.find(_COLLECTION, { doc_id: "1" })
+    expect(table).toBeNull()
+  })
+
   test("find", async () => {
     const table = await doc_db.find(_COLLECTION, { author: "tim" })
-    expect(table.numRows).toBeGreaterThan(0)
+    expect(table!.numRows).toBeGreaterThan(0)
   })
 
   test("find_fts", async () => {
@@ -99,7 +111,7 @@ describe("DocumentDB", () => {
         query: "content:database",
       },
     })
-    const result = table.toArray()
+    const result = table!.toArray()
     expect(result[0].content).toContain("database")
   })
 

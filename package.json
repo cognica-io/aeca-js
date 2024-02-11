@@ -1,20 +1,47 @@
 {
-  "name": "cognica-js",
-  "description": "",
-  "version": "1.0.0",
+  "name": "@cognica/client",
+  "description": "Javascript client for Cognica database",
+  "version": "0.1.0",
+  "homepage": "https://cognica.io",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cognica-io/cognica-js.git"
+  },
+  "bugs": {
+    "url": "https://forum.cognica.io"
+  },
   "engines": {
     "node": ">=18.0.0",
     "pnpm": ">=8"
   },
+  "#publishConfig": {
+    "access": "public"
+  },
   "scripts": {
+    "generate:proto": "./src/proto/script/generate.sh",
+    "build": "esbuild src/index.ts --bundle --minify --platform=node --format=esm --outfile=dist/index.js",
     "test": "jest"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "Cognica",
+    "key-value",
+    "document store",
+    "full-text search",
+    "vector search",
+    "search engine",
+    "database",
+    "deep learning",
+    "NLP",
+    "natural language processing",
+    "transformer",
+    "vector embedding"
+  ],
+  "author": "finn@cognica.io",
+  "license": "Apache-2.0",
   "devDependencies": {
     "@protobuf-ts/protoc": "^2.9.3",
     "@types/jest": "^29.5.12",
+    "esbuild": "^0.20.0",
     "eslint": "^8.56.0",
     "jest": "^29.7.0",
     "prettier": "^3.2.5",
@@ -29,5 +56,8 @@
     "long": "^5.2.3",
     "parquet-wasm": "0.6.0-beta.2",
     "protobufjs": "^7.2.6"
+  },
+  "peerDependencies": {
+    "typescript": ">=5.0"
   }
 }
