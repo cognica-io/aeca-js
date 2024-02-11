@@ -8,7 +8,6 @@ import { Channel, DocumentDB } from "@/index"
 
 describe("DocumentDB", () => {
   const _COLLECTION = "cognica.js.test"
-  const _COLLECTION_ALTER = `${_COLLECTION}.alter`
   const channel = new Channel("localhost", 10080)
   const doc_db = new DocumentDB(channel)
 
@@ -16,9 +15,6 @@ describe("DocumentDB", () => {
     const collections = await doc_db.listCollections()
     if (collections.includes(_COLLECTION)) {
       await doc_db.dropCollection(_COLLECTION)
-    }
-    if (collections.includes(_COLLECTION_ALTER)) {
-      await doc_db.dropCollection(_COLLECTION_ALTER)
     }
 
     const indexes = [
@@ -55,14 +51,22 @@ describe("DocumentDB", () => {
     await doc_db.insert(_COLLECTION, data)
   })
 
-  test("createCollection", async () => {
+  test("create/truncate/dropCollection", async () => {
+    const collectionName = `${_COLLECTION}.collection_crud`
+    const collections = await doc_db.listCollections()
+    if (collections.includes(collectionName)) {
+      await doc_db.dropCollection(collectionName)
+    }
+
     const indexes = [
       {
         index_type: "kPrimaryKey",
         fields: ["doc_id"],
       },
     ]
-    await doc_db.createCollection(_COLLECTION_ALTER, indexes)
+    await doc_db.createCollection(collectionName, indexes)
+    await doc_db.truncateCollection(collectionName)
+    await doc_db.dropCollection(collectionName)
   })
 
   test("listCollections", async () => {
@@ -115,11 +119,15 @@ describe("DocumentDB", () => {
     expect(result[0].content).toContain("database")
   })
 
-  test("dropCollections", async () => {
-    await doc_db.dropCollection(_COLLECTION_ALTER)
-  })
-
   test("createIndex/dropIndex", async () => {
+    await doc_db
+      .getIndex(_COLLECTION, "sk_doc_id")
+      .then(() => {
+        doc_db.dropIndex(_COLLECTION, "sk_doc_id")
+      })
+      .catch(() => {
+        return
+      })
     const indexDescriptor = {
       name: "sk_doc_id",
       index_type: "kSecondaryKey",
@@ -130,7 +138,7 @@ describe("DocumentDB", () => {
     const index = await doc_db.getIndex(_COLLECTION, "sk_doc_id")
     expect(index).not.toBeNull()
 
-    await doc_db.dropIndex(_COLLECTION, "sk_doc_id")
+    doc_db.dropIndex(_COLLECTION, "sk_doc_id").catch(() => {})
   })
 
   test("getIndex", async () => {
@@ -142,6 +150,11 @@ describe("DocumentDB", () => {
     await doc_db.renameIndex(_COLLECTION, "sk_author", "sk_author2")
     const index = await doc_db.getIndex(_COLLECTION, "sk_author2")
     expect(index).not.toBeNull()
+  })
+
+  test("empty", async () => {
+    const isEmpty = await doc_db.empty(_COLLECTION, { author: "ellen" })
+    expect(isEmpty).toBeTruthy()
   })
 
   afterAll(async () => {

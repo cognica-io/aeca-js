@@ -99,6 +99,25 @@ export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
     return this.createPromise(request, "remove")
   }
 
+  createCollection(
+    collectionName: string,
+    indexDescriptors: IndexDescriptor[],
+  ) {
+    const indexes = indexDescriptors.map((index) => {
+      return this.toIndexDescriptor(index)
+    })
+    return this.createPromise(
+      {
+        collection: {
+          collectionName: collectionName,
+          indexDescriptors: indexes,
+          indexStats: [],
+        },
+      },
+      "createCollection",
+    )
+  }
+
   getCollection(collectionName: string) {
     return this.createPromise<
       proto.CollectionInfo,
@@ -150,38 +169,12 @@ export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
     )
   }
 
-  private toIndexDescriptor(index: IndexDescriptor) {
-    let options
-    if (index.options) {
-      options = this.toDocument(index.options)
-    }
-    const descriptor = {
-      indexName: index.name,
-      fields: index.fields,
-      unique: index.unique,
-      indexType: index.index_type,
-      status: index.status,
-      options: options,
-    }
-    return proto.IndexDescriptor.fromJSON(descriptor)
-  }
-
-  createCollection(
-    collectionName: string,
-    indexDescriptors: IndexDescriptor[],
-  ) {
-    const indexes = indexDescriptors.map((index) => {
-      return this.toIndexDescriptor(index)
-    })
+  truncateCollection(collectionName: string) {
     return this.createPromise(
       {
-        collection: {
-          collectionName: collectionName,
-          indexDescriptors: indexes,
-          indexStats: [],
-        },
-      },
-      "createCollection",
+        collectionName: collectionName,
+      } as proto.TruncateCollectionRequest,
+      "truncateCollection",
     )
   }
 
@@ -243,5 +236,41 @@ export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
       } as proto.DropIndexRequest,
       "dropIndex",
     )
+  }
+
+  empty(
+    collectionName: string,
+    query: Document,
+    dtypes: { [key: string]: string } | undefined = undefined,
+  ) {
+    return this.find(
+      collectionName,
+      query,
+      1,
+      undefined,
+      undefined,
+      dtypes,
+    ).then((result) => {
+      if (result) {
+        return result.numRows == 0
+      }
+      return true
+    })
+  }
+
+  private toIndexDescriptor(index: IndexDescriptor) {
+    let options
+    if (index.options) {
+      options = this.toDocument(index.options)
+    }
+    const descriptor = {
+      indexName: index.name,
+      fields: index.fields,
+      unique: index.unique,
+      indexType: index.index_type,
+      status: index.status,
+      options: options,
+    }
+    return proto.IndexDescriptor.fromJSON(descriptor)
   }
 }
