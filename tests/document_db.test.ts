@@ -105,7 +105,7 @@ describe("DocumentDB", () => {
     expect(table!.numRows).toBeGreaterThan(0)
   })
 
-  test("find_fts", async () => {
+  test("find.fts", async () => {
     const table = await doc_db.find(_COLLECTION, {
       $search: {
         query: "content:database",
@@ -117,6 +117,31 @@ describe("DocumentDB", () => {
 
   test("dropCollections", async () => {
     await doc_db.dropCollection(_COLLECTION_ALTER)
+  })
+
+  test("createIndex/dropIndex", async () => {
+    const indexDescriptor = {
+      name: "sk_doc_id",
+      index_type: "kSecondaryKey",
+      fields: ["doc_id"],
+      unique: true,
+    }
+    await doc_db.createIndex(_COLLECTION, indexDescriptor)
+    const index = await doc_db.getIndex(_COLLECTION, "sk_doc_id")
+    expect(index).not.toBeNull()
+
+    await doc_db.dropIndex(_COLLECTION, "sk_doc_id")
+  })
+
+  test("getIndex", async () => {
+    const index = await doc_db.getIndex(_COLLECTION, "sk_fts")
+    expect(index).not.toBeNull()
+  })
+
+  test("renameIndex", async () => {
+    await doc_db.renameIndex(_COLLECTION, "sk_author", "sk_author2")
+    const index = await doc_db.getIndex(_COLLECTION, "sk_author2")
+    expect(index).not.toBeNull()
   })
 
   afterAll(async () => {

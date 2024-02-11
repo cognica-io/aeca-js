@@ -33,7 +33,7 @@ export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
   }
 
   find(
-    collection: string,
+    collectionName: string,
     query: Document,
     limit: number | undefined = undefined,
     indexColumns: string[] | undefined = undefined,
@@ -42,7 +42,7 @@ export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
   ) {
     const request = proto.FindRequest.fromJSON({
       query: {
-        collectionName: collection,
+        collectionName: collectionName,
         query: this.toDocument(query),
       },
       limit: limit,
@@ -64,12 +64,12 @@ export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
     })
   }
 
-  insert(collection: string, docs: Document | Document[]) {
+  insert(collectionName: string, docs: Document | Document[]) {
     if (!Array.isArray(docs)) {
       docs = [docs]
     }
     const queries = docs.map((doc: Document) => {
-      return { collectionName: collection, query: this.toDocument(doc) }
+      return { collectionName: collectionName, query: this.toDocument(doc) }
     })
     const request = {
       requests: queries,
@@ -77,21 +77,21 @@ export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
     return this.createPromise(request, "insert")
   }
 
-  update(collection: string, filter: Document, updates: Document) {
+  update(collectionName: string, filter: Document, updates: Document) {
     const request = {
-      collectionName: collection,
+      collectionName: collectionName,
       filter: this.toDocument(filter),
       updates: this.toDocument(updates),
     } as proto.UpdateRequest
     return this.createPromise(request, "update")
   }
 
-  remove(collection: string, docs: Document | Document[]) {
+  remove(collectionName: string, docs: Document | Document[]) {
     if (!Array.isArray(docs)) {
       docs = [docs]
     }
     const queries = docs.map((doc: Document) => {
-      return { collectionName: collection, query: this.toDocument(doc) }
+      return { collectionName: collectionName, query: this.toDocument(doc) }
     })
     const request = {
       requests: queries,
@@ -99,13 +99,13 @@ export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
     return this.createPromise(request, "remove")
   }
 
-  getCollection(collection: string) {
+  getCollection(collectionName: string) {
     return this.createPromise<
       proto.CollectionInfo,
       proto.GetCollectionRequest,
       proto.GetCollectionResponse
     >(
-      { collectionName: collection } as proto.GetCollectionRequest,
+      { collectionName: collectionName } as proto.GetCollectionRequest,
       "getCollection",
       (response: proto.GetCollectionResponse) => {
         if (response) {
@@ -116,13 +116,13 @@ export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
     )
   }
 
-  getCollections(collections: string[]) {
+  getCollections(collectionNames: string[]) {
     return this.createPromise<
       proto.CollectionInfo[],
       proto.GetCollectionsRequest,
       proto.GetCollectionsResponse
     >(
-      { collectionNames: collections } as proto.GetCollectionsRequest,
+      { collectionNames: collectionNames } as proto.GetCollectionsRequest,
       "getCollections",
       (response: proto.GetCollectionsResponse) => {
         if (response) {
@@ -150,24 +150,28 @@ export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
     )
   }
 
+  private toIndexDescriptor(index: IndexDescriptor) {
+    let options
+    if (index.options) {
+      options = this.toDocument(index.options)
+    }
+    const descriptor = {
+      indexName: index.name,
+      fields: index.fields,
+      unique: index.unique,
+      indexType: index.index_type,
+      status: index.status,
+      options: options,
+    }
+    return proto.IndexDescriptor.fromJSON(descriptor)
+  }
+
   createCollection(
     collectionName: string,
     indexDescriptors: IndexDescriptor[],
   ) {
     const indexes = indexDescriptors.map((index) => {
-      let options
-      if (index.options) {
-        options = this.toDocument(index.options)
-      }
-      const descriptor = {
-        indexName: index.name,
-        fields: index.fields,
-        unique: index.unique,
-        indexType: index.index_type,
-        status: index.status,
-        options: options,
-      }
-      return proto.IndexDescriptor.fromJSON(descriptor)
+      return this.toIndexDescriptor(index)
     })
     return this.createPromise(
       {
@@ -187,6 +191,57 @@ export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
         collectionName: collectionName,
       } as proto.DropCollectionRequest,
       "dropCollection",
+    )
+  }
+
+  createIndex(collectionName: string, indexDescriptor: IndexDescriptor) {
+    const index = this.toIndexDescriptor(indexDescriptor)
+    return this.createPromise(
+      {
+        collectionName: collectionName,
+        indexDesc: index,
+      } as proto.CreateIndexRequest,
+      "createIndex",
+    )
+  }
+
+  getIndex(collectionName: string, indexName: string) {
+    return this.createPromise<
+      proto.GetIndexResponse,
+      proto.GetIndexRequest,
+      proto.GetIndexResponse
+    >(
+      {
+        collectionName: collectionName,
+        indexName: indexName,
+      } as proto.GetIndexRequest,
+      "getIndex",
+      (response: proto.GetIndexResponse) => response,
+    )
+  }
+
+  renameIndex(
+    collectionName: string,
+    oldIndexName: string,
+    newIndexName: string,
+  ) {
+    return this.createPromise(
+      {
+        collectionName: collectionName,
+        oldIndexName: oldIndexName,
+        newIndexName: newIndexName,
+      } as proto.RenameIndexRequest,
+      "renameIndex",
+    )
+  }
+
+  dropIndex(collectionName: string, indexName: string) {
+    return this.createPromise(
+      {
+        collectionName: collectionName,
+        indexName: indexName,
+      } as proto.DropIndexRequest,
+      "dropIndex",
     )
   }
 }
