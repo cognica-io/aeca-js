@@ -4,27 +4,21 @@ describe("DocumentDB", () => {
   const _COLLECTION = "cognica.js.test"
   const _COLLECTION_ALTER = `${_COLLECTION}.alter`
   const channel = new Channel("localhost", 10080)
-  const client = new DocumentDB(channel)
+  const doc_db = new DocumentDB(channel)
 
   beforeAll(async () => {
-    const collections = await client.listCollections()
+    const collections = await doc_db.listCollections()
     if (collections.includes(_COLLECTION)) {
-      await client.dropCollection(_COLLECTION)
+      await doc_db.dropCollection(_COLLECTION)
     }
     if (collections.includes(_COLLECTION_ALTER)) {
-      await client.dropCollection(_COLLECTION_ALTER)
+      await doc_db.dropCollection(_COLLECTION_ALTER)
     }
 
     const indexes = [
       {
         index_type: "kPrimaryKey",
         fields: ["doc_id"],
-      },
-      {
-        name: "sk_author",
-        fields: ["author"],
-        unique: false,
-        index_type: "kSecondaryKey",
       },
       {
         name: "sk_fts",
@@ -41,7 +35,7 @@ describe("DocumentDB", () => {
         },
       },
     ]
-    await client.createCollection(_COLLECTION, indexes)
+    await doc_db.createCollection(_COLLECTION, indexes)
   })
 
   test("createCollection", async () => {
@@ -51,31 +45,40 @@ describe("DocumentDB", () => {
         fields: ["doc_id"],
       },
     ]
-    await client.createCollection(`${_COLLECTION_ALTER}`, indexes)
+    await doc_db.createCollection(_COLLECTION_ALTER, indexes)
   })
 
   test("listCollections", async () => {
-    const collections = await client.listCollections()
+    const collections = await doc_db.listCollections()
     expect(collections).toContain(_COLLECTION)
   })
 
   test("getCollection", async () => {
-    const collection = await client.getCollection(_COLLECTION)
+    const collection = await doc_db.getCollection(_COLLECTION)
     expect(collection).not.toBeNull()
-    console.log(collection.indexDescriptors[1].options)
   })
 
   test("getCollections", async () => {
-    const collections = await client.getCollections([_COLLECTION])
+    const collections = await doc_db.getCollections([_COLLECTION])
     expect(collections).not.toBeNull()
   })
 
+  test("insert", async () => {
+    const data = [
+      { doc_id: "1", author: "tim", content: "get started" },
+      { doc_id: "2", author: "finn", content: "cookbook" },
+      { doc_id: "3", author: "finn", content: "imdb tutorial" },
+      { doc_id: "4", author: "tim", content: "vector database" },
+    ]
+    await doc_db.insert(_COLLECTION, data)
+  })
+
   test("dropCollections", async () => {
-    await client.dropCollection(`${_COLLECTION_ALTER}`)
+    await doc_db.dropCollection(_COLLECTION_ALTER)
   })
 
   afterAll(async () => {
-    await client.dropCollection(_COLLECTION)
-    client.close()
+    await doc_db.dropCollection(_COLLECTION)
+    doc_db.close()
   })
 })

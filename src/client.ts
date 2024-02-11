@@ -1,5 +1,10 @@
 import { Client, Metadata, ServiceError } from "@grpc/grpc-js"
+import * as proto from "@/proto/generated/document"
 import { Channel } from "./channel"
+
+export type Document = {
+  [x: string]: any | Document
+}
 
 export class GrpcClient<ClientType> {
   protected _channel: Channel
@@ -44,6 +49,16 @@ export class GrpcClient<ClientType> {
         },
       )
     })
+  }
+
+  toDocument(doc: Document): proto.Document {
+    let result: proto.Document
+    if (doc.json === undefined) {
+      result = proto.Document.fromJSON({ json: JSON.stringify(doc) })
+    } else {
+      result = doc
+    }
+    return result
   }
 
   get channel() {
