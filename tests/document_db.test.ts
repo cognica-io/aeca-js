@@ -119,7 +119,7 @@ describe("DocumentDB", () => {
     expect(result[0].content).toContain("database")
   })
 
-  test("createIndex/dropIndex", async () => {
+  test("create/dropIndex", async () => {
     await doc_db
       .getIndex(_COLLECTION, "sk_doc_id")
       .then(() => {

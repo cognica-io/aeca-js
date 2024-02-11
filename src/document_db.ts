@@ -250,7 +250,7 @@ export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
       undefined,
       undefined,
       dtypes,
-    ).then((result) => {
+    ).then((result): boolean => {
       if (result) {
         return result.numRows == 0
       }

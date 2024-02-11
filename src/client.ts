@@ -32,7 +32,7 @@ export class GrpcClient<ClientType> {
   createPromise<Return, Request, Response>(
     request: Request,
     methodName: keyof ClientType,
-    response_mapper: (response: Response) => any | undefined = () => null,
+    response_mapper: (response: Response) => any = () => null,
     waitForReady: boolean = true,
   ) {
     const metadata = new Metadata()
