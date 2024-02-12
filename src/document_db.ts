@@ -22,6 +22,15 @@ export interface IndexDescriptor {
   options?: Document
 }
 
+export interface Request {
+  collectionName: string
+  query: Document
+  limit?: number
+  indexColumns?: string[]
+  columns?: string[]
+  dtypes?: { [key: string]: string }
+}
+
 export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
   constructor(channel: Channel, timeout: number | undefined = undefined) {
     const client = new proto.DocumentDBServiceClient(
@@ -35,32 +44,54 @@ export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
   find(
     collectionName: string,
     query: Document,
-    limit: number | undefined = undefined,
-    indexColumns: string[] | undefined = undefined,
-    columns: string[] | undefined = undefined,
-    dtypes: { [key: string]: string } | undefined = undefined,
+    limit?: number,
+    indexColumns?: string[],
+    columns?: string[],
+    dtypes?: { [key: string]: string },
+  ): Promise<Table<any> | null>
+  find(request: Request): Promise<Table<any> | null>
+  find(
+    request: string | Request,
+    query?: Document,
+    limit?: number,
+    indexColumns?: string[],
+    columns?: string[],
+    dtypes?: { [key: string]: string },
   ) {
-    const request = proto.FindRequest.fromJSON({
-      query: {
-        collectionName: collectionName,
-        query: this.toDocument(query),
-      },
-      limit: limit,
-      indexColumns: indexColumns,
-      columns: columns,
-      dtypes: dtypes,
-    })
+    let findRequest
+    if (typeof request === "string") {
+      findRequest = this.toFindRequest({
+        collectionName: request,
+        query: query!,
+        limit: limit,
+        indexColumns: indexColumns,
+        columns: columns,
+        dtypes: dtypes,
+      })
+    } else {
+      findRequest = this.toFindRequest(request)
+    }
     return this.createPromise<
       Table<any> | null,
       proto.FindRequest,
       proto.FindResponse
-    >(request, "find", (response: proto.FindResponse) => {
-      if (response.numRows) {
-        const arrowBuffer = readParquet(response.buffer)
-        const table = tableFromIPC(arrowBuffer.intoIPCStream())
-        return table
-      }
-      return null
+    >(findRequest, "find", (response: proto.FindResponse) => {
+      return this.toTable(response)
+    })
+  }
+
+  findBatch(requests: Request[]) {
+    const findRequests: proto.FindBatchRequest = {
+      requests: requests.map((request) => {
+        return this.toFindRequest(request)
+      }),
+    }
+    return this.createPromise<
+      (Table<any> | null)[],
+      proto.FindBatchRequest,
+      proto.FindBatchResponse
+    >(findRequests, "findBatch", (response: proto.FindBatchResponse) => {
+      return response.responses.map((response) => this.toTable(response))
     })
   }
 
@@ -243,19 +274,38 @@ export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
     query: Document,
     dtypes: { [key: string]: string } | undefined = undefined,
   ) {
-    return this.find(
-      collectionName,
-      query,
-      1,
-      undefined,
-      undefined,
-      dtypes,
-    ).then((result): boolean => {
+    return this.find({
+      collectionName: collectionName,
+      query: query,
+      dtypes: dtypes,
+    }).then((result): boolean => {
       if (result) {
         return result.numRows == 0
       }
       return true
     })
+  }
+
+  private toFindRequest(request: Request): proto.FindRequest {
+    return proto.FindRequest.fromJSON({
+      query: {
+        collectionName: request.collectionName,
+        query: this.toDocument(request.query),
+      },
+      limit: request.limit,
+      indexColumns: request.indexColumns,
+      columns: request.columns,
+      dtypes: request.dtypes,
+    })
+  }
+
+  private toTable(response: proto.FindResponse): Table<any> | null {
+    if (response.numRows) {
+      const arrowBuffer = readParquet(response.buffer)
+      const table = tableFromIPC(arrowBuffer.intoIPCStream())
+      return table
+    }
+    return null
   }
 
   private toIndexDescriptor(index: IndexDescriptor) {

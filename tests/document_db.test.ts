@@ -4,7 +4,7 @@
 // Copyright (c) 2023-2024 Cognica
 //
 
-import { Channel, DocumentDB } from "@/index"
+import { Channel, DocumentDB, Request } from "@/index"
 
 describe("DocumentDB", () => {
   const _COLLECTION = "cognica.js.test"
@@ -119,6 +119,16 @@ describe("DocumentDB", () => {
     expect(result[0].content).toContain("database")
   })
 
+  test("findBatch", async () => {
+    const requests: Request[] = [
+      { collectionName: _COLLECTION, query: { author: "tim" } },
+      { collectionName: _COLLECTION, query: { doc_id: "1" } },
+    ]
+    const tables = await doc_db.findBatch(requests)
+    expect(tables.length).toBeGreaterThan(0)
+    expect(tables[0]!.numRows).toBeGreaterThan(0)
+  })
+
   test("create/dropIndex", async () => {
     await doc_db
       .getIndex(_COLLECTION, "sk_doc_id")
@@ -153,8 +163,8 @@ describe("DocumentDB", () => {
   })
 
   test("empty", async () => {
-    const isEmpty = await doc_db.empty(_COLLECTION, { author: "ellen" })
-    expect(isEmpty).toBeTruthy()
+    const isEmpty = await doc_db.empty(_COLLECTION, { author: "tim" })
+    expect(isEmpty).toBeFalsy()
   })
 
   afterAll(async () => {
