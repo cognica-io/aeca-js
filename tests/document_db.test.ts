@@ -5,6 +5,7 @@
 //
 
 import { Channel, DocumentDB, Request } from "@/index"
+import { timeout } from "./helper"
 
 describe("DocumentDB", () => {
   const _COLLECTION = "cognica.js.test"
@@ -145,10 +146,11 @@ describe("DocumentDB", () => {
       unique: true,
     }
     await doc_db.createIndex(_COLLECTION, indexDescriptor)
+    // gRPC threads do not guarantee sequential processing,
+    // A slight delay is needed for the creation of index.
+    await timeout(10)
     const index = await doc_db.getIndex(_COLLECTION, "sk_doc_id")
     expect(index).not.toBeNull()
-
-    doc_db.dropIndex(_COLLECTION, "sk_doc_id").catch(() => {})
   })
 
   test("getIndex", async () => {

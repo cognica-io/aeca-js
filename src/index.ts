@@ -6,3 +6,4 @@
 
 export * from "channel"
 export * from "document_db"
+export * from "key_value_db"
