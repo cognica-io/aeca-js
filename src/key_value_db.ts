@@ -7,7 +7,7 @@
 import * as proto from "@/proto/generated/key_value_db"
 
 import { Channel } from "./channel"
-import { Document, GrpcClient } from "./client"
+import { GrpcClient } from "./client"
 
 export interface PutRequest {
   keyspaceName: string
@@ -175,5 +175,70 @@ export class KeyValueDB extends GrpcClient<proto.KeyValueDBServiceClient> {
       return Buffer.from(value, "utf-8")
     }
     return value
+  }
+}
+
+export class KeyspaceManager extends GrpcClient<proto.KeyspaceManagerServiceClient> {
+  constructor(channel: Channel, timeout: number | undefined = undefined) {
+    const client = new proto.KeyspaceManagerServiceClient(
+      channel.address,
+      channel.credential,
+      channel.options,
+    )
+    super(channel, client, timeout)
+  }
+
+  createKeyspace(keyspaceName: string): Promise<boolean> {
+    return this.createPromise<
+      boolean,
+      proto.CreateKeyspaceRequest,
+      proto.CreateKeyspaceResponse
+    >(
+      { keyspaceName: keyspaceName } as proto.CreateKeyspaceRequest,
+      "createKeyspace",
+      (response: proto.CreateKeyspaceResponse) => {
+        return response.response?.status === proto.StatusType.kOK
+      },
+    )
+  }
+
+  listKeyspace(): Promise<string[]> {
+    return this.createPromise<
+      string[],
+      proto.ListKeyspacesRequest,
+      proto.ListKeyspacesResponse
+    >({}, "listKeyspaces", (response: proto.ListKeyspacesResponse) => {
+      return response.keyspaceNames
+    })
+  }
+
+  truncateKeyspace(keyspaceName: string): Promise<string[]> {
+    return this.createPromise<
+      string[],
+      proto.TruncateKeyspaceRequest,
+      proto.TruncateKeyspaceResponse
+    >(
+      {
+        keyspaceName: keyspaceName,
+      } as proto.TruncateKeyspaceRequest,
+      "truncateKeyspace",
+      (response: proto.TruncateKeyspaceResponse) => {
+        return response.response?.status === proto.StatusType.kOK
+      },
+    )
+  }
+
+  dropKeyspace(keyspaceName: string): Promise<boolean> {
+    return this.createPromise<
+      boolean,
+      proto.DropKeyspaceRequest,
+      proto.DropKeyspaceResponse
+    >(
+      { keyspaceName: keyspaceName } as proto.DropKeyspaceRequest,
+      "dropKeyspace",
+      (response: proto.DropKeyspaceResponse) => {
+        return response.response?.status === proto.StatusType.kOK
+      },
+    )
   }
 }

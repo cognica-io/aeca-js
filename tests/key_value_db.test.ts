@@ -4,7 +4,7 @@
 // Copyright (c) 2023-2024 Cognica
 //
 
-import { Channel, KeyValueDB } from "@/index"
+import { Channel, KeyValueDB, KeyspaceManager } from "@/index"
 
 function timeout(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms))
@@ -61,5 +61,29 @@ describe("KeyValueDB", () => {
 
   afterAll(async () => {
     kv_db.close()
+  })
+})
+
+describe("KeyspaceManager", () => {
+  const channel = new Channel("localhost", 10080)
+  const ks_manager = new KeyspaceManager(channel)
+  const _KEYSPACE = "_cognica/tests/sub"
+
+  beforeAll(async () => {
+    await ks_manager.createKeyspace(_KEYSPACE)
+  })
+
+  test("listKeyspace", async () => {
+    const spaces = await ks_manager.listKeyspace()
+    expect(spaces.length).toBeGreaterThan(0)
+  })
+
+  test("truncateKeyspace", async () => {
+    const result = await ks_manager.truncateKeyspace(_KEYSPACE)
+    expect(result).toBeTruthy()
+  })
+
+  afterAll(async () => {
+    ks_manager.dropKeyspace(_KEYSPACE)
   })
 })
