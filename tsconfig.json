@@ -12,13 +12,12 @@
     "moduleResolution": "NodeNext",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "incremental": true,
     "paths": {
       "@/*": ["./*"]
     },
     "baseUrl": "./src",
     "outDir": "./dist/esm",
   },
-  "include": ["**/*.ts", "jest.config.cjs"],
+  "include": ["**/*.ts", "jest.config.js"],
   "exclude": ["node_modules"]
 }

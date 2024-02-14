@@ -1,7 +1,6 @@
-tests/
-node_modules/
-.gitignore
-.prettierignore
-jest.config.js
-pnpm-lock.yaml
-prettier.config.js
+*
+
+!/LICENSE.txt
+!/README.md
+!/dist/**/*
+!/package.json
