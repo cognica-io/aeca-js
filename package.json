@@ -14,7 +14,7 @@
     "node": ">=18.0.0",
     "pnpm": ">=8"
   },
-  "#publishConfig": {
+  "publishConfig": {
     "access": "public"
   },
   "main": "./dist/index.js",

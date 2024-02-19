@@ -14,8 +14,12 @@ describe("DocumentDB", () => {
 
   beforeAll(async () => {
     const collections = await doc_db.listCollections()
+    const renameCollection = `${_COLLECTION}.rename`
     if (collections.includes(_COLLECTION)) {
       await doc_db.dropCollection(_COLLECTION)
+    }
+    if (collections.includes(renameCollection)) {
+      await doc_db.dropCollection(renameCollection)
     }
 
     const indexes = [
@@ -50,6 +54,8 @@ describe("DocumentDB", () => {
       { doc_id: "2", author: "finn", content: "vector database cookbook" },
     ]
     await doc_db.insert(_COLLECTION, data)
+
+    await doc_db.createCollection(`${_COLLECTION}.rename`, indexes)
   })
 
   test("create/truncate/dropCollection", async () => {
@@ -68,6 +74,15 @@ describe("DocumentDB", () => {
     await doc_db.createCollection(collectionName, indexes)
     await doc_db.truncateCollection(collectionName)
     await doc_db.dropCollection(collectionName)
+  })
+
+  test("renameCollections", async () => {
+    const oldCollectionName = `${_COLLECTION}.rename`
+    const newCollectionName = `${_COLLECTION}.rename.new`
+
+    await doc_db.renameCollection(oldCollectionName, newCollectionName)
+    const collections = await doc_db.listCollections()
+    expect(collections).toContain(newCollectionName)
   })
 
   test("listCollections", async () => {
@@ -170,7 +185,18 @@ describe("DocumentDB", () => {
   })
 
   afterAll(async () => {
+    const collections = await doc_db.listCollections()
     await doc_db.dropCollection(_COLLECTION)
+
+    const oldCollectionName = `${_COLLECTION}.rename`
+    if (collections.includes(oldCollectionName)) {
+      await doc_db.dropCollection(oldCollectionName)
+    }
+
+    const newCollectionName = `${_COLLECTION}.rename.new`
+    if (collections.includes(newCollectionName)) {
+      await doc_db.dropCollection(newCollectionName)
+    }
     doc_db.close()
   })
 })

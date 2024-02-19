@@ -4,12 +4,14 @@
 // Copyright (c) 2023-2024 Cognica
 //
 
-import { Client, Metadata, ServiceError } from "@grpc/grpc-js"
+import { Client, Metadata } from "@grpc/grpc-js"
+import * as grpc from "@grpc/grpc-js"
 
 import * as proto from "@/proto/generated/document"
 
 import { Channel } from "./channel"
 
+export type ServiceError = grpc.ServiceError
 export type Document = {
   [x: string]: any | Document
 }
@@ -49,7 +51,6 @@ export class GrpcClient<ClientType> {
         metadata,
         (error: ServiceError | null, response: Response) => {
           if (error) {
-            // console.error(error)
             reject(error)
           } else {
             resove(response_mapper(response))

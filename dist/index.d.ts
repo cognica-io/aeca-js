@@ -1,18 +1,7 @@
 import * as grpc from '@grpc/grpc-js';
-import { Client, ServiceError, ClientUnaryCall, Metadata, CallOptions, ChannelCredentials, ClientOptions } from '@grpc/grpc-js';
-import { Table } from 'apache-arrow';
+import { Client, ServiceError as ServiceError$1, ClientUnaryCall, Metadata, CallOptions, ChannelCredentials, ClientOptions } from '@grpc/grpc-js';
 import _m0 from 'protobufjs/minimal';
-
-declare class Channel {
-    private _address;
-    private _credential;
-    private _useSSL;
-    private static readonly _OPTIONS;
-    constructor(host: string, port: number, useSSL?: boolean);
-    get address(): string;
-    get credential(): grpc.ChannelCredentials;
-    get options(): grpc.ChannelOptions;
-}
+import { Table } from 'apache-arrow';
 
 interface Value {
     null?: boolean | undefined;
@@ -6075,13 +6064,41 @@ declare const Document$1: {
     } & { [K_111 in Exclude<keyof I_1, keyof Document$1>]: never; }>(object: I_1): Document$1;
 };
 
-declare enum IndexType {
+declare class Channel {
+    private _address;
+    private _credential;
+    private _useSSL;
+    private static readonly _OPTIONS;
+    constructor(host: string, port: number, useSSL?: boolean);
+    get address(): string;
+    get credential(): grpc.ChannelCredentials;
+    get options(): grpc.ChannelOptions;
+}
+
+type ServiceError = grpc.ServiceError;
+type Document = {
+    [x: string]: any | Document;
+};
+declare class GrpcClient<ClientType> {
+    protected _channel: Channel;
+    protected _client: ClientType;
+    protected _timeout: number | undefined;
+    constructor(channel: Channel, client: ClientType, timeout?: number | undefined);
+    createPromise<Return, Request, Response>(request: Request, methodName: keyof ClientType, response_mapper?: (response: Response) => any, waitForReady?: boolean): Promise<Return>;
+    toDocument(doc: Document): Document$1;
+    get channel(): Channel;
+    get timeout(): number | undefined;
+    close(): void;
+}
+
+declare enum IndexType$1 {
     kPrimaryKey = 0,
     kSecondaryKey = 1,
     kClusteredSecondaryKey = 2,
     kFullTextSearchIndex = 3,
     UNRECOGNIZED = -1
 }
+declare function indexTypeFromJSON$1(object: any): IndexType$1;
 declare enum IndexStatus {
     /** kEnabled - Index is in use. */
     kEnabled = 0,
@@ -6099,12 +6116,13 @@ declare enum IndexStatus {
     kDropFinished = 6,
     UNRECOGNIZED = -1
 }
+declare function indexStatusFromJSON$1(object: any): IndexStatus;
 interface IndexDescriptor$1 {
     indexId: number;
     indexName: string;
     fields: string[];
     unique: boolean;
-    indexType: IndexType;
+    indexType: IndexType$1;
     status: IndexStatus;
     options: Document$1 | undefined;
 }
@@ -6118,7 +6136,7 @@ declare const IndexDescriptor$1: {
         indexName?: string | undefined;
         fields?: string[] | undefined;
         unique?: boolean | undefined;
-        indexType?: IndexType | undefined;
+        indexType?: IndexType$1 | undefined;
         status?: IndexStatus | undefined;
         options?: {
             object?: {
@@ -6144,7 +6162,7 @@ declare const IndexDescriptor$1: {
         indexName?: string | undefined;
         fields?: (string[] & string[] & { [K in Exclude<keyof I["fields"], keyof string[]>]: never; }) | undefined;
         unique?: boolean | undefined;
-        indexType?: IndexType | undefined;
+        indexType?: IndexType$1 | undefined;
         status?: IndexStatus | undefined;
         options?: ({
             object?: {
@@ -6645,7 +6663,7 @@ declare const IndexDescriptor$1: {
         indexName?: string | undefined;
         fields?: string[] | undefined;
         unique?: boolean | undefined;
-        indexType?: IndexType | undefined;
+        indexType?: IndexType$1 | undefined;
         status?: IndexStatus | undefined;
         options?: {
             object?: {
@@ -6671,7 +6689,7 @@ declare const IndexDescriptor$1: {
         indexName?: string | undefined;
         fields?: (string[] & string[] & { [K_41 in Exclude<keyof I_1["fields"], keyof string[]>]: never; }) | undefined;
         unique?: boolean | undefined;
-        indexType?: IndexType | undefined;
+        indexType?: IndexType$1 | undefined;
         status?: IndexStatus | undefined;
         options?: ({
             object?: {
@@ -7326,7 +7344,7 @@ declare const FTSIndexStats: {
         }[]>]: never; }) | undefined;
     } & { [K_5 in Exclude<keyof I_1, keyof FTSIndexStats>]: never; }>(object: I_1): FTSIndexStats;
 };
-interface IndexStats {
+interface IndexStats$1 {
     indexId: number;
     indexName: string;
     approximatedSize: number;
@@ -7343,11 +7361,11 @@ interface IndexStats {
     mergedAt: number;
     ftsStats: FTSIndexStats | undefined;
 }
-declare const IndexStats: {
-    encode(message: IndexStats, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): IndexStats;
-    fromJSON(object: any): IndexStats;
-    toJSON(message: IndexStats): unknown;
+declare const IndexStats$1: {
+    encode(message: IndexStats$1, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): IndexStats$1;
+    fromJSON(object: any): IndexStats$1;
+    toJSON(message: IndexStats$1): unknown;
     create<I extends {
         indexId?: number | undefined;
         indexName?: string | undefined;
@@ -7440,7 +7458,7 @@ declare const IndexStats: {
                 sumDocFreq?: number | undefined;
             }[]>]: never; }) | undefined;
         } & { [K_2 in Exclude<keyof I["ftsStats"], keyof FTSIndexStats>]: never; }) | undefined;
-    } & { [K_3 in Exclude<keyof I, keyof IndexStats>]: never; }>(base?: I | undefined): IndexStats;
+    } & { [K_3 in Exclude<keyof I, keyof IndexStats$1>]: never; }>(base?: I | undefined): IndexStats$1;
     fromPartial<I_1 extends {
         indexId?: number | undefined;
         indexName?: string | undefined;
@@ -7533,18 +7551,18 @@ declare const IndexStats: {
                 sumDocFreq?: number | undefined;
             }[]>]: never; }) | undefined;
         } & { [K_6 in Exclude<keyof I_1["ftsStats"], keyof FTSIndexStats>]: never; }) | undefined;
-    } & { [K_7 in Exclude<keyof I_1, keyof IndexStats>]: never; }>(object: I_1): IndexStats;
+    } & { [K_7 in Exclude<keyof I_1, keyof IndexStats$1>]: never; }>(object: I_1): IndexStats$1;
 };
-interface CollectionInfo {
+interface CollectionInfo$1 {
     collectionName: string;
     indexDescriptors: IndexDescriptor$1[];
-    indexStats: IndexStats[];
+    indexStats: IndexStats$1[];
 }
-declare const CollectionInfo: {
-    encode(message: CollectionInfo, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): CollectionInfo;
-    fromJSON(object: any): CollectionInfo;
-    toJSON(message: CollectionInfo): unknown;
+declare const CollectionInfo$1: {
+    encode(message: CollectionInfo$1, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): CollectionInfo$1;
+    fromJSON(object: any): CollectionInfo$1;
+    toJSON(message: CollectionInfo$1): unknown;
     create<I extends {
         collectionName?: string | undefined;
         indexDescriptors?: {
@@ -7552,7 +7570,7 @@ declare const CollectionInfo: {
             indexName?: string | undefined;
             fields?: string[] | undefined;
             unique?: boolean | undefined;
-            indexType?: IndexType | undefined;
+            indexType?: IndexType$1 | undefined;
             status?: IndexStatus | undefined;
             options?: {
                 object?: {
@@ -7610,7 +7628,7 @@ declare const CollectionInfo: {
             indexName?: string | undefined;
             fields?: string[] | undefined;
             unique?: boolean | undefined;
-            indexType?: IndexType | undefined;
+            indexType?: IndexType$1 | undefined;
             status?: IndexStatus | undefined;
             options?: {
                 object?: {
@@ -7636,7 +7654,7 @@ declare const CollectionInfo: {
             indexName?: string | undefined;
             fields?: string[] | undefined;
             unique?: boolean | undefined;
-            indexType?: IndexType | undefined;
+            indexType?: IndexType$1 | undefined;
             status?: IndexStatus | undefined;
             options?: {
                 object?: {
@@ -7662,7 +7680,7 @@ declare const CollectionInfo: {
             indexName?: string | undefined;
             fields?: (string[] & string[] & { [K in Exclude<keyof I["indexDescriptors"][number]["fields"], keyof string[]>]: never; }) | undefined;
             unique?: boolean | undefined;
-            indexType?: IndexType | undefined;
+            indexType?: IndexType$1 | undefined;
             status?: IndexStatus | undefined;
             options?: ({
                 object?: {
@@ -8041,7 +8059,7 @@ declare const CollectionInfo: {
             indexName?: string | undefined;
             fields?: string[] | undefined;
             unique?: boolean | undefined;
-            indexType?: IndexType | undefined;
+            indexType?: IndexType$1 | undefined;
             status?: IndexStatus | undefined;
             options?: {
                 object?: {
@@ -8183,7 +8201,7 @@ declare const CollectionInfo: {
                     sumDocFreq?: number | undefined;
                 }[]>]: never; }) | undefined;
             } & { [K_35 in Exclude<keyof I["indexStats"][number]["ftsStats"], keyof FTSIndexStats>]: never; }) | undefined;
-        } & { [K_36 in Exclude<keyof I["indexStats"][number], keyof IndexStats>]: never; })[] & { [K_37 in Exclude<keyof I["indexStats"], keyof {
+        } & { [K_36 in Exclude<keyof I["indexStats"][number], keyof IndexStats$1>]: never; })[] & { [K_37 in Exclude<keyof I["indexStats"], keyof {
             indexId?: number | undefined;
             indexName?: string | undefined;
             approximatedSize?: number | undefined;
@@ -8212,7 +8230,7 @@ declare const CollectionInfo: {
                 }[] | undefined;
             } | undefined;
         }[]>]: never; }) | undefined;
-    } & { [K_38 in Exclude<keyof I, keyof CollectionInfo>]: never; }>(base?: I | undefined): CollectionInfo;
+    } & { [K_38 in Exclude<keyof I, keyof CollectionInfo$1>]: never; }>(base?: I | undefined): CollectionInfo$1;
     fromPartial<I_1 extends {
         collectionName?: string | undefined;
         indexDescriptors?: {
@@ -8220,7 +8238,7 @@ declare const CollectionInfo: {
             indexName?: string | undefined;
             fields?: string[] | undefined;
             unique?: boolean | undefined;
-            indexType?: IndexType | undefined;
+            indexType?: IndexType$1 | undefined;
             status?: IndexStatus | undefined;
             options?: {
                 object?: {
@@ -8278,7 +8296,7 @@ declare const CollectionInfo: {
             indexName?: string | undefined;
             fields?: string[] | undefined;
             unique?: boolean | undefined;
-            indexType?: IndexType | undefined;
+            indexType?: IndexType$1 | undefined;
             status?: IndexStatus | undefined;
             options?: {
                 object?: {
@@ -8304,7 +8322,7 @@ declare const CollectionInfo: {
             indexName?: string | undefined;
             fields?: string[] | undefined;
             unique?: boolean | undefined;
-            indexType?: IndexType | undefined;
+            indexType?: IndexType$1 | undefined;
             status?: IndexStatus | undefined;
             options?: {
                 object?: {
@@ -8330,7 +8348,7 @@ declare const CollectionInfo: {
             indexName?: string | undefined;
             fields?: (string[] & string[] & { [K_39 in Exclude<keyof I_1["indexDescriptors"][number]["fields"], keyof string[]>]: never; }) | undefined;
             unique?: boolean | undefined;
-            indexType?: IndexType | undefined;
+            indexType?: IndexType$1 | undefined;
             status?: IndexStatus | undefined;
             options?: ({
                 object?: {
@@ -8709,7 +8727,7 @@ declare const CollectionInfo: {
             indexName?: string | undefined;
             fields?: string[] | undefined;
             unique?: boolean | undefined;
-            indexType?: IndexType | undefined;
+            indexType?: IndexType$1 | undefined;
             status?: IndexStatus | undefined;
             options?: {
                 object?: {
@@ -8851,7 +8869,7 @@ declare const CollectionInfo: {
                     sumDocFreq?: number | undefined;
                 }[]>]: never; }) | undefined;
             } & { [K_75 in Exclude<keyof I_1["indexStats"][number]["ftsStats"], keyof FTSIndexStats>]: never; }) | undefined;
-        } & { [K_76 in Exclude<keyof I_1["indexStats"][number], keyof IndexStats>]: never; })[] & { [K_77 in Exclude<keyof I_1["indexStats"], keyof {
+        } & { [K_76 in Exclude<keyof I_1["indexStats"][number], keyof IndexStats$1>]: never; })[] & { [K_77 in Exclude<keyof I_1["indexStats"], keyof {
             indexId?: number | undefined;
             indexName?: string | undefined;
             approximatedSize?: number | undefined;
@@ -8880,7 +8898,7 @@ declare const CollectionInfo: {
                 }[] | undefined;
             } | undefined;
         }[]>]: never; }) | undefined;
-    } & { [K_78 in Exclude<keyof I_1, keyof CollectionInfo>]: never; }>(object: I_1): CollectionInfo;
+    } & { [K_78 in Exclude<keyof I_1, keyof CollectionInfo$1>]: never; }>(object: I_1): CollectionInfo$1;
 };
 interface ProfileInfo$1 {
     matched: number;
@@ -8922,7 +8940,7 @@ declare const ProfileInfo$1: {
     } & { [K_1 in Exclude<keyof I_1, keyof ProfileInfo$1>]: never; }>(object: I_1): ProfileInfo$1;
 };
 interface CreateCollectionRequest {
-    collection: CollectionInfo | undefined;
+    collection: CollectionInfo$1 | undefined;
 }
 declare const CreateCollectionRequest: {
     encode(message: CreateCollectionRequest, writer?: _m0.Writer): _m0.Writer;
@@ -8937,7 +8955,7 @@ declare const CreateCollectionRequest: {
                 indexName?: string | undefined;
                 fields?: string[] | undefined;
                 unique?: boolean | undefined;
-                indexType?: IndexType | undefined;
+                indexType?: IndexType$1 | undefined;
                 status?: IndexStatus | undefined;
                 options?: {
                     object?: {
@@ -8997,7 +9015,7 @@ declare const CreateCollectionRequest: {
                 indexName?: string | undefined;
                 fields?: string[] | undefined;
                 unique?: boolean | undefined;
-                indexType?: IndexType | undefined;
+                indexType?: IndexType$1 | undefined;
                 status?: IndexStatus | undefined;
                 options?: {
                     object?: {
@@ -9055,7 +9073,7 @@ declare const CreateCollectionRequest: {
                 indexName?: string | undefined;
                 fields?: string[] | undefined;
                 unique?: boolean | undefined;
-                indexType?: IndexType | undefined;
+                indexType?: IndexType$1 | undefined;
                 status?: IndexStatus | undefined;
                 options?: {
                     object?: {
@@ -9081,7 +9099,7 @@ declare const CreateCollectionRequest: {
                 indexName?: string | undefined;
                 fields?: string[] | undefined;
                 unique?: boolean | undefined;
-                indexType?: IndexType | undefined;
+                indexType?: IndexType$1 | undefined;
                 status?: IndexStatus | undefined;
                 options?: {
                     object?: {
@@ -9107,7 +9125,7 @@ declare const CreateCollectionRequest: {
                 indexName?: string | undefined;
                 fields?: (string[] & string[] & { [K in Exclude<keyof I["collection"]["indexDescriptors"][number]["fields"], keyof string[]>]: never; }) | undefined;
                 unique?: boolean | undefined;
-                indexType?: IndexType | undefined;
+                indexType?: IndexType$1 | undefined;
                 status?: IndexStatus | undefined;
                 options?: ({
                     object?: {
@@ -9393,7 +9411,7 @@ declare const CreateCollectionRequest: {
                 indexName?: string | undefined;
                 fields?: string[] | undefined;
                 unique?: boolean | undefined;
-                indexType?: IndexType | undefined;
+                indexType?: IndexType$1 | undefined;
                 status?: IndexStatus | undefined;
                 options?: {
                     object?: {
@@ -9535,7 +9553,7 @@ declare const CreateCollectionRequest: {
                         sumDocFreq?: number | undefined;
                     }[]>]: never; }) | undefined;
                 } & { [K_25 in Exclude<keyof I["collection"]["indexStats"][number]["ftsStats"], keyof FTSIndexStats>]: never; }) | undefined;
-            } & { [K_26 in Exclude<keyof I["collection"]["indexStats"][number], keyof IndexStats>]: never; })[] & { [K_27 in Exclude<keyof I["collection"]["indexStats"], keyof {
+            } & { [K_26 in Exclude<keyof I["collection"]["indexStats"][number], keyof IndexStats$1>]: never; })[] & { [K_27 in Exclude<keyof I["collection"]["indexStats"], keyof {
                 indexId?: number | undefined;
                 indexName?: string | undefined;
                 approximatedSize?: number | undefined;
@@ -9564,7 +9582,7 @@ declare const CreateCollectionRequest: {
                     }[] | undefined;
                 } | undefined;
             }[]>]: never; }) | undefined;
-        } & { [K_28 in Exclude<keyof I["collection"], keyof CollectionInfo>]: never; }) | undefined;
+        } & { [K_28 in Exclude<keyof I["collection"], keyof CollectionInfo$1>]: never; }) | undefined;
     } & { [K_29 in Exclude<keyof I, "collection">]: never; }>(base?: I | undefined): CreateCollectionRequest;
     fromPartial<I_1 extends {
         collection?: {
@@ -9574,7 +9592,7 @@ declare const CreateCollectionRequest: {
                 indexName?: string | undefined;
                 fields?: string[] | undefined;
                 unique?: boolean | undefined;
-                indexType?: IndexType | undefined;
+                indexType?: IndexType$1 | undefined;
                 status?: IndexStatus | undefined;
                 options?: {
                     object?: {
@@ -9634,7 +9652,7 @@ declare const CreateCollectionRequest: {
                 indexName?: string | undefined;
                 fields?: string[] | undefined;
                 unique?: boolean | undefined;
-                indexType?: IndexType | undefined;
+                indexType?: IndexType$1 | undefined;
                 status?: IndexStatus | undefined;
                 options?: {
                     object?: {
@@ -9692,7 +9710,7 @@ declare const CreateCollectionRequest: {
                 indexName?: string | undefined;
                 fields?: string[] | undefined;
                 unique?: boolean | undefined;
-                indexType?: IndexType | undefined;
+                indexType?: IndexType$1 | undefined;
                 status?: IndexStatus | undefined;
                 options?: {
                     object?: {
@@ -9718,7 +9736,7 @@ declare const CreateCollectionRequest: {
                 indexName?: string | undefined;
                 fields?: string[] | undefined;
                 unique?: boolean | undefined;
-                indexType?: IndexType | undefined;
+                indexType?: IndexType$1 | undefined;
                 status?: IndexStatus | undefined;
                 options?: {
                     object?: {
@@ -9744,7 +9762,7 @@ declare const CreateCollectionRequest: {
                 indexName?: string | undefined;
                 fields?: (string[] & string[] & { [K_30 in Exclude<keyof I_1["collection"]["indexDescriptors"][number]["fields"], keyof string[]>]: never; }) | undefined;
                 unique?: boolean | undefined;
-                indexType?: IndexType | undefined;
+                indexType?: IndexType$1 | undefined;
                 status?: IndexStatus | undefined;
                 options?: ({
                     object?: {
@@ -10030,7 +10048,7 @@ declare const CreateCollectionRequest: {
                 indexName?: string | undefined;
                 fields?: string[] | undefined;
                 unique?: boolean | undefined;
-                indexType?: IndexType | undefined;
+                indexType?: IndexType$1 | undefined;
                 status?: IndexStatus | undefined;
                 options?: {
                     object?: {
@@ -10172,7 +10190,7 @@ declare const CreateCollectionRequest: {
                         sumDocFreq?: number | undefined;
                     }[]>]: never; }) | undefined;
                 } & { [K_58 in Exclude<keyof I_1["collection"]["indexStats"][number]["ftsStats"], keyof FTSIndexStats>]: never; }) | undefined;
-            } & { [K_59 in Exclude<keyof I_1["collection"]["indexStats"][number], keyof IndexStats>]: never; })[] & { [K_60 in Exclude<keyof I_1["collection"]["indexStats"], keyof {
+            } & { [K_59 in Exclude<keyof I_1["collection"]["indexStats"][number], keyof IndexStats$1>]: never; })[] & { [K_60 in Exclude<keyof I_1["collection"]["indexStats"], keyof {
                 indexId?: number | undefined;
                 indexName?: string | undefined;
                 approximatedSize?: number | undefined;
@@ -10201,7 +10219,7 @@ declare const CreateCollectionRequest: {
                     }[] | undefined;
                 } | undefined;
             }[]>]: never; }) | undefined;
-        } & { [K_61 in Exclude<keyof I_1["collection"], keyof CollectionInfo>]: never; }) | undefined;
+        } & { [K_61 in Exclude<keyof I_1["collection"], keyof CollectionInfo$1>]: never; }) | undefined;
     } & { [K_62 in Exclude<keyof I_1, "collection">]: never; }>(object: I_1): CreateCollectionRequest;
 };
 interface CreateCollectionResponse {
@@ -10464,7 +10482,7 @@ declare const GetCollectionRequest: {
 interface GetCollectionResponse {
     status: number;
     message: string;
-    collection: CollectionInfo | undefined;
+    collection: CollectionInfo$1 | undefined;
     profile: ProfileInfo$1 | undefined;
 }
 declare const GetCollectionResponse: {
@@ -10482,7 +10500,7 @@ declare const GetCollectionResponse: {
                 indexName?: string | undefined;
                 fields?: string[] | undefined;
                 unique?: boolean | undefined;
-                indexType?: IndexType | undefined;
+                indexType?: IndexType$1 | undefined;
                 status?: IndexStatus | undefined;
                 options?: {
                     object?: {
@@ -10551,7 +10569,7 @@ declare const GetCollectionResponse: {
                 indexName?: string | undefined;
                 fields?: string[] | undefined;
                 unique?: boolean | undefined;
-                indexType?: IndexType | undefined;
+                indexType?: IndexType$1 | undefined;
                 status?: IndexStatus | undefined;
                 options?: {
                     object?: {
@@ -10609,7 +10627,7 @@ declare const GetCollectionResponse: {
                 indexName?: string | undefined;
                 fields?: string[] | undefined;
                 unique?: boolean | undefined;
-                indexType?: IndexType | undefined;
+                indexType?: IndexType$1 | undefined;
                 status?: IndexStatus | undefined;
                 options?: {
                     object?: {
@@ -10635,7 +10653,7 @@ declare const GetCollectionResponse: {
                 indexName?: string | undefined;
                 fields?: string[] | undefined;
                 unique?: boolean | undefined;
-                indexType?: IndexType | undefined;
+                indexType?: IndexType$1 | undefined;
                 status?: IndexStatus | undefined;
                 options?: {
                     object?: {
@@ -10661,7 +10679,7 @@ declare const GetCollectionResponse: {
                 indexName?: string | undefined;
                 fields?: (string[] & string[] & { [K in Exclude<keyof I["collection"]["indexDescriptors"][number]["fields"], keyof string[]>]: never; }) | undefined;
                 unique?: boolean | undefined;
-                indexType?: IndexType | undefined;
+                indexType?: IndexType$1 | undefined;
                 status?: IndexStatus | undefined;
                 options?: ({
                     object?: {
@@ -10947,7 +10965,7 @@ declare const GetCollectionResponse: {
                 indexName?: string | undefined;
                 fields?: string[] | undefined;
                 unique?: boolean | undefined;
-                indexType?: IndexType | undefined;
+                indexType?: IndexType$1 | undefined;
                 status?: IndexStatus | undefined;
                 options?: {
                     object?: {
@@ -11089,7 +11107,7 @@ declare const GetCollectionResponse: {
                         sumDocFreq?: number | undefined;
                     }[]>]: never; }) | undefined;
                 } & { [K_25 in Exclude<keyof I["collection"]["indexStats"][number]["ftsStats"], keyof FTSIndexStats>]: never; }) | undefined;
-            } & { [K_26 in Exclude<keyof I["collection"]["indexStats"][number], keyof IndexStats>]: never; })[] & { [K_27 in Exclude<keyof I["collection"]["indexStats"], keyof {
+            } & { [K_26 in Exclude<keyof I["collection"]["indexStats"][number], keyof IndexStats$1>]: never; })[] & { [K_27 in Exclude<keyof I["collection"]["indexStats"], keyof {
                 indexId?: number | undefined;
                 indexName?: string | undefined;
                 approximatedSize?: number | undefined;
@@ -11118,7 +11136,7 @@ declare const GetCollectionResponse: {
                     }[] | undefined;
                 } | undefined;
             }[]>]: never; }) | undefined;
-        } & { [K_28 in Exclude<keyof I["collection"], keyof CollectionInfo>]: never; }) | undefined;
+        } & { [K_28 in Exclude<keyof I["collection"], keyof CollectionInfo$1>]: never; }) | undefined;
         profile?: ({
             matched?: number | undefined;
             scanned?: number | undefined;
@@ -11143,7 +11161,7 @@ declare const GetCollectionResponse: {
                 indexName?: string | undefined;
                 fields?: string[] | undefined;
                 unique?: boolean | undefined;
-                indexType?: IndexType | undefined;
+                indexType?: IndexType$1 | undefined;
                 status?: IndexStatus | undefined;
                 options?: {
                     object?: {
@@ -11212,7 +11230,7 @@ declare const GetCollectionResponse: {
                 indexName?: string | undefined;
                 fields?: string[] | undefined;
                 unique?: boolean | undefined;
-                indexType?: IndexType | undefined;
+                indexType?: IndexType$1 | undefined;
                 status?: IndexStatus | undefined;
                 options?: {
                     object?: {
@@ -11270,7 +11288,7 @@ declare const GetCollectionResponse: {
                 indexName?: string | undefined;
                 fields?: string[] | undefined;
                 unique?: boolean | undefined;
-                indexType?: IndexType | undefined;
+                indexType?: IndexType$1 | undefined;
                 status?: IndexStatus | undefined;
                 options?: {
                     object?: {
@@ -11296,7 +11314,7 @@ declare const GetCollectionResponse: {
                 indexName?: string | undefined;
                 fields?: string[] | undefined;
                 unique?: boolean | undefined;
-                indexType?: IndexType | undefined;
+                indexType?: IndexType$1 | undefined;
                 status?: IndexStatus | undefined;
                 options?: {
                     object?: {
@@ -11322,7 +11340,7 @@ declare const GetCollectionResponse: {
                 indexName?: string | undefined;
                 fields?: (string[] & string[] & { [K_31 in Exclude<keyof I_1["collection"]["indexDescriptors"][number]["fields"], keyof string[]>]: never; }) | undefined;
                 unique?: boolean | undefined;
-                indexType?: IndexType | undefined;
+                indexType?: IndexType$1 | undefined;
                 status?: IndexStatus | undefined;
                 options?: ({
                     object?: {
@@ -11608,7 +11626,7 @@ declare const GetCollectionResponse: {
                 indexName?: string | undefined;
                 fields?: string[] | undefined;
                 unique?: boolean | undefined;
-                indexType?: IndexType | undefined;
+                indexType?: IndexType$1 | undefined;
                 status?: IndexStatus | undefined;
                 options?: {
                     object?: {
@@ -11750,7 +11768,7 @@ declare const GetCollectionResponse: {
                         sumDocFreq?: number | undefined;
                     }[]>]: never; }) | undefined;
                 } & { [K_59 in Exclude<keyof I_1["collection"]["indexStats"][number]["ftsStats"], keyof FTSIndexStats>]: never; }) | undefined;
-            } & { [K_60 in Exclude<keyof I_1["collection"]["indexStats"][number], keyof IndexStats>]: never; })[] & { [K_61 in Exclude<keyof I_1["collection"]["indexStats"], keyof {
+            } & { [K_60 in Exclude<keyof I_1["collection"]["indexStats"][number], keyof IndexStats$1>]: never; })[] & { [K_61 in Exclude<keyof I_1["collection"]["indexStats"], keyof {
                 indexId?: number | undefined;
                 indexName?: string | undefined;
                 approximatedSize?: number | undefined;
@@ -11779,7 +11797,7 @@ declare const GetCollectionResponse: {
                     }[] | undefined;
                 } | undefined;
             }[]>]: never; }) | undefined;
-        } & { [K_62 in Exclude<keyof I_1["collection"], keyof CollectionInfo>]: never; }) | undefined;
+        } & { [K_62 in Exclude<keyof I_1["collection"], keyof CollectionInfo$1>]: never; }) | undefined;
         profile?: ({
             matched?: number | undefined;
             scanned?: number | undefined;
@@ -11817,7 +11835,7 @@ declare const GetCollectionsRequest: {
 interface GetCollectionsResponse {
     status: number;
     message: string;
-    collections: CollectionInfo[];
+    collections: CollectionInfo$1[];
     profile: ProfileInfo$1 | undefined;
 }
 declare const GetCollectionsResponse: {
@@ -11835,7 +11853,7 @@ declare const GetCollectionsResponse: {
                 indexName?: string | undefined;
                 fields?: string[] | undefined;
                 unique?: boolean | undefined;
-                indexType?: IndexType | undefined;
+                indexType?: IndexType$1 | undefined;
                 status?: IndexStatus | undefined;
                 options?: {
                     object?: {
@@ -11904,7 +11922,7 @@ declare const GetCollectionsResponse: {
                 indexName?: string | undefined;
                 fields?: string[] | undefined;
                 unique?: boolean | undefined;
-                indexType?: IndexType | undefined;
+                indexType?: IndexType$1 | undefined;
                 status?: IndexStatus | undefined;
                 options?: {
                     object?: {
@@ -11962,7 +11980,7 @@ declare const GetCollectionsResponse: {
                 indexName?: string | undefined;
                 fields?: string[] | undefined;
                 unique?: boolean | undefined;
-                indexType?: IndexType | undefined;
+                indexType?: IndexType$1 | undefined;
                 status?: IndexStatus | undefined;
                 options?: {
                     object?: {
@@ -12020,7 +12038,7 @@ declare const GetCollectionsResponse: {
                 indexName?: string | undefined;
                 fields?: string[] | undefined;
                 unique?: boolean | undefined;
-                indexType?: IndexType | undefined;
+                indexType?: IndexType$1 | undefined;
                 status?: IndexStatus | undefined;
                 options?: {
                     object?: {
@@ -12046,7 +12064,7 @@ declare const GetCollectionsResponse: {
                 indexName?: string | undefined;
                 fields?: string[] | undefined;
                 unique?: boolean | undefined;
-                indexType?: IndexType | undefined;
+                indexType?: IndexType$1 | undefined;
                 status?: IndexStatus | undefined;
                 options?: {
                     object?: {
@@ -12072,7 +12090,7 @@ declare const GetCollectionsResponse: {
                 indexName?: string | undefined;
                 fields?: (string[] & string[] & { [K in Exclude<keyof I["collections"][number]["indexDescriptors"][number]["fields"], keyof string[]>]: never; }) | undefined;
                 unique?: boolean | undefined;
-                indexType?: IndexType | undefined;
+                indexType?: IndexType$1 | undefined;
                 status?: IndexStatus | undefined;
                 options?: ({
                     object?: {
@@ -12358,7 +12376,7 @@ declare const GetCollectionsResponse: {
                 indexName?: string | undefined;
                 fields?: string[] | undefined;
                 unique?: boolean | undefined;
-                indexType?: IndexType | undefined;
+                indexType?: IndexType$1 | undefined;
                 status?: IndexStatus | undefined;
                 options?: {
                     object?: {
@@ -12500,7 +12518,7 @@ declare const GetCollectionsResponse: {
                         sumDocFreq?: number | undefined;
                     }[]>]: never; }) | undefined;
                 } & { [K_25 in Exclude<keyof I["collections"][number]["indexStats"][number]["ftsStats"], keyof FTSIndexStats>]: never; }) | undefined;
-            } & { [K_26 in Exclude<keyof I["collections"][number]["indexStats"][number], keyof IndexStats>]: never; })[] & { [K_27 in Exclude<keyof I["collections"][number]["indexStats"], keyof {
+            } & { [K_26 in Exclude<keyof I["collections"][number]["indexStats"][number], keyof IndexStats$1>]: never; })[] & { [K_27 in Exclude<keyof I["collections"][number]["indexStats"], keyof {
                 indexId?: number | undefined;
                 indexName?: string | undefined;
                 approximatedSize?: number | undefined;
@@ -12529,14 +12547,14 @@ declare const GetCollectionsResponse: {
                     }[] | undefined;
                 } | undefined;
             }[]>]: never; }) | undefined;
-        } & { [K_28 in Exclude<keyof I["collections"][number], keyof CollectionInfo>]: never; })[] & { [K_29 in Exclude<keyof I["collections"], keyof {
+        } & { [K_28 in Exclude<keyof I["collections"][number], keyof CollectionInfo$1>]: never; })[] & { [K_29 in Exclude<keyof I["collections"], keyof {
             collectionName?: string | undefined;
             indexDescriptors?: {
                 indexId?: number | undefined;
                 indexName?: string | undefined;
                 fields?: string[] | undefined;
                 unique?: boolean | undefined;
-                indexType?: IndexType | undefined;
+                indexType?: IndexType$1 | undefined;
                 status?: IndexStatus | undefined;
                 options?: {
                     object?: {
@@ -12612,7 +12630,7 @@ declare const GetCollectionsResponse: {
                 indexName?: string | undefined;
                 fields?: string[] | undefined;
                 unique?: boolean | undefined;
-                indexType?: IndexType | undefined;
+                indexType?: IndexType$1 | undefined;
                 status?: IndexStatus | undefined;
                 options?: {
                     object?: {
@@ -12681,7 +12699,7 @@ declare const GetCollectionsResponse: {
                 indexName?: string | undefined;
                 fields?: string[] | undefined;
                 unique?: boolean | undefined;
-                indexType?: IndexType | undefined;
+                indexType?: IndexType$1 | undefined;
                 status?: IndexStatus | undefined;
                 options?: {
                     object?: {
@@ -12739,7 +12757,7 @@ declare const GetCollectionsResponse: {
                 indexName?: string | undefined;
                 fields?: string[] | undefined;
                 unique?: boolean | undefined;
-                indexType?: IndexType | undefined;
+                indexType?: IndexType$1 | undefined;
                 status?: IndexStatus | undefined;
                 options?: {
                     object?: {
@@ -12797,7 +12815,7 @@ declare const GetCollectionsResponse: {
                 indexName?: string | undefined;
                 fields?: string[] | undefined;
                 unique?: boolean | undefined;
-                indexType?: IndexType | undefined;
+                indexType?: IndexType$1 | undefined;
                 status?: IndexStatus | undefined;
                 options?: {
                     object?: {
@@ -12823,7 +12841,7 @@ declare const GetCollectionsResponse: {
                 indexName?: string | undefined;
                 fields?: string[] | undefined;
                 unique?: boolean | undefined;
-                indexType?: IndexType | undefined;
+                indexType?: IndexType$1 | undefined;
                 status?: IndexStatus | undefined;
                 options?: {
                     object?: {
@@ -12849,7 +12867,7 @@ declare const GetCollectionsResponse: {
                 indexName?: string | undefined;
                 fields?: (string[] & string[] & { [K_32 in Exclude<keyof I_1["collections"][number]["indexDescriptors"][number]["fields"], keyof string[]>]: never; }) | undefined;
                 unique?: boolean | undefined;
-                indexType?: IndexType | undefined;
+                indexType?: IndexType$1 | undefined;
                 status?: IndexStatus | undefined;
                 options?: ({
                     object?: {
@@ -13135,7 +13153,7 @@ declare const GetCollectionsResponse: {
                 indexName?: string | undefined;
                 fields?: string[] | undefined;
                 unique?: boolean | undefined;
-                indexType?: IndexType | undefined;
+                indexType?: IndexType$1 | undefined;
                 status?: IndexStatus | undefined;
                 options?: {
                     object?: {
@@ -13277,7 +13295,7 @@ declare const GetCollectionsResponse: {
                         sumDocFreq?: number | undefined;
                     }[]>]: never; }) | undefined;
                 } & { [K_60 in Exclude<keyof I_1["collections"][number]["indexStats"][number]["ftsStats"], keyof FTSIndexStats>]: never; }) | undefined;
-            } & { [K_61 in Exclude<keyof I_1["collections"][number]["indexStats"][number], keyof IndexStats>]: never; })[] & { [K_62 in Exclude<keyof I_1["collections"][number]["indexStats"], keyof {
+            } & { [K_61 in Exclude<keyof I_1["collections"][number]["indexStats"][number], keyof IndexStats$1>]: never; })[] & { [K_62 in Exclude<keyof I_1["collections"][number]["indexStats"], keyof {
                 indexId?: number | undefined;
                 indexName?: string | undefined;
                 approximatedSize?: number | undefined;
@@ -13306,14 +13324,14 @@ declare const GetCollectionsResponse: {
                     }[] | undefined;
                 } | undefined;
             }[]>]: never; }) | undefined;
-        } & { [K_63 in Exclude<keyof I_1["collections"][number], keyof CollectionInfo>]: never; })[] & { [K_64 in Exclude<keyof I_1["collections"], keyof {
+        } & { [K_63 in Exclude<keyof I_1["collections"][number], keyof CollectionInfo$1>]: never; })[] & { [K_64 in Exclude<keyof I_1["collections"], keyof {
             collectionName?: string | undefined;
             indexDescriptors?: {
                 indexId?: number | undefined;
                 indexName?: string | undefined;
                 fields?: string[] | undefined;
                 unique?: boolean | undefined;
-                indexType?: IndexType | undefined;
+                indexType?: IndexType$1 | undefined;
                 status?: IndexStatus | undefined;
                 options?: {
                     object?: {
@@ -13396,7 +13414,7 @@ declare const CreateIndexRequest: {
             indexName?: string | undefined;
             fields?: string[] | undefined;
             unique?: boolean | undefined;
-            indexType?: IndexType | undefined;
+            indexType?: IndexType$1 | undefined;
             status?: IndexStatus | undefined;
             options?: {
                 object?: {
@@ -13425,7 +13443,7 @@ declare const CreateIndexRequest: {
             indexName?: string | undefined;
             fields?: string[] | undefined;
             unique?: boolean | undefined;
-            indexType?: IndexType | undefined;
+            indexType?: IndexType$1 | undefined;
             status?: IndexStatus | undefined;
             options?: {
                 object?: {
@@ -13451,7 +13469,7 @@ declare const CreateIndexRequest: {
             indexName?: string | undefined;
             fields?: (string[] & string[] & { [K in Exclude<keyof I["indexDesc"]["fields"], keyof string[]>]: never; }) | undefined;
             unique?: boolean | undefined;
-            indexType?: IndexType | undefined;
+            indexType?: IndexType$1 | undefined;
             status?: IndexStatus | undefined;
             options?: ({
                 object?: {
@@ -13834,7 +13852,7 @@ declare const CreateIndexRequest: {
             indexName?: string | undefined;
             fields?: string[] | undefined;
             unique?: boolean | undefined;
-            indexType?: IndexType | undefined;
+            indexType?: IndexType$1 | undefined;
             status?: IndexStatus | undefined;
             options?: {
                 object?: {
@@ -13863,7 +13881,7 @@ declare const CreateIndexRequest: {
             indexName?: string | undefined;
             fields?: string[] | undefined;
             unique?: boolean | undefined;
-            indexType?: IndexType | undefined;
+            indexType?: IndexType$1 | undefined;
             status?: IndexStatus | undefined;
             options?: {
                 object?: {
@@ -13889,7 +13907,7 @@ declare const CreateIndexRequest: {
             indexName?: string | undefined;
             fields?: (string[] & string[] & { [K_33 in Exclude<keyof I_1["indexDesc"]["fields"], keyof string[]>]: never; }) | undefined;
             unique?: boolean | undefined;
-            indexType?: IndexType | undefined;
+            indexType?: IndexType$1 | undefined;
             status?: IndexStatus | undefined;
             options?: ({
                 object?: {
@@ -14543,7 +14561,7 @@ interface GetIndexResponse {
     message: string;
     collectionName: string;
     indexDesc: IndexDescriptor$1 | undefined;
-    indexStats: IndexStats | undefined;
+    indexStats: IndexStats$1 | undefined;
     profile: ProfileInfo$1 | undefined;
 }
 declare const GetIndexResponse: {
@@ -14560,7 +14578,7 @@ declare const GetIndexResponse: {
             indexName?: string | undefined;
             fields?: string[] | undefined;
             unique?: boolean | undefined;
-            indexType?: IndexType | undefined;
+            indexType?: IndexType$1 | undefined;
             status?: IndexStatus | undefined;
             options?: {
                 object?: {
@@ -14627,7 +14645,7 @@ declare const GetIndexResponse: {
             indexName?: string | undefined;
             fields?: string[] | undefined;
             unique?: boolean | undefined;
-            indexType?: IndexType | undefined;
+            indexType?: IndexType$1 | undefined;
             status?: IndexStatus | undefined;
             options?: {
                 object?: {
@@ -14653,7 +14671,7 @@ declare const GetIndexResponse: {
             indexName?: string | undefined;
             fields?: (string[] & string[] & { [K in Exclude<keyof I["indexDesc"]["fields"], keyof string[]>]: never; }) | undefined;
             unique?: boolean | undefined;
-            indexType?: IndexType | undefined;
+            indexType?: IndexType$1 | undefined;
             status?: IndexStatus | undefined;
             options?: ({
                 object?: {
@@ -15120,7 +15138,7 @@ declare const GetIndexResponse: {
                     sumDocFreq?: number | undefined;
                 }[]>]: never; }) | undefined;
             } & { [K_34 in Exclude<keyof I["indexStats"]["ftsStats"], keyof FTSIndexStats>]: never; }) | undefined;
-        } & { [K_35 in Exclude<keyof I["indexStats"], keyof IndexStats>]: never; }) | undefined;
+        } & { [K_35 in Exclude<keyof I["indexStats"], keyof IndexStats$1>]: never; }) | undefined;
         profile?: ({
             matched?: number | undefined;
             scanned?: number | undefined;
@@ -15144,7 +15162,7 @@ declare const GetIndexResponse: {
             indexName?: string | undefined;
             fields?: string[] | undefined;
             unique?: boolean | undefined;
-            indexType?: IndexType | undefined;
+            indexType?: IndexType$1 | undefined;
             status?: IndexStatus | undefined;
             options?: {
                 object?: {
@@ -15211,7 +15229,7 @@ declare const GetIndexResponse: {
             indexName?: string | undefined;
             fields?: string[] | undefined;
             unique?: boolean | undefined;
-            indexType?: IndexType | undefined;
+            indexType?: IndexType$1 | undefined;
             status?: IndexStatus | undefined;
             options?: {
                 object?: {
@@ -15237,7 +15255,7 @@ declare const GetIndexResponse: {
             indexName?: string | undefined;
             fields?: (string[] & string[] & { [K_38 in Exclude<keyof I_1["indexDesc"]["fields"], keyof string[]>]: never; }) | undefined;
             unique?: boolean | undefined;
-            indexType?: IndexType | undefined;
+            indexType?: IndexType$1 | undefined;
             status?: IndexStatus | undefined;
             options?: ({
                 object?: {
@@ -15704,7 +15722,7 @@ declare const GetIndexResponse: {
                     sumDocFreq?: number | undefined;
                 }[]>]: never; }) | undefined;
             } & { [K_73 in Exclude<keyof I_1["indexStats"]["ftsStats"], keyof FTSIndexStats>]: never; }) | undefined;
-        } & { [K_74 in Exclude<keyof I_1["indexStats"], keyof IndexStats>]: never; }) | undefined;
+        } & { [K_74 in Exclude<keyof I_1["indexStats"], keyof IndexStats$1>]: never; }) | undefined;
         profile?: ({
             matched?: number | undefined;
             scanned?: number | undefined;
@@ -26108,84 +26126,69 @@ declare const DocumentDBServiceService: {
     };
 };
 interface DocumentDBServiceClient extends Client {
-    find(request: FindRequest, callback: (error: ServiceError | null, response: FindResponse) => void): ClientUnaryCall;
-    find(request: FindRequest, metadata: Metadata, callback: (error: ServiceError | null, response: FindResponse) => void): ClientUnaryCall;
-    find(request: FindRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError | null, response: FindResponse) => void): ClientUnaryCall;
-    findBatch(request: FindBatchRequest, callback: (error: ServiceError | null, response: FindBatchResponse) => void): ClientUnaryCall;
-    findBatch(request: FindBatchRequest, metadata: Metadata, callback: (error: ServiceError | null, response: FindBatchResponse) => void): ClientUnaryCall;
-    findBatch(request: FindBatchRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError | null, response: FindBatchResponse) => void): ClientUnaryCall;
-    count(request: CountRequest, callback: (error: ServiceError | null, response: CountResponse) => void): ClientUnaryCall;
-    count(request: CountRequest, metadata: Metadata, callback: (error: ServiceError | null, response: CountResponse) => void): ClientUnaryCall;
-    count(request: CountRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError | null, response: CountResponse) => void): ClientUnaryCall;
-    contains(request: ContainsRequest, callback: (error: ServiceError | null, response: ContainsResponse) => void): ClientUnaryCall;
-    contains(request: ContainsRequest, metadata: Metadata, callback: (error: ServiceError | null, response: ContainsResponse) => void): ClientUnaryCall;
-    contains(request: ContainsRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError | null, response: ContainsResponse) => void): ClientUnaryCall;
-    insert(request: InsertRequest, callback: (error: ServiceError | null, response: InsertResponse) => void): ClientUnaryCall;
-    insert(request: InsertRequest, metadata: Metadata, callback: (error: ServiceError | null, response: InsertResponse) => void): ClientUnaryCall;
-    insert(request: InsertRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError | null, response: InsertResponse) => void): ClientUnaryCall;
-    update(request: UpdateRequest, callback: (error: ServiceError | null, response: UpdateResponse) => void): ClientUnaryCall;
-    update(request: UpdateRequest, metadata: Metadata, callback: (error: ServiceError | null, response: UpdateResponse) => void): ClientUnaryCall;
-    update(request: UpdateRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError | null, response: UpdateResponse) => void): ClientUnaryCall;
-    remove(request: RemoveRequest$1, callback: (error: ServiceError | null, response: RemoveResponse$1) => void): ClientUnaryCall;
-    remove(request: RemoveRequest$1, metadata: Metadata, callback: (error: ServiceError | null, response: RemoveResponse$1) => void): ClientUnaryCall;
-    remove(request: RemoveRequest$1, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError | null, response: RemoveResponse$1) => void): ClientUnaryCall;
-    explain(request: ExplainRequest, callback: (error: ServiceError | null, response: ExplainResponse) => void): ClientUnaryCall;
-    explain(request: ExplainRequest, metadata: Metadata, callback: (error: ServiceError | null, response: ExplainResponse) => void): ClientUnaryCall;
-    explain(request: ExplainRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError | null, response: ExplainResponse) => void): ClientUnaryCall;
-    createCollection(request: CreateCollectionRequest, callback: (error: ServiceError | null, response: CreateCollectionResponse) => void): ClientUnaryCall;
-    createCollection(request: CreateCollectionRequest, metadata: Metadata, callback: (error: ServiceError | null, response: CreateCollectionResponse) => void): ClientUnaryCall;
-    createCollection(request: CreateCollectionRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError | null, response: CreateCollectionResponse) => void): ClientUnaryCall;
-    dropCollection(request: DropCollectionRequest, callback: (error: ServiceError | null, response: DropCollectionResponse) => void): ClientUnaryCall;
-    dropCollection(request: DropCollectionRequest, metadata: Metadata, callback: (error: ServiceError | null, response: DropCollectionResponse) => void): ClientUnaryCall;
-    dropCollection(request: DropCollectionRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError | null, response: DropCollectionResponse) => void): ClientUnaryCall;
-    renameCollection(request: RenameCollectionRequest, callback: (error: ServiceError | null, response: RenameCollectionResponse) => void): ClientUnaryCall;
-    renameCollection(request: RenameCollectionRequest, metadata: Metadata, callback: (error: ServiceError | null, response: RenameCollectionResponse) => void): ClientUnaryCall;
-    renameCollection(request: RenameCollectionRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError | null, response: RenameCollectionResponse) => void): ClientUnaryCall;
-    getCollection(request: GetCollectionRequest, callback: (error: ServiceError | null, response: GetCollectionResponse) => void): ClientUnaryCall;
-    getCollection(request: GetCollectionRequest, metadata: Metadata, callback: (error: ServiceError | null, response: GetCollectionResponse) => void): ClientUnaryCall;
-    getCollection(request: GetCollectionRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError | null, response: GetCollectionResponse) => void): ClientUnaryCall;
-    getCollections(request: GetCollectionsRequest, callback: (error: ServiceError | null, response: GetCollectionsResponse) => void): ClientUnaryCall;
-    getCollections(request: GetCollectionsRequest, metadata: Metadata, callback: (error: ServiceError | null, response: GetCollectionsResponse) => void): ClientUnaryCall;
-    getCollections(request: GetCollectionsRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError | null, response: GetCollectionsResponse) => void): ClientUnaryCall;
-    listCollections(request: ListCollectionsRequest, callback: (error: ServiceError | null, response: ListCollectionsResponse) => void): ClientUnaryCall;
-    listCollections(request: ListCollectionsRequest, metadata: Metadata, callback: (error: ServiceError | null, response: ListCollectionsResponse) => void): ClientUnaryCall;
-    listCollections(request: ListCollectionsRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError | null, response: ListCollectionsResponse) => void): ClientUnaryCall;
-    truncateCollection(request: TruncateCollectionRequest, callback: (error: ServiceError | null, response: TruncateCollectionResponse) => void): ClientUnaryCall;
-    truncateCollection(request: TruncateCollectionRequest, metadata: Metadata, callback: (error: ServiceError | null, response: TruncateCollectionResponse) => void): ClientUnaryCall;
-    truncateCollection(request: TruncateCollectionRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError | null, response: TruncateCollectionResponse) => void): ClientUnaryCall;
-    createIndex(request: CreateIndexRequest, callback: (error: ServiceError | null, response: CreateIndexResponse) => void): ClientUnaryCall;
-    createIndex(request: CreateIndexRequest, metadata: Metadata, callback: (error: ServiceError | null, response: CreateIndexResponse) => void): ClientUnaryCall;
-    createIndex(request: CreateIndexRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError | null, response: CreateIndexResponse) => void): ClientUnaryCall;
-    dropIndex(request: DropIndexRequest, callback: (error: ServiceError | null, response: DropIndexResponse) => void): ClientUnaryCall;
-    dropIndex(request: DropIndexRequest, metadata: Metadata, callback: (error: ServiceError | null, response: DropIndexResponse) => void): ClientUnaryCall;
-    dropIndex(request: DropIndexRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError | null, response: DropIndexResponse) => void): ClientUnaryCall;
-    renameIndex(request: RenameIndexRequest, callback: (error: ServiceError | null, response: RenameIndexResponse) => void): ClientUnaryCall;
-    renameIndex(request: RenameIndexRequest, metadata: Metadata, callback: (error: ServiceError | null, response: RenameIndexResponse) => void): ClientUnaryCall;
-    renameIndex(request: RenameIndexRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError | null, response: RenameIndexResponse) => void): ClientUnaryCall;
-    getIndex(request: GetIndexRequest, callback: (error: ServiceError | null, response: GetIndexResponse) => void): ClientUnaryCall;
-    getIndex(request: GetIndexRequest, metadata: Metadata, callback: (error: ServiceError | null, response: GetIndexResponse) => void): ClientUnaryCall;
-    getIndex(request: GetIndexRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError | null, response: GetIndexResponse) => void): ClientUnaryCall;
+    find(request: FindRequest, callback: (error: ServiceError$1 | null, response: FindResponse) => void): ClientUnaryCall;
+    find(request: FindRequest, metadata: Metadata, callback: (error: ServiceError$1 | null, response: FindResponse) => void): ClientUnaryCall;
+    find(request: FindRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError$1 | null, response: FindResponse) => void): ClientUnaryCall;
+    findBatch(request: FindBatchRequest, callback: (error: ServiceError$1 | null, response: FindBatchResponse) => void): ClientUnaryCall;
+    findBatch(request: FindBatchRequest, metadata: Metadata, callback: (error: ServiceError$1 | null, response: FindBatchResponse) => void): ClientUnaryCall;
+    findBatch(request: FindBatchRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError$1 | null, response: FindBatchResponse) => void): ClientUnaryCall;
+    count(request: CountRequest, callback: (error: ServiceError$1 | null, response: CountResponse) => void): ClientUnaryCall;
+    count(request: CountRequest, metadata: Metadata, callback: (error: ServiceError$1 | null, response: CountResponse) => void): ClientUnaryCall;
+    count(request: CountRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError$1 | null, response: CountResponse) => void): ClientUnaryCall;
+    contains(request: ContainsRequest, callback: (error: ServiceError$1 | null, response: ContainsResponse) => void): ClientUnaryCall;
+    contains(request: ContainsRequest, metadata: Metadata, callback: (error: ServiceError$1 | null, response: ContainsResponse) => void): ClientUnaryCall;
+    contains(request: ContainsRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError$1 | null, response: ContainsResponse) => void): ClientUnaryCall;
+    insert(request: InsertRequest, callback: (error: ServiceError$1 | null, response: InsertResponse) => void): ClientUnaryCall;
+    insert(request: InsertRequest, metadata: Metadata, callback: (error: ServiceError$1 | null, response: InsertResponse) => void): ClientUnaryCall;
+    insert(request: InsertRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError$1 | null, response: InsertResponse) => void): ClientUnaryCall;
+    update(request: UpdateRequest, callback: (error: ServiceError$1 | null, response: UpdateResponse) => void): ClientUnaryCall;
+    update(request: UpdateRequest, metadata: Metadata, callback: (error: ServiceError$1 | null, response: UpdateResponse) => void): ClientUnaryCall;
+    update(request: UpdateRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError$1 | null, response: UpdateResponse) => void): ClientUnaryCall;
+    remove(request: RemoveRequest$1, callback: (error: ServiceError$1 | null, response: RemoveResponse$1) => void): ClientUnaryCall;
+    remove(request: RemoveRequest$1, metadata: Metadata, callback: (error: ServiceError$1 | null, response: RemoveResponse$1) => void): ClientUnaryCall;
+    remove(request: RemoveRequest$1, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError$1 | null, response: RemoveResponse$1) => void): ClientUnaryCall;
+    explain(request: ExplainRequest, callback: (error: ServiceError$1 | null, response: ExplainResponse) => void): ClientUnaryCall;
+    explain(request: ExplainRequest, metadata: Metadata, callback: (error: ServiceError$1 | null, response: ExplainResponse) => void): ClientUnaryCall;
+    explain(request: ExplainRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError$1 | null, response: ExplainResponse) => void): ClientUnaryCall;
+    createCollection(request: CreateCollectionRequest, callback: (error: ServiceError$1 | null, response: CreateCollectionResponse) => void): ClientUnaryCall;
+    createCollection(request: CreateCollectionRequest, metadata: Metadata, callback: (error: ServiceError$1 | null, response: CreateCollectionResponse) => void): ClientUnaryCall;
+    createCollection(request: CreateCollectionRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError$1 | null, response: CreateCollectionResponse) => void): ClientUnaryCall;
+    dropCollection(request: DropCollectionRequest, callback: (error: ServiceError$1 | null, response: DropCollectionResponse) => void): ClientUnaryCall;
+    dropCollection(request: DropCollectionRequest, metadata: Metadata, callback: (error: ServiceError$1 | null, response: DropCollectionResponse) => void): ClientUnaryCall;
+    dropCollection(request: DropCollectionRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError$1 | null, response: DropCollectionResponse) => void): ClientUnaryCall;
+    renameCollection(request: RenameCollectionRequest, callback: (error: ServiceError$1 | null, response: RenameCollectionResponse) => void): ClientUnaryCall;
+    renameCollection(request: RenameCollectionRequest, metadata: Metadata, callback: (error: ServiceError$1 | null, response: RenameCollectionResponse) => void): ClientUnaryCall;
+    renameCollection(request: RenameCollectionRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError$1 | null, response: RenameCollectionResponse) => void): ClientUnaryCall;
+    getCollection(request: GetCollectionRequest, callback: (error: ServiceError$1 | null, response: GetCollectionResponse) => void): ClientUnaryCall;
+    getCollection(request: GetCollectionRequest, metadata: Metadata, callback: (error: ServiceError$1 | null, response: GetCollectionResponse) => void): ClientUnaryCall;
+    getCollection(request: GetCollectionRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError$1 | null, response: GetCollectionResponse) => void): ClientUnaryCall;
+    getCollections(request: GetCollectionsRequest, callback: (error: ServiceError$1 | null, response: GetCollectionsResponse) => void): ClientUnaryCall;
+    getCollections(request: GetCollectionsRequest, metadata: Metadata, callback: (error: ServiceError$1 | null, response: GetCollectionsResponse) => void): ClientUnaryCall;
+    getCollections(request: GetCollectionsRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError$1 | null, response: GetCollectionsResponse) => void): ClientUnaryCall;
+    listCollections(request: ListCollectionsRequest, callback: (error: ServiceError$1 | null, response: ListCollectionsResponse) => void): ClientUnaryCall;
+    listCollections(request: ListCollectionsRequest, metadata: Metadata, callback: (error: ServiceError$1 | null, response: ListCollectionsResponse) => void): ClientUnaryCall;
+    listCollections(request: ListCollectionsRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError$1 | null, response: ListCollectionsResponse) => void): ClientUnaryCall;
+    truncateCollection(request: TruncateCollectionRequest, callback: (error: ServiceError$1 | null, response: TruncateCollectionResponse) => void): ClientUnaryCall;
+    truncateCollection(request: TruncateCollectionRequest, metadata: Metadata, callback: (error: ServiceError$1 | null, response: TruncateCollectionResponse) => void): ClientUnaryCall;
+    truncateCollection(request: TruncateCollectionRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError$1 | null, response: TruncateCollectionResponse) => void): ClientUnaryCall;
+    createIndex(request: CreateIndexRequest, callback: (error: ServiceError$1 | null, response: CreateIndexResponse) => void): ClientUnaryCall;
+    createIndex(request: CreateIndexRequest, metadata: Metadata, callback: (error: ServiceError$1 | null, response: CreateIndexResponse) => void): ClientUnaryCall;
+    createIndex(request: CreateIndexRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError$1 | null, response: CreateIndexResponse) => void): ClientUnaryCall;
+    dropIndex(request: DropIndexRequest, callback: (error: ServiceError$1 | null, response: DropIndexResponse) => void): ClientUnaryCall;
+    dropIndex(request: DropIndexRequest, metadata: Metadata, callback: (error: ServiceError$1 | null, response: DropIndexResponse) => void): ClientUnaryCall;
+    dropIndex(request: DropIndexRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError$1 | null, response: DropIndexResponse) => void): ClientUnaryCall;
+    renameIndex(request: RenameIndexRequest, callback: (error: ServiceError$1 | null, response: RenameIndexResponse) => void): ClientUnaryCall;
+    renameIndex(request: RenameIndexRequest, metadata: Metadata, callback: (error: ServiceError$1 | null, response: RenameIndexResponse) => void): ClientUnaryCall;
+    renameIndex(request: RenameIndexRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError$1 | null, response: RenameIndexResponse) => void): ClientUnaryCall;
+    getIndex(request: GetIndexRequest, callback: (error: ServiceError$1 | null, response: GetIndexResponse) => void): ClientUnaryCall;
+    getIndex(request: GetIndexRequest, metadata: Metadata, callback: (error: ServiceError$1 | null, response: GetIndexResponse) => void): ClientUnaryCall;
+    getIndex(request: GetIndexRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError$1 | null, response: GetIndexResponse) => void): ClientUnaryCall;
 }
 declare const DocumentDBServiceClient: {
     new (address: string, credentials: ChannelCredentials, options?: Partial<ClientOptions>): DocumentDBServiceClient;
     service: typeof DocumentDBServiceService;
     serviceName: string;
 };
-
-type Document = {
-    [x: string]: any | Document;
-};
-declare class GrpcClient<ClientType> {
-    protected _channel: Channel;
-    protected _client: ClientType;
-    protected _timeout: number | undefined;
-    constructor(channel: Channel, client: ClientType, timeout?: number | undefined);
-    createPromise<Return, Request, Response>(request: Request, methodName: keyof ClientType, response_mapper?: (response: Response) => any, waitForReady?: boolean): Promise<Return>;
-    toDocument(doc: Document): Document$1;
-    get channel(): Channel;
-    get timeout(): number | undefined;
-    close(): void;
-}
 
 interface IndexDescriptor {
     index_type: string;
@@ -26206,6 +26209,17 @@ interface Request {
         [key: string]: string;
     };
 }
+declare const enum IndexType {
+    kPrimaryKey = 0,
+    kSecondaryKey = 1,
+    kClusteredSecondaryKey = 2,
+    kFullTextSearchIndex = 3,
+    UNRECOGNIZED = -1
+}
+declare const indexTypeFromJSON: typeof indexTypeFromJSON$1;
+type IndexStats = IndexStats$1;
+declare const indexStatusFromJSON: typeof indexStatusFromJSON$1;
+type CollectionInfo = CollectionInfo$1;
 declare class DocumentDB extends GrpcClient<DocumentDBServiceClient> {
     constructor(channel: Channel, timeout?: number | undefined);
     find(collectionName: string, query: Document, limit?: number, indexColumns?: string[], columns?: string[], dtypes?: {
@@ -26217,9 +26231,10 @@ declare class DocumentDB extends GrpcClient<DocumentDBServiceClient> {
     update(collectionName: string, filter: Document, updates: Document): Promise<unknown>;
     remove(collectionName: string, docs: Document | Document[]): Promise<unknown>;
     createCollection(collectionName: string, indexDescriptors: IndexDescriptor[]): Promise<unknown>;
-    getCollection(collectionName: string): Promise<CollectionInfo>;
-    getCollections(collectionNames: string[]): Promise<CollectionInfo[]>;
+    getCollection(collectionName: string): Promise<CollectionInfo$1>;
+    getCollections(collectionNames: string[]): Promise<CollectionInfo$1[]>;
     listCollections(): Promise<string[]>;
+    renameCollection(oldCollectionName: string, newCollectionName: string): Promise<unknown>;
     truncateCollection(collectionName: string): Promise<unknown>;
     dropCollection(collectionName: string): Promise<unknown>;
     createIndex(collectionName: string, indexDescriptor: IndexDescriptor): Promise<unknown>;
@@ -27397,27 +27412,27 @@ declare const KeyValueDBServiceService: {
     };
 };
 interface KeyValueDBServiceClient extends Client {
-    put(request: PutRequest$1, callback: (error: ServiceError | null, response: PutResponse) => void): ClientUnaryCall;
-    put(request: PutRequest$1, metadata: Metadata, callback: (error: ServiceError | null, response: PutResponse) => void): ClientUnaryCall;
-    put(request: PutRequest$1, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError | null, response: PutResponse) => void): ClientUnaryCall;
-    remove(request: RemoveRequest, callback: (error: ServiceError | null, response: RemoveResponse) => void): ClientUnaryCall;
-    remove(request: RemoveRequest, metadata: Metadata, callback: (error: ServiceError | null, response: RemoveResponse) => void): ClientUnaryCall;
-    remove(request: RemoveRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError | null, response: RemoveResponse) => void): ClientUnaryCall;
-    get(request: GetRequest, callback: (error: ServiceError | null, response: GetResponse) => void): ClientUnaryCall;
-    get(request: GetRequest, metadata: Metadata, callback: (error: ServiceError | null, response: GetResponse) => void): ClientUnaryCall;
-    get(request: GetRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError | null, response: GetResponse) => void): ClientUnaryCall;
-    mget(request: MultiGetRequest, callback: (error: ServiceError | null, response: MultiGetResponse) => void): ClientUnaryCall;
-    mget(request: MultiGetRequest, metadata: Metadata, callback: (error: ServiceError | null, response: MultiGetResponse) => void): ClientUnaryCall;
-    mget(request: MultiGetRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError | null, response: MultiGetResponse) => void): ClientUnaryCall;
-    putBatch(request: BatchedPutRequest$1, callback: (error: ServiceError | null, response: BatchedPutResponse) => void): ClientUnaryCall;
-    putBatch(request: BatchedPutRequest$1, metadata: Metadata, callback: (error: ServiceError | null, response: BatchedPutResponse) => void): ClientUnaryCall;
-    putBatch(request: BatchedPutRequest$1, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError | null, response: BatchedPutResponse) => void): ClientUnaryCall;
-    removeBatch(request: BatchedRemoveRequest, callback: (error: ServiceError | null, response: BatchedRemoveResponse) => void): ClientUnaryCall;
-    removeBatch(request: BatchedRemoveRequest, metadata: Metadata, callback: (error: ServiceError | null, response: BatchedRemoveResponse) => void): ClientUnaryCall;
-    removeBatch(request: BatchedRemoveRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError | null, response: BatchedRemoveResponse) => void): ClientUnaryCall;
-    getBatch(request: BatchedGetRequest, callback: (error: ServiceError | null, response: BatchedGetResponse) => void): ClientUnaryCall;
-    getBatch(request: BatchedGetRequest, metadata: Metadata, callback: (error: ServiceError | null, response: BatchedGetResponse) => void): ClientUnaryCall;
-    getBatch(request: BatchedGetRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError | null, response: BatchedGetResponse) => void): ClientUnaryCall;
+    put(request: PutRequest$1, callback: (error: ServiceError$1 | null, response: PutResponse) => void): ClientUnaryCall;
+    put(request: PutRequest$1, metadata: Metadata, callback: (error: ServiceError$1 | null, response: PutResponse) => void): ClientUnaryCall;
+    put(request: PutRequest$1, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError$1 | null, response: PutResponse) => void): ClientUnaryCall;
+    remove(request: RemoveRequest, callback: (error: ServiceError$1 | null, response: RemoveResponse) => void): ClientUnaryCall;
+    remove(request: RemoveRequest, metadata: Metadata, callback: (error: ServiceError$1 | null, response: RemoveResponse) => void): ClientUnaryCall;
+    remove(request: RemoveRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError$1 | null, response: RemoveResponse) => void): ClientUnaryCall;
+    get(request: GetRequest, callback: (error: ServiceError$1 | null, response: GetResponse) => void): ClientUnaryCall;
+    get(request: GetRequest, metadata: Metadata, callback: (error: ServiceError$1 | null, response: GetResponse) => void): ClientUnaryCall;
+    get(request: GetRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError$1 | null, response: GetResponse) => void): ClientUnaryCall;
+    mget(request: MultiGetRequest, callback: (error: ServiceError$1 | null, response: MultiGetResponse) => void): ClientUnaryCall;
+    mget(request: MultiGetRequest, metadata: Metadata, callback: (error: ServiceError$1 | null, response: MultiGetResponse) => void): ClientUnaryCall;
+    mget(request: MultiGetRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError$1 | null, response: MultiGetResponse) => void): ClientUnaryCall;
+    putBatch(request: BatchedPutRequest$1, callback: (error: ServiceError$1 | null, response: BatchedPutResponse) => void): ClientUnaryCall;
+    putBatch(request: BatchedPutRequest$1, metadata: Metadata, callback: (error: ServiceError$1 | null, response: BatchedPutResponse) => void): ClientUnaryCall;
+    putBatch(request: BatchedPutRequest$1, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError$1 | null, response: BatchedPutResponse) => void): ClientUnaryCall;
+    removeBatch(request: BatchedRemoveRequest, callback: (error: ServiceError$1 | null, response: BatchedRemoveResponse) => void): ClientUnaryCall;
+    removeBatch(request: BatchedRemoveRequest, metadata: Metadata, callback: (error: ServiceError$1 | null, response: BatchedRemoveResponse) => void): ClientUnaryCall;
+    removeBatch(request: BatchedRemoveRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError$1 | null, response: BatchedRemoveResponse) => void): ClientUnaryCall;
+    getBatch(request: BatchedGetRequest, callback: (error: ServiceError$1 | null, response: BatchedGetResponse) => void): ClientUnaryCall;
+    getBatch(request: BatchedGetRequest, metadata: Metadata, callback: (error: ServiceError$1 | null, response: BatchedGetResponse) => void): ClientUnaryCall;
+    getBatch(request: BatchedGetRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError$1 | null, response: BatchedGetResponse) => void): ClientUnaryCall;
 }
 declare const KeyValueDBServiceClient: {
     new (address: string, credentials: ChannelCredentials, options?: Partial<ClientOptions>): KeyValueDBServiceClient;
@@ -27464,18 +27479,18 @@ declare const KeyspaceManagerServiceService: {
     };
 };
 interface KeyspaceManagerServiceClient extends Client {
-    createKeyspace(request: CreateKeyspaceRequest, callback: (error: ServiceError | null, response: CreateKeyspaceResponse) => void): ClientUnaryCall;
-    createKeyspace(request: CreateKeyspaceRequest, metadata: Metadata, callback: (error: ServiceError | null, response: CreateKeyspaceResponse) => void): ClientUnaryCall;
-    createKeyspace(request: CreateKeyspaceRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError | null, response: CreateKeyspaceResponse) => void): ClientUnaryCall;
-    dropKeyspace(request: DropKeyspaceRequest, callback: (error: ServiceError | null, response: DropKeyspaceResponse) => void): ClientUnaryCall;
-    dropKeyspace(request: DropKeyspaceRequest, metadata: Metadata, callback: (error: ServiceError | null, response: DropKeyspaceResponse) => void): ClientUnaryCall;
-    dropKeyspace(request: DropKeyspaceRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError | null, response: DropKeyspaceResponse) => void): ClientUnaryCall;
-    truncateKeyspace(request: TruncateKeyspaceRequest, callback: (error: ServiceError | null, response: TruncateKeyspaceResponse) => void): ClientUnaryCall;
-    truncateKeyspace(request: TruncateKeyspaceRequest, metadata: Metadata, callback: (error: ServiceError | null, response: TruncateKeyspaceResponse) => void): ClientUnaryCall;
-    truncateKeyspace(request: TruncateKeyspaceRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError | null, response: TruncateKeyspaceResponse) => void): ClientUnaryCall;
-    listKeyspaces(request: ListKeyspacesRequest, callback: (error: ServiceError | null, response: ListKeyspacesResponse) => void): ClientUnaryCall;
-    listKeyspaces(request: ListKeyspacesRequest, metadata: Metadata, callback: (error: ServiceError | null, response: ListKeyspacesResponse) => void): ClientUnaryCall;
-    listKeyspaces(request: ListKeyspacesRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError | null, response: ListKeyspacesResponse) => void): ClientUnaryCall;
+    createKeyspace(request: CreateKeyspaceRequest, callback: (error: ServiceError$1 | null, response: CreateKeyspaceResponse) => void): ClientUnaryCall;
+    createKeyspace(request: CreateKeyspaceRequest, metadata: Metadata, callback: (error: ServiceError$1 | null, response: CreateKeyspaceResponse) => void): ClientUnaryCall;
+    createKeyspace(request: CreateKeyspaceRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError$1 | null, response: CreateKeyspaceResponse) => void): ClientUnaryCall;
+    dropKeyspace(request: DropKeyspaceRequest, callback: (error: ServiceError$1 | null, response: DropKeyspaceResponse) => void): ClientUnaryCall;
+    dropKeyspace(request: DropKeyspaceRequest, metadata: Metadata, callback: (error: ServiceError$1 | null, response: DropKeyspaceResponse) => void): ClientUnaryCall;
+    dropKeyspace(request: DropKeyspaceRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError$1 | null, response: DropKeyspaceResponse) => void): ClientUnaryCall;
+    truncateKeyspace(request: TruncateKeyspaceRequest, callback: (error: ServiceError$1 | null, response: TruncateKeyspaceResponse) => void): ClientUnaryCall;
+    truncateKeyspace(request: TruncateKeyspaceRequest, metadata: Metadata, callback: (error: ServiceError$1 | null, response: TruncateKeyspaceResponse) => void): ClientUnaryCall;
+    truncateKeyspace(request: TruncateKeyspaceRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError$1 | null, response: TruncateKeyspaceResponse) => void): ClientUnaryCall;
+    listKeyspaces(request: ListKeyspacesRequest, callback: (error: ServiceError$1 | null, response: ListKeyspacesResponse) => void): ClientUnaryCall;
+    listKeyspaces(request: ListKeyspacesRequest, metadata: Metadata, callback: (error: ServiceError$1 | null, response: ListKeyspacesResponse) => void): ClientUnaryCall;
+    listKeyspaces(request: ListKeyspacesRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError$1 | null, response: ListKeyspacesResponse) => void): ClientUnaryCall;
 }
 declare const KeyspaceManagerServiceClient: {
     new (address: string, credentials: ChannelCredentials, options?: Partial<ClientOptions>): KeyspaceManagerServiceClient;
@@ -27517,4 +27532,4 @@ declare class KeyspaceManager extends GrpcClient<KeyspaceManagerServiceClient> {
     dropKeyspace(keyspaceName: string): Promise<boolean>;
 }
 
-export { type BatchedPutRequest, Channel, DocumentDB, type IndexDescriptor, KeyValueDB, KeyspaceManager, type PutRequest, type Request };
+export { type BatchedPutRequest, Channel, type CollectionInfo, type Document, DocumentDB, type IndexDescriptor, type IndexStats, IndexType, KeyValueDB, KeyspaceManager, type PutRequest, type Request, type ServiceError, indexStatusFromJSON, indexTypeFromJSON };

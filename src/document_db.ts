@@ -30,6 +30,17 @@ export interface Request {
   columns?: string[]
   dtypes?: { [key: string]: string }
 }
+export const enum IndexType {
+  kPrimaryKey = 0,
+  kSecondaryKey = 1,
+  kClusteredSecondaryKey = 2,
+  kFullTextSearchIndex = 3,
+  UNRECOGNIZED = -1,
+}
+export const indexTypeFromJSON = proto.indexTypeFromJSON
+export type IndexStats = proto.IndexStats
+export const indexStatusFromJSON = proto.indexStatusFromJSON
+export type CollectionInfo = proto.CollectionInfo
 
 export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
   constructor(channel: Channel, timeout: number | undefined = undefined) {
@@ -151,7 +162,7 @@ export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
 
   getCollection(collectionName: string) {
     return this.createPromise<
-      proto.CollectionInfo,
+      CollectionInfo,
       proto.GetCollectionRequest,
       proto.GetCollectionResponse
     >(
@@ -168,7 +179,7 @@ export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
 
   getCollections(collectionNames: string[]) {
     return this.createPromise<
-      proto.CollectionInfo[],
+      CollectionInfo[],
       proto.GetCollectionsRequest,
       proto.GetCollectionsResponse
     >(
@@ -197,6 +208,16 @@ export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
         }
         return null
       },
+    )
+  }
+
+  renameCollection(oldCollectionName: string, newCollectionName: string) {
+    return this.createPromise(
+      {
+        oldCollectionName: oldCollectionName,
+        newCollectionName: newCollectionName,
+      } as proto.RenameCollectionRequest,
+      "renameCollection",
     )
   }
 
