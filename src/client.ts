@@ -60,7 +60,7 @@ export class GrpcClient<ClientType> {
     })
   }
 
-  toDocument(doc: Document): proto.Document {
+  static toDocument(doc: Document): proto.Document {
     let result: proto.Document
     if (doc.json === undefined) {
       result = proto.Document.fromJSON({ json: JSON.stringify(doc) })

@@ -21,7 +21,6 @@ export interface IndexDescriptor {
   status?: string
   options?: Document
 }
-
 export interface Request {
   collectionName: string
   query: Document
@@ -40,7 +39,11 @@ export const enum IndexType {
 export const indexTypeFromJSON = proto.indexTypeFromJSON
 export type IndexStats = proto.IndexStats
 export const indexStatusFromJSON = proto.indexStatusFromJSON
-export type CollectionInfo = proto.CollectionInfo
+export type CollectionInfo = {
+  collectionName: string
+  indexDescriptors: IndexDescriptor[]
+  indexStats: IndexStats[]
+}
 
 export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
   constructor(channel: Channel, timeout: number | undefined = undefined) {
@@ -71,7 +74,7 @@ export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
   ) {
     let findRequest
     if (typeof request === "string") {
-      findRequest = this.toFindRequest({
+      findRequest = DocumentDB.toFindRequest({
         collectionName: request,
         query: query!,
         limit: limit,
@@ -80,21 +83,21 @@ export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
         dtypes: dtypes,
       })
     } else {
-      findRequest = this.toFindRequest(request)
+      findRequest = DocumentDB.toFindRequest(request)
     }
     return this.createPromise<
       Table<any> | null,
       proto.FindRequest,
       proto.FindResponse
     >(findRequest, "find", (response: proto.FindResponse) => {
-      return this.toTable(response)
+      return DocumentDB.toTable(response)
     })
   }
 
   findBatch(requests: Request[]) {
     const findRequests: proto.FindBatchRequest = {
       requests: requests.map((request) => {
-        return this.toFindRequest(request)
+        return DocumentDB.toFindRequest(request)
       }),
     }
     return this.createPromise<
@@ -102,7 +105,7 @@ export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
       proto.FindBatchRequest,
       proto.FindBatchResponse
     >(findRequests, "findBatch", (response: proto.FindBatchResponse) => {
-      return response.responses.map((response) => this.toTable(response))
+      return response.responses.map((response) => DocumentDB.toTable(response))
     })
   }
 
@@ -111,7 +114,7 @@ export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
       docs = [docs]
     }
     const queries = docs.map((doc: Document) => {
-      return { collectionName: collectionName, query: this.toDocument(doc) }
+      return { collectionName: collectionName, query: DocumentDB.toDocument(doc) }
     })
     const request = {
       requests: queries,
@@ -122,8 +125,8 @@ export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
   update(collectionName: string, filter: Document, updates: Document) {
     const request = {
       collectionName: collectionName,
-      filter: this.toDocument(filter),
-      updates: this.toDocument(updates),
+      filter: DocumentDB.toDocument(filter),
+      updates: DocumentDB.toDocument(updates),
     } as proto.UpdateRequest
     return this.createPromise(request, "update")
   }
@@ -133,7 +136,7 @@ export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
       docs = [docs]
     }
     const queries = docs.map((doc: Document) => {
-      return { collectionName: collectionName, query: this.toDocument(doc) }
+      return { collectionName: collectionName, query: DocumentDB.toDocument(doc) }
     })
     const request = {
       requests: queries,
@@ -146,7 +149,7 @@ export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
     indexDescriptors: IndexDescriptor[],
   ) {
     const indexes = indexDescriptors.map((index) => {
-      return this.toIndexDescriptor(index)
+      return DocumentDB.toIndexDescriptor(index)
     })
     return this.createPromise(
       {
@@ -169,8 +172,8 @@ export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
       { collectionName: collectionName } as proto.GetCollectionRequest,
       "getCollection",
       (response: proto.GetCollectionResponse) => {
-        if (response) {
-          return response.collection
+        if (response && response.collection) {
+          return DocumentDB.fromCollectionInfo(response.collection)
         }
         return null
       },
@@ -186,8 +189,8 @@ export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
       { collectionNames: collectionNames } as proto.GetCollectionsRequest,
       "getCollections",
       (response: proto.GetCollectionsResponse) => {
-        if (response) {
-          return response.collections
+        if (response && response.collections) {
+          return response.collections.map(DocumentDB.fromCollectionInfo)
         }
         return null
       },
@@ -240,7 +243,7 @@ export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
   }
 
   createIndex(collectionName: string, indexDescriptor: IndexDescriptor) {
-    const index = this.toIndexDescriptor(indexDescriptor)
+    const index = DocumentDB.toIndexDescriptor(indexDescriptor)
     return this.createPromise(
       {
         collectionName: collectionName,
@@ -307,11 +310,11 @@ export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
     })
   }
 
-  private toFindRequest(request: Request): proto.FindRequest {
+  private static toFindRequest(request: Request): proto.FindRequest {
     return proto.FindRequest.fromJSON({
       query: {
         collectionName: request.collectionName,
-        query: this.toDocument(request.query),
+        query: DocumentDB.toDocument(request.query),
       },
       limit: request.limit,
       indexColumns: request.indexColumns,
@@ -320,7 +323,7 @@ export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
     })
   }
 
-  private toTable(response: proto.FindResponse): Table<any> | null {
+  private static toTable(response: proto.FindResponse): Table<any> | null {
     if (response.numRows) {
       const arrowBuffer = readParquet(response.buffer)
       const table = tableFromIPC(arrowBuffer.intoIPCStream())
@@ -329,10 +332,20 @@ export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
     return null
   }
 
-  private toIndexDescriptor(index: IndexDescriptor) {
+  private static fromCollectionInfo(collection: proto.CollectionInfo): CollectionInfo {
+    return {
+      collectionName: collection.collectionName,
+      indexDescriptors: collection.indexDescriptors.map((index) =>
+        DocumentDB.fromIndexDescriptor(index),
+      ),
+      indexStats: collection.indexStats,
+    }
+  }
+
+  private static toIndexDescriptor(index: IndexDescriptor) {
     let options
     if (index.options) {
-      options = this.toDocument(index.options)
+      options = DocumentDB.toDocument(index.options)
     }
     const descriptor = {
       indexName: index.name,
@@ -343,5 +356,17 @@ export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
       options: options,
     }
     return proto.IndexDescriptor.fromJSON(descriptor)
+  }
+
+  private static fromIndexDescriptor(index: proto.IndexDescriptor) {
+    const descriptor: IndexDescriptor = {
+      name: index.indexName,
+      fields: index.fields,
+      unique: index.unique,
+      index_type: proto.indexTypeToJSON(index.indexType),
+      status: proto.indexStatusToJSON(index.status),
+      options: index.options,
+    }
+    return descriptor
   }
 }
