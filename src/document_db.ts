@@ -4,8 +4,8 @@
 // Copyright (c) 2023-2024 Cognica
 //
 
-import { Table, tableFromIPC } from "apache-arrow"
-import { readParquet } from "parquet-wasm"
+// import { Table, tableFromIPC } from "apache-arrow"
+// import { readParquet } from "parquet-wasm"
 
 import * as proto from "@/proto/generated/document_db"
 
@@ -44,6 +44,7 @@ export type CollectionInfo = {
   indexDescriptors: IndexDescriptor[]
   indexStats: IndexStats[]
 }
+// export type DataFrame = Table<any>
 
 export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
   constructor(channel: Channel, timeout: number | undefined = undefined) {
@@ -55,66 +56,80 @@ export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
     super(channel, client, timeout)
   }
 
-  find(
-    collectionName: string,
-    query: Document,
-    limit?: number,
-    indexColumns?: string[],
-    columns?: string[],
-    dtypes?: { [key: string]: string },
-  ): Promise<Table<any> | null>
-  find(request: Request): Promise<Table<any> | null>
-  find(
-    request: string | Request,
-    query?: Document,
-    limit?: number,
-    indexColumns?: string[],
-    columns?: string[],
-    dtypes?: { [key: string]: string },
-  ) {
-    let findRequest
-    if (typeof request === "string") {
-      findRequest = DocumentDB.toFindRequest({
-        collectionName: request,
-        query: query!,
-        limit: limit,
-        indexColumns: indexColumns,
-        columns: columns,
-        dtypes: dtypes,
-      })
-    } else {
-      findRequest = DocumentDB.toFindRequest(request)
-    }
+  // find(
+  //   collectionName: string,
+  //   query: Document,
+  //   limit?: number,
+  //   indexColumns?: string[],
+  //   columns?: string[],
+  //   dtypes?: { [key: string]: string },
+  // ): Promise<DataFrame | null>
+  // find(request: Request): Promise<DataFrame | null>
+  // find(
+  //   request: string | Request,
+  //   query?: Document,
+  //   limit?: number,
+  //   indexColumns?: string[],
+  //   columns?: string[],
+  //   dtypes?: { [key: string]: string },
+  // ) {
+  //   let findRequest
+  //   if (typeof request === "string") {
+  //     findRequest = DocumentDB.toFindRequest({
+  //       collectionName: request,
+  //       query: query!,
+  //       limit: limit,
+  //       indexColumns: indexColumns,
+  //       columns: columns,
+  //       dtypes: dtypes,
+  //     })
+  //   } else {
+  //     findRequest = DocumentDB.toFindRequest(request)
+  //   }
+  //   return this.createPromise<
+  //     DataFrame | null,
+  //     proto.FindRequest,
+  //     proto.FindResponse
+  //   >(findRequest, "find", (response: proto.FindResponse) => {
+  //     return DocumentDB.toDataFrame(response)
+  //   })
+  // }
+
+  findRaw(request: Request): Promise<Buffer | null> {
+    const findRequest = DocumentDB.toFindRequest(request)
     return this.createPromise<
-      Table<any> | null,
+      Buffer | null,
       proto.FindRequest,
       proto.FindResponse
     >(findRequest, "find", (response: proto.FindResponse) => {
-      return DocumentDB.toTable(response)
+      return response.buffer
     })
   }
 
-  findBatch(requests: Request[]) {
-    const findRequests: proto.FindBatchRequest = {
-      requests: requests.map((request) => {
-        return DocumentDB.toFindRequest(request)
-      }),
-    }
-    return this.createPromise<
-      (Table<any> | null)[],
-      proto.FindBatchRequest,
-      proto.FindBatchResponse
-    >(findRequests, "findBatch", (response: proto.FindBatchResponse) => {
-      return response.responses.map((response) => DocumentDB.toTable(response))
-    })
-  }
+  // findBatch(requests: Request[]) {
+  //   const findRequests: proto.FindBatchRequest = {
+  //     requests: requests.map((request) => {
+  //       return DocumentDB.toFindRequest(request)
+  //     }),
+  //   }
+  //   return this.createPromise<
+  //     (DataFrame | null)[],
+  //     proto.FindBatchRequest,
+  //     proto.FindBatchResponse
+  //   >(findRequests, "findBatch", (response: proto.FindBatchResponse) => {
+  //     return response.responses.map((response) => DocumentDB.toDataFrame(response))
+  //   })
+  // }
 
   insert(collectionName: string, docs: Document | Document[]) {
     if (!Array.isArray(docs)) {
       docs = [docs]
     }
     const queries = docs.map((doc: Document) => {
-      return { collectionName: collectionName, query: DocumentDB.toDocument(doc) }
+      return {
+        collectionName: collectionName,
+        query: DocumentDB.toDocument(doc),
+      }
     })
     const request = {
       requests: queries,
@@ -136,7 +151,10 @@ export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
       docs = [docs]
     }
     const queries = docs.map((doc: Document) => {
-      return { collectionName: collectionName, query: DocumentDB.toDocument(doc) }
+      return {
+        collectionName: collectionName,
+        query: DocumentDB.toDocument(doc),
+      }
     })
     const request = {
       requests: queries,
@@ -293,22 +311,22 @@ export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
     )
   }
 
-  empty(
-    collectionName: string,
-    query: Document,
-    dtypes: { [key: string]: string } | undefined = undefined,
-  ) {
-    return this.find({
-      collectionName: collectionName,
-      query: query,
-      dtypes: dtypes,
-    }).then((result): boolean => {
-      if (result) {
-        return result.numRows == 0
-      }
-      return true
-    })
-  }
+  // empty(
+  //   collectionName: string,
+  //   query: Document,
+  //   dtypes: { [key: string]: string } | undefined = undefined,
+  // ) {
+  //   return this.find({
+  //     collectionName: collectionName,
+  //     query: query,
+  //     dtypes: dtypes,
+  //   }).then((result): boolean => {
+  //     if (result) {
+  //       return result.numRows == 0
+  //     }
+  //     return true
+  //   })
+  // }
 
   private static toFindRequest(request: Request): proto.FindRequest {
     return proto.FindRequest.fromJSON({
@@ -323,16 +341,18 @@ export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
     })
   }
 
-  private static toTable(response: proto.FindResponse): Table<any> | null {
-    if (response.numRows) {
-      const arrowBuffer = readParquet(response.buffer)
-      const table = tableFromIPC(arrowBuffer.intoIPCStream())
-      return table
-    }
-    return null
-  }
+  // private static toDataFrame(response: proto.FindResponse): DataFrame | null {
+  //   if (response.numRows) {
+  //     const arrowBuffer = readParquet(response.buffer)
+  //     const df = tableFromIPC(arrowBuffer.intoIPCStream())
+  //     return df
+  //   }
+  //   return null
+  // }
 
-  private static fromCollectionInfo(collection: proto.CollectionInfo): CollectionInfo {
+  private static fromCollectionInfo(
+    collection: proto.CollectionInfo,
+  ): CollectionInfo {
     return {
       collectionName: collection.collectionName,
       indexDescriptors: collection.indexDescriptors.map((index) =>

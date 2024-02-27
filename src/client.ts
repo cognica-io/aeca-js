@@ -11,6 +11,9 @@ import * as proto from "@/proto/generated/document"
 
 import { Channel } from "./channel"
 
+export { status as StatusType } from "@grpc/grpc-js"
+
+// export type StatusCode = grpc.ServiceError["code"]
 export type ServiceError = grpc.ServiceError
 export type Document = {
   [x: string]: any | Document

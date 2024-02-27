@@ -1,7 +1,6 @@
 import * as grpc from '@grpc/grpc-js';
 import { Client, ServiceError as ServiceError$1, ClientUnaryCall, Metadata, CallOptions, ChannelCredentials, ClientOptions } from '@grpc/grpc-js';
 import _m0 from 'protobufjs/minimal';
-import { Table } from 'apache-arrow';
 
 interface Value {
     null?: boolean | undefined;
@@ -6085,7 +6084,7 @@ declare class GrpcClient<ClientType> {
     protected _timeout: number | undefined;
     constructor(channel: Channel, client: ClientType, timeout?: number | undefined);
     createPromise<Return, Request, Response>(request: Request, methodName: keyof ClientType, response_mapper?: (response: Response) => any, waitForReady?: boolean): Promise<Return>;
-    toDocument(doc: Document): Document$1;
+    static toDocument(doc: Document): Document$1;
     get channel(): Channel;
     get timeout(): number | undefined;
     close(): void;
@@ -26219,20 +26218,20 @@ declare const enum IndexType {
 declare const indexTypeFromJSON: typeof indexTypeFromJSON$1;
 type IndexStats = IndexStats$1;
 declare const indexStatusFromJSON: typeof indexStatusFromJSON$1;
-type CollectionInfo = CollectionInfo$1;
+type CollectionInfo = {
+    collectionName: string;
+    indexDescriptors: IndexDescriptor[];
+    indexStats: IndexStats[];
+};
 declare class DocumentDB extends GrpcClient<DocumentDBServiceClient> {
     constructor(channel: Channel, timeout?: number | undefined);
-    find(collectionName: string, query: Document, limit?: number, indexColumns?: string[], columns?: string[], dtypes?: {
-        [key: string]: string;
-    }): Promise<Table<any> | null>;
-    find(request: Request): Promise<Table<any> | null>;
-    findBatch(requests: Request[]): Promise<(Table<any> | null)[]>;
+    findRaw(request: Request): Promise<Buffer | null>;
     insert(collectionName: string, docs: Document | Document[]): Promise<unknown>;
     update(collectionName: string, filter: Document, updates: Document): Promise<unknown>;
     remove(collectionName: string, docs: Document | Document[]): Promise<unknown>;
     createCollection(collectionName: string, indexDescriptors: IndexDescriptor[]): Promise<unknown>;
-    getCollection(collectionName: string): Promise<CollectionInfo$1>;
-    getCollections(collectionNames: string[]): Promise<CollectionInfo$1[]>;
+    getCollection(collectionName: string): Promise<CollectionInfo>;
+    getCollections(collectionNames: string[]): Promise<CollectionInfo[]>;
     listCollections(): Promise<string[]>;
     renameCollection(oldCollectionName: string, newCollectionName: string): Promise<unknown>;
     truncateCollection(collectionName: string): Promise<unknown>;
@@ -26241,12 +26240,10 @@ declare class DocumentDB extends GrpcClient<DocumentDBServiceClient> {
     getIndex(collectionName: string, indexName: string): Promise<GetIndexResponse>;
     renameIndex(collectionName: string, oldIndexName: string, newIndexName: string): Promise<unknown>;
     dropIndex(collectionName: string, indexName: string): Promise<unknown>;
-    empty(collectionName: string, query: Document, dtypes?: {
-        [key: string]: string;
-    } | undefined): Promise<boolean>;
-    private toFindRequest;
-    private toTable;
-    private toIndexDescriptor;
+    private static toFindRequest;
+    private static fromCollectionInfo;
+    private static toIndexDescriptor;
+    private static fromIndexDescriptor;
 }
 
 declare enum StatusType {

@@ -1,1 +1,6846 @@
-import*as F from"@grpc/grpc-js";var G=class G{constructor(n,t,a=!1){this._address=`${n}:${t}`,this._useSSL=a,this._useSSL?this._credential=F.credentials.createSsl():this._credential=F.credentials.createInsecure()}get address(){return this._address}get credential(){return this._credential}get options(){return G._OPTIONS}};G._OPTIONS={"grpc.max_concurrent_streams":4,"grpc.max_send_message_length":-1,"grpc.max_receive_message_length":-1,"grpc.http2.max_frame_size":10*1024*1024};var je=G;import{tableFromIPC as wt}from"apache-arrow";import{readParquet as Vt}from"parquet-wasm";import{makeGenericClientConstructor as Kt}from"@grpc/grpc-js";import ln from"long";import o from"protobufjs/minimal";import en from"long";import k from"protobufjs/minimal";function nn(){return{null:void 0,bool:void 0,int64:void 0,uint64:void 0,double:void 0,string:void 0,array:void 0,object:void 0}}var I={encode(e,n=k.Writer.create()){return e.null!==void 0&&n.uint32(8).bool(e.null),e.bool!==void 0&&n.uint32(16).bool(e.bool),e.int64!==void 0&&n.uint32(24).int64(e.int64),e.uint64!==void 0&&n.uint32(32).uint64(e.uint64),e.double!==void 0&&n.uint32(41).double(e.double),e.string!==void 0&&n.uint32(50).string(e.string),e.array!==void 0&&T.encode(e.array,n.uint32(58).fork()).ldelim(),e.object!==void 0&&P.encode(e.object,n.uint32(66).fork()).ldelim(),n},decode(e,n){let t=e instanceof k.Reader?e:k.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=nn();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==8)break;s.null=t.bool();continue;case 2:if(r!==16)break;s.bool=t.bool();continue;case 3:if(r!==24)break;s.int64=on(t.int64());continue;case 4:if(r!==32)break;s.uint64=on(t.uint64());continue;case 5:if(r!==41)break;s.double=t.double();continue;case 6:if(r!==50)break;s.string=t.string();continue;case 7:if(r!==58)break;s.array=T.decode(t,t.uint32());continue;case 8:if(r!==66)break;s.object=P.decode(t,t.uint32());continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{null:N(e.null)?globalThis.Boolean(e.null):void 0,bool:N(e.bool)?globalThis.Boolean(e.bool):void 0,int64:N(e.int64)?globalThis.Number(e.int64):void 0,uint64:N(e.uint64)?globalThis.Number(e.uint64):void 0,double:N(e.double)?globalThis.Number(e.double):void 0,string:N(e.string)?globalThis.String(e.string):void 0,array:N(e.array)?T.fromJSON(e.array):void 0,object:N(e.object)?P.fromJSON(e.object):void 0}},toJSON(e){let n={};return e.null!==void 0&&(n.null=e.null),e.bool!==void 0&&(n.bool=e.bool),e.int64!==void 0&&(n.int64=Math.round(e.int64)),e.uint64!==void 0&&(n.uint64=Math.round(e.uint64)),e.double!==void 0&&(n.double=e.double),e.string!==void 0&&(n.string=e.string),e.array!==void 0&&(n.array=T.toJSON(e.array)),e.object!==void 0&&(n.object=P.toJSON(e.object)),n},create(e){return I.fromPartial(e!=null?e:{})},fromPartial(e){var t,a,s,r,c,f;let n=nn();return n.null=(t=e.null)!=null?t:void 0,n.bool=(a=e.bool)!=null?a:void 0,n.int64=(s=e.int64)!=null?s:void 0,n.uint64=(r=e.uint64)!=null?r:void 0,n.double=(c=e.double)!=null?c:void 0,n.string=(f=e.string)!=null?f:void 0,n.array=e.array!==void 0&&e.array!==null?T.fromPartial(e.array):void 0,n.object=e.object!==void 0&&e.object!==null?P.fromPartial(e.object):void 0,n}};function tn(){return{value:[]}}var T={encode(e,n=k.Writer.create()){for(let t of e.value)I.encode(t,n.uint32(10).fork()).ldelim();return n},decode(e,n){let t=e instanceof k.Reader?e:k.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=tn();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==10)break;s.value.push(I.decode(t,t.uint32()));continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{value:globalThis.Array.isArray(e==null?void 0:e.value)?e.value.map(n=>I.fromJSON(n)):[]}},toJSON(e){var t;let n={};return(t=e.value)!=null&&t.length&&(n.value=e.value.map(a=>I.toJSON(a))),n},create(e){return T.fromPartial(e!=null?e:{})},fromPartial(e){var t;let n=tn();return n.value=((t=e.value)==null?void 0:t.map(a=>I.fromPartial(a)))||[],n}};function rn(){return{value:{}}}var P={encode(e,n=k.Writer.create()){return Object.entries(e.value).forEach(([t,a])=>{M.encode({key:t,value:a},n.uint32(10).fork()).ldelim()}),n},decode(e,n){let t=e instanceof k.Reader?e:k.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=rn();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==10)break;let c=M.decode(t,t.uint32());c.value!==void 0&&(s.value[c.key]=c.value);continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{value:_t(e.value)?Object.entries(e.value).reduce((n,[t,a])=>(n[t]=I.fromJSON(a),n),{}):{}}},toJSON(e){let n={};if(e.value){let t=Object.entries(e.value);t.length>0&&(n.value={},t.forEach(([a,s])=>{n.value[a]=I.toJSON(s)}))}return n},create(e){return P.fromPartial(e!=null?e:{})},fromPartial(e){var t;let n=rn();return n.value=Object.entries((t=e.value)!=null?t:{}).reduce((a,[s,r])=>(r!==void 0&&(a[s]=I.fromPartial(r)),a),{}),n}};function sn(){return{key:"",value:void 0}}var M={encode(e,n=k.Writer.create()){return e.key!==""&&n.uint32(10).string(e.key),e.value!==void 0&&I.encode(e.value,n.uint32(18).fork()).ldelim(),n},decode(e,n){let t=e instanceof k.Reader?e:k.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=sn();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==10)break;s.key=t.string();continue;case 2:if(r!==18)break;s.value=I.decode(t,t.uint32());continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{key:N(e.key)?globalThis.String(e.key):"",value:N(e.value)?I.fromJSON(e.value):void 0}},toJSON(e){let n={};return e.key!==""&&(n.key=e.key),e.value!==void 0&&(n.value=I.toJSON(e.value)),n},create(e){return M.fromPartial(e!=null?e:{})},fromPartial(e){var t;let n=sn();return n.key=(t=e.key)!=null?t:"",n.value=e.value!==void 0&&e.value!==null?I.fromPartial(e.value):void 0,n}};function an(){return{object:void 0,json:void 0}}var y={encode(e,n=k.Writer.create()){return e.object!==void 0&&P.encode(e.object,n.uint32(10).fork()).ldelim(),e.json!==void 0&&n.uint32(18).string(e.json),n},decode(e,n){let t=e instanceof k.Reader?e:k.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=an();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==10)break;s.object=P.decode(t,t.uint32());continue;case 2:if(r!==18)break;s.json=t.string();continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{object:N(e.object)?P.fromJSON(e.object):void 0,json:N(e.json)?globalThis.String(e.json):void 0}},toJSON(e){let n={};return e.object!==void 0&&(n.object=P.toJSON(e.object)),e.json!==void 0&&(n.json=e.json),n},create(e){return y.fromPartial(e!=null?e:{})},fromPartial(e){var t;let n=an();return n.object=e.object!==void 0&&e.object!==null?P.fromPartial(e.object):void 0,n.json=(t=e.json)!=null?t:void 0,n}};function on(e){if(e.gt(globalThis.Number.MAX_SAFE_INTEGER))throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");return e.toNumber()}k.util.Long!==en&&(k.util.Long=en,k.configure());function _t(e){return typeof e=="object"&&e!==null}function N(e){return e!=null}function Pe(e){switch(e){case 0:case"kPrimaryKey":return 0;case 1:case"kSecondaryKey":return 1;case 2:case"kClusteredSecondaryKey":return 2;case 3:case"kFullTextSearchIndex":return 3;case-1:case"UNRECOGNIZED":default:return-1}}function At(e){switch(e){case 0:return"kPrimaryKey";case 1:return"kSecondaryKey";case 2:return"kClusteredSecondaryKey";case 3:return"kFullTextSearchIndex";case-1:default:return"UNRECOGNIZED"}}function De(e){switch(e){case 0:case"kEnabled":return 0;case 1:case"kDisabled":return 1;case 2:case"kReadyToUse":return 2;case 3:case"kBuildInProgress":return 3;case 4:case"kBuildFinished":return 4;case 5:case"kDropInProgress":return 5;case 6:case"kDropFinished":return 6;case-1:case"UNRECOGNIZED":default:return-1}}function Gt(e){switch(e){case 0:return"kEnabled";case 1:return"kDisabled";case 2:return"kReadyToUse";case 3:return"kBuildInProgress";case 4:return"kBuildFinished";case 5:return"kDropInProgress";case 6:return"kDropFinished";case-1:default:return"UNRECOGNIZED"}}function un(){return{indexId:0,indexName:"",fields:[],unique:!1,indexType:0,status:0,options:void 0}}var q={encode(e,n=o.Writer.create()){e.indexId!==0&&n.uint32(8).uint32(e.indexId),e.indexName!==""&&n.uint32(18).string(e.indexName);for(let t of e.fields)n.uint32(26).string(t);return e.unique===!0&&n.uint32(32).bool(e.unique),e.indexType!==0&&n.uint32(40).int32(e.indexType),e.status!==0&&n.uint32(48).int32(e.status),e.options!==void 0&&y.encode(e.options,n.uint32(58).fork()).ldelim(),n},decode(e,n){let t=e instanceof o.Reader?e:o.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=un();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==8)break;s.indexId=t.uint32();continue;case 2:if(r!==18)break;s.indexName=t.string();continue;case 3:if(r!==26)break;s.fields.push(t.string());continue;case 4:if(r!==32)break;s.unique=t.bool();continue;case 5:if(r!==40)break;s.indexType=t.int32();continue;case 6:if(r!==48)break;s.status=t.int32();continue;case 7:if(r!==58)break;s.options=y.decode(t,t.uint32());continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{indexId:i(e.indexId)?globalThis.Number(e.indexId):0,indexName:i(e.indexName)?globalThis.String(e.indexName):"",fields:globalThis.Array.isArray(e==null?void 0:e.fields)?e.fields.map(n=>globalThis.String(n)):[],unique:i(e.unique)?globalThis.Boolean(e.unique):!1,indexType:i(e.indexType)?Pe(e.indexType):0,status:i(e.status)?De(e.status):0,options:i(e.options)?y.fromJSON(e.options):void 0}},toJSON(e){var t;let n={};return e.indexId!==0&&(n.indexId=Math.round(e.indexId)),e.indexName!==""&&(n.indexName=e.indexName),(t=e.fields)!=null&&t.length&&(n.fields=e.fields),e.unique===!0&&(n.unique=e.unique),e.indexType!==0&&(n.indexType=At(e.indexType)),e.status!==0&&(n.status=Gt(e.status)),e.options!==void 0&&(n.options=y.toJSON(e.options)),n},create(e){return q.fromPartial(e!=null?e:{})},fromPartial(e){var t,a,s,r,c,f;let n=un();return n.indexId=(t=e.indexId)!=null?t:0,n.indexName=(a=e.indexName)!=null?a:"",n.fields=((s=e.fields)==null?void 0:s.map(x=>x))||[],n.unique=(r=e.unique)!=null?r:!1,n.indexType=(c=e.indexType)!=null?c:0,n.status=(f=e.status)!=null?f:0,n.options=e.options!==void 0&&e.options!==null?y.fromPartial(e.options):void 0,n}};function cn(){return{fieldName:"",totalDocCount:0,totalDocSize:0,docCount:0,docSize:0,sumTermFreq:0,sumDocFreq:0}}var O={encode(e,n=o.Writer.create()){return e.fieldName!==""&&n.uint32(10).string(e.fieldName),e.totalDocCount!==0&&n.uint32(16).int64(e.totalDocCount),e.totalDocSize!==0&&n.uint32(24).int64(e.totalDocSize),e.docCount!==0&&n.uint32(32).int64(e.docCount),e.docSize!==0&&n.uint32(40).int64(e.docSize),e.sumTermFreq!==0&&n.uint32(48).int64(e.sumTermFreq),e.sumDocFreq!==0&&n.uint32(56).int64(e.sumDocFreq),n},decode(e,n){let t=e instanceof o.Reader?e:o.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=cn();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==10)break;s.fieldName=t.string();continue;case 2:if(r!==16)break;s.totalDocCount=R(t.int64());continue;case 3:if(r!==24)break;s.totalDocSize=R(t.int64());continue;case 4:if(r!==32)break;s.docCount=R(t.int64());continue;case 5:if(r!==40)break;s.docSize=R(t.int64());continue;case 6:if(r!==48)break;s.sumTermFreq=R(t.int64());continue;case 7:if(r!==56)break;s.sumDocFreq=R(t.int64());continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{fieldName:i(e.fieldName)?globalThis.String(e.fieldName):"",totalDocCount:i(e.totalDocCount)?globalThis.Number(e.totalDocCount):0,totalDocSize:i(e.totalDocSize)?globalThis.Number(e.totalDocSize):0,docCount:i(e.docCount)?globalThis.Number(e.docCount):0,docSize:i(e.docSize)?globalThis.Number(e.docSize):0,sumTermFreq:i(e.sumTermFreq)?globalThis.Number(e.sumTermFreq):0,sumDocFreq:i(e.sumDocFreq)?globalThis.Number(e.sumDocFreq):0}},toJSON(e){let n={};return e.fieldName!==""&&(n.fieldName=e.fieldName),e.totalDocCount!==0&&(n.totalDocCount=Math.round(e.totalDocCount)),e.totalDocSize!==0&&(n.totalDocSize=Math.round(e.totalDocSize)),e.docCount!==0&&(n.docCount=Math.round(e.docCount)),e.docSize!==0&&(n.docSize=Math.round(e.docSize)),e.sumTermFreq!==0&&(n.sumTermFreq=Math.round(e.sumTermFreq)),e.sumDocFreq!==0&&(n.sumDocFreq=Math.round(e.sumDocFreq)),n},create(e){return O.fromPartial(e!=null?e:{})},fromPartial(e){var t,a,s,r,c,f,x;let n=cn();return n.fieldName=(t=e.fieldName)!=null?t:"",n.totalDocCount=(a=e.totalDocCount)!=null?a:0,n.totalDocSize=(s=e.totalDocSize)!=null?s:0,n.docCount=(r=e.docCount)!=null?r:0,n.docSize=(c=e.docSize)!=null?c:0,n.sumTermFreq=(f=e.sumTermFreq)!=null?f:0,n.sumDocFreq=(x=e.sumDocFreq)!=null?x:0,n}};function dn(){return{docCount:0,docSize:0,fieldStats:[]}}var E={encode(e,n=o.Writer.create()){e.docCount!==0&&n.uint32(8).int64(e.docCount),e.docSize!==0&&n.uint32(16).int64(e.docSize);for(let t of e.fieldStats)O.encode(t,n.uint32(26).fork()).ldelim();return n},decode(e,n){let t=e instanceof o.Reader?e:o.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=dn();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==8)break;s.docCount=R(t.int64());continue;case 2:if(r!==16)break;s.docSize=R(t.int64());continue;case 3:if(r!==26)break;s.fieldStats.push(O.decode(t,t.uint32()));continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{docCount:i(e.docCount)?globalThis.Number(e.docCount):0,docSize:i(e.docSize)?globalThis.Number(e.docSize):0,fieldStats:globalThis.Array.isArray(e==null?void 0:e.fieldStats)?e.fieldStats.map(n=>O.fromJSON(n)):[]}},toJSON(e){var t;let n={};return e.docCount!==0&&(n.docCount=Math.round(e.docCount)),e.docSize!==0&&(n.docSize=Math.round(e.docSize)),(t=e.fieldStats)!=null&&t.length&&(n.fieldStats=e.fieldStats.map(a=>O.toJSON(a))),n},create(e){return E.fromPartial(e!=null?e:{})},fromPartial(e){var t,a,s;let n=dn();return n.docCount=(t=e.docCount)!=null?t:0,n.docSize=(a=e.docSize)!=null?a:0,n.fieldStats=((s=e.fieldStats)==null?void 0:s.map(r=>O.fromPartial(r)))||[],n}};function fn(){return{indexId:0,indexName:"",approximatedSize:0,numDocs:0,accessed:0,added:0,updated:0,deleted:0,merged:0,accessedAt:0,addedAt:0,updatedAt:0,deletedAt:0,mergedAt:0,ftsStats:void 0}}var D={encode(e,n=o.Writer.create()){return e.indexId!==0&&n.uint32(8).uint32(e.indexId),e.indexName!==""&&n.uint32(18).string(e.indexName),e.approximatedSize!==0&&n.uint32(24).uint64(e.approximatedSize),e.numDocs!==0&&n.uint32(32).uint64(e.numDocs),e.accessed!==0&&n.uint32(40).uint64(e.accessed),e.added!==0&&n.uint32(48).uint64(e.added),e.updated!==0&&n.uint32(56).uint64(e.updated),e.deleted!==0&&n.uint32(64).uint64(e.deleted),e.merged!==0&&n.uint32(72).uint64(e.merged),e.accessedAt!==0&&n.uint32(80).int64(e.accessedAt),e.addedAt!==0&&n.uint32(88).int64(e.addedAt),e.updatedAt!==0&&n.uint32(96).int64(e.updatedAt),e.deletedAt!==0&&n.uint32(104).int64(e.deletedAt),e.mergedAt!==0&&n.uint32(112).int64(e.mergedAt),e.ftsStats!==void 0&&E.encode(e.ftsStats,n.uint32(122).fork()).ldelim(),n},decode(e,n){let t=e instanceof o.Reader?e:o.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=fn();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==8)break;s.indexId=t.uint32();continue;case 2:if(r!==18)break;s.indexName=t.string();continue;case 3:if(r!==24)break;s.approximatedSize=R(t.uint64());continue;case 4:if(r!==32)break;s.numDocs=R(t.uint64());continue;case 5:if(r!==40)break;s.accessed=R(t.uint64());continue;case 6:if(r!==48)break;s.added=R(t.uint64());continue;case 7:if(r!==56)break;s.updated=R(t.uint64());continue;case 8:if(r!==64)break;s.deleted=R(t.uint64());continue;case 9:if(r!==72)break;s.merged=R(t.uint64());continue;case 10:if(r!==80)break;s.accessedAt=R(t.int64());continue;case 11:if(r!==88)break;s.addedAt=R(t.int64());continue;case 12:if(r!==96)break;s.updatedAt=R(t.int64());continue;case 13:if(r!==104)break;s.deletedAt=R(t.int64());continue;case 14:if(r!==112)break;s.mergedAt=R(t.int64());continue;case 15:if(r!==122)break;s.ftsStats=E.decode(t,t.uint32());continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{indexId:i(e.indexId)?globalThis.Number(e.indexId):0,indexName:i(e.indexName)?globalThis.String(e.indexName):"",approximatedSize:i(e.approximatedSize)?globalThis.Number(e.approximatedSize):0,numDocs:i(e.numDocs)?globalThis.Number(e.numDocs):0,accessed:i(e.accessed)?globalThis.Number(e.accessed):0,added:i(e.added)?globalThis.Number(e.added):0,updated:i(e.updated)?globalThis.Number(e.updated):0,deleted:i(e.deleted)?globalThis.Number(e.deleted):0,merged:i(e.merged)?globalThis.Number(e.merged):0,accessedAt:i(e.accessedAt)?globalThis.Number(e.accessedAt):0,addedAt:i(e.addedAt)?globalThis.Number(e.addedAt):0,updatedAt:i(e.updatedAt)?globalThis.Number(e.updatedAt):0,deletedAt:i(e.deletedAt)?globalThis.Number(e.deletedAt):0,mergedAt:i(e.mergedAt)?globalThis.Number(e.mergedAt):0,ftsStats:i(e.ftsStats)?E.fromJSON(e.ftsStats):void 0}},toJSON(e){let n={};return e.indexId!==0&&(n.indexId=Math.round(e.indexId)),e.indexName!==""&&(n.indexName=e.indexName),e.approximatedSize!==0&&(n.approximatedSize=Math.round(e.approximatedSize)),e.numDocs!==0&&(n.numDocs=Math.round(e.numDocs)),e.accessed!==0&&(n.accessed=Math.round(e.accessed)),e.added!==0&&(n.added=Math.round(e.added)),e.updated!==0&&(n.updated=Math.round(e.updated)),e.deleted!==0&&(n.deleted=Math.round(e.deleted)),e.merged!==0&&(n.merged=Math.round(e.merged)),e.accessedAt!==0&&(n.accessedAt=Math.round(e.accessedAt)),e.addedAt!==0&&(n.addedAt=Math.round(e.addedAt)),e.updatedAt!==0&&(n.updatedAt=Math.round(e.updatedAt)),e.deletedAt!==0&&(n.deletedAt=Math.round(e.deletedAt)),e.mergedAt!==0&&(n.mergedAt=Math.round(e.mergedAt)),e.ftsStats!==void 0&&(n.ftsStats=E.toJSON(e.ftsStats)),n},create(e){return D.fromPartial(e!=null?e:{})},fromPartial(e){var t,a,s,r,c,f,x,A,Qe,Ze,Xe,$e,He,Ye;let n=fn();return n.indexId=(t=e.indexId)!=null?t:0,n.indexName=(a=e.indexName)!=null?a:"",n.approximatedSize=(s=e.approximatedSize)!=null?s:0,n.numDocs=(r=e.numDocs)!=null?r:0,n.accessed=(c=e.accessed)!=null?c:0,n.added=(f=e.added)!=null?f:0,n.updated=(x=e.updated)!=null?x:0,n.deleted=(A=e.deleted)!=null?A:0,n.merged=(Qe=e.merged)!=null?Qe:0,n.accessedAt=(Ze=e.accessedAt)!=null?Ze:0,n.addedAt=(Xe=e.addedAt)!=null?Xe:0,n.updatedAt=($e=e.updatedAt)!=null?$e:0,n.deletedAt=(He=e.deletedAt)!=null?He:0,n.mergedAt=(Ye=e.mergedAt)!=null?Ye:0,n.ftsStats=e.ftsStats!==void 0&&e.ftsStats!==null?E.fromPartial(e.ftsStats):void 0,n}};function pn(){return{collectionName:"",indexDescriptors:[],indexStats:[]}}var C={encode(e,n=o.Writer.create()){e.collectionName!==""&&n.uint32(10).string(e.collectionName);for(let t of e.indexDescriptors)q.encode(t,n.uint32(18).fork()).ldelim();for(let t of e.indexStats)D.encode(t,n.uint32(26).fork()).ldelim();return n},decode(e,n){let t=e instanceof o.Reader?e:o.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=pn();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==10)break;s.collectionName=t.string();continue;case 2:if(r!==18)break;s.indexDescriptors.push(q.decode(t,t.uint32()));continue;case 3:if(r!==26)break;s.indexStats.push(D.decode(t,t.uint32()));continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{collectionName:i(e.collectionName)?globalThis.String(e.collectionName):"",indexDescriptors:globalThis.Array.isArray(e==null?void 0:e.indexDescriptors)?e.indexDescriptors.map(n=>q.fromJSON(n)):[],indexStats:globalThis.Array.isArray(e==null?void 0:e.indexStats)?e.indexStats.map(n=>D.fromJSON(n)):[]}},toJSON(e){var t,a;let n={};return e.collectionName!==""&&(n.collectionName=e.collectionName),(t=e.indexDescriptors)!=null&&t.length&&(n.indexDescriptors=e.indexDescriptors.map(s=>q.toJSON(s))),(a=e.indexStats)!=null&&a.length&&(n.indexStats=e.indexStats.map(s=>D.toJSON(s))),n},create(e){return C.fromPartial(e!=null?e:{})},fromPartial(e){var t,a,s;let n=pn();return n.collectionName=(t=e.collectionName)!=null?t:"",n.indexDescriptors=((a=e.indexDescriptors)==null?void 0:a.map(r=>q.fromPartial(r)))||[],n.indexStats=((s=e.indexStats)==null?void 0:s.map(r=>D.fromPartial(r)))||[],n}};function mn(){return{matched:0,scanned:0,filtered:0,queryDurationUs:0,serializationDurationUs:0}}var l={encode(e,n=o.Writer.create()){return e.matched!==0&&n.uint32(8).uint64(e.matched),e.scanned!==0&&n.uint32(16).uint64(e.scanned),e.filtered!==0&&n.uint32(24).uint64(e.filtered),e.queryDurationUs!==0&&n.uint32(32).uint64(e.queryDurationUs),e.serializationDurationUs!==0&&n.uint32(40).uint64(e.serializationDurationUs),n},decode(e,n){let t=e instanceof o.Reader?e:o.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=mn();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==8)break;s.matched=R(t.uint64());continue;case 2:if(r!==16)break;s.scanned=R(t.uint64());continue;case 3:if(r!==24)break;s.filtered=R(t.uint64());continue;case 4:if(r!==32)break;s.queryDurationUs=R(t.uint64());continue;case 5:if(r!==40)break;s.serializationDurationUs=R(t.uint64());continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{matched:i(e.matched)?globalThis.Number(e.matched):0,scanned:i(e.scanned)?globalThis.Number(e.scanned):0,filtered:i(e.filtered)?globalThis.Number(e.filtered):0,queryDurationUs:i(e.queryDurationUs)?globalThis.Number(e.queryDurationUs):0,serializationDurationUs:i(e.serializationDurationUs)?globalThis.Number(e.serializationDurationUs):0}},toJSON(e){let n={};return e.matched!==0&&(n.matched=Math.round(e.matched)),e.scanned!==0&&(n.scanned=Math.round(e.scanned)),e.filtered!==0&&(n.filtered=Math.round(e.filtered)),e.queryDurationUs!==0&&(n.queryDurationUs=Math.round(e.queryDurationUs)),e.serializationDurationUs!==0&&(n.serializationDurationUs=Math.round(e.serializationDurationUs)),n},create(e){return l.fromPartial(e!=null?e:{})},fromPartial(e){var t,a,s,r,c;let n=mn();return n.matched=(t=e.matched)!=null?t:0,n.scanned=(a=e.scanned)!=null?a:0,n.filtered=(s=e.filtered)!=null?s:0,n.queryDurationUs=(r=e.queryDurationUs)!=null?r:0,n.serializationDurationUs=(c=e.serializationDurationUs)!=null?c:0,n}};function Rn(){return{collection:void 0}}var z={encode(e,n=o.Writer.create()){return e.collection!==void 0&&C.encode(e.collection,n.uint32(10).fork()).ldelim(),n},decode(e,n){let t=e instanceof o.Reader?e:o.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=Rn();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==10)break;s.collection=C.decode(t,t.uint32());continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{collection:i(e.collection)?C.fromJSON(e.collection):void 0}},toJSON(e){let n={};return e.collection!==void 0&&(n.collection=C.toJSON(e.collection)),n},create(e){return z.fromPartial(e!=null?e:{})},fromPartial(e){let n=Rn();return n.collection=e.collection!==void 0&&e.collection!==null?C.fromPartial(e.collection):void 0,n}};function yn(){return{status:0,message:"",profile:void 0}}var b={encode(e,n=o.Writer.create()){return e.status!==0&&n.uint32(8).int32(e.status),e.message!==""&&n.uint32(18).string(e.message),e.profile!==void 0&&l.encode(e.profile,n.uint32(26).fork()).ldelim(),n},decode(e,n){let t=e instanceof o.Reader?e:o.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=yn();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==8)break;s.status=t.int32();continue;case 2:if(r!==18)break;s.message=t.string();continue;case 3:if(r!==26)break;s.profile=l.decode(t,t.uint32());continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{status:i(e.status)?globalThis.Number(e.status):0,message:i(e.message)?globalThis.String(e.message):"",profile:i(e.profile)?l.fromJSON(e.profile):void 0}},toJSON(e){let n={};return e.status!==0&&(n.status=Math.round(e.status)),e.message!==""&&(n.message=e.message),e.profile!==void 0&&(n.profile=l.toJSON(e.profile)),n},create(e){return b.fromPartial(e!=null?e:{})},fromPartial(e){var t,a;let n=yn();return n.status=(t=e.status)!=null?t:0,n.message=(a=e.message)!=null?a:"",n.profile=e.profile!==void 0&&e.profile!==null?l.fromPartial(e.profile):void 0,n}};function xn(){return{collectionName:""}}var L={encode(e,n=o.Writer.create()){return e.collectionName!==""&&n.uint32(10).string(e.collectionName),n},decode(e,n){let t=e instanceof o.Reader?e:o.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=xn();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==10)break;s.collectionName=t.string();continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{collectionName:i(e.collectionName)?globalThis.String(e.collectionName):""}},toJSON(e){let n={};return e.collectionName!==""&&(n.collectionName=e.collectionName),n},create(e){return L.fromPartial(e!=null?e:{})},fromPartial(e){var t;let n=xn();return n.collectionName=(t=e.collectionName)!=null?t:"",n}};function kn(){return{status:0,message:"",profile:void 0}}var w={encode(e,n=o.Writer.create()){return e.status!==0&&n.uint32(8).int32(e.status),e.message!==""&&n.uint32(18).string(e.message),e.profile!==void 0&&l.encode(e.profile,n.uint32(26).fork()).ldelim(),n},decode(e,n){let t=e instanceof o.Reader?e:o.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=kn();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==8)break;s.status=t.int32();continue;case 2:if(r!==18)break;s.message=t.string();continue;case 3:if(r!==26)break;s.profile=l.decode(t,t.uint32());continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{status:i(e.status)?globalThis.Number(e.status):0,message:i(e.message)?globalThis.String(e.message):"",profile:i(e.profile)?l.fromJSON(e.profile):void 0}},toJSON(e){let n={};return e.status!==0&&(n.status=Math.round(e.status)),e.message!==""&&(n.message=e.message),e.profile!==void 0&&(n.profile=l.toJSON(e.profile)),n},create(e){return w.fromPartial(e!=null?e:{})},fromPartial(e){var t,a;let n=kn();return n.status=(t=e.status)!=null?t:0,n.message=(a=e.message)!=null?a:"",n.profile=e.profile!==void 0&&e.profile!==null?l.fromPartial(e.profile):void 0,n}};function qn(){return{oldCollectionName:"",newCollectionName:""}}var V={encode(e,n=o.Writer.create()){return e.oldCollectionName!==""&&n.uint32(10).string(e.oldCollectionName),e.newCollectionName!==""&&n.uint32(18).string(e.newCollectionName),n},decode(e,n){let t=e instanceof o.Reader?e:o.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=qn();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==10)break;s.oldCollectionName=t.string();continue;case 2:if(r!==18)break;s.newCollectionName=t.string();continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{oldCollectionName:i(e.oldCollectionName)?globalThis.String(e.oldCollectionName):"",newCollectionName:i(e.newCollectionName)?globalThis.String(e.newCollectionName):""}},toJSON(e){let n={};return e.oldCollectionName!==""&&(n.oldCollectionName=e.oldCollectionName),e.newCollectionName!==""&&(n.newCollectionName=e.newCollectionName),n},create(e){return V.fromPartial(e!=null?e:{})},fromPartial(e){var t,a;let n=qn();return n.oldCollectionName=(t=e.oldCollectionName)!=null?t:"",n.newCollectionName=(a=e.newCollectionName)!=null?a:"",n}};function Cn(){return{status:0,message:"",profile:void 0}}var Q={encode(e,n=o.Writer.create()){return e.status!==0&&n.uint32(8).int32(e.status),e.message!==""&&n.uint32(18).string(e.message),e.profile!==void 0&&l.encode(e.profile,n.uint32(26).fork()).ldelim(),n},decode(e,n){let t=e instanceof o.Reader?e:o.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=Cn();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==8)break;s.status=t.int32();continue;case 2:if(r!==18)break;s.message=t.string();continue;case 3:if(r!==26)break;s.profile=l.decode(t,t.uint32());continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{status:i(e.status)?globalThis.Number(e.status):0,message:i(e.message)?globalThis.String(e.message):"",profile:i(e.profile)?l.fromJSON(e.profile):void 0}},toJSON(e){let n={};return e.status!==0&&(n.status=Math.round(e.status)),e.message!==""&&(n.message=e.message),e.profile!==void 0&&(n.profile=l.toJSON(e.profile)),n},create(e){return Q.fromPartial(e!=null?e:{})},fromPartial(e){var t,a;let n=Cn();return n.status=(t=e.status)!=null?t:0,n.message=(a=e.message)!=null?a:"",n.profile=e.profile!==void 0&&e.profile!==null?l.fromPartial(e.profile):void 0,n}};function In(){return{collectionName:""}}var Z={encode(e,n=o.Writer.create()){return e.collectionName!==""&&n.uint32(10).string(e.collectionName),n},decode(e,n){let t=e instanceof o.Reader?e:o.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=In();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==10)break;s.collectionName=t.string();continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{collectionName:i(e.collectionName)?globalThis.String(e.collectionName):""}},toJSON(e){let n={};return e.collectionName!==""&&(n.collectionName=e.collectionName),n},create(e){return Z.fromPartial(e!=null?e:{})},fromPartial(e){var t;let n=In();return n.collectionName=(t=e.collectionName)!=null?t:"",n}};function Nn(){return{status:0,message:"",collection:void 0,profile:void 0}}var X={encode(e,n=o.Writer.create()){return e.status!==0&&n.uint32(8).int32(e.status),e.message!==""&&n.uint32(18).string(e.message),e.collection!==void 0&&C.encode(e.collection,n.uint32(26).fork()).ldelim(),e.profile!==void 0&&l.encode(e.profile,n.uint32(34).fork()).ldelim(),n},decode(e,n){let t=e instanceof o.Reader?e:o.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=Nn();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==8)break;s.status=t.int32();continue;case 2:if(r!==18)break;s.message=t.string();continue;case 3:if(r!==26)break;s.collection=C.decode(t,t.uint32());continue;case 4:if(r!==34)break;s.profile=l.decode(t,t.uint32());continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{status:i(e.status)?globalThis.Number(e.status):0,message:i(e.message)?globalThis.String(e.message):"",collection:i(e.collection)?C.fromJSON(e.collection):void 0,profile:i(e.profile)?l.fromJSON(e.profile):void 0}},toJSON(e){let n={};return e.status!==0&&(n.status=Math.round(e.status)),e.message!==""&&(n.message=e.message),e.collection!==void 0&&(n.collection=C.toJSON(e.collection)),e.profile!==void 0&&(n.profile=l.toJSON(e.profile)),n},create(e){return X.fromPartial(e!=null?e:{})},fromPartial(e){var t,a;let n=Nn();return n.status=(t=e.status)!=null?t:0,n.message=(a=e.message)!=null?a:"",n.collection=e.collection!==void 0&&e.collection!==null?C.fromPartial(e.collection):void 0,n.profile=e.profile!==void 0&&e.profile!==null?l.fromPartial(e.profile):void 0,n}};function Sn(){return{collectionNames:[]}}var $={encode(e,n=o.Writer.create()){for(let t of e.collectionNames)n.uint32(10).string(t);return n},decode(e,n){let t=e instanceof o.Reader?e:o.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=Sn();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==10)break;s.collectionNames.push(t.string());continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{collectionNames:globalThis.Array.isArray(e==null?void 0:e.collectionNames)?e.collectionNames.map(n=>globalThis.String(n)):[]}},toJSON(e){var t;let n={};return(t=e.collectionNames)!=null&&t.length&&(n.collectionNames=e.collectionNames),n},create(e){return $.fromPartial(e!=null?e:{})},fromPartial(e){var t;let n=Sn();return n.collectionNames=((t=e.collectionNames)==null?void 0:t.map(a=>a))||[],n}};function hn(){return{status:0,message:"",collections:[],profile:void 0}}var H={encode(e,n=o.Writer.create()){e.status!==0&&n.uint32(8).int32(e.status),e.message!==""&&n.uint32(18).string(e.message);for(let t of e.collections)C.encode(t,n.uint32(26).fork()).ldelim();return e.profile!==void 0&&l.encode(e.profile,n.uint32(34).fork()).ldelim(),n},decode(e,n){let t=e instanceof o.Reader?e:o.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=hn();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==8)break;s.status=t.int32();continue;case 2:if(r!==18)break;s.message=t.string();continue;case 3:if(r!==26)break;s.collections.push(C.decode(t,t.uint32()));continue;case 4:if(r!==34)break;s.profile=l.decode(t,t.uint32());continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{status:i(e.status)?globalThis.Number(e.status):0,message:i(e.message)?globalThis.String(e.message):"",collections:globalThis.Array.isArray(e==null?void 0:e.collections)?e.collections.map(n=>C.fromJSON(n)):[],profile:i(e.profile)?l.fromJSON(e.profile):void 0}},toJSON(e){var t;let n={};return e.status!==0&&(n.status=Math.round(e.status)),e.message!==""&&(n.message=e.message),(t=e.collections)!=null&&t.length&&(n.collections=e.collections.map(a=>C.toJSON(a))),e.profile!==void 0&&(n.profile=l.toJSON(e.profile)),n},create(e){return H.fromPartial(e!=null?e:{})},fromPartial(e){var t,a,s;let n=hn();return n.status=(t=e.status)!=null?t:0,n.message=(a=e.message)!=null?a:"",n.collections=((s=e.collections)==null?void 0:s.map(r=>C.fromPartial(r)))||[],n.profile=e.profile!==void 0&&e.profile!==null?l.fromPartial(e.profile):void 0,n}};function Pn(){return{collectionName:"",indexDesc:void 0}}var Y={encode(e,n=o.Writer.create()){return e.collectionName!==""&&n.uint32(10).string(e.collectionName),e.indexDesc!==void 0&&q.encode(e.indexDesc,n.uint32(18).fork()).ldelim(),n},decode(e,n){let t=e instanceof o.Reader?e:o.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=Pn();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==10)break;s.collectionName=t.string();continue;case 2:if(r!==18)break;s.indexDesc=q.decode(t,t.uint32());continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{collectionName:i(e.collectionName)?globalThis.String(e.collectionName):"",indexDesc:i(e.indexDesc)?q.fromJSON(e.indexDesc):void 0}},toJSON(e){let n={};return e.collectionName!==""&&(n.collectionName=e.collectionName),e.indexDesc!==void 0&&(n.indexDesc=q.toJSON(e.indexDesc)),n},create(e){return Y.fromPartial(e!=null?e:{})},fromPartial(e){var t;let n=Pn();return n.collectionName=(t=e.collectionName)!=null?t:"",n.indexDesc=e.indexDesc!==void 0&&e.indexDesc!==null?q.fromPartial(e.indexDesc):void 0,n}};function Dn(){return{status:0,message:"",profile:void 0}}var j={encode(e,n=o.Writer.create()){return e.status!==0&&n.uint32(8).int32(e.status),e.message!==""&&n.uint32(18).string(e.message),e.profile!==void 0&&l.encode(e.profile,n.uint32(26).fork()).ldelim(),n},decode(e,n){let t=e instanceof o.Reader?e:o.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=Dn();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==8)break;s.status=t.int32();continue;case 2:if(r!==18)break;s.message=t.string();continue;case 3:if(r!==26)break;s.profile=l.decode(t,t.uint32());continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{status:i(e.status)?globalThis.Number(e.status):0,message:i(e.message)?globalThis.String(e.message):"",profile:i(e.profile)?l.fromJSON(e.profile):void 0}},toJSON(e){let n={};return e.status!==0&&(n.status=Math.round(e.status)),e.message!==""&&(n.message=e.message),e.profile!==void 0&&(n.profile=l.toJSON(e.profile)),n},create(e){return j.fromPartial(e!=null?e:{})},fromPartial(e){var t,a;let n=Dn();return n.status=(t=e.status)!=null?t:0,n.message=(a=e.message)!=null?a:"",n.profile=e.profile!==void 0&&e.profile!==null?l.fromPartial(e.profile):void 0,n}};function gn(){return{collectionName:"",indexName:""}}var ee={encode(e,n=o.Writer.create()){return e.collectionName!==""&&n.uint32(10).string(e.collectionName),e.indexName!==""&&n.uint32(18).string(e.indexName),n},decode(e,n){let t=e instanceof o.Reader?e:o.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=gn();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==10)break;s.collectionName=t.string();continue;case 2:if(r!==18)break;s.indexName=t.string();continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{collectionName:i(e.collectionName)?globalThis.String(e.collectionName):"",indexName:i(e.indexName)?globalThis.String(e.indexName):""}},toJSON(e){let n={};return e.collectionName!==""&&(n.collectionName=e.collectionName),e.indexName!==""&&(n.indexName=e.indexName),n},create(e){return ee.fromPartial(e!=null?e:{})},fromPartial(e){var t,a;let n=gn();return n.collectionName=(t=e.collectionName)!=null?t:"",n.indexName=(a=e.indexName)!=null?a:"",n}};function vn(){return{status:0,message:"",profile:void 0}}var ne={encode(e,n=o.Writer.create()){return e.status!==0&&n.uint32(8).int32(e.status),e.message!==""&&n.uint32(18).string(e.message),e.profile!==void 0&&l.encode(e.profile,n.uint32(26).fork()).ldelim(),n},decode(e,n){let t=e instanceof o.Reader?e:o.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=vn();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==8)break;s.status=t.int32();continue;case 2:if(r!==18)break;s.message=t.string();continue;case 3:if(r!==26)break;s.profile=l.decode(t,t.uint32());continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{status:i(e.status)?globalThis.Number(e.status):0,message:i(e.message)?globalThis.String(e.message):"",profile:i(e.profile)?l.fromJSON(e.profile):void 0}},toJSON(e){let n={};return e.status!==0&&(n.status=Math.round(e.status)),e.message!==""&&(n.message=e.message),e.profile!==void 0&&(n.profile=l.toJSON(e.profile)),n},create(e){return ne.fromPartial(e!=null?e:{})},fromPartial(e){var t,a;let n=vn();return n.status=(t=e.status)!=null?t:0,n.message=(a=e.message)!=null?a:"",n.profile=e.profile!==void 0&&e.profile!==null?l.fromPartial(e.profile):void 0,n}};function Bn(){return{collectionName:"",oldIndexName:"",newIndexName:""}}var te={encode(e,n=o.Writer.create()){return e.collectionName!==""&&n.uint32(10).string(e.collectionName),e.oldIndexName!==""&&n.uint32(18).string(e.oldIndexName),e.newIndexName!==""&&n.uint32(26).string(e.newIndexName),n},decode(e,n){let t=e instanceof o.Reader?e:o.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=Bn();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==10)break;s.collectionName=t.string();continue;case 2:if(r!==18)break;s.oldIndexName=t.string();continue;case 3:if(r!==26)break;s.newIndexName=t.string();continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{collectionName:i(e.collectionName)?globalThis.String(e.collectionName):"",oldIndexName:i(e.oldIndexName)?globalThis.String(e.oldIndexName):"",newIndexName:i(e.newIndexName)?globalThis.String(e.newIndexName):""}},toJSON(e){let n={};return e.collectionName!==""&&(n.collectionName=e.collectionName),e.oldIndexName!==""&&(n.oldIndexName=e.oldIndexName),e.newIndexName!==""&&(n.newIndexName=e.newIndexName),n},create(e){return te.fromPartial(e!=null?e:{})},fromPartial(e){var t,a,s;let n=Bn();return n.collectionName=(t=e.collectionName)!=null?t:"",n.oldIndexName=(a=e.oldIndexName)!=null?a:"",n.newIndexName=(s=e.newIndexName)!=null?s:"",n}};function Tn(){return{status:0,message:"",profile:void 0}}var re={encode(e,n=o.Writer.create()){return e.status!==0&&n.uint32(8).int32(e.status),e.message!==""&&n.uint32(18).string(e.message),e.profile!==void 0&&l.encode(e.profile,n.uint32(26).fork()).ldelim(),n},decode(e,n){let t=e instanceof o.Reader?e:o.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=Tn();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==8)break;s.status=t.int32();continue;case 2:if(r!==18)break;s.message=t.string();continue;case 3:if(r!==26)break;s.profile=l.decode(t,t.uint32());continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{status:i(e.status)?globalThis.Number(e.status):0,message:i(e.message)?globalThis.String(e.message):"",profile:i(e.profile)?l.fromJSON(e.profile):void 0}},toJSON(e){let n={};return e.status!==0&&(n.status=Math.round(e.status)),e.message!==""&&(n.message=e.message),e.profile!==void 0&&(n.profile=l.toJSON(e.profile)),n},create(e){return re.fromPartial(e!=null?e:{})},fromPartial(e){var t,a;let n=Tn();return n.status=(t=e.status)!=null?t:0,n.message=(a=e.message)!=null?a:"",n.profile=e.profile!==void 0&&e.profile!==null?l.fromPartial(e.profile):void 0,n}};function On(){return{collectionName:"",indexName:""}}var se={encode(e,n=o.Writer.create()){return e.collectionName!==""&&n.uint32(10).string(e.collectionName),e.indexName!==""&&n.uint32(18).string(e.indexName),n},decode(e,n){let t=e instanceof o.Reader?e:o.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=On();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==10)break;s.collectionName=t.string();continue;case 2:if(r!==18)break;s.indexName=t.string();continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{collectionName:i(e.collectionName)?globalThis.String(e.collectionName):"",indexName:i(e.indexName)?globalThis.String(e.indexName):""}},toJSON(e){let n={};return e.collectionName!==""&&(n.collectionName=e.collectionName),e.indexName!==""&&(n.indexName=e.indexName),n},create(e){return se.fromPartial(e!=null?e:{})},fromPartial(e){var t,a;let n=On();return n.collectionName=(t=e.collectionName)!=null?t:"",n.indexName=(a=e.indexName)!=null?a:"",n}};function En(){return{status:0,message:"",collectionName:"",indexDesc:void 0,indexStats:void 0,profile:void 0}}var ae={encode(e,n=o.Writer.create()){return e.status!==0&&n.uint32(8).int32(e.status),e.message!==""&&n.uint32(18).string(e.message),e.collectionName!==""&&n.uint32(26).string(e.collectionName),e.indexDesc!==void 0&&q.encode(e.indexDesc,n.uint32(34).fork()).ldelim(),e.indexStats!==void 0&&D.encode(e.indexStats,n.uint32(42).fork()).ldelim(),e.profile!==void 0&&l.encode(e.profile,n.uint32(50).fork()).ldelim(),n},decode(e,n){let t=e instanceof o.Reader?e:o.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=En();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==8)break;s.status=t.int32();continue;case 2:if(r!==18)break;s.message=t.string();continue;case 3:if(r!==26)break;s.collectionName=t.string();continue;case 4:if(r!==34)break;s.indexDesc=q.decode(t,t.uint32());continue;case 5:if(r!==42)break;s.indexStats=D.decode(t,t.uint32());continue;case 6:if(r!==50)break;s.profile=l.decode(t,t.uint32());continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{status:i(e.status)?globalThis.Number(e.status):0,message:i(e.message)?globalThis.String(e.message):"",collectionName:i(e.collectionName)?globalThis.String(e.collectionName):"",indexDesc:i(e.indexDesc)?q.fromJSON(e.indexDesc):void 0,indexStats:i(e.indexStats)?D.fromJSON(e.indexStats):void 0,profile:i(e.profile)?l.fromJSON(e.profile):void 0}},toJSON(e){let n={};return e.status!==0&&(n.status=Math.round(e.status)),e.message!==""&&(n.message=e.message),e.collectionName!==""&&(n.collectionName=e.collectionName),e.indexDesc!==void 0&&(n.indexDesc=q.toJSON(e.indexDesc)),e.indexStats!==void 0&&(n.indexStats=D.toJSON(e.indexStats)),e.profile!==void 0&&(n.profile=l.toJSON(e.profile)),n},create(e){return ae.fromPartial(e!=null?e:{})},fromPartial(e){var t,a,s;let n=En();return n.status=(t=e.status)!=null?t:0,n.message=(a=e.message)!=null?a:"",n.collectionName=(s=e.collectionName)!=null?s:"",n.indexDesc=e.indexDesc!==void 0&&e.indexDesc!==null?q.fromPartial(e.indexDesc):void 0,n.indexStats=e.indexStats!==void 0&&e.indexStats!==null?D.fromPartial(e.indexStats):void 0,n.profile=e.profile!==void 0&&e.profile!==null?l.fromPartial(e.profile):void 0,n}};function Un(){return{collectionName:"",query:void 0}}var p={encode(e,n=o.Writer.create()){return e.collectionName!==""&&n.uint32(10).string(e.collectionName),e.query!==void 0&&y.encode(e.query,n.uint32(18).fork()).ldelim(),n},decode(e,n){let t=e instanceof o.Reader?e:o.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=Un();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==10)break;s.collectionName=t.string();continue;case 2:if(r!==18)break;s.query=y.decode(t,t.uint32());continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{collectionName:i(e.collectionName)?globalThis.String(e.collectionName):"",query:i(e.query)?y.fromJSON(e.query):void 0}},toJSON(e){let n={};return e.collectionName!==""&&(n.collectionName=e.collectionName),e.query!==void 0&&(n.query=y.toJSON(e.query)),n},create(e){return p.fromPartial(e!=null?e:{})},fromPartial(e){var t;let n=Un();return n.collectionName=(t=e.collectionName)!=null?t:"",n.query=e.query!==void 0&&e.query!==null?y.fromPartial(e.query):void 0,n}};function _n(){return{query:void 0,limit:0,indexColumns:[],columns:[],dtypes:{}}}var g={encode(e,n=o.Writer.create()){e.query!==void 0&&p.encode(e.query,n.uint32(10).fork()).ldelim(),e.limit!==0&&n.uint32(16).int32(e.limit);for(let t of e.indexColumns)n.uint32(26).string(t);for(let t of e.columns)n.uint32(34).string(t);return Object.entries(e.dtypes).forEach(([t,a])=>{oe.encode({key:t,value:a},n.uint32(42).fork()).ldelim()}),n},decode(e,n){let t=e instanceof o.Reader?e:o.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=_n();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==10)break;s.query=p.decode(t,t.uint32());continue;case 2:if(r!==16)break;s.limit=t.int32();continue;case 3:if(r!==26)break;s.indexColumns.push(t.string());continue;case 4:if(r!==34)break;s.columns.push(t.string());continue;case 5:if(r!==42)break;let c=oe.decode(t,t.uint32());c.value!==void 0&&(s.dtypes[c.key]=c.value);continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{query:i(e.query)?p.fromJSON(e.query):void 0,limit:i(e.limit)?globalThis.Number(e.limit):0,indexColumns:globalThis.Array.isArray(e==null?void 0:e.indexColumns)?e.indexColumns.map(n=>globalThis.String(n)):[],columns:globalThis.Array.isArray(e==null?void 0:e.columns)?e.columns.map(n=>globalThis.String(n)):[],dtypes:zt(e.dtypes)?Object.entries(e.dtypes).reduce((n,[t,a])=>(n[t]=String(a),n),{}):{}}},toJSON(e){var t,a;let n={};if(e.query!==void 0&&(n.query=p.toJSON(e.query)),e.limit!==0&&(n.limit=Math.round(e.limit)),(t=e.indexColumns)!=null&&t.length&&(n.indexColumns=e.indexColumns),(a=e.columns)!=null&&a.length&&(n.columns=e.columns),e.dtypes){let s=Object.entries(e.dtypes);s.length>0&&(n.dtypes={},s.forEach(([r,c])=>{n.dtypes[r]=c}))}return n},create(e){return g.fromPartial(e!=null?e:{})},fromPartial(e){var t,a,s,r;let n=_n();return n.query=e.query!==void 0&&e.query!==null?p.fromPartial(e.query):void 0,n.limit=(t=e.limit)!=null?t:0,n.indexColumns=((a=e.indexColumns)==null?void 0:a.map(c=>c))||[],n.columns=((s=e.columns)==null?void 0:s.map(c=>c))||[],n.dtypes=Object.entries((r=e.dtypes)!=null?r:{}).reduce((c,[f,x])=>(x!==void 0&&(c[f]=globalThis.String(x)),c),{}),n}};function Jn(){return{key:"",value:""}}var oe={encode(e,n=o.Writer.create()){return e.key!==""&&n.uint32(10).string(e.key),e.value!==""&&n.uint32(18).string(e.value),n},decode(e,n){let t=e instanceof o.Reader?e:o.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=Jn();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==10)break;s.key=t.string();continue;case 2:if(r!==18)break;s.value=t.string();continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{key:i(e.key)?globalThis.String(e.key):"",value:i(e.value)?globalThis.String(e.value):""}},toJSON(e){let n={};return e.key!==""&&(n.key=e.key),e.value!==""&&(n.value=e.value),n},create(e){return oe.fromPartial(e!=null?e:{})},fromPartial(e){var t,a;let n=Jn();return n.key=(t=e.key)!=null?t:"",n.value=(a=e.value)!=null?a:"",n}};function Kn(){return{numColumns:0,numRows:0,buffer:Buffer.alloc(0),profile:void 0}}var v={encode(e,n=o.Writer.create()){return e.numColumns!==0&&n.uint32(8).int32(e.numColumns),e.numRows!==0&&n.uint32(16).int32(e.numRows),e.buffer.length!==0&&n.uint32(26).bytes(e.buffer),e.profile!==void 0&&l.encode(e.profile,n.uint32(34).fork()).ldelim(),n},decode(e,n){let t=e instanceof o.Reader?e:o.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=Kn();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==8)break;s.numColumns=t.int32();continue;case 2:if(r!==16)break;s.numRows=t.int32();continue;case 3:if(r!==26)break;s.buffer=t.bytes();continue;case 4:if(r!==34)break;s.profile=l.decode(t,t.uint32());continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{numColumns:i(e.numColumns)?globalThis.Number(e.numColumns):0,numRows:i(e.numRows)?globalThis.Number(e.numRows):0,buffer:i(e.buffer)?Buffer.from(Ft(e.buffer)):Buffer.alloc(0),profile:i(e.profile)?l.fromJSON(e.profile):void 0}},toJSON(e){let n={};return e.numColumns!==0&&(n.numColumns=Math.round(e.numColumns)),e.numRows!==0&&(n.numRows=Math.round(e.numRows)),e.buffer.length!==0&&(n.buffer=Mt(e.buffer)),e.profile!==void 0&&(n.profile=l.toJSON(e.profile)),n},create(e){return v.fromPartial(e!=null?e:{})},fromPartial(e){var t,a,s;let n=Kn();return n.numColumns=(t=e.numColumns)!=null?t:0,n.numRows=(a=e.numRows)!=null?a:0,n.buffer=(s=e.buffer)!=null?s:Buffer.alloc(0),n.profile=e.profile!==void 0&&e.profile!==null?l.fromPartial(e.profile):void 0,n}};function An(){return{requests:[]}}var ie={encode(e,n=o.Writer.create()){for(let t of e.requests)g.encode(t,n.uint32(10).fork()).ldelim();return n},decode(e,n){let t=e instanceof o.Reader?e:o.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=An();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==10)break;s.requests.push(g.decode(t,t.uint32()));continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{requests:globalThis.Array.isArray(e==null?void 0:e.requests)?e.requests.map(n=>g.fromJSON(n)):[]}},toJSON(e){var t;let n={};return(t=e.requests)!=null&&t.length&&(n.requests=e.requests.map(a=>g.toJSON(a))),n},create(e){return ie.fromPartial(e!=null?e:{})},fromPartial(e){var t;let n=An();return n.requests=((t=e.requests)==null?void 0:t.map(a=>g.fromPartial(a)))||[],n}};function Gn(){return{responses:[]}}var le={encode(e,n=o.Writer.create()){for(let t of e.responses)v.encode(t,n.uint32(10).fork()).ldelim();return n},decode(e,n){let t=e instanceof o.Reader?e:o.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=Gn();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==10)break;s.responses.push(v.decode(t,t.uint32()));continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{responses:globalThis.Array.isArray(e==null?void 0:e.responses)?e.responses.map(n=>v.fromJSON(n)):[]}},toJSON(e){var t;let n={};return(t=e.responses)!=null&&t.length&&(n.responses=e.responses.map(a=>v.toJSON(a))),n},create(e){return le.fromPartial(e!=null?e:{})},fromPartial(e){var t;let n=Gn();return n.responses=((t=e.responses)==null?void 0:t.map(a=>v.fromPartial(a)))||[],n}};function Wn(){return{query:void 0}}var ue={encode(e,n=o.Writer.create()){return e.query!==void 0&&p.encode(e.query,n.uint32(10).fork()).ldelim(),n},decode(e,n){let t=e instanceof o.Reader?e:o.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=Wn();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==10)break;s.query=p.decode(t,t.uint32());continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{query:i(e.query)?p.fromJSON(e.query):void 0}},toJSON(e){let n={};return e.query!==void 0&&(n.query=p.toJSON(e.query)),n},create(e){return ue.fromPartial(e!=null?e:{})},fromPartial(e){let n=Wn();return n.query=e.query!==void 0&&e.query!==null?p.fromPartial(e.query):void 0,n}};function Fn(){return{status:0,message:"",count:0,profile:void 0}}var ce={encode(e,n=o.Writer.create()){return e.status!==0&&n.uint32(8).int32(e.status),e.message!==""&&n.uint32(18).string(e.message),e.count!==0&&n.uint32(24).int64(e.count),e.profile!==void 0&&l.encode(e.profile,n.uint32(34).fork()).ldelim(),n},decode(e,n){let t=e instanceof o.Reader?e:o.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=Fn();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==8)break;s.status=t.int32();continue;case 2:if(r!==18)break;s.message=t.string();continue;case 3:if(r!==24)break;s.count=R(t.int64());continue;case 4:if(r!==34)break;s.profile=l.decode(t,t.uint32());continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{status:i(e.status)?globalThis.Number(e.status):0,message:i(e.message)?globalThis.String(e.message):"",count:i(e.count)?globalThis.Number(e.count):0,profile:i(e.profile)?l.fromJSON(e.profile):void 0}},toJSON(e){let n={};return e.status!==0&&(n.status=Math.round(e.status)),e.message!==""&&(n.message=e.message),e.count!==0&&(n.count=Math.round(e.count)),e.profile!==void 0&&(n.profile=l.toJSON(e.profile)),n},create(e){return ce.fromPartial(e!=null?e:{})},fromPartial(e){var t,a,s;let n=Fn();return n.status=(t=e.status)!=null?t:0,n.message=(a=e.message)!=null?a:"",n.count=(s=e.count)!=null?s:0,n.profile=e.profile!==void 0&&e.profile!==null?l.fromPartial(e.profile):void 0,n}};function Mn(){return{query:void 0}}var de={encode(e,n=o.Writer.create()){return e.query!==void 0&&p.encode(e.query,n.uint32(10).fork()).ldelim(),n},decode(e,n){let t=e instanceof o.Reader?e:o.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=Mn();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==10)break;s.query=p.decode(t,t.uint32());continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{query:i(e.query)?p.fromJSON(e.query):void 0}},toJSON(e){let n={};return e.query!==void 0&&(n.query=p.toJSON(e.query)),n},create(e){return de.fromPartial(e!=null?e:{})},fromPartial(e){let n=Mn();return n.query=e.query!==void 0&&e.query!==null?p.fromPartial(e.query):void 0,n}};function zn(){return{status:0,message:"",found:!1,profile:void 0}}var fe={encode(e,n=o.Writer.create()){return e.status!==0&&n.uint32(8).int32(e.status),e.message!==""&&n.uint32(18).string(e.message),e.found===!0&&n.uint32(24).bool(e.found),e.profile!==void 0&&l.encode(e.profile,n.uint32(34).fork()).ldelim(),n},decode(e,n){let t=e instanceof o.Reader?e:o.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=zn();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==8)break;s.status=t.int32();continue;case 2:if(r!==18)break;s.message=t.string();continue;case 3:if(r!==24)break;s.found=t.bool();continue;case 4:if(r!==34)break;s.profile=l.decode(t,t.uint32());continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{status:i(e.status)?globalThis.Number(e.status):0,message:i(e.message)?globalThis.String(e.message):"",found:i(e.found)?globalThis.Boolean(e.found):!1,profile:i(e.profile)?l.fromJSON(e.profile):void 0}},toJSON(e){let n={};return e.status!==0&&(n.status=Math.round(e.status)),e.message!==""&&(n.message=e.message),e.found===!0&&(n.found=e.found),e.profile!==void 0&&(n.profile=l.toJSON(e.profile)),n},create(e){return fe.fromPartial(e!=null?e:{})},fromPartial(e){var t,a,s;let n=zn();return n.status=(t=e.status)!=null?t:0,n.message=(a=e.message)!=null?a:"",n.found=(s=e.found)!=null?s:!1,n.profile=e.profile!==void 0&&e.profile!==null?l.fromPartial(e.profile):void 0,n}};function bn(){return{requests:[]}}var pe={encode(e,n=o.Writer.create()){for(let t of e.requests)p.encode(t,n.uint32(10).fork()).ldelim();return n},decode(e,n){let t=e instanceof o.Reader?e:o.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=bn();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==10)break;s.requests.push(p.decode(t,t.uint32()));continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{requests:globalThis.Array.isArray(e==null?void 0:e.requests)?e.requests.map(n=>p.fromJSON(n)):[]}},toJSON(e){var t;let n={};return(t=e.requests)!=null&&t.length&&(n.requests=e.requests.map(a=>p.toJSON(a))),n},create(e){return pe.fromPartial(e!=null?e:{})},fromPartial(e){var t;let n=bn();return n.requests=((t=e.requests)==null?void 0:t.map(a=>p.fromPartial(a)))||[],n}};function Ln(){return{status:0,message:"",profile:void 0}}var me={encode(e,n=o.Writer.create()){return e.status!==0&&n.uint32(8).int32(e.status),e.message!==""&&n.uint32(18).string(e.message),e.profile!==void 0&&l.encode(e.profile,n.uint32(26).fork()).ldelim(),n},decode(e,n){let t=e instanceof o.Reader?e:o.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=Ln();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==8)break;s.status=t.int32();continue;case 2:if(r!==18)break;s.message=t.string();continue;case 3:if(r!==26)break;s.profile=l.decode(t,t.uint32());continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{status:i(e.status)?globalThis.Number(e.status):0,message:i(e.message)?globalThis.String(e.message):"",profile:i(e.profile)?l.fromJSON(e.profile):void 0}},toJSON(e){let n={};return e.status!==0&&(n.status=Math.round(e.status)),e.message!==""&&(n.message=e.message),e.profile!==void 0&&(n.profile=l.toJSON(e.profile)),n},create(e){return me.fromPartial(e!=null?e:{})},fromPartial(e){var t,a;let n=Ln();return n.status=(t=e.status)!=null?t:0,n.message=(a=e.message)!=null?a:"",n.profile=e.profile!==void 0&&e.profile!==null?l.fromPartial(e.profile):void 0,n}};function wn(){return{collectionName:"",filter:void 0,updates:void 0}}var Re={encode(e,n=o.Writer.create()){return e.collectionName!==""&&n.uint32(10).string(e.collectionName),e.filter!==void 0&&y.encode(e.filter,n.uint32(18).fork()).ldelim(),e.updates!==void 0&&y.encode(e.updates,n.uint32(26).fork()).ldelim(),n},decode(e,n){let t=e instanceof o.Reader?e:o.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=wn();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==10)break;s.collectionName=t.string();continue;case 2:if(r!==18)break;s.filter=y.decode(t,t.uint32());continue;case 3:if(r!==26)break;s.updates=y.decode(t,t.uint32());continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{collectionName:i(e.collectionName)?globalThis.String(e.collectionName):"",filter:i(e.filter)?y.fromJSON(e.filter):void 0,updates:i(e.updates)?y.fromJSON(e.updates):void 0}},toJSON(e){let n={};return e.collectionName!==""&&(n.collectionName=e.collectionName),e.filter!==void 0&&(n.filter=y.toJSON(e.filter)),e.updates!==void 0&&(n.updates=y.toJSON(e.updates)),n},create(e){return Re.fromPartial(e!=null?e:{})},fromPartial(e){var t;let n=wn();return n.collectionName=(t=e.collectionName)!=null?t:"",n.filter=e.filter!==void 0&&e.filter!==null?y.fromPartial(e.filter):void 0,n.updates=e.updates!==void 0&&e.updates!==null?y.fromPartial(e.updates):void 0,n}};function Vn(){return{status:0,message:"",profile:void 0}}var ye={encode(e,n=o.Writer.create()){return e.status!==0&&n.uint32(8).int32(e.status),e.message!==""&&n.uint32(18).string(e.message),e.profile!==void 0&&l.encode(e.profile,n.uint32(26).fork()).ldelim(),n},decode(e,n){let t=e instanceof o.Reader?e:o.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=Vn();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==8)break;s.status=t.int32();continue;case 2:if(r!==18)break;s.message=t.string();continue;case 3:if(r!==26)break;s.profile=l.decode(t,t.uint32());continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{status:i(e.status)?globalThis.Number(e.status):0,message:i(e.message)?globalThis.String(e.message):"",profile:i(e.profile)?l.fromJSON(e.profile):void 0}},toJSON(e){let n={};return e.status!==0&&(n.status=Math.round(e.status)),e.message!==""&&(n.message=e.message),e.profile!==void 0&&(n.profile=l.toJSON(e.profile)),n},create(e){return ye.fromPartial(e!=null?e:{})},fromPartial(e){var t,a;let n=Vn();return n.status=(t=e.status)!=null?t:0,n.message=(a=e.message)!=null?a:"",n.profile=e.profile!==void 0&&e.profile!==null?l.fromPartial(e.profile):void 0,n}};function Qn(){return{requests:[]}}var xe={encode(e,n=o.Writer.create()){for(let t of e.requests)p.encode(t,n.uint32(10).fork()).ldelim();return n},decode(e,n){let t=e instanceof o.Reader?e:o.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=Qn();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==10)break;s.requests.push(p.decode(t,t.uint32()));continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{requests:globalThis.Array.isArray(e==null?void 0:e.requests)?e.requests.map(n=>p.fromJSON(n)):[]}},toJSON(e){var t;let n={};return(t=e.requests)!=null&&t.length&&(n.requests=e.requests.map(a=>p.toJSON(a))),n},create(e){return xe.fromPartial(e!=null?e:{})},fromPartial(e){var t;let n=Qn();return n.requests=((t=e.requests)==null?void 0:t.map(a=>p.fromPartial(a)))||[],n}};function Zn(){return{status:0,message:"",profile:void 0}}var ke={encode(e,n=o.Writer.create()){return e.status!==0&&n.uint32(8).int32(e.status),e.message!==""&&n.uint32(18).string(e.message),e.profile!==void 0&&l.encode(e.profile,n.uint32(26).fork()).ldelim(),n},decode(e,n){let t=e instanceof o.Reader?e:o.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=Zn();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==8)break;s.status=t.int32();continue;case 2:if(r!==18)break;s.message=t.string();continue;case 3:if(r!==26)break;s.profile=l.decode(t,t.uint32());continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{status:i(e.status)?globalThis.Number(e.status):0,message:i(e.message)?globalThis.String(e.message):"",profile:i(e.profile)?l.fromJSON(e.profile):void 0}},toJSON(e){let n={};return e.status!==0&&(n.status=Math.round(e.status)),e.message!==""&&(n.message=e.message),e.profile!==void 0&&(n.profile=l.toJSON(e.profile)),n},create(e){return ke.fromPartial(e!=null?e:{})},fromPartial(e){var t,a;let n=Zn();return n.status=(t=e.status)!=null?t:0,n.message=(a=e.message)!=null?a:"",n.profile=e.profile!==void 0&&e.profile!==null?l.fromPartial(e.profile):void 0,n}};function Xn(){return{queries:[]}}var qe={encode(e,n=o.Writer.create()){for(let t of e.queries)p.encode(t,n.uint32(10).fork()).ldelim();return n},decode(e,n){let t=e instanceof o.Reader?e:o.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=Xn();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==10)break;s.queries.push(p.decode(t,t.uint32()));continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{queries:globalThis.Array.isArray(e==null?void 0:e.queries)?e.queries.map(n=>p.fromJSON(n)):[]}},toJSON(e){var t;let n={};return(t=e.queries)!=null&&t.length&&(n.queries=e.queries.map(a=>p.toJSON(a))),n},create(e){return qe.fromPartial(e!=null?e:{})},fromPartial(e){var t;let n=Xn();return n.queries=((t=e.queries)==null?void 0:t.map(a=>p.fromPartial(a)))||[],n}};function $n(){return{status:0,message:"",collectionName:"",indexName:"",queryPlan:""}}var U={encode(e,n=o.Writer.create()){return e.status!==0&&n.uint32(8).int32(e.status),e.message!==""&&n.uint32(18).string(e.message),e.collectionName!==""&&n.uint32(26).string(e.collectionName),e.indexName!==""&&n.uint32(34).string(e.indexName),e.queryPlan!==""&&n.uint32(42).string(e.queryPlan),n},decode(e,n){let t=e instanceof o.Reader?e:o.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=$n();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==8)break;s.status=t.int32();continue;case 2:if(r!==18)break;s.message=t.string();continue;case 3:if(r!==26)break;s.collectionName=t.string();continue;case 4:if(r!==34)break;s.indexName=t.string();continue;case 5:if(r!==42)break;s.queryPlan=t.string();continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{status:i(e.status)?globalThis.Number(e.status):0,message:i(e.message)?globalThis.String(e.message):"",collectionName:i(e.collectionName)?globalThis.String(e.collectionName):"",indexName:i(e.indexName)?globalThis.String(e.indexName):"",queryPlan:i(e.queryPlan)?globalThis.String(e.queryPlan):""}},toJSON(e){let n={};return e.status!==0&&(n.status=Math.round(e.status)),e.message!==""&&(n.message=e.message),e.collectionName!==""&&(n.collectionName=e.collectionName),e.indexName!==""&&(n.indexName=e.indexName),e.queryPlan!==""&&(n.queryPlan=e.queryPlan),n},create(e){return U.fromPartial(e!=null?e:{})},fromPartial(e){var t,a,s,r,c;let n=$n();return n.status=(t=e.status)!=null?t:0,n.message=(a=e.message)!=null?a:"",n.collectionName=(s=e.collectionName)!=null?s:"",n.indexName=(r=e.indexName)!=null?r:"",n.queryPlan=(c=e.queryPlan)!=null?c:"",n}};function Hn(){return{status:0,queryPlans:[]}}var Ce={encode(e,n=o.Writer.create()){e.status!==0&&n.uint32(8).int32(e.status);for(let t of e.queryPlans)U.encode(t,n.uint32(18).fork()).ldelim();return n},decode(e,n){let t=e instanceof o.Reader?e:o.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=Hn();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==8)break;s.status=t.int32();continue;case 2:if(r!==18)break;s.queryPlans.push(U.decode(t,t.uint32()));continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{status:i(e.status)?globalThis.Number(e.status):0,queryPlans:globalThis.Array.isArray(e==null?void 0:e.queryPlans)?e.queryPlans.map(n=>U.fromJSON(n)):[]}},toJSON(e){var t;let n={};return e.status!==0&&(n.status=Math.round(e.status)),(t=e.queryPlans)!=null&&t.length&&(n.queryPlans=e.queryPlans.map(a=>U.toJSON(a))),n},create(e){return Ce.fromPartial(e!=null?e:{})},fromPartial(e){var t,a;let n=Hn();return n.status=(t=e.status)!=null?t:0,n.queryPlans=((a=e.queryPlans)==null?void 0:a.map(s=>U.fromPartial(s)))||[],n}};function Yn(){return{collectionName:""}}var Ie={encode(e,n=o.Writer.create()){return e.collectionName!==""&&n.uint32(10).string(e.collectionName),n},decode(e,n){let t=e instanceof o.Reader?e:o.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=Yn();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==10)break;s.collectionName=t.string();continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{collectionName:i(e.collectionName)?globalThis.String(e.collectionName):""}},toJSON(e){let n={};return e.collectionName!==""&&(n.collectionName=e.collectionName),n},create(e){return Ie.fromPartial(e!=null?e:{})},fromPartial(e){var t;let n=Yn();return n.collectionName=(t=e.collectionName)!=null?t:"",n}};function jn(){return{status:0,message:"",profile:void 0}}var Ne={encode(e,n=o.Writer.create()){return e.status!==0&&n.uint32(8).int32(e.status),e.message!==""&&n.uint32(18).string(e.message),e.profile!==void 0&&l.encode(e.profile,n.uint32(26).fork()).ldelim(),n},decode(e,n){let t=e instanceof o.Reader?e:o.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=jn();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==8)break;s.status=t.int32();continue;case 2:if(r!==18)break;s.message=t.string();continue;case 3:if(r!==26)break;s.profile=l.decode(t,t.uint32());continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{status:i(e.status)?globalThis.Number(e.status):0,message:i(e.message)?globalThis.String(e.message):"",profile:i(e.profile)?l.fromJSON(e.profile):void 0}},toJSON(e){let n={};return e.status!==0&&(n.status=Math.round(e.status)),e.message!==""&&(n.message=e.message),e.profile!==void 0&&(n.profile=l.toJSON(e.profile)),n},create(e){return Ne.fromPartial(e!=null?e:{})},fromPartial(e){var t,a;let n=jn();return n.status=(t=e.status)!=null?t:0,n.message=(a=e.message)!=null?a:"",n.profile=e.profile!==void 0&&e.profile!==null?l.fromPartial(e.profile):void 0,n}};function et(){return{}}var Se={encode(e,n=o.Writer.create()){return n},decode(e,n){let t=e instanceof o.Reader?e:o.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=et();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{}},toJSON(e){return{}},create(e){return Se.fromPartial(e!=null?e:{})},fromPartial(e){return et()}};function nt(){return{status:0,message:"",collectionNames:[],profile:void 0}}var he={encode(e,n=o.Writer.create()){e.status!==0&&n.uint32(8).int32(e.status),e.message!==""&&n.uint32(18).string(e.message);for(let t of e.collectionNames)n.uint32(26).string(t);return e.profile!==void 0&&l.encode(e.profile,n.uint32(34).fork()).ldelim(),n},decode(e,n){let t=e instanceof o.Reader?e:o.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=nt();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==8)break;s.status=t.int32();continue;case 2:if(r!==18)break;s.message=t.string();continue;case 3:if(r!==26)break;s.collectionNames.push(t.string());continue;case 4:if(r!==34)break;s.profile=l.decode(t,t.uint32());continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{status:i(e.status)?globalThis.Number(e.status):0,message:i(e.message)?globalThis.String(e.message):"",collectionNames:globalThis.Array.isArray(e==null?void 0:e.collectionNames)?e.collectionNames.map(n=>globalThis.String(n)):[],profile:i(e.profile)?l.fromJSON(e.profile):void 0}},toJSON(e){var t;let n={};return e.status!==0&&(n.status=Math.round(e.status)),e.message!==""&&(n.message=e.message),(t=e.collectionNames)!=null&&t.length&&(n.collectionNames=e.collectionNames),e.profile!==void 0&&(n.profile=l.toJSON(e.profile)),n},create(e){return he.fromPartial(e!=null?e:{})},fromPartial(e){var t,a,s;let n=nt();return n.status=(t=e.status)!=null?t:0,n.message=(a=e.message)!=null?a:"",n.collectionNames=((s=e.collectionNames)==null?void 0:s.map(r=>r))||[],n.profile=e.profile!==void 0&&e.profile!==null?l.fromPartial(e.profile):void 0,n}},Wt={find:{path:"/cognica.rpc.db.document.DocumentDBService/find",requestStream:!1,responseStream:!1,requestSerialize:e=>Buffer.from(g.encode(e).finish()),requestDeserialize:e=>g.decode(e),responseSerialize:e=>Buffer.from(v.encode(e).finish()),responseDeserialize:e=>v.decode(e)},findBatch:{path:"/cognica.rpc.db.document.DocumentDBService/find_batch",requestStream:!1,responseStream:!1,requestSerialize:e=>Buffer.from(ie.encode(e).finish()),requestDeserialize:e=>ie.decode(e),responseSerialize:e=>Buffer.from(le.encode(e).finish()),responseDeserialize:e=>le.decode(e)},count:{path:"/cognica.rpc.db.document.DocumentDBService/count",requestStream:!1,responseStream:!1,requestSerialize:e=>Buffer.from(ue.encode(e).finish()),requestDeserialize:e=>ue.decode(e),responseSerialize:e=>Buffer.from(ce.encode(e).finish()),responseDeserialize:e=>ce.decode(e)},contains:{path:"/cognica.rpc.db.document.DocumentDBService/contains",requestStream:!1,responseStream:!1,requestSerialize:e=>Buffer.from(de.encode(e).finish()),requestDeserialize:e=>de.decode(e),responseSerialize:e=>Buffer.from(fe.encode(e).finish()),responseDeserialize:e=>fe.decode(e)},insert:{path:"/cognica.rpc.db.document.DocumentDBService/insert",requestStream:!1,responseStream:!1,requestSerialize:e=>Buffer.from(pe.encode(e).finish()),requestDeserialize:e=>pe.decode(e),responseSerialize:e=>Buffer.from(me.encode(e).finish()),responseDeserialize:e=>me.decode(e)},update:{path:"/cognica.rpc.db.document.DocumentDBService/update",requestStream:!1,responseStream:!1,requestSerialize:e=>Buffer.from(Re.encode(e).finish()),requestDeserialize:e=>Re.decode(e),responseSerialize:e=>Buffer.from(ye.encode(e).finish()),responseDeserialize:e=>ye.decode(e)},remove:{path:"/cognica.rpc.db.document.DocumentDBService/remove",requestStream:!1,responseStream:!1,requestSerialize:e=>Buffer.from(xe.encode(e).finish()),requestDeserialize:e=>xe.decode(e),responseSerialize:e=>Buffer.from(ke.encode(e).finish()),responseDeserialize:e=>ke.decode(e)},explain:{path:"/cognica.rpc.db.document.DocumentDBService/explain",requestStream:!1,responseStream:!1,requestSerialize:e=>Buffer.from(qe.encode(e).finish()),requestDeserialize:e=>qe.decode(e),responseSerialize:e=>Buffer.from(Ce.encode(e).finish()),responseDeserialize:e=>Ce.decode(e)},createCollection:{path:"/cognica.rpc.db.document.DocumentDBService/create_collection",requestStream:!1,responseStream:!1,requestSerialize:e=>Buffer.from(z.encode(e).finish()),requestDeserialize:e=>z.decode(e),responseSerialize:e=>Buffer.from(b.encode(e).finish()),responseDeserialize:e=>b.decode(e)},dropCollection:{path:"/cognica.rpc.db.document.DocumentDBService/drop_collection",requestStream:!1,responseStream:!1,requestSerialize:e=>Buffer.from(L.encode(e).finish()),requestDeserialize:e=>L.decode(e),responseSerialize:e=>Buffer.from(w.encode(e).finish()),responseDeserialize:e=>w.decode(e)},renameCollection:{path:"/cognica.rpc.db.document.DocumentDBService/rename_collection",requestStream:!1,responseStream:!1,requestSerialize:e=>Buffer.from(V.encode(e).finish()),requestDeserialize:e=>V.decode(e),responseSerialize:e=>Buffer.from(Q.encode(e).finish()),responseDeserialize:e=>Q.decode(e)},getCollection:{path:"/cognica.rpc.db.document.DocumentDBService/get_collection",requestStream:!1,responseStream:!1,requestSerialize:e=>Buffer.from(Z.encode(e).finish()),requestDeserialize:e=>Z.decode(e),responseSerialize:e=>Buffer.from(X.encode(e).finish()),responseDeserialize:e=>X.decode(e)},getCollections:{path:"/cognica.rpc.db.document.DocumentDBService/get_collections",requestStream:!1,responseStream:!1,requestSerialize:e=>Buffer.from($.encode(e).finish()),requestDeserialize:e=>$.decode(e),responseSerialize:e=>Buffer.from(H.encode(e).finish()),responseDeserialize:e=>H.decode(e)},listCollections:{path:"/cognica.rpc.db.document.DocumentDBService/list_collections",requestStream:!1,responseStream:!1,requestSerialize:e=>Buffer.from(Se.encode(e).finish()),requestDeserialize:e=>Se.decode(e),responseSerialize:e=>Buffer.from(he.encode(e).finish()),responseDeserialize:e=>he.decode(e)},truncateCollection:{path:"/cognica.rpc.db.document.DocumentDBService/truncate_collection",requestStream:!1,responseStream:!1,requestSerialize:e=>Buffer.from(Ie.encode(e).finish()),requestDeserialize:e=>Ie.decode(e),responseSerialize:e=>Buffer.from(Ne.encode(e).finish()),responseDeserialize:e=>Ne.decode(e)},createIndex:{path:"/cognica.rpc.db.document.DocumentDBService/create_index",requestStream:!1,responseStream:!1,requestSerialize:e=>Buffer.from(Y.encode(e).finish()),requestDeserialize:e=>Y.decode(e),responseSerialize:e=>Buffer.from(j.encode(e).finish()),responseDeserialize:e=>j.decode(e)},dropIndex:{path:"/cognica.rpc.db.document.DocumentDBService/drop_index",requestStream:!1,responseStream:!1,requestSerialize:e=>Buffer.from(ee.encode(e).finish()),requestDeserialize:e=>ee.decode(e),responseSerialize:e=>Buffer.from(ne.encode(e).finish()),responseDeserialize:e=>ne.decode(e)},renameIndex:{path:"/cognica.rpc.db.document.DocumentDBService/rename_index",requestStream:!1,responseStream:!1,requestSerialize:e=>Buffer.from(te.encode(e).finish()),requestDeserialize:e=>te.decode(e),responseSerialize:e=>Buffer.from(re.encode(e).finish()),responseDeserialize:e=>re.decode(e)},getIndex:{path:"/cognica.rpc.db.document.DocumentDBService/get_index",requestStream:!1,responseStream:!1,requestSerialize:e=>Buffer.from(se.encode(e).finish()),requestDeserialize:e=>se.decode(e),responseSerialize:e=>Buffer.from(ae.encode(e).finish()),responseDeserialize:e=>ae.decode(e)}},tt=Kt(Wt,"cognica.rpc.db.document.DocumentDBService");function Ft(e){if(globalThis.Buffer)return Uint8Array.from(globalThis.Buffer.from(e,"base64"));{let n=globalThis.atob(e),t=new Uint8Array(n.length);for(let a=0;a<n.length;++a)t[a]=n.charCodeAt(a);return t}}function Mt(e){if(globalThis.Buffer)return globalThis.Buffer.from(e).toString("base64");{let n=[];return e.forEach(t=>{n.push(globalThis.String.fromCharCode(t))}),globalThis.btoa(n.join(""))}}function R(e){if(e.gt(globalThis.Number.MAX_SAFE_INTEGER))throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");return e.toNumber()}o.util.Long!==ln&&(o.util.Long=ln,o.configure());function zt(e){return typeof e=="object"&&e!==null}function i(e){return e!=null}import{Metadata as Lt}from"@grpc/grpc-js";var B=class{constructor(n,t,a=void 0){this._channel=n,this._client=t,this._timeout=a}createPromise(n,t,a=()=>null,s=!0){let r=new Lt;return s&&r.setOptions({waitForReady:s}),this._timeout&&r.set("grpc-timeout",`${this._timeout}m`),new Promise((c,f)=>{this._client[t](n,r,(x,A)=>{x?f(x):c(a(A))})})}toDocument(n){let t;return n.json===void 0?t=y.fromJSON({json:JSON.stringify(n)}):t=n,t}get channel(){return this._channel}get timeout(){return this._timeout}close(){this._client.close()}};var Qt=(r=>(r[r.kPrimaryKey=0]="kPrimaryKey",r[r.kSecondaryKey=1]="kSecondaryKey",r[r.kClusteredSecondaryKey=2]="kClusteredSecondaryKey",r[r.kFullTextSearchIndex=3]="kFullTextSearchIndex",r[r.UNRECOGNIZED=-1]="UNRECOGNIZED",r))(Qt||{}),xr=Pe,kr=De,rt=class extends B{constructor(n,t=void 0){let a=new tt(n.address,n.credential,n.options);super(n,a,t)}find(n,t,a,s,r,c){let f;return typeof n=="string"?f=this.toFindRequest({collectionName:n,query:t,limit:a,indexColumns:s,columns:r,dtypes:c}):f=this.toFindRequest(n),this.createPromise(f,"find",x=>this.toTable(x))}findBatch(n){let t={requests:n.map(a=>this.toFindRequest(a))};return this.createPromise(t,"findBatch",a=>a.responses.map(s=>this.toTable(s)))}insert(n,t){Array.isArray(t)||(t=[t]);let s={requests:t.map(r=>({collectionName:n,query:this.toDocument(r)}))};return this.createPromise(s,"insert")}update(n,t,a){let s={collectionName:n,filter:this.toDocument(t),updates:this.toDocument(a)};return this.createPromise(s,"update")}remove(n,t){Array.isArray(t)||(t=[t]);let s={requests:t.map(r=>({collectionName:n,query:this.toDocument(r)}))};return this.createPromise(s,"remove")}createCollection(n,t){let a=t.map(s=>this.toIndexDescriptor(s));return this.createPromise({collection:{collectionName:n,indexDescriptors:a,indexStats:[]}},"createCollection")}getCollection(n){return this.createPromise({collectionName:n},"getCollection",t=>t?t.collection:null)}getCollections(n){return this.createPromise({collectionNames:n},"getCollections",t=>t?t.collections:null)}listCollections(){return this.createPromise({},"listCollections",n=>n?n.collectionNames:null)}renameCollection(n,t){return this.createPromise({oldCollectionName:n,newCollectionName:t},"renameCollection")}truncateCollection(n){return this.createPromise({collectionName:n},"truncateCollection")}dropCollection(n){return this.createPromise({collectionName:n},"dropCollection")}createIndex(n,t){let a=this.toIndexDescriptor(t);return this.createPromise({collectionName:n,indexDesc:a},"createIndex")}getIndex(n,t){return this.createPromise({collectionName:n,indexName:t},"getIndex",a=>a)}renameIndex(n,t,a){return this.createPromise({collectionName:n,oldIndexName:t,newIndexName:a},"renameIndex")}dropIndex(n,t){return this.createPromise({collectionName:n,indexName:t},"dropIndex")}empty(n,t,a=void 0){return this.find({collectionName:n,query:t,dtypes:a}).then(s=>s?s.numRows==0:!0)}toFindRequest(n){return g.fromJSON({query:{collectionName:n.collectionName,query:this.toDocument(n.query)},limit:n.limit,indexColumns:n.indexColumns,columns:n.columns,dtypes:n.dtypes})}toTable(n){if(n.numRows){let t=Vt(n.buffer);return wt(t.intoIPCStream())}return null}toIndexDescriptor(n){let t;n.options&&(t=this.toDocument(n.options));let a={indexName:n.name,fields:n.fields,unique:n.unique,indexType:n.index_type,status:n.status,options:t};return q.fromJSON(a)}};import{makeGenericClientConstructor as Bt}from"@grpc/grpc-js";import st from"long";import u from"protobufjs/minimal";function Zt(e){switch(e){case 0:case"kOK":return 0;case 1:case"kNotFound":return 1;case 10:case"kInternal":return 10;case-1:case"UNRECOGNIZED":default:return-1}}function Xt(e){switch(e){case 0:return"kOK";case 1:return"kNotFound";case 10:return"kInternal";case-1:default:return"UNRECOGNIZED"}}function at(){return{durationUs:0}}var _={encode(e,n=u.Writer.create()){return e.durationUs!==0&&n.uint32(8).uint64(e.durationUs),n},decode(e,n){let t=e instanceof u.Reader?e:u.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=at();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==8)break;s.durationUs=W(t.uint64());continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{durationUs:m(e.durationUs)?globalThis.Number(e.durationUs):0}},toJSON(e){let n={};return e.durationUs!==0&&(n.durationUs=Math.round(e.durationUs)),n},create(e){return _.fromPartial(e!=null?e:{})},fromPartial(e){var t;let n=at();return n.durationUs=(t=e.durationUs)!=null?t:0,n}};function ot(){return{status:0,message:"",profile:void 0}}var d={encode(e,n=u.Writer.create()){return e.status!==0&&n.uint32(8).int32(e.status),e.message!==""&&n.uint32(18).string(e.message),e.profile!==void 0&&_.encode(e.profile,n.uint32(26).fork()).ldelim(),n},decode(e,n){let t=e instanceof u.Reader?e:u.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=ot();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==8)break;s.status=t.int32();continue;case 2:if(r!==18)break;s.message=t.string();continue;case 3:if(r!==26)break;s.profile=_.decode(t,t.uint32());continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{status:m(e.status)?Zt(e.status):0,message:m(e.message)?globalThis.String(e.message):"",profile:m(e.profile)?_.fromJSON(e.profile):void 0}},toJSON(e){let n={};return e.status!==0&&(n.status=Xt(e.status)),e.message!==""&&(n.message=e.message),e.profile!==void 0&&(n.profile=_.toJSON(e.profile)),n},create(e){return d.fromPartial(e!=null?e:{})},fromPartial(e){var t,a;let n=ot();return n.status=(t=e.status)!=null?t:0,n.message=(a=e.message)!=null?a:"",n.profile=e.profile!==void 0&&e.profile!==null?_.fromPartial(e.profile):void 0,n}};function it(){return{keyspaceName:"",key:Buffer.alloc(0),value:Buffer.alloc(0),ttl:0,createIfMissing:!1}}var J={encode(e,n=u.Writer.create()){return e.keyspaceName!==""&&n.uint32(10).string(e.keyspaceName),e.key.length!==0&&n.uint32(18).bytes(e.key),e.value.length!==0&&n.uint32(26).bytes(e.value),e.ttl!==0&&n.uint32(32).int64(e.ttl),e.createIfMissing===!0&&n.uint32(40).bool(e.createIfMissing),n},decode(e,n){let t=e instanceof u.Reader?e:u.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=it();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==10)break;s.keyspaceName=t.string();continue;case 2:if(r!==18)break;s.key=t.bytes();continue;case 3:if(r!==26)break;s.value=t.bytes();continue;case 4:if(r!==32)break;s.ttl=W(t.int64());continue;case 5:if(r!==40)break;s.createIfMissing=t.bool();continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{keyspaceName:m(e.keyspaceName)?globalThis.String(e.keyspaceName):"",key:m(e.key)?Buffer.from(S(e.key)):Buffer.alloc(0),value:m(e.value)?Buffer.from(S(e.value)):Buffer.alloc(0),ttl:m(e.ttl)?globalThis.Number(e.ttl):0,createIfMissing:m(e.createIfMissing)?globalThis.Boolean(e.createIfMissing):!1}},toJSON(e){let n={};return e.keyspaceName!==""&&(n.keyspaceName=e.keyspaceName),e.key.length!==0&&(n.key=h(e.key)),e.value.length!==0&&(n.value=h(e.value)),e.ttl!==0&&(n.ttl=Math.round(e.ttl)),e.createIfMissing===!0&&(n.createIfMissing=e.createIfMissing),n},create(e){return J.fromPartial(e!=null?e:{})},fromPartial(e){var t,a,s,r,c;let n=it();return n.keyspaceName=(t=e.keyspaceName)!=null?t:"",n.key=(a=e.key)!=null?a:Buffer.alloc(0),n.value=(s=e.value)!=null?s:Buffer.alloc(0),n.ttl=(r=e.ttl)!=null?r:0,n.createIfMissing=(c=e.createIfMissing)!=null?c:!1,n}};function lt(){return{response:void 0}}var ge={encode(e,n=u.Writer.create()){return e.response!==void 0&&d.encode(e.response,n.uint32(10).fork()).ldelim(),n},decode(e,n){let t=e instanceof u.Reader?e:u.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=lt();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==10)break;s.response=d.decode(t,t.uint32());continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{response:m(e.response)?d.fromJSON(e.response):void 0}},toJSON(e){let n={};return e.response!==void 0&&(n.response=d.toJSON(e.response)),n},create(e){return ge.fromPartial(e!=null?e:{})},fromPartial(e){let n=lt();return n.response=e.response!==void 0&&e.response!==null?d.fromPartial(e.response):void 0,n}};function ut(){return{keyspaceName:"",key:Buffer.alloc(0)}}var ve={encode(e,n=u.Writer.create()){return e.keyspaceName!==""&&n.uint32(10).string(e.keyspaceName),e.key.length!==0&&n.uint32(18).bytes(e.key),n},decode(e,n){let t=e instanceof u.Reader?e:u.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=ut();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==10)break;s.keyspaceName=t.string();continue;case 2:if(r!==18)break;s.key=t.bytes();continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{keyspaceName:m(e.keyspaceName)?globalThis.String(e.keyspaceName):"",key:m(e.key)?Buffer.from(S(e.key)):Buffer.alloc(0)}},toJSON(e){let n={};return e.keyspaceName!==""&&(n.keyspaceName=e.keyspaceName),e.key.length!==0&&(n.key=h(e.key)),n},create(e){return ve.fromPartial(e!=null?e:{})},fromPartial(e){var t,a;let n=ut();return n.keyspaceName=(t=e.keyspaceName)!=null?t:"",n.key=(a=e.key)!=null?a:Buffer.alloc(0),n}};function ct(){return{response:void 0}}var Be={encode(e,n=u.Writer.create()){return e.response!==void 0&&d.encode(e.response,n.uint32(10).fork()).ldelim(),n},decode(e,n){let t=e instanceof u.Reader?e:u.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=ct();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==10)break;s.response=d.decode(t,t.uint32());continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{response:m(e.response)?d.fromJSON(e.response):void 0}},toJSON(e){let n={};return e.response!==void 0&&(n.response=d.toJSON(e.response)),n},create(e){return Be.fromPartial(e!=null?e:{})},fromPartial(e){let n=ct();return n.response=e.response!==void 0&&e.response!==null?d.fromPartial(e.response):void 0,n}};function dt(){return{keyspaceName:"",key:Buffer.alloc(0)}}var Te={encode(e,n=u.Writer.create()){return e.keyspaceName!==""&&n.uint32(10).string(e.keyspaceName),e.key.length!==0&&n.uint32(18).bytes(e.key),n},decode(e,n){let t=e instanceof u.Reader?e:u.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=dt();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==10)break;s.keyspaceName=t.string();continue;case 2:if(r!==18)break;s.key=t.bytes();continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{keyspaceName:m(e.keyspaceName)?globalThis.String(e.keyspaceName):"",key:m(e.key)?Buffer.from(S(e.key)):Buffer.alloc(0)}},toJSON(e){let n={};return e.keyspaceName!==""&&(n.keyspaceName=e.keyspaceName),e.key.length!==0&&(n.key=h(e.key)),n},create(e){return Te.fromPartial(e!=null?e:{})},fromPartial(e){var t,a;let n=dt();return n.keyspaceName=(t=e.keyspaceName)!=null?t:"",n.key=(a=e.key)!=null?a:Buffer.alloc(0),n}};function ft(){return{response:void 0,value:Buffer.alloc(0)}}var Oe={encode(e,n=u.Writer.create()){return e.response!==void 0&&d.encode(e.response,n.uint32(10).fork()).ldelim(),e.value.length!==0&&n.uint32(18).bytes(e.value),n},decode(e,n){let t=e instanceof u.Reader?e:u.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=ft();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==10)break;s.response=d.decode(t,t.uint32());continue;case 2:if(r!==18)break;s.value=t.bytes();continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{response:m(e.response)?d.fromJSON(e.response):void 0,value:m(e.value)?Buffer.from(S(e.value)):Buffer.alloc(0)}},toJSON(e){let n={};return e.response!==void 0&&(n.response=d.toJSON(e.response)),e.value.length!==0&&(n.value=h(e.value)),n},create(e){return Oe.fromPartial(e!=null?e:{})},fromPartial(e){var t;let n=ft();return n.response=e.response!==void 0&&e.response!==null?d.fromPartial(e.response):void 0,n.value=(t=e.value)!=null?t:Buffer.alloc(0),n}};function pt(){return{keyspaceName:"",keys:[]}}var Ee={encode(e,n=u.Writer.create()){e.keyspaceName!==""&&n.uint32(10).string(e.keyspaceName);for(let t of e.keys)n.uint32(18).bytes(t);return n},decode(e,n){let t=e instanceof u.Reader?e:u.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=pt();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==10)break;s.keyspaceName=t.string();continue;case 2:if(r!==18)break;s.keys.push(t.bytes());continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{keyspaceName:m(e.keyspaceName)?globalThis.String(e.keyspaceName):"",keys:globalThis.Array.isArray(e==null?void 0:e.keys)?e.keys.map(n=>Buffer.from(S(n))):[]}},toJSON(e){var t;let n={};return e.keyspaceName!==""&&(n.keyspaceName=e.keyspaceName),(t=e.keys)!=null&&t.length&&(n.keys=e.keys.map(a=>h(a))),n},create(e){return Ee.fromPartial(e!=null?e:{})},fromPartial(e){var t,a;let n=pt();return n.keyspaceName=(t=e.keyspaceName)!=null?t:"",n.keys=((a=e.keys)==null?void 0:a.map(s=>s))||[],n}};function mt(){return{responses:[],values:[]}}var Ue={encode(e,n=u.Writer.create()){for(let t of e.responses)d.encode(t,n.uint32(10).fork()).ldelim();for(let t of e.values)n.uint32(18).bytes(t);return n},decode(e,n){let t=e instanceof u.Reader?e:u.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=mt();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==10)break;s.responses.push(d.decode(t,t.uint32()));continue;case 2:if(r!==18)break;s.values.push(t.bytes());continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{responses:globalThis.Array.isArray(e==null?void 0:e.responses)?e.responses.map(n=>d.fromJSON(n)):[],values:globalThis.Array.isArray(e==null?void 0:e.values)?e.values.map(n=>Buffer.from(S(n))):[]}},toJSON(e){var t,a;let n={};return(t=e.responses)!=null&&t.length&&(n.responses=e.responses.map(s=>d.toJSON(s))),(a=e.values)!=null&&a.length&&(n.values=e.values.map(s=>h(s))),n},create(e){return Ue.fromPartial(e!=null?e:{})},fromPartial(e){var t,a;let n=mt();return n.responses=((t=e.responses)==null?void 0:t.map(s=>d.fromPartial(s)))||[],n.values=((a=e.values)==null?void 0:a.map(s=>s))||[],n}};function Rt(){return{keyspaceName:"",keys:[],values:[],ttls:[],createIfMissing:!1}}var K={encode(e,n=u.Writer.create()){e.keyspaceName!==""&&n.uint32(10).string(e.keyspaceName);for(let t of e.keys)n.uint32(18).bytes(t);for(let t of e.values)n.uint32(26).bytes(t);n.uint32(34).fork();for(let t of e.ttls)n.int64(t);return n.ldelim(),e.createIfMissing===!0&&n.uint32(40).bool(e.createIfMissing),n},decode(e,n){let t=e instanceof u.Reader?e:u.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=Rt();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==10)break;s.keyspaceName=t.string();continue;case 2:if(r!==18)break;s.keys.push(t.bytes());continue;case 3:if(r!==26)break;s.values.push(t.bytes());continue;case 4:if(r===32){s.ttls.push(W(t.int64()));continue}if(r===34){let c=t.uint32()+t.pos;for(;t.pos<c;)s.ttls.push(W(t.int64()));continue}break;case 5:if(r!==40)break;s.createIfMissing=t.bool();continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{keyspaceName:m(e.keyspaceName)?globalThis.String(e.keyspaceName):"",keys:globalThis.Array.isArray(e==null?void 0:e.keys)?e.keys.map(n=>Buffer.from(S(n))):[],values:globalThis.Array.isArray(e==null?void 0:e.values)?e.values.map(n=>Buffer.from(S(n))):[],ttls:globalThis.Array.isArray(e==null?void 0:e.ttls)?e.ttls.map(n=>globalThis.Number(n)):[],createIfMissing:m(e.createIfMissing)?globalThis.Boolean(e.createIfMissing):!1}},toJSON(e){var t,a,s;let n={};return e.keyspaceName!==""&&(n.keyspaceName=e.keyspaceName),(t=e.keys)!=null&&t.length&&(n.keys=e.keys.map(r=>h(r))),(a=e.values)!=null&&a.length&&(n.values=e.values.map(r=>h(r))),(s=e.ttls)!=null&&s.length&&(n.ttls=e.ttls.map(r=>Math.round(r))),e.createIfMissing===!0&&(n.createIfMissing=e.createIfMissing),n},create(e){return K.fromPartial(e!=null?e:{})},fromPartial(e){var t,a,s,r,c;let n=Rt();return n.keyspaceName=(t=e.keyspaceName)!=null?t:"",n.keys=((a=e.keys)==null?void 0:a.map(f=>f))||[],n.values=((s=e.values)==null?void 0:s.map(f=>f))||[],n.ttls=((r=e.ttls)==null?void 0:r.map(f=>f))||[],n.createIfMissing=(c=e.createIfMissing)!=null?c:!1,n}};function yt(){return{responses:[]}}var _e={encode(e,n=u.Writer.create()){for(let t of e.responses)d.encode(t,n.uint32(10).fork()).ldelim();return n},decode(e,n){let t=e instanceof u.Reader?e:u.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=yt();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==10)break;s.responses.push(d.decode(t,t.uint32()));continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{responses:globalThis.Array.isArray(e==null?void 0:e.responses)?e.responses.map(n=>d.fromJSON(n)):[]}},toJSON(e){var t;let n={};return(t=e.responses)!=null&&t.length&&(n.responses=e.responses.map(a=>d.toJSON(a))),n},create(e){return _e.fromPartial(e!=null?e:{})},fromPartial(e){var t;let n=yt();return n.responses=((t=e.responses)==null?void 0:t.map(a=>d.fromPartial(a)))||[],n}};function xt(){return{keyspaceName:"",keys:[]}}var Je={encode(e,n=u.Writer.create()){e.keyspaceName!==""&&n.uint32(10).string(e.keyspaceName);for(let t of e.keys)n.uint32(18).bytes(t);return n},decode(e,n){let t=e instanceof u.Reader?e:u.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=xt();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==10)break;s.keyspaceName=t.string();continue;case 2:if(r!==18)break;s.keys.push(t.bytes());continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{keyspaceName:m(e.keyspaceName)?globalThis.String(e.keyspaceName):"",keys:globalThis.Array.isArray(e==null?void 0:e.keys)?e.keys.map(n=>Buffer.from(S(n))):[]}},toJSON(e){var t;let n={};return e.keyspaceName!==""&&(n.keyspaceName=e.keyspaceName),(t=e.keys)!=null&&t.length&&(n.keys=e.keys.map(a=>h(a))),n},create(e){return Je.fromPartial(e!=null?e:{})},fromPartial(e){var t,a;let n=xt();return n.keyspaceName=(t=e.keyspaceName)!=null?t:"",n.keys=((a=e.keys)==null?void 0:a.map(s=>s))||[],n}};function kt(){return{responses:[]}}var Ke={encode(e,n=u.Writer.create()){for(let t of e.responses)d.encode(t,n.uint32(10).fork()).ldelim();return n},decode(e,n){let t=e instanceof u.Reader?e:u.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=kt();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==10)break;s.responses.push(d.decode(t,t.uint32()));continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{responses:globalThis.Array.isArray(e==null?void 0:e.responses)?e.responses.map(n=>d.fromJSON(n)):[]}},toJSON(e){var t;let n={};return(t=e.responses)!=null&&t.length&&(n.responses=e.responses.map(a=>d.toJSON(a))),n},create(e){return Ke.fromPartial(e!=null?e:{})},fromPartial(e){var t;let n=kt();return n.responses=((t=e.responses)==null?void 0:t.map(a=>d.fromPartial(a)))||[],n}};function qt(){return{keyspaceName:"",keys:[]}}var Ae={encode(e,n=u.Writer.create()){e.keyspaceName!==""&&n.uint32(10).string(e.keyspaceName);for(let t of e.keys)n.uint32(18).bytes(t);return n},decode(e,n){let t=e instanceof u.Reader?e:u.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=qt();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==10)break;s.keyspaceName=t.string();continue;case 2:if(r!==18)break;s.keys.push(t.bytes());continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{keyspaceName:m(e.keyspaceName)?globalThis.String(e.keyspaceName):"",keys:globalThis.Array.isArray(e==null?void 0:e.keys)?e.keys.map(n=>Buffer.from(S(n))):[]}},toJSON(e){var t;let n={};return e.keyspaceName!==""&&(n.keyspaceName=e.keyspaceName),(t=e.keys)!=null&&t.length&&(n.keys=e.keys.map(a=>h(a))),n},create(e){return Ae.fromPartial(e!=null?e:{})},fromPartial(e){var t,a;let n=qt();return n.keyspaceName=(t=e.keyspaceName)!=null?t:"",n.keys=((a=e.keys)==null?void 0:a.map(s=>s))||[],n}};function Ct(){return{responses:[],values:[]}}var Ge={encode(e,n=u.Writer.create()){for(let t of e.responses)d.encode(t,n.uint32(10).fork()).ldelim();for(let t of e.values)n.uint32(18).bytes(t);return n},decode(e,n){let t=e instanceof u.Reader?e:u.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=Ct();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==10)break;s.responses.push(d.decode(t,t.uint32()));continue;case 2:if(r!==18)break;s.values.push(t.bytes());continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{responses:globalThis.Array.isArray(e==null?void 0:e.responses)?e.responses.map(n=>d.fromJSON(n)):[],values:globalThis.Array.isArray(e==null?void 0:e.values)?e.values.map(n=>Buffer.from(S(n))):[]}},toJSON(e){var t,a;let n={};return(t=e.responses)!=null&&t.length&&(n.responses=e.responses.map(s=>d.toJSON(s))),(a=e.values)!=null&&a.length&&(n.values=e.values.map(s=>h(s))),n},create(e){return Ge.fromPartial(e!=null?e:{})},fromPartial(e){var t,a;let n=Ct();return n.responses=((t=e.responses)==null?void 0:t.map(s=>d.fromPartial(s)))||[],n.values=((a=e.values)==null?void 0:a.map(s=>s))||[],n}};function It(){return{keyspaceName:""}}var We={encode(e,n=u.Writer.create()){return e.keyspaceName!==""&&n.uint32(10).string(e.keyspaceName),n},decode(e,n){let t=e instanceof u.Reader?e:u.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=It();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==10)break;s.keyspaceName=t.string();continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{keyspaceName:m(e.keyspaceName)?globalThis.String(e.keyspaceName):""}},toJSON(e){let n={};return e.keyspaceName!==""&&(n.keyspaceName=e.keyspaceName),n},create(e){return We.fromPartial(e!=null?e:{})},fromPartial(e){var t;let n=It();return n.keyspaceName=(t=e.keyspaceName)!=null?t:"",n}};function Nt(){return{response:void 0}}var Fe={encode(e,n=u.Writer.create()){return e.response!==void 0&&d.encode(e.response,n.uint32(10).fork()).ldelim(),n},decode(e,n){let t=e instanceof u.Reader?e:u.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=Nt();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==10)break;s.response=d.decode(t,t.uint32());continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{response:m(e.response)?d.fromJSON(e.response):void 0}},toJSON(e){let n={};return e.response!==void 0&&(n.response=d.toJSON(e.response)),n},create(e){return Fe.fromPartial(e!=null?e:{})},fromPartial(e){let n=Nt();return n.response=e.response!==void 0&&e.response!==null?d.fromPartial(e.response):void 0,n}};function St(){return{keyspaceName:""}}var Me={encode(e,n=u.Writer.create()){return e.keyspaceName!==""&&n.uint32(10).string(e.keyspaceName),n},decode(e,n){let t=e instanceof u.Reader?e:u.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=St();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==10)break;s.keyspaceName=t.string();continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{keyspaceName:m(e.keyspaceName)?globalThis.String(e.keyspaceName):""}},toJSON(e){let n={};return e.keyspaceName!==""&&(n.keyspaceName=e.keyspaceName),n},create(e){return Me.fromPartial(e!=null?e:{})},fromPartial(e){var t;let n=St();return n.keyspaceName=(t=e.keyspaceName)!=null?t:"",n}};function ht(){return{response:void 0}}var ze={encode(e,n=u.Writer.create()){return e.response!==void 0&&d.encode(e.response,n.uint32(10).fork()).ldelim(),n},decode(e,n){let t=e instanceof u.Reader?e:u.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=ht();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==10)break;s.response=d.decode(t,t.uint32());continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{response:m(e.response)?d.fromJSON(e.response):void 0}},toJSON(e){let n={};return e.response!==void 0&&(n.response=d.toJSON(e.response)),n},create(e){return ze.fromPartial(e!=null?e:{})},fromPartial(e){let n=ht();return n.response=e.response!==void 0&&e.response!==null?d.fromPartial(e.response):void 0,n}};function Pt(){return{keyspaceName:""}}var be={encode(e,n=u.Writer.create()){return e.keyspaceName!==""&&n.uint32(10).string(e.keyspaceName),n},decode(e,n){let t=e instanceof u.Reader?e:u.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=Pt();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==10)break;s.keyspaceName=t.string();continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{keyspaceName:m(e.keyspaceName)?globalThis.String(e.keyspaceName):""}},toJSON(e){let n={};return e.keyspaceName!==""&&(n.keyspaceName=e.keyspaceName),n},create(e){return be.fromPartial(e!=null?e:{})},fromPartial(e){var t;let n=Pt();return n.keyspaceName=(t=e.keyspaceName)!=null?t:"",n}};function Dt(){return{response:void 0}}var Le={encode(e,n=u.Writer.create()){return e.response!==void 0&&d.encode(e.response,n.uint32(10).fork()).ldelim(),n},decode(e,n){let t=e instanceof u.Reader?e:u.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=Dt();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==10)break;s.response=d.decode(t,t.uint32());continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{response:m(e.response)?d.fromJSON(e.response):void 0}},toJSON(e){let n={};return e.response!==void 0&&(n.response=d.toJSON(e.response)),n},create(e){return Le.fromPartial(e!=null?e:{})},fromPartial(e){let n=Dt();return n.response=e.response!==void 0&&e.response!==null?d.fromPartial(e.response):void 0,n}};function gt(){return{}}var we={encode(e,n=u.Writer.create()){return n},decode(e,n){let t=e instanceof u.Reader?e:u.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=gt();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{}},toJSON(e){return{}},create(e){return we.fromPartial(e!=null?e:{})},fromPartial(e){return gt()}};function vt(){return{response:void 0,keyspaceNames:[]}}var Ve={encode(e,n=u.Writer.create()){e.response!==void 0&&d.encode(e.response,n.uint32(10).fork()).ldelim();for(let t of e.keyspaceNames)n.uint32(18).string(t);return n},decode(e,n){let t=e instanceof u.Reader?e:u.Reader.create(e),a=n===void 0?t.len:t.pos+n,s=vt();for(;t.pos<a;){let r=t.uint32();switch(r>>>3){case 1:if(r!==10)break;s.response=d.decode(t,t.uint32());continue;case 2:if(r!==18)break;s.keyspaceNames.push(t.string());continue}if((r&7)===4||r===0)break;t.skipType(r&7)}return s},fromJSON(e){return{response:m(e.response)?d.fromJSON(e.response):void 0,keyspaceNames:globalThis.Array.isArray(e==null?void 0:e.keyspaceNames)?e.keyspaceNames.map(n=>globalThis.String(n)):[]}},toJSON(e){var t;let n={};return e.response!==void 0&&(n.response=d.toJSON(e.response)),(t=e.keyspaceNames)!=null&&t.length&&(n.keyspaceNames=e.keyspaceNames),n},create(e){return Ve.fromPartial(e!=null?e:{})},fromPartial(e){var t;let n=vt();return n.response=e.response!==void 0&&e.response!==null?d.fromPartial(e.response):void 0,n.keyspaceNames=((t=e.keyspaceNames)==null?void 0:t.map(a=>a))||[],n}},$t={put:{path:"/cognica.rpc.db.kv.KeyValueDBService/put",requestStream:!1,responseStream:!1,requestSerialize:e=>Buffer.from(J.encode(e).finish()),requestDeserialize:e=>J.decode(e),responseSerialize:e=>Buffer.from(ge.encode(e).finish()),responseDeserialize:e=>ge.decode(e)},remove:{path:"/cognica.rpc.db.kv.KeyValueDBService/remove",requestStream:!1,responseStream:!1,requestSerialize:e=>Buffer.from(ve.encode(e).finish()),requestDeserialize:e=>ve.decode(e),responseSerialize:e=>Buffer.from(Be.encode(e).finish()),responseDeserialize:e=>Be.decode(e)},get:{path:"/cognica.rpc.db.kv.KeyValueDBService/get",requestStream:!1,responseStream:!1,requestSerialize:e=>Buffer.from(Te.encode(e).finish()),requestDeserialize:e=>Te.decode(e),responseSerialize:e=>Buffer.from(Oe.encode(e).finish()),responseDeserialize:e=>Oe.decode(e)},mget:{path:"/cognica.rpc.db.kv.KeyValueDBService/mget",requestStream:!1,responseStream:!1,requestSerialize:e=>Buffer.from(Ee.encode(e).finish()),requestDeserialize:e=>Ee.decode(e),responseSerialize:e=>Buffer.from(Ue.encode(e).finish()),responseDeserialize:e=>Ue.decode(e)},putBatch:{path:"/cognica.rpc.db.kv.KeyValueDBService/put_batch",requestStream:!1,responseStream:!1,requestSerialize:e=>Buffer.from(K.encode(e).finish()),requestDeserialize:e=>K.decode(e),responseSerialize:e=>Buffer.from(_e.encode(e).finish()),responseDeserialize:e=>_e.decode(e)},removeBatch:{path:"/cognica.rpc.db.kv.KeyValueDBService/remove_batch",requestStream:!1,responseStream:!1,requestSerialize:e=>Buffer.from(Je.encode(e).finish()),requestDeserialize:e=>Je.decode(e),responseSerialize:e=>Buffer.from(Ke.encode(e).finish()),responseDeserialize:e=>Ke.decode(e)},getBatch:{path:"/cognica.rpc.db.kv.KeyValueDBService/get_batch",requestStream:!1,responseStream:!1,requestSerialize:e=>Buffer.from(Ae.encode(e).finish()),requestDeserialize:e=>Ae.decode(e),responseSerialize:e=>Buffer.from(Ge.encode(e).finish()),responseDeserialize:e=>Ge.decode(e)}},Tt=Bt($t,"cognica.rpc.db.kv.KeyValueDBService"),Ht={createKeyspace:{path:"/cognica.rpc.db.kv.KeyspaceManagerService/create_keyspace",requestStream:!1,responseStream:!1,requestSerialize:e=>Buffer.from(We.encode(e).finish()),requestDeserialize:e=>We.decode(e),responseSerialize:e=>Buffer.from(Fe.encode(e).finish()),responseDeserialize:e=>Fe.decode(e)},dropKeyspace:{path:"/cognica.rpc.db.kv.KeyspaceManagerService/drop_keyspace",requestStream:!1,responseStream:!1,requestSerialize:e=>Buffer.from(Me.encode(e).finish()),requestDeserialize:e=>Me.decode(e),responseSerialize:e=>Buffer.from(ze.encode(e).finish()),responseDeserialize:e=>ze.decode(e)},truncateKeyspace:{path:"/cognica.rpc.db.kv.KeyspaceManagerService/truncate_keyspace",requestStream:!1,responseStream:!1,requestSerialize:e=>Buffer.from(be.encode(e).finish()),requestDeserialize:e=>be.decode(e),responseSerialize:e=>Buffer.from(Le.encode(e).finish()),responseDeserialize:e=>Le.decode(e)},listKeyspaces:{path:"/cognica.rpc.db.kv.KeyspaceManagerService/list_keyspaces",requestStream:!1,responseStream:!1,requestSerialize:e=>Buffer.from(we.encode(e).finish()),requestDeserialize:e=>we.decode(e),responseSerialize:e=>Buffer.from(Ve.encode(e).finish()),responseDeserialize:e=>Ve.decode(e)}},Ot=Bt(Ht,"cognica.rpc.db.kv.KeyspaceManagerService");function S(e){if(globalThis.Buffer)return Uint8Array.from(globalThis.Buffer.from(e,"base64"));{let n=globalThis.atob(e),t=new Uint8Array(n.length);for(let a=0;a<n.length;++a)t[a]=n.charCodeAt(a);return t}}function h(e){if(globalThis.Buffer)return globalThis.Buffer.from(e).toString("base64");{let n=[];return e.forEach(t=>{n.push(globalThis.String.fromCharCode(t))}),globalThis.btoa(n.join(""))}}function W(e){if(e.gt(globalThis.Number.MAX_SAFE_INTEGER))throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");return e.toNumber()}u.util.Long!==st&&(u.util.Long=st,u.configure());function m(e){return e!=null}var Et=class extends B{constructor(n,t=void 0){let a=new Tt(n.address,n.credential,n.options);super(n,a,t)}get(n,t){let a={keyspaceName:n,key:this.toBuffer(t)};return this.createPromise(a,"get",s=>s.value)}getBatch(n,t){let a={keyspaceName:n,keys:t.map(s=>this.toBuffer(s))};return this.createPromise(a,"getBatch",s=>s.values)}put(n,t,a,s=0,r=!0){let c;return typeof n=="string"?c={keyspaceName:n,key:this.toBuffer(t),value:this.toBuffer(a),ttl:s,createIfMissing:r}:c=J.fromJSON(n),this.createPromise(c,"put",f=>{var x;return((x=f.response)==null?void 0:x.status)==0})}putBatch(n,t,a,s,r=!0){let c;return typeof n=="string"?c={keyspaceName:n,keys:t==null?void 0:t.map(f=>this.toBuffer(f)),values:a==null?void 0:a.map(f=>this.toBuffer(f)),ttls:s||Array(t.length).fill(0),createIfMissing:r}:c=K.fromJSON(n),this.createPromise(c,"putBatch",f=>f.responses.map(x=>x.status==0))}remove(n,t){let a={keyspaceName:n,key:this.toBuffer(t)};return this.createPromise(a,"remove",s=>{var r;return((r=s.response)==null?void 0:r.status)==0})}removeBatch(n,t){let a={keyspaceName:n,keys:t.map(s=>this.toBuffer(s))};return this.createPromise(a,"removeBatch",s=>{var r;return(r=s.responses)==null?void 0:r.map(c=>c.status==0)})}toBuffer(n){return typeof n=="string"?Buffer.from(n,"utf-8"):n}},Ut=class extends B{constructor(n,t=void 0){let a=new Ot(n.address,n.credential,n.options);super(n,a,t)}createKeyspace(n){return this.createPromise({keyspaceName:n},"createKeyspace",t=>{var a;return((a=t.response)==null?void 0:a.status)===0})}listKeyspace(){return this.createPromise({},"listKeyspaces",n=>n.keyspaceNames)}truncateKeyspace(n){return this.createPromise({keyspaceName:n},"truncateKeyspace",t=>{var a;return((a=t.response)==null?void 0:a.status)===0})}dropKeyspace(n){return this.createPromise({keyspaceName:n},"dropKeyspace",t=>{var a;return((a=t.response)==null?void 0:a.status)===0})}};export{je as Channel,rt as DocumentDB,Qt as IndexType,Et as KeyValueDB,Ut as KeyspaceManager,kr as indexStatusFromJSON,xr as indexTypeFromJSON};
+// src/channel.ts
+import * as grpc from "@grpc/grpc-js";
+var _Channel = class _Channel {
+  constructor(host, port, useSSL = false) {
+    this._address = `${host}:${port}`;
+    this._useSSL = useSSL;
+    if (this._useSSL) {
+      this._credential = grpc.credentials.createSsl();
+    } else {
+      this._credential = grpc.credentials.createInsecure();
+    }
+  }
+  get address() {
+    return this._address;
+  }
+  get credential() {
+    return this._credential;
+  }
+  get options() {
+    return _Channel._OPTIONS;
+  }
+};
+_Channel._OPTIONS = {
+  "grpc.max_concurrent_streams": 4,
+  "grpc.max_send_message_length": -1,
+  "grpc.max_receive_message_length": -1,
+  "grpc.http2.max_frame_size": 10 * 1024 * 1024
+  // 10MB
+};
+var Channel = _Channel;
+
+// src/proto/generated/document_db.ts
+import { makeGenericClientConstructor } from "@grpc/grpc-js";
+import Long2 from "long";
+import _m02 from "protobufjs/minimal";
+
+// src/proto/generated/document.ts
+import Long from "long";
+import _m0 from "protobufjs/minimal";
+function createBaseValue() {
+  return {
+    null: void 0,
+    bool: void 0,
+    int64: void 0,
+    uint64: void 0,
+    double: void 0,
+    string: void 0,
+    array: void 0,
+    object: void 0
+  };
+}
+var Value = {
+  encode(message, writer = _m0.Writer.create()) {
+    if (message.null !== void 0) {
+      writer.uint32(8).bool(message.null);
+    }
+    if (message.bool !== void 0) {
+      writer.uint32(16).bool(message.bool);
+    }
+    if (message.int64 !== void 0) {
+      writer.uint32(24).int64(message.int64);
+    }
+    if (message.uint64 !== void 0) {
+      writer.uint32(32).uint64(message.uint64);
+    }
+    if (message.double !== void 0) {
+      writer.uint32(41).double(message.double);
+    }
+    if (message.string !== void 0) {
+      writer.uint32(50).string(message.string);
+    }
+    if (message.array !== void 0) {
+      Array2.encode(message.array, writer.uint32(58).fork()).ldelim();
+    }
+    if (message.object !== void 0) {
+      ObjectType.encode(message.object, writer.uint32(66).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseValue();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+          message.null = reader.bool();
+          continue;
+        case 2:
+          if (tag !== 16) {
+            break;
+          }
+          message.bool = reader.bool();
+          continue;
+        case 3:
+          if (tag !== 24) {
+            break;
+          }
+          message.int64 = longToNumber(reader.int64());
+          continue;
+        case 4:
+          if (tag !== 32) {
+            break;
+          }
+          message.uint64 = longToNumber(reader.uint64());
+          continue;
+        case 5:
+          if (tag !== 41) {
+            break;
+          }
+          message.double = reader.double();
+          continue;
+        case 6:
+          if (tag !== 50) {
+            break;
+          }
+          message.string = reader.string();
+          continue;
+        case 7:
+          if (tag !== 58) {
+            break;
+          }
+          message.array = Array2.decode(reader, reader.uint32());
+          continue;
+        case 8:
+          if (tag !== 66) {
+            break;
+          }
+          message.object = ObjectType.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      null: isSet(object.null) ? globalThis.Boolean(object.null) : void 0,
+      bool: isSet(object.bool) ? globalThis.Boolean(object.bool) : void 0,
+      int64: isSet(object.int64) ? globalThis.Number(object.int64) : void 0,
+      uint64: isSet(object.uint64) ? globalThis.Number(object.uint64) : void 0,
+      double: isSet(object.double) ? globalThis.Number(object.double) : void 0,
+      string: isSet(object.string) ? globalThis.String(object.string) : void 0,
+      array: isSet(object.array) ? Array2.fromJSON(object.array) : void 0,
+      object: isSet(object.object) ? ObjectType.fromJSON(object.object) : void 0
+    };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.null !== void 0) {
+      obj.null = message.null;
+    }
+    if (message.bool !== void 0) {
+      obj.bool = message.bool;
+    }
+    if (message.int64 !== void 0) {
+      obj.int64 = Math.round(message.int64);
+    }
+    if (message.uint64 !== void 0) {
+      obj.uint64 = Math.round(message.uint64);
+    }
+    if (message.double !== void 0) {
+      obj.double = message.double;
+    }
+    if (message.string !== void 0) {
+      obj.string = message.string;
+    }
+    if (message.array !== void 0) {
+      obj.array = Array2.toJSON(message.array);
+    }
+    if (message.object !== void 0) {
+      obj.object = ObjectType.toJSON(message.object);
+    }
+    return obj;
+  },
+  create(base) {
+    return Value.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a, _b, _c, _d, _e, _f;
+    const message = createBaseValue();
+    message.null = (_a = object.null) != null ? _a : void 0;
+    message.bool = (_b = object.bool) != null ? _b : void 0;
+    message.int64 = (_c = object.int64) != null ? _c : void 0;
+    message.uint64 = (_d = object.uint64) != null ? _d : void 0;
+    message.double = (_e = object.double) != null ? _e : void 0;
+    message.string = (_f = object.string) != null ? _f : void 0;
+    message.array = object.array !== void 0 && object.array !== null ? Array2.fromPartial(object.array) : void 0;
+    message.object = object.object !== void 0 && object.object !== null ? ObjectType.fromPartial(object.object) : void 0;
+    return message;
+  }
+};
+function createBaseArray() {
+  return { value: [] };
+}
+var Array2 = {
+  encode(message, writer = _m0.Writer.create()) {
+    for (const v of message.value) {
+      Value.encode(v, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseArray();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.value.push(Value.decode(reader, reader.uint32()));
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return { value: globalThis.Array.isArray(object == null ? void 0 : object.value) ? object.value.map((e) => Value.fromJSON(e)) : [] };
+  },
+  toJSON(message) {
+    var _a;
+    const obj = {};
+    if ((_a = message.value) == null ? void 0 : _a.length) {
+      obj.value = message.value.map((e) => Value.toJSON(e));
+    }
+    return obj;
+  },
+  create(base) {
+    return Array2.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a;
+    const message = createBaseArray();
+    message.value = ((_a = object.value) == null ? void 0 : _a.map((e) => Value.fromPartial(e))) || [];
+    return message;
+  }
+};
+function createBaseObjectType() {
+  return { value: {} };
+}
+var ObjectType = {
+  encode(message, writer = _m0.Writer.create()) {
+    Object.entries(message.value).forEach(([key, value]) => {
+      ObjectType_ValueEntry.encode({ key, value }, writer.uint32(10).fork()).ldelim();
+    });
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseObjectType();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          const entry1 = ObjectType_ValueEntry.decode(reader, reader.uint32());
+          if (entry1.value !== void 0) {
+            message.value[entry1.key] = entry1.value;
+          }
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      value: isObject(object.value) ? Object.entries(object.value).reduce((acc, [key, value]) => {
+        acc[key] = Value.fromJSON(value);
+        return acc;
+      }, {}) : {}
+    };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.value) {
+      const entries = Object.entries(message.value);
+      if (entries.length > 0) {
+        obj.value = {};
+        entries.forEach(([k, v]) => {
+          obj.value[k] = Value.toJSON(v);
+        });
+      }
+    }
+    return obj;
+  },
+  create(base) {
+    return ObjectType.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a;
+    const message = createBaseObjectType();
+    message.value = Object.entries((_a = object.value) != null ? _a : {}).reduce((acc, [key, value]) => {
+      if (value !== void 0) {
+        acc[key] = Value.fromPartial(value);
+      }
+      return acc;
+    }, {});
+    return message;
+  }
+};
+function createBaseObjectType_ValueEntry() {
+  return { key: "", value: void 0 };
+}
+var ObjectType_ValueEntry = {
+  encode(message, writer = _m0.Writer.create()) {
+    if (message.key !== "") {
+      writer.uint32(10).string(message.key);
+    }
+    if (message.value !== void 0) {
+      Value.encode(message.value, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseObjectType_ValueEntry();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.key = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.value = Value.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      key: isSet(object.key) ? globalThis.String(object.key) : "",
+      value: isSet(object.value) ? Value.fromJSON(object.value) : void 0
+    };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.key !== "") {
+      obj.key = message.key;
+    }
+    if (message.value !== void 0) {
+      obj.value = Value.toJSON(message.value);
+    }
+    return obj;
+  },
+  create(base) {
+    return ObjectType_ValueEntry.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a;
+    const message = createBaseObjectType_ValueEntry();
+    message.key = (_a = object.key) != null ? _a : "";
+    message.value = object.value !== void 0 && object.value !== null ? Value.fromPartial(object.value) : void 0;
+    return message;
+  }
+};
+function createBaseDocument() {
+  return { object: void 0, json: void 0 };
+}
+var Document = {
+  encode(message, writer = _m0.Writer.create()) {
+    if (message.object !== void 0) {
+      ObjectType.encode(message.object, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.json !== void 0) {
+      writer.uint32(18).string(message.json);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseDocument();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.object = ObjectType.decode(reader, reader.uint32());
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.json = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      object: isSet(object.object) ? ObjectType.fromJSON(object.object) : void 0,
+      json: isSet(object.json) ? globalThis.String(object.json) : void 0
+    };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.object !== void 0) {
+      obj.object = ObjectType.toJSON(message.object);
+    }
+    if (message.json !== void 0) {
+      obj.json = message.json;
+    }
+    return obj;
+  },
+  create(base) {
+    return Document.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a;
+    const message = createBaseDocument();
+    message.object = object.object !== void 0 && object.object !== null ? ObjectType.fromPartial(object.object) : void 0;
+    message.json = (_a = object.json) != null ? _a : void 0;
+    return message;
+  }
+};
+function longToNumber(long) {
+  if (long.gt(globalThis.Number.MAX_SAFE_INTEGER)) {
+    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+  }
+  return long.toNumber();
+}
+if (_m0.util.Long !== Long) {
+  _m0.util.Long = Long;
+  _m0.configure();
+}
+function isObject(value) {
+  return typeof value === "object" && value !== null;
+}
+function isSet(value) {
+  return value !== null && value !== void 0;
+}
+
+// src/proto/generated/document_db.ts
+function indexTypeFromJSON(object) {
+  switch (object) {
+    case 0:
+    case "kPrimaryKey":
+      return 0 /* kPrimaryKey */;
+    case 1:
+    case "kSecondaryKey":
+      return 1 /* kSecondaryKey */;
+    case 2:
+    case "kClusteredSecondaryKey":
+      return 2 /* kClusteredSecondaryKey */;
+    case 3:
+    case "kFullTextSearchIndex":
+      return 3 /* kFullTextSearchIndex */;
+    case -1:
+    case "UNRECOGNIZED":
+    default:
+      return -1 /* UNRECOGNIZED */;
+  }
+}
+function indexTypeToJSON(object) {
+  switch (object) {
+    case 0 /* kPrimaryKey */:
+      return "kPrimaryKey";
+    case 1 /* kSecondaryKey */:
+      return "kSecondaryKey";
+    case 2 /* kClusteredSecondaryKey */:
+      return "kClusteredSecondaryKey";
+    case 3 /* kFullTextSearchIndex */:
+      return "kFullTextSearchIndex";
+    case -1 /* UNRECOGNIZED */:
+    default:
+      return "UNRECOGNIZED";
+  }
+}
+function indexStatusFromJSON(object) {
+  switch (object) {
+    case 0:
+    case "kEnabled":
+      return 0 /* kEnabled */;
+    case 1:
+    case "kDisabled":
+      return 1 /* kDisabled */;
+    case 2:
+    case "kReadyToUse":
+      return 2 /* kReadyToUse */;
+    case 3:
+    case "kBuildInProgress":
+      return 3 /* kBuildInProgress */;
+    case 4:
+    case "kBuildFinished":
+      return 4 /* kBuildFinished */;
+    case 5:
+    case "kDropInProgress":
+      return 5 /* kDropInProgress */;
+    case 6:
+    case "kDropFinished":
+      return 6 /* kDropFinished */;
+    case -1:
+    case "UNRECOGNIZED":
+    default:
+      return -1 /* UNRECOGNIZED */;
+  }
+}
+function indexStatusToJSON(object) {
+  switch (object) {
+    case 0 /* kEnabled */:
+      return "kEnabled";
+    case 1 /* kDisabled */:
+      return "kDisabled";
+    case 2 /* kReadyToUse */:
+      return "kReadyToUse";
+    case 3 /* kBuildInProgress */:
+      return "kBuildInProgress";
+    case 4 /* kBuildFinished */:
+      return "kBuildFinished";
+    case 5 /* kDropInProgress */:
+      return "kDropInProgress";
+    case 6 /* kDropFinished */:
+      return "kDropFinished";
+    case -1 /* UNRECOGNIZED */:
+    default:
+      return "UNRECOGNIZED";
+  }
+}
+function createBaseIndexDescriptor() {
+  return { indexId: 0, indexName: "", fields: [], unique: false, indexType: 0, status: 0, options: void 0 };
+}
+var IndexDescriptor = {
+  encode(message, writer = _m02.Writer.create()) {
+    if (message.indexId !== 0) {
+      writer.uint32(8).uint32(message.indexId);
+    }
+    if (message.indexName !== "") {
+      writer.uint32(18).string(message.indexName);
+    }
+    for (const v of message.fields) {
+      writer.uint32(26).string(v);
+    }
+    if (message.unique === true) {
+      writer.uint32(32).bool(message.unique);
+    }
+    if (message.indexType !== 0) {
+      writer.uint32(40).int32(message.indexType);
+    }
+    if (message.status !== 0) {
+      writer.uint32(48).int32(message.status);
+    }
+    if (message.options !== void 0) {
+      Document.encode(message.options, writer.uint32(58).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m02.Reader ? input : _m02.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseIndexDescriptor();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+          message.indexId = reader.uint32();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.indexName = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+          message.fields.push(reader.string());
+          continue;
+        case 4:
+          if (tag !== 32) {
+            break;
+          }
+          message.unique = reader.bool();
+          continue;
+        case 5:
+          if (tag !== 40) {
+            break;
+          }
+          message.indexType = reader.int32();
+          continue;
+        case 6:
+          if (tag !== 48) {
+            break;
+          }
+          message.status = reader.int32();
+          continue;
+        case 7:
+          if (tag !== 58) {
+            break;
+          }
+          message.options = Document.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      indexId: isSet2(object.indexId) ? globalThis.Number(object.indexId) : 0,
+      indexName: isSet2(object.indexName) ? globalThis.String(object.indexName) : "",
+      fields: globalThis.Array.isArray(object == null ? void 0 : object.fields) ? object.fields.map((e) => globalThis.String(e)) : [],
+      unique: isSet2(object.unique) ? globalThis.Boolean(object.unique) : false,
+      indexType: isSet2(object.indexType) ? indexTypeFromJSON(object.indexType) : 0,
+      status: isSet2(object.status) ? indexStatusFromJSON(object.status) : 0,
+      options: isSet2(object.options) ? Document.fromJSON(object.options) : void 0
+    };
+  },
+  toJSON(message) {
+    var _a;
+    const obj = {};
+    if (message.indexId !== 0) {
+      obj.indexId = Math.round(message.indexId);
+    }
+    if (message.indexName !== "") {
+      obj.indexName = message.indexName;
+    }
+    if ((_a = message.fields) == null ? void 0 : _a.length) {
+      obj.fields = message.fields;
+    }
+    if (message.unique === true) {
+      obj.unique = message.unique;
+    }
+    if (message.indexType !== 0) {
+      obj.indexType = indexTypeToJSON(message.indexType);
+    }
+    if (message.status !== 0) {
+      obj.status = indexStatusToJSON(message.status);
+    }
+    if (message.options !== void 0) {
+      obj.options = Document.toJSON(message.options);
+    }
+    return obj;
+  },
+  create(base) {
+    return IndexDescriptor.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a, _b, _c, _d, _e, _f;
+    const message = createBaseIndexDescriptor();
+    message.indexId = (_a = object.indexId) != null ? _a : 0;
+    message.indexName = (_b = object.indexName) != null ? _b : "";
+    message.fields = ((_c = object.fields) == null ? void 0 : _c.map((e) => e)) || [];
+    message.unique = (_d = object.unique) != null ? _d : false;
+    message.indexType = (_e = object.indexType) != null ? _e : 0;
+    message.status = (_f = object.status) != null ? _f : 0;
+    message.options = object.options !== void 0 && object.options !== null ? Document.fromPartial(object.options) : void 0;
+    return message;
+  }
+};
+function createBaseFTSFieldStats() {
+  return { fieldName: "", totalDocCount: 0, totalDocSize: 0, docCount: 0, docSize: 0, sumTermFreq: 0, sumDocFreq: 0 };
+}
+var FTSFieldStats = {
+  encode(message, writer = _m02.Writer.create()) {
+    if (message.fieldName !== "") {
+      writer.uint32(10).string(message.fieldName);
+    }
+    if (message.totalDocCount !== 0) {
+      writer.uint32(16).int64(message.totalDocCount);
+    }
+    if (message.totalDocSize !== 0) {
+      writer.uint32(24).int64(message.totalDocSize);
+    }
+    if (message.docCount !== 0) {
+      writer.uint32(32).int64(message.docCount);
+    }
+    if (message.docSize !== 0) {
+      writer.uint32(40).int64(message.docSize);
+    }
+    if (message.sumTermFreq !== 0) {
+      writer.uint32(48).int64(message.sumTermFreq);
+    }
+    if (message.sumDocFreq !== 0) {
+      writer.uint32(56).int64(message.sumDocFreq);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m02.Reader ? input : _m02.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseFTSFieldStats();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.fieldName = reader.string();
+          continue;
+        case 2:
+          if (tag !== 16) {
+            break;
+          }
+          message.totalDocCount = longToNumber2(reader.int64());
+          continue;
+        case 3:
+          if (tag !== 24) {
+            break;
+          }
+          message.totalDocSize = longToNumber2(reader.int64());
+          continue;
+        case 4:
+          if (tag !== 32) {
+            break;
+          }
+          message.docCount = longToNumber2(reader.int64());
+          continue;
+        case 5:
+          if (tag !== 40) {
+            break;
+          }
+          message.docSize = longToNumber2(reader.int64());
+          continue;
+        case 6:
+          if (tag !== 48) {
+            break;
+          }
+          message.sumTermFreq = longToNumber2(reader.int64());
+          continue;
+        case 7:
+          if (tag !== 56) {
+            break;
+          }
+          message.sumDocFreq = longToNumber2(reader.int64());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      fieldName: isSet2(object.fieldName) ? globalThis.String(object.fieldName) : "",
+      totalDocCount: isSet2(object.totalDocCount) ? globalThis.Number(object.totalDocCount) : 0,
+      totalDocSize: isSet2(object.totalDocSize) ? globalThis.Number(object.totalDocSize) : 0,
+      docCount: isSet2(object.docCount) ? globalThis.Number(object.docCount) : 0,
+      docSize: isSet2(object.docSize) ? globalThis.Number(object.docSize) : 0,
+      sumTermFreq: isSet2(object.sumTermFreq) ? globalThis.Number(object.sumTermFreq) : 0,
+      sumDocFreq: isSet2(object.sumDocFreq) ? globalThis.Number(object.sumDocFreq) : 0
+    };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.fieldName !== "") {
+      obj.fieldName = message.fieldName;
+    }
+    if (message.totalDocCount !== 0) {
+      obj.totalDocCount = Math.round(message.totalDocCount);
+    }
+    if (message.totalDocSize !== 0) {
+      obj.totalDocSize = Math.round(message.totalDocSize);
+    }
+    if (message.docCount !== 0) {
+      obj.docCount = Math.round(message.docCount);
+    }
+    if (message.docSize !== 0) {
+      obj.docSize = Math.round(message.docSize);
+    }
+    if (message.sumTermFreq !== 0) {
+      obj.sumTermFreq = Math.round(message.sumTermFreq);
+    }
+    if (message.sumDocFreq !== 0) {
+      obj.sumDocFreq = Math.round(message.sumDocFreq);
+    }
+    return obj;
+  },
+  create(base) {
+    return FTSFieldStats.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a, _b, _c, _d, _e, _f, _g;
+    const message = createBaseFTSFieldStats();
+    message.fieldName = (_a = object.fieldName) != null ? _a : "";
+    message.totalDocCount = (_b = object.totalDocCount) != null ? _b : 0;
+    message.totalDocSize = (_c = object.totalDocSize) != null ? _c : 0;
+    message.docCount = (_d = object.docCount) != null ? _d : 0;
+    message.docSize = (_e = object.docSize) != null ? _e : 0;
+    message.sumTermFreq = (_f = object.sumTermFreq) != null ? _f : 0;
+    message.sumDocFreq = (_g = object.sumDocFreq) != null ? _g : 0;
+    return message;
+  }
+};
+function createBaseFTSIndexStats() {
+  return { docCount: 0, docSize: 0, fieldStats: [] };
+}
+var FTSIndexStats = {
+  encode(message, writer = _m02.Writer.create()) {
+    if (message.docCount !== 0) {
+      writer.uint32(8).int64(message.docCount);
+    }
+    if (message.docSize !== 0) {
+      writer.uint32(16).int64(message.docSize);
+    }
+    for (const v of message.fieldStats) {
+      FTSFieldStats.encode(v, writer.uint32(26).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m02.Reader ? input : _m02.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseFTSIndexStats();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+          message.docCount = longToNumber2(reader.int64());
+          continue;
+        case 2:
+          if (tag !== 16) {
+            break;
+          }
+          message.docSize = longToNumber2(reader.int64());
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+          message.fieldStats.push(FTSFieldStats.decode(reader, reader.uint32()));
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      docCount: isSet2(object.docCount) ? globalThis.Number(object.docCount) : 0,
+      docSize: isSet2(object.docSize) ? globalThis.Number(object.docSize) : 0,
+      fieldStats: globalThis.Array.isArray(object == null ? void 0 : object.fieldStats) ? object.fieldStats.map((e) => FTSFieldStats.fromJSON(e)) : []
+    };
+  },
+  toJSON(message) {
+    var _a;
+    const obj = {};
+    if (message.docCount !== 0) {
+      obj.docCount = Math.round(message.docCount);
+    }
+    if (message.docSize !== 0) {
+      obj.docSize = Math.round(message.docSize);
+    }
+    if ((_a = message.fieldStats) == null ? void 0 : _a.length) {
+      obj.fieldStats = message.fieldStats.map((e) => FTSFieldStats.toJSON(e));
+    }
+    return obj;
+  },
+  create(base) {
+    return FTSIndexStats.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a, _b, _c;
+    const message = createBaseFTSIndexStats();
+    message.docCount = (_a = object.docCount) != null ? _a : 0;
+    message.docSize = (_b = object.docSize) != null ? _b : 0;
+    message.fieldStats = ((_c = object.fieldStats) == null ? void 0 : _c.map((e) => FTSFieldStats.fromPartial(e))) || [];
+    return message;
+  }
+};
+function createBaseIndexStats() {
+  return {
+    indexId: 0,
+    indexName: "",
+    approximatedSize: 0,
+    numDocs: 0,
+    accessed: 0,
+    added: 0,
+    updated: 0,
+    deleted: 0,
+    merged: 0,
+    accessedAt: 0,
+    addedAt: 0,
+    updatedAt: 0,
+    deletedAt: 0,
+    mergedAt: 0,
+    ftsStats: void 0
+  };
+}
+var IndexStats = {
+  encode(message, writer = _m02.Writer.create()) {
+    if (message.indexId !== 0) {
+      writer.uint32(8).uint32(message.indexId);
+    }
+    if (message.indexName !== "") {
+      writer.uint32(18).string(message.indexName);
+    }
+    if (message.approximatedSize !== 0) {
+      writer.uint32(24).uint64(message.approximatedSize);
+    }
+    if (message.numDocs !== 0) {
+      writer.uint32(32).uint64(message.numDocs);
+    }
+    if (message.accessed !== 0) {
+      writer.uint32(40).uint64(message.accessed);
+    }
+    if (message.added !== 0) {
+      writer.uint32(48).uint64(message.added);
+    }
+    if (message.updated !== 0) {
+      writer.uint32(56).uint64(message.updated);
+    }
+    if (message.deleted !== 0) {
+      writer.uint32(64).uint64(message.deleted);
+    }
+    if (message.merged !== 0) {
+      writer.uint32(72).uint64(message.merged);
+    }
+    if (message.accessedAt !== 0) {
+      writer.uint32(80).int64(message.accessedAt);
+    }
+    if (message.addedAt !== 0) {
+      writer.uint32(88).int64(message.addedAt);
+    }
+    if (message.updatedAt !== 0) {
+      writer.uint32(96).int64(message.updatedAt);
+    }
+    if (message.deletedAt !== 0) {
+      writer.uint32(104).int64(message.deletedAt);
+    }
+    if (message.mergedAt !== 0) {
+      writer.uint32(112).int64(message.mergedAt);
+    }
+    if (message.ftsStats !== void 0) {
+      FTSIndexStats.encode(message.ftsStats, writer.uint32(122).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m02.Reader ? input : _m02.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseIndexStats();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+          message.indexId = reader.uint32();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.indexName = reader.string();
+          continue;
+        case 3:
+          if (tag !== 24) {
+            break;
+          }
+          message.approximatedSize = longToNumber2(reader.uint64());
+          continue;
+        case 4:
+          if (tag !== 32) {
+            break;
+          }
+          message.numDocs = longToNumber2(reader.uint64());
+          continue;
+        case 5:
+          if (tag !== 40) {
+            break;
+          }
+          message.accessed = longToNumber2(reader.uint64());
+          continue;
+        case 6:
+          if (tag !== 48) {
+            break;
+          }
+          message.added = longToNumber2(reader.uint64());
+          continue;
+        case 7:
+          if (tag !== 56) {
+            break;
+          }
+          message.updated = longToNumber2(reader.uint64());
+          continue;
+        case 8:
+          if (tag !== 64) {
+            break;
+          }
+          message.deleted = longToNumber2(reader.uint64());
+          continue;
+        case 9:
+          if (tag !== 72) {
+            break;
+          }
+          message.merged = longToNumber2(reader.uint64());
+          continue;
+        case 10:
+          if (tag !== 80) {
+            break;
+          }
+          message.accessedAt = longToNumber2(reader.int64());
+          continue;
+        case 11:
+          if (tag !== 88) {
+            break;
+          }
+          message.addedAt = longToNumber2(reader.int64());
+          continue;
+        case 12:
+          if (tag !== 96) {
+            break;
+          }
+          message.updatedAt = longToNumber2(reader.int64());
+          continue;
+        case 13:
+          if (tag !== 104) {
+            break;
+          }
+          message.deletedAt = longToNumber2(reader.int64());
+          continue;
+        case 14:
+          if (tag !== 112) {
+            break;
+          }
+          message.mergedAt = longToNumber2(reader.int64());
+          continue;
+        case 15:
+          if (tag !== 122) {
+            break;
+          }
+          message.ftsStats = FTSIndexStats.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      indexId: isSet2(object.indexId) ? globalThis.Number(object.indexId) : 0,
+      indexName: isSet2(object.indexName) ? globalThis.String(object.indexName) : "",
+      approximatedSize: isSet2(object.approximatedSize) ? globalThis.Number(object.approximatedSize) : 0,
+      numDocs: isSet2(object.numDocs) ? globalThis.Number(object.numDocs) : 0,
+      accessed: isSet2(object.accessed) ? globalThis.Number(object.accessed) : 0,
+      added: isSet2(object.added) ? globalThis.Number(object.added) : 0,
+      updated: isSet2(object.updated) ? globalThis.Number(object.updated) : 0,
+      deleted: isSet2(object.deleted) ? globalThis.Number(object.deleted) : 0,
+      merged: isSet2(object.merged) ? globalThis.Number(object.merged) : 0,
+      accessedAt: isSet2(object.accessedAt) ? globalThis.Number(object.accessedAt) : 0,
+      addedAt: isSet2(object.addedAt) ? globalThis.Number(object.addedAt) : 0,
+      updatedAt: isSet2(object.updatedAt) ? globalThis.Number(object.updatedAt) : 0,
+      deletedAt: isSet2(object.deletedAt) ? globalThis.Number(object.deletedAt) : 0,
+      mergedAt: isSet2(object.mergedAt) ? globalThis.Number(object.mergedAt) : 0,
+      ftsStats: isSet2(object.ftsStats) ? FTSIndexStats.fromJSON(object.ftsStats) : void 0
+    };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.indexId !== 0) {
+      obj.indexId = Math.round(message.indexId);
+    }
+    if (message.indexName !== "") {
+      obj.indexName = message.indexName;
+    }
+    if (message.approximatedSize !== 0) {
+      obj.approximatedSize = Math.round(message.approximatedSize);
+    }
+    if (message.numDocs !== 0) {
+      obj.numDocs = Math.round(message.numDocs);
+    }
+    if (message.accessed !== 0) {
+      obj.accessed = Math.round(message.accessed);
+    }
+    if (message.added !== 0) {
+      obj.added = Math.round(message.added);
+    }
+    if (message.updated !== 0) {
+      obj.updated = Math.round(message.updated);
+    }
+    if (message.deleted !== 0) {
+      obj.deleted = Math.round(message.deleted);
+    }
+    if (message.merged !== 0) {
+      obj.merged = Math.round(message.merged);
+    }
+    if (message.accessedAt !== 0) {
+      obj.accessedAt = Math.round(message.accessedAt);
+    }
+    if (message.addedAt !== 0) {
+      obj.addedAt = Math.round(message.addedAt);
+    }
+    if (message.updatedAt !== 0) {
+      obj.updatedAt = Math.round(message.updatedAt);
+    }
+    if (message.deletedAt !== 0) {
+      obj.deletedAt = Math.round(message.deletedAt);
+    }
+    if (message.mergedAt !== 0) {
+      obj.mergedAt = Math.round(message.mergedAt);
+    }
+    if (message.ftsStats !== void 0) {
+      obj.ftsStats = FTSIndexStats.toJSON(message.ftsStats);
+    }
+    return obj;
+  },
+  create(base) {
+    return IndexStats.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n;
+    const message = createBaseIndexStats();
+    message.indexId = (_a = object.indexId) != null ? _a : 0;
+    message.indexName = (_b = object.indexName) != null ? _b : "";
+    message.approximatedSize = (_c = object.approximatedSize) != null ? _c : 0;
+    message.numDocs = (_d = object.numDocs) != null ? _d : 0;
+    message.accessed = (_e = object.accessed) != null ? _e : 0;
+    message.added = (_f = object.added) != null ? _f : 0;
+    message.updated = (_g = object.updated) != null ? _g : 0;
+    message.deleted = (_h = object.deleted) != null ? _h : 0;
+    message.merged = (_i = object.merged) != null ? _i : 0;
+    message.accessedAt = (_j = object.accessedAt) != null ? _j : 0;
+    message.addedAt = (_k = object.addedAt) != null ? _k : 0;
+    message.updatedAt = (_l = object.updatedAt) != null ? _l : 0;
+    message.deletedAt = (_m = object.deletedAt) != null ? _m : 0;
+    message.mergedAt = (_n = object.mergedAt) != null ? _n : 0;
+    message.ftsStats = object.ftsStats !== void 0 && object.ftsStats !== null ? FTSIndexStats.fromPartial(object.ftsStats) : void 0;
+    return message;
+  }
+};
+function createBaseCollectionInfo() {
+  return { collectionName: "", indexDescriptors: [], indexStats: [] };
+}
+var CollectionInfo = {
+  encode(message, writer = _m02.Writer.create()) {
+    if (message.collectionName !== "") {
+      writer.uint32(10).string(message.collectionName);
+    }
+    for (const v of message.indexDescriptors) {
+      IndexDescriptor.encode(v, writer.uint32(18).fork()).ldelim();
+    }
+    for (const v of message.indexStats) {
+      IndexStats.encode(v, writer.uint32(26).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m02.Reader ? input : _m02.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseCollectionInfo();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.collectionName = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.indexDescriptors.push(IndexDescriptor.decode(reader, reader.uint32()));
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+          message.indexStats.push(IndexStats.decode(reader, reader.uint32()));
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      collectionName: isSet2(object.collectionName) ? globalThis.String(object.collectionName) : "",
+      indexDescriptors: globalThis.Array.isArray(object == null ? void 0 : object.indexDescriptors) ? object.indexDescriptors.map((e) => IndexDescriptor.fromJSON(e)) : [],
+      indexStats: globalThis.Array.isArray(object == null ? void 0 : object.indexStats) ? object.indexStats.map((e) => IndexStats.fromJSON(e)) : []
+    };
+  },
+  toJSON(message) {
+    var _a, _b;
+    const obj = {};
+    if (message.collectionName !== "") {
+      obj.collectionName = message.collectionName;
+    }
+    if ((_a = message.indexDescriptors) == null ? void 0 : _a.length) {
+      obj.indexDescriptors = message.indexDescriptors.map((e) => IndexDescriptor.toJSON(e));
+    }
+    if ((_b = message.indexStats) == null ? void 0 : _b.length) {
+      obj.indexStats = message.indexStats.map((e) => IndexStats.toJSON(e));
+    }
+    return obj;
+  },
+  create(base) {
+    return CollectionInfo.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a, _b, _c;
+    const message = createBaseCollectionInfo();
+    message.collectionName = (_a = object.collectionName) != null ? _a : "";
+    message.indexDescriptors = ((_b = object.indexDescriptors) == null ? void 0 : _b.map((e) => IndexDescriptor.fromPartial(e))) || [];
+    message.indexStats = ((_c = object.indexStats) == null ? void 0 : _c.map((e) => IndexStats.fromPartial(e))) || [];
+    return message;
+  }
+};
+function createBaseProfileInfo() {
+  return { matched: 0, scanned: 0, filtered: 0, queryDurationUs: 0, serializationDurationUs: 0 };
+}
+var ProfileInfo = {
+  encode(message, writer = _m02.Writer.create()) {
+    if (message.matched !== 0) {
+      writer.uint32(8).uint64(message.matched);
+    }
+    if (message.scanned !== 0) {
+      writer.uint32(16).uint64(message.scanned);
+    }
+    if (message.filtered !== 0) {
+      writer.uint32(24).uint64(message.filtered);
+    }
+    if (message.queryDurationUs !== 0) {
+      writer.uint32(32).uint64(message.queryDurationUs);
+    }
+    if (message.serializationDurationUs !== 0) {
+      writer.uint32(40).uint64(message.serializationDurationUs);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m02.Reader ? input : _m02.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseProfileInfo();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+          message.matched = longToNumber2(reader.uint64());
+          continue;
+        case 2:
+          if (tag !== 16) {
+            break;
+          }
+          message.scanned = longToNumber2(reader.uint64());
+          continue;
+        case 3:
+          if (tag !== 24) {
+            break;
+          }
+          message.filtered = longToNumber2(reader.uint64());
+          continue;
+        case 4:
+          if (tag !== 32) {
+            break;
+          }
+          message.queryDurationUs = longToNumber2(reader.uint64());
+          continue;
+        case 5:
+          if (tag !== 40) {
+            break;
+          }
+          message.serializationDurationUs = longToNumber2(reader.uint64());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      matched: isSet2(object.matched) ? globalThis.Number(object.matched) : 0,
+      scanned: isSet2(object.scanned) ? globalThis.Number(object.scanned) : 0,
+      filtered: isSet2(object.filtered) ? globalThis.Number(object.filtered) : 0,
+      queryDurationUs: isSet2(object.queryDurationUs) ? globalThis.Number(object.queryDurationUs) : 0,
+      serializationDurationUs: isSet2(object.serializationDurationUs) ? globalThis.Number(object.serializationDurationUs) : 0
+    };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.matched !== 0) {
+      obj.matched = Math.round(message.matched);
+    }
+    if (message.scanned !== 0) {
+      obj.scanned = Math.round(message.scanned);
+    }
+    if (message.filtered !== 0) {
+      obj.filtered = Math.round(message.filtered);
+    }
+    if (message.queryDurationUs !== 0) {
+      obj.queryDurationUs = Math.round(message.queryDurationUs);
+    }
+    if (message.serializationDurationUs !== 0) {
+      obj.serializationDurationUs = Math.round(message.serializationDurationUs);
+    }
+    return obj;
+  },
+  create(base) {
+    return ProfileInfo.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a, _b, _c, _d, _e;
+    const message = createBaseProfileInfo();
+    message.matched = (_a = object.matched) != null ? _a : 0;
+    message.scanned = (_b = object.scanned) != null ? _b : 0;
+    message.filtered = (_c = object.filtered) != null ? _c : 0;
+    message.queryDurationUs = (_d = object.queryDurationUs) != null ? _d : 0;
+    message.serializationDurationUs = (_e = object.serializationDurationUs) != null ? _e : 0;
+    return message;
+  }
+};
+function createBaseCreateCollectionRequest() {
+  return { collection: void 0 };
+}
+var CreateCollectionRequest = {
+  encode(message, writer = _m02.Writer.create()) {
+    if (message.collection !== void 0) {
+      CollectionInfo.encode(message.collection, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m02.Reader ? input : _m02.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseCreateCollectionRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.collection = CollectionInfo.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return { collection: isSet2(object.collection) ? CollectionInfo.fromJSON(object.collection) : void 0 };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.collection !== void 0) {
+      obj.collection = CollectionInfo.toJSON(message.collection);
+    }
+    return obj;
+  },
+  create(base) {
+    return CreateCollectionRequest.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    const message = createBaseCreateCollectionRequest();
+    message.collection = object.collection !== void 0 && object.collection !== null ? CollectionInfo.fromPartial(object.collection) : void 0;
+    return message;
+  }
+};
+function createBaseCreateCollectionResponse() {
+  return { status: 0, message: "", profile: void 0 };
+}
+var CreateCollectionResponse = {
+  encode(message, writer = _m02.Writer.create()) {
+    if (message.status !== 0) {
+      writer.uint32(8).int32(message.status);
+    }
+    if (message.message !== "") {
+      writer.uint32(18).string(message.message);
+    }
+    if (message.profile !== void 0) {
+      ProfileInfo.encode(message.profile, writer.uint32(26).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m02.Reader ? input : _m02.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseCreateCollectionResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+          message.status = reader.int32();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.message = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+          message.profile = ProfileInfo.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      status: isSet2(object.status) ? globalThis.Number(object.status) : 0,
+      message: isSet2(object.message) ? globalThis.String(object.message) : "",
+      profile: isSet2(object.profile) ? ProfileInfo.fromJSON(object.profile) : void 0
+    };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.status !== 0) {
+      obj.status = Math.round(message.status);
+    }
+    if (message.message !== "") {
+      obj.message = message.message;
+    }
+    if (message.profile !== void 0) {
+      obj.profile = ProfileInfo.toJSON(message.profile);
+    }
+    return obj;
+  },
+  create(base) {
+    return CreateCollectionResponse.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a, _b;
+    const message = createBaseCreateCollectionResponse();
+    message.status = (_a = object.status) != null ? _a : 0;
+    message.message = (_b = object.message) != null ? _b : "";
+    message.profile = object.profile !== void 0 && object.profile !== null ? ProfileInfo.fromPartial(object.profile) : void 0;
+    return message;
+  }
+};
+function createBaseDropCollectionRequest() {
+  return { collectionName: "" };
+}
+var DropCollectionRequest = {
+  encode(message, writer = _m02.Writer.create()) {
+    if (message.collectionName !== "") {
+      writer.uint32(10).string(message.collectionName);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m02.Reader ? input : _m02.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseDropCollectionRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.collectionName = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return { collectionName: isSet2(object.collectionName) ? globalThis.String(object.collectionName) : "" };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.collectionName !== "") {
+      obj.collectionName = message.collectionName;
+    }
+    return obj;
+  },
+  create(base) {
+    return DropCollectionRequest.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a;
+    const message = createBaseDropCollectionRequest();
+    message.collectionName = (_a = object.collectionName) != null ? _a : "";
+    return message;
+  }
+};
+function createBaseDropCollectionResponse() {
+  return { status: 0, message: "", profile: void 0 };
+}
+var DropCollectionResponse = {
+  encode(message, writer = _m02.Writer.create()) {
+    if (message.status !== 0) {
+      writer.uint32(8).int32(message.status);
+    }
+    if (message.message !== "") {
+      writer.uint32(18).string(message.message);
+    }
+    if (message.profile !== void 0) {
+      ProfileInfo.encode(message.profile, writer.uint32(26).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m02.Reader ? input : _m02.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseDropCollectionResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+          message.status = reader.int32();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.message = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+          message.profile = ProfileInfo.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      status: isSet2(object.status) ? globalThis.Number(object.status) : 0,
+      message: isSet2(object.message) ? globalThis.String(object.message) : "",
+      profile: isSet2(object.profile) ? ProfileInfo.fromJSON(object.profile) : void 0
+    };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.status !== 0) {
+      obj.status = Math.round(message.status);
+    }
+    if (message.message !== "") {
+      obj.message = message.message;
+    }
+    if (message.profile !== void 0) {
+      obj.profile = ProfileInfo.toJSON(message.profile);
+    }
+    return obj;
+  },
+  create(base) {
+    return DropCollectionResponse.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a, _b;
+    const message = createBaseDropCollectionResponse();
+    message.status = (_a = object.status) != null ? _a : 0;
+    message.message = (_b = object.message) != null ? _b : "";
+    message.profile = object.profile !== void 0 && object.profile !== null ? ProfileInfo.fromPartial(object.profile) : void 0;
+    return message;
+  }
+};
+function createBaseRenameCollectionRequest() {
+  return { oldCollectionName: "", newCollectionName: "" };
+}
+var RenameCollectionRequest = {
+  encode(message, writer = _m02.Writer.create()) {
+    if (message.oldCollectionName !== "") {
+      writer.uint32(10).string(message.oldCollectionName);
+    }
+    if (message.newCollectionName !== "") {
+      writer.uint32(18).string(message.newCollectionName);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m02.Reader ? input : _m02.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseRenameCollectionRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.oldCollectionName = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.newCollectionName = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      oldCollectionName: isSet2(object.oldCollectionName) ? globalThis.String(object.oldCollectionName) : "",
+      newCollectionName: isSet2(object.newCollectionName) ? globalThis.String(object.newCollectionName) : ""
+    };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.oldCollectionName !== "") {
+      obj.oldCollectionName = message.oldCollectionName;
+    }
+    if (message.newCollectionName !== "") {
+      obj.newCollectionName = message.newCollectionName;
+    }
+    return obj;
+  },
+  create(base) {
+    return RenameCollectionRequest.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a, _b;
+    const message = createBaseRenameCollectionRequest();
+    message.oldCollectionName = (_a = object.oldCollectionName) != null ? _a : "";
+    message.newCollectionName = (_b = object.newCollectionName) != null ? _b : "";
+    return message;
+  }
+};
+function createBaseRenameCollectionResponse() {
+  return { status: 0, message: "", profile: void 0 };
+}
+var RenameCollectionResponse = {
+  encode(message, writer = _m02.Writer.create()) {
+    if (message.status !== 0) {
+      writer.uint32(8).int32(message.status);
+    }
+    if (message.message !== "") {
+      writer.uint32(18).string(message.message);
+    }
+    if (message.profile !== void 0) {
+      ProfileInfo.encode(message.profile, writer.uint32(26).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m02.Reader ? input : _m02.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseRenameCollectionResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+          message.status = reader.int32();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.message = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+          message.profile = ProfileInfo.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      status: isSet2(object.status) ? globalThis.Number(object.status) : 0,
+      message: isSet2(object.message) ? globalThis.String(object.message) : "",
+      profile: isSet2(object.profile) ? ProfileInfo.fromJSON(object.profile) : void 0
+    };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.status !== 0) {
+      obj.status = Math.round(message.status);
+    }
+    if (message.message !== "") {
+      obj.message = message.message;
+    }
+    if (message.profile !== void 0) {
+      obj.profile = ProfileInfo.toJSON(message.profile);
+    }
+    return obj;
+  },
+  create(base) {
+    return RenameCollectionResponse.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a, _b;
+    const message = createBaseRenameCollectionResponse();
+    message.status = (_a = object.status) != null ? _a : 0;
+    message.message = (_b = object.message) != null ? _b : "";
+    message.profile = object.profile !== void 0 && object.profile !== null ? ProfileInfo.fromPartial(object.profile) : void 0;
+    return message;
+  }
+};
+function createBaseGetCollectionRequest() {
+  return { collectionName: "" };
+}
+var GetCollectionRequest = {
+  encode(message, writer = _m02.Writer.create()) {
+    if (message.collectionName !== "") {
+      writer.uint32(10).string(message.collectionName);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m02.Reader ? input : _m02.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseGetCollectionRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.collectionName = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return { collectionName: isSet2(object.collectionName) ? globalThis.String(object.collectionName) : "" };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.collectionName !== "") {
+      obj.collectionName = message.collectionName;
+    }
+    return obj;
+  },
+  create(base) {
+    return GetCollectionRequest.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a;
+    const message = createBaseGetCollectionRequest();
+    message.collectionName = (_a = object.collectionName) != null ? _a : "";
+    return message;
+  }
+};
+function createBaseGetCollectionResponse() {
+  return { status: 0, message: "", collection: void 0, profile: void 0 };
+}
+var GetCollectionResponse = {
+  encode(message, writer = _m02.Writer.create()) {
+    if (message.status !== 0) {
+      writer.uint32(8).int32(message.status);
+    }
+    if (message.message !== "") {
+      writer.uint32(18).string(message.message);
+    }
+    if (message.collection !== void 0) {
+      CollectionInfo.encode(message.collection, writer.uint32(26).fork()).ldelim();
+    }
+    if (message.profile !== void 0) {
+      ProfileInfo.encode(message.profile, writer.uint32(34).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m02.Reader ? input : _m02.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseGetCollectionResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+          message.status = reader.int32();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.message = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+          message.collection = CollectionInfo.decode(reader, reader.uint32());
+          continue;
+        case 4:
+          if (tag !== 34) {
+            break;
+          }
+          message.profile = ProfileInfo.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      status: isSet2(object.status) ? globalThis.Number(object.status) : 0,
+      message: isSet2(object.message) ? globalThis.String(object.message) : "",
+      collection: isSet2(object.collection) ? CollectionInfo.fromJSON(object.collection) : void 0,
+      profile: isSet2(object.profile) ? ProfileInfo.fromJSON(object.profile) : void 0
+    };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.status !== 0) {
+      obj.status = Math.round(message.status);
+    }
+    if (message.message !== "") {
+      obj.message = message.message;
+    }
+    if (message.collection !== void 0) {
+      obj.collection = CollectionInfo.toJSON(message.collection);
+    }
+    if (message.profile !== void 0) {
+      obj.profile = ProfileInfo.toJSON(message.profile);
+    }
+    return obj;
+  },
+  create(base) {
+    return GetCollectionResponse.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a, _b;
+    const message = createBaseGetCollectionResponse();
+    message.status = (_a = object.status) != null ? _a : 0;
+    message.message = (_b = object.message) != null ? _b : "";
+    message.collection = object.collection !== void 0 && object.collection !== null ? CollectionInfo.fromPartial(object.collection) : void 0;
+    message.profile = object.profile !== void 0 && object.profile !== null ? ProfileInfo.fromPartial(object.profile) : void 0;
+    return message;
+  }
+};
+function createBaseGetCollectionsRequest() {
+  return { collectionNames: [] };
+}
+var GetCollectionsRequest = {
+  encode(message, writer = _m02.Writer.create()) {
+    for (const v of message.collectionNames) {
+      writer.uint32(10).string(v);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m02.Reader ? input : _m02.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseGetCollectionsRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.collectionNames.push(reader.string());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      collectionNames: globalThis.Array.isArray(object == null ? void 0 : object.collectionNames) ? object.collectionNames.map((e) => globalThis.String(e)) : []
+    };
+  },
+  toJSON(message) {
+    var _a;
+    const obj = {};
+    if ((_a = message.collectionNames) == null ? void 0 : _a.length) {
+      obj.collectionNames = message.collectionNames;
+    }
+    return obj;
+  },
+  create(base) {
+    return GetCollectionsRequest.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a;
+    const message = createBaseGetCollectionsRequest();
+    message.collectionNames = ((_a = object.collectionNames) == null ? void 0 : _a.map((e) => e)) || [];
+    return message;
+  }
+};
+function createBaseGetCollectionsResponse() {
+  return { status: 0, message: "", collections: [], profile: void 0 };
+}
+var GetCollectionsResponse = {
+  encode(message, writer = _m02.Writer.create()) {
+    if (message.status !== 0) {
+      writer.uint32(8).int32(message.status);
+    }
+    if (message.message !== "") {
+      writer.uint32(18).string(message.message);
+    }
+    for (const v of message.collections) {
+      CollectionInfo.encode(v, writer.uint32(26).fork()).ldelim();
+    }
+    if (message.profile !== void 0) {
+      ProfileInfo.encode(message.profile, writer.uint32(34).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m02.Reader ? input : _m02.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseGetCollectionsResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+          message.status = reader.int32();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.message = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+          message.collections.push(CollectionInfo.decode(reader, reader.uint32()));
+          continue;
+        case 4:
+          if (tag !== 34) {
+            break;
+          }
+          message.profile = ProfileInfo.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      status: isSet2(object.status) ? globalThis.Number(object.status) : 0,
+      message: isSet2(object.message) ? globalThis.String(object.message) : "",
+      collections: globalThis.Array.isArray(object == null ? void 0 : object.collections) ? object.collections.map((e) => CollectionInfo.fromJSON(e)) : [],
+      profile: isSet2(object.profile) ? ProfileInfo.fromJSON(object.profile) : void 0
+    };
+  },
+  toJSON(message) {
+    var _a;
+    const obj = {};
+    if (message.status !== 0) {
+      obj.status = Math.round(message.status);
+    }
+    if (message.message !== "") {
+      obj.message = message.message;
+    }
+    if ((_a = message.collections) == null ? void 0 : _a.length) {
+      obj.collections = message.collections.map((e) => CollectionInfo.toJSON(e));
+    }
+    if (message.profile !== void 0) {
+      obj.profile = ProfileInfo.toJSON(message.profile);
+    }
+    return obj;
+  },
+  create(base) {
+    return GetCollectionsResponse.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a, _b, _c;
+    const message = createBaseGetCollectionsResponse();
+    message.status = (_a = object.status) != null ? _a : 0;
+    message.message = (_b = object.message) != null ? _b : "";
+    message.collections = ((_c = object.collections) == null ? void 0 : _c.map((e) => CollectionInfo.fromPartial(e))) || [];
+    message.profile = object.profile !== void 0 && object.profile !== null ? ProfileInfo.fromPartial(object.profile) : void 0;
+    return message;
+  }
+};
+function createBaseCreateIndexRequest() {
+  return { collectionName: "", indexDesc: void 0 };
+}
+var CreateIndexRequest = {
+  encode(message, writer = _m02.Writer.create()) {
+    if (message.collectionName !== "") {
+      writer.uint32(10).string(message.collectionName);
+    }
+    if (message.indexDesc !== void 0) {
+      IndexDescriptor.encode(message.indexDesc, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m02.Reader ? input : _m02.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseCreateIndexRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.collectionName = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.indexDesc = IndexDescriptor.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      collectionName: isSet2(object.collectionName) ? globalThis.String(object.collectionName) : "",
+      indexDesc: isSet2(object.indexDesc) ? IndexDescriptor.fromJSON(object.indexDesc) : void 0
+    };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.collectionName !== "") {
+      obj.collectionName = message.collectionName;
+    }
+    if (message.indexDesc !== void 0) {
+      obj.indexDesc = IndexDescriptor.toJSON(message.indexDesc);
+    }
+    return obj;
+  },
+  create(base) {
+    return CreateIndexRequest.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a;
+    const message = createBaseCreateIndexRequest();
+    message.collectionName = (_a = object.collectionName) != null ? _a : "";
+    message.indexDesc = object.indexDesc !== void 0 && object.indexDesc !== null ? IndexDescriptor.fromPartial(object.indexDesc) : void 0;
+    return message;
+  }
+};
+function createBaseCreateIndexResponse() {
+  return { status: 0, message: "", profile: void 0 };
+}
+var CreateIndexResponse = {
+  encode(message, writer = _m02.Writer.create()) {
+    if (message.status !== 0) {
+      writer.uint32(8).int32(message.status);
+    }
+    if (message.message !== "") {
+      writer.uint32(18).string(message.message);
+    }
+    if (message.profile !== void 0) {
+      ProfileInfo.encode(message.profile, writer.uint32(26).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m02.Reader ? input : _m02.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseCreateIndexResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+          message.status = reader.int32();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.message = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+          message.profile = ProfileInfo.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      status: isSet2(object.status) ? globalThis.Number(object.status) : 0,
+      message: isSet2(object.message) ? globalThis.String(object.message) : "",
+      profile: isSet2(object.profile) ? ProfileInfo.fromJSON(object.profile) : void 0
+    };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.status !== 0) {
+      obj.status = Math.round(message.status);
+    }
+    if (message.message !== "") {
+      obj.message = message.message;
+    }
+    if (message.profile !== void 0) {
+      obj.profile = ProfileInfo.toJSON(message.profile);
+    }
+    return obj;
+  },
+  create(base) {
+    return CreateIndexResponse.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a, _b;
+    const message = createBaseCreateIndexResponse();
+    message.status = (_a = object.status) != null ? _a : 0;
+    message.message = (_b = object.message) != null ? _b : "";
+    message.profile = object.profile !== void 0 && object.profile !== null ? ProfileInfo.fromPartial(object.profile) : void 0;
+    return message;
+  }
+};
+function createBaseDropIndexRequest() {
+  return { collectionName: "", indexName: "" };
+}
+var DropIndexRequest = {
+  encode(message, writer = _m02.Writer.create()) {
+    if (message.collectionName !== "") {
+      writer.uint32(10).string(message.collectionName);
+    }
+    if (message.indexName !== "") {
+      writer.uint32(18).string(message.indexName);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m02.Reader ? input : _m02.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseDropIndexRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.collectionName = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.indexName = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      collectionName: isSet2(object.collectionName) ? globalThis.String(object.collectionName) : "",
+      indexName: isSet2(object.indexName) ? globalThis.String(object.indexName) : ""
+    };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.collectionName !== "") {
+      obj.collectionName = message.collectionName;
+    }
+    if (message.indexName !== "") {
+      obj.indexName = message.indexName;
+    }
+    return obj;
+  },
+  create(base) {
+    return DropIndexRequest.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a, _b;
+    const message = createBaseDropIndexRequest();
+    message.collectionName = (_a = object.collectionName) != null ? _a : "";
+    message.indexName = (_b = object.indexName) != null ? _b : "";
+    return message;
+  }
+};
+function createBaseDropIndexResponse() {
+  return { status: 0, message: "", profile: void 0 };
+}
+var DropIndexResponse = {
+  encode(message, writer = _m02.Writer.create()) {
+    if (message.status !== 0) {
+      writer.uint32(8).int32(message.status);
+    }
+    if (message.message !== "") {
+      writer.uint32(18).string(message.message);
+    }
+    if (message.profile !== void 0) {
+      ProfileInfo.encode(message.profile, writer.uint32(26).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m02.Reader ? input : _m02.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseDropIndexResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+          message.status = reader.int32();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.message = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+          message.profile = ProfileInfo.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      status: isSet2(object.status) ? globalThis.Number(object.status) : 0,
+      message: isSet2(object.message) ? globalThis.String(object.message) : "",
+      profile: isSet2(object.profile) ? ProfileInfo.fromJSON(object.profile) : void 0
+    };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.status !== 0) {
+      obj.status = Math.round(message.status);
+    }
+    if (message.message !== "") {
+      obj.message = message.message;
+    }
+    if (message.profile !== void 0) {
+      obj.profile = ProfileInfo.toJSON(message.profile);
+    }
+    return obj;
+  },
+  create(base) {
+    return DropIndexResponse.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a, _b;
+    const message = createBaseDropIndexResponse();
+    message.status = (_a = object.status) != null ? _a : 0;
+    message.message = (_b = object.message) != null ? _b : "";
+    message.profile = object.profile !== void 0 && object.profile !== null ? ProfileInfo.fromPartial(object.profile) : void 0;
+    return message;
+  }
+};
+function createBaseRenameIndexRequest() {
+  return { collectionName: "", oldIndexName: "", newIndexName: "" };
+}
+var RenameIndexRequest = {
+  encode(message, writer = _m02.Writer.create()) {
+    if (message.collectionName !== "") {
+      writer.uint32(10).string(message.collectionName);
+    }
+    if (message.oldIndexName !== "") {
+      writer.uint32(18).string(message.oldIndexName);
+    }
+    if (message.newIndexName !== "") {
+      writer.uint32(26).string(message.newIndexName);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m02.Reader ? input : _m02.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseRenameIndexRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.collectionName = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.oldIndexName = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+          message.newIndexName = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      collectionName: isSet2(object.collectionName) ? globalThis.String(object.collectionName) : "",
+      oldIndexName: isSet2(object.oldIndexName) ? globalThis.String(object.oldIndexName) : "",
+      newIndexName: isSet2(object.newIndexName) ? globalThis.String(object.newIndexName) : ""
+    };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.collectionName !== "") {
+      obj.collectionName = message.collectionName;
+    }
+    if (message.oldIndexName !== "") {
+      obj.oldIndexName = message.oldIndexName;
+    }
+    if (message.newIndexName !== "") {
+      obj.newIndexName = message.newIndexName;
+    }
+    return obj;
+  },
+  create(base) {
+    return RenameIndexRequest.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a, _b, _c;
+    const message = createBaseRenameIndexRequest();
+    message.collectionName = (_a = object.collectionName) != null ? _a : "";
+    message.oldIndexName = (_b = object.oldIndexName) != null ? _b : "";
+    message.newIndexName = (_c = object.newIndexName) != null ? _c : "";
+    return message;
+  }
+};
+function createBaseRenameIndexResponse() {
+  return { status: 0, message: "", profile: void 0 };
+}
+var RenameIndexResponse = {
+  encode(message, writer = _m02.Writer.create()) {
+    if (message.status !== 0) {
+      writer.uint32(8).int32(message.status);
+    }
+    if (message.message !== "") {
+      writer.uint32(18).string(message.message);
+    }
+    if (message.profile !== void 0) {
+      ProfileInfo.encode(message.profile, writer.uint32(26).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m02.Reader ? input : _m02.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseRenameIndexResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+          message.status = reader.int32();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.message = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+          message.profile = ProfileInfo.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      status: isSet2(object.status) ? globalThis.Number(object.status) : 0,
+      message: isSet2(object.message) ? globalThis.String(object.message) : "",
+      profile: isSet2(object.profile) ? ProfileInfo.fromJSON(object.profile) : void 0
+    };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.status !== 0) {
+      obj.status = Math.round(message.status);
+    }
+    if (message.message !== "") {
+      obj.message = message.message;
+    }
+    if (message.profile !== void 0) {
+      obj.profile = ProfileInfo.toJSON(message.profile);
+    }
+    return obj;
+  },
+  create(base) {
+    return RenameIndexResponse.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a, _b;
+    const message = createBaseRenameIndexResponse();
+    message.status = (_a = object.status) != null ? _a : 0;
+    message.message = (_b = object.message) != null ? _b : "";
+    message.profile = object.profile !== void 0 && object.profile !== null ? ProfileInfo.fromPartial(object.profile) : void 0;
+    return message;
+  }
+};
+function createBaseGetIndexRequest() {
+  return { collectionName: "", indexName: "" };
+}
+var GetIndexRequest = {
+  encode(message, writer = _m02.Writer.create()) {
+    if (message.collectionName !== "") {
+      writer.uint32(10).string(message.collectionName);
+    }
+    if (message.indexName !== "") {
+      writer.uint32(18).string(message.indexName);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m02.Reader ? input : _m02.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseGetIndexRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.collectionName = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.indexName = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      collectionName: isSet2(object.collectionName) ? globalThis.String(object.collectionName) : "",
+      indexName: isSet2(object.indexName) ? globalThis.String(object.indexName) : ""
+    };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.collectionName !== "") {
+      obj.collectionName = message.collectionName;
+    }
+    if (message.indexName !== "") {
+      obj.indexName = message.indexName;
+    }
+    return obj;
+  },
+  create(base) {
+    return GetIndexRequest.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a, _b;
+    const message = createBaseGetIndexRequest();
+    message.collectionName = (_a = object.collectionName) != null ? _a : "";
+    message.indexName = (_b = object.indexName) != null ? _b : "";
+    return message;
+  }
+};
+function createBaseGetIndexResponse() {
+  return {
+    status: 0,
+    message: "",
+    collectionName: "",
+    indexDesc: void 0,
+    indexStats: void 0,
+    profile: void 0
+  };
+}
+var GetIndexResponse = {
+  encode(message, writer = _m02.Writer.create()) {
+    if (message.status !== 0) {
+      writer.uint32(8).int32(message.status);
+    }
+    if (message.message !== "") {
+      writer.uint32(18).string(message.message);
+    }
+    if (message.collectionName !== "") {
+      writer.uint32(26).string(message.collectionName);
+    }
+    if (message.indexDesc !== void 0) {
+      IndexDescriptor.encode(message.indexDesc, writer.uint32(34).fork()).ldelim();
+    }
+    if (message.indexStats !== void 0) {
+      IndexStats.encode(message.indexStats, writer.uint32(42).fork()).ldelim();
+    }
+    if (message.profile !== void 0) {
+      ProfileInfo.encode(message.profile, writer.uint32(50).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m02.Reader ? input : _m02.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseGetIndexResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+          message.status = reader.int32();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.message = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+          message.collectionName = reader.string();
+          continue;
+        case 4:
+          if (tag !== 34) {
+            break;
+          }
+          message.indexDesc = IndexDescriptor.decode(reader, reader.uint32());
+          continue;
+        case 5:
+          if (tag !== 42) {
+            break;
+          }
+          message.indexStats = IndexStats.decode(reader, reader.uint32());
+          continue;
+        case 6:
+          if (tag !== 50) {
+            break;
+          }
+          message.profile = ProfileInfo.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      status: isSet2(object.status) ? globalThis.Number(object.status) : 0,
+      message: isSet2(object.message) ? globalThis.String(object.message) : "",
+      collectionName: isSet2(object.collectionName) ? globalThis.String(object.collectionName) : "",
+      indexDesc: isSet2(object.indexDesc) ? IndexDescriptor.fromJSON(object.indexDesc) : void 0,
+      indexStats: isSet2(object.indexStats) ? IndexStats.fromJSON(object.indexStats) : void 0,
+      profile: isSet2(object.profile) ? ProfileInfo.fromJSON(object.profile) : void 0
+    };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.status !== 0) {
+      obj.status = Math.round(message.status);
+    }
+    if (message.message !== "") {
+      obj.message = message.message;
+    }
+    if (message.collectionName !== "") {
+      obj.collectionName = message.collectionName;
+    }
+    if (message.indexDesc !== void 0) {
+      obj.indexDesc = IndexDescriptor.toJSON(message.indexDesc);
+    }
+    if (message.indexStats !== void 0) {
+      obj.indexStats = IndexStats.toJSON(message.indexStats);
+    }
+    if (message.profile !== void 0) {
+      obj.profile = ProfileInfo.toJSON(message.profile);
+    }
+    return obj;
+  },
+  create(base) {
+    return GetIndexResponse.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a, _b, _c;
+    const message = createBaseGetIndexResponse();
+    message.status = (_a = object.status) != null ? _a : 0;
+    message.message = (_b = object.message) != null ? _b : "";
+    message.collectionName = (_c = object.collectionName) != null ? _c : "";
+    message.indexDesc = object.indexDesc !== void 0 && object.indexDesc !== null ? IndexDescriptor.fromPartial(object.indexDesc) : void 0;
+    message.indexStats = object.indexStats !== void 0 && object.indexStats !== null ? IndexStats.fromPartial(object.indexStats) : void 0;
+    message.profile = object.profile !== void 0 && object.profile !== null ? ProfileInfo.fromPartial(object.profile) : void 0;
+    return message;
+  }
+};
+function createBaseQuery() {
+  return { collectionName: "", query: void 0 };
+}
+var Query = {
+  encode(message, writer = _m02.Writer.create()) {
+    if (message.collectionName !== "") {
+      writer.uint32(10).string(message.collectionName);
+    }
+    if (message.query !== void 0) {
+      Document.encode(message.query, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m02.Reader ? input : _m02.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseQuery();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.collectionName = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.query = Document.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      collectionName: isSet2(object.collectionName) ? globalThis.String(object.collectionName) : "",
+      query: isSet2(object.query) ? Document.fromJSON(object.query) : void 0
+    };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.collectionName !== "") {
+      obj.collectionName = message.collectionName;
+    }
+    if (message.query !== void 0) {
+      obj.query = Document.toJSON(message.query);
+    }
+    return obj;
+  },
+  create(base) {
+    return Query.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a;
+    const message = createBaseQuery();
+    message.collectionName = (_a = object.collectionName) != null ? _a : "";
+    message.query = object.query !== void 0 && object.query !== null ? Document.fromPartial(object.query) : void 0;
+    return message;
+  }
+};
+function createBaseFindRequest() {
+  return { query: void 0, limit: 0, indexColumns: [], columns: [], dtypes: {} };
+}
+var FindRequest = {
+  encode(message, writer = _m02.Writer.create()) {
+    if (message.query !== void 0) {
+      Query.encode(message.query, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.limit !== 0) {
+      writer.uint32(16).int32(message.limit);
+    }
+    for (const v of message.indexColumns) {
+      writer.uint32(26).string(v);
+    }
+    for (const v of message.columns) {
+      writer.uint32(34).string(v);
+    }
+    Object.entries(message.dtypes).forEach(([key, value]) => {
+      FindRequest_DtypesEntry.encode({ key, value }, writer.uint32(42).fork()).ldelim();
+    });
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m02.Reader ? input : _m02.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseFindRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.query = Query.decode(reader, reader.uint32());
+          continue;
+        case 2:
+          if (tag !== 16) {
+            break;
+          }
+          message.limit = reader.int32();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+          message.indexColumns.push(reader.string());
+          continue;
+        case 4:
+          if (tag !== 34) {
+            break;
+          }
+          message.columns.push(reader.string());
+          continue;
+        case 5:
+          if (tag !== 42) {
+            break;
+          }
+          const entry5 = FindRequest_DtypesEntry.decode(reader, reader.uint32());
+          if (entry5.value !== void 0) {
+            message.dtypes[entry5.key] = entry5.value;
+          }
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      query: isSet2(object.query) ? Query.fromJSON(object.query) : void 0,
+      limit: isSet2(object.limit) ? globalThis.Number(object.limit) : 0,
+      indexColumns: globalThis.Array.isArray(object == null ? void 0 : object.indexColumns) ? object.indexColumns.map((e) => globalThis.String(e)) : [],
+      columns: globalThis.Array.isArray(object == null ? void 0 : object.columns) ? object.columns.map((e) => globalThis.String(e)) : [],
+      dtypes: isObject2(object.dtypes) ? Object.entries(object.dtypes).reduce((acc, [key, value]) => {
+        acc[key] = String(value);
+        return acc;
+      }, {}) : {}
+    };
+  },
+  toJSON(message) {
+    var _a, _b;
+    const obj = {};
+    if (message.query !== void 0) {
+      obj.query = Query.toJSON(message.query);
+    }
+    if (message.limit !== 0) {
+      obj.limit = Math.round(message.limit);
+    }
+    if ((_a = message.indexColumns) == null ? void 0 : _a.length) {
+      obj.indexColumns = message.indexColumns;
+    }
+    if ((_b = message.columns) == null ? void 0 : _b.length) {
+      obj.columns = message.columns;
+    }
+    if (message.dtypes) {
+      const entries = Object.entries(message.dtypes);
+      if (entries.length > 0) {
+        obj.dtypes = {};
+        entries.forEach(([k, v]) => {
+          obj.dtypes[k] = v;
+        });
+      }
+    }
+    return obj;
+  },
+  create(base) {
+    return FindRequest.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a, _b, _c, _d;
+    const message = createBaseFindRequest();
+    message.query = object.query !== void 0 && object.query !== null ? Query.fromPartial(object.query) : void 0;
+    message.limit = (_a = object.limit) != null ? _a : 0;
+    message.indexColumns = ((_b = object.indexColumns) == null ? void 0 : _b.map((e) => e)) || [];
+    message.columns = ((_c = object.columns) == null ? void 0 : _c.map((e) => e)) || [];
+    message.dtypes = Object.entries((_d = object.dtypes) != null ? _d : {}).reduce((acc, [key, value]) => {
+      if (value !== void 0) {
+        acc[key] = globalThis.String(value);
+      }
+      return acc;
+    }, {});
+    return message;
+  }
+};
+function createBaseFindRequest_DtypesEntry() {
+  return { key: "", value: "" };
+}
+var FindRequest_DtypesEntry = {
+  encode(message, writer = _m02.Writer.create()) {
+    if (message.key !== "") {
+      writer.uint32(10).string(message.key);
+    }
+    if (message.value !== "") {
+      writer.uint32(18).string(message.value);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m02.Reader ? input : _m02.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseFindRequest_DtypesEntry();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.key = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.value = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      key: isSet2(object.key) ? globalThis.String(object.key) : "",
+      value: isSet2(object.value) ? globalThis.String(object.value) : ""
+    };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.key !== "") {
+      obj.key = message.key;
+    }
+    if (message.value !== "") {
+      obj.value = message.value;
+    }
+    return obj;
+  },
+  create(base) {
+    return FindRequest_DtypesEntry.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a, _b;
+    const message = createBaseFindRequest_DtypesEntry();
+    message.key = (_a = object.key) != null ? _a : "";
+    message.value = (_b = object.value) != null ? _b : "";
+    return message;
+  }
+};
+function createBaseFindResponse() {
+  return { numColumns: 0, numRows: 0, buffer: Buffer.alloc(0), profile: void 0 };
+}
+var FindResponse = {
+  encode(message, writer = _m02.Writer.create()) {
+    if (message.numColumns !== 0) {
+      writer.uint32(8).int32(message.numColumns);
+    }
+    if (message.numRows !== 0) {
+      writer.uint32(16).int32(message.numRows);
+    }
+    if (message.buffer.length !== 0) {
+      writer.uint32(26).bytes(message.buffer);
+    }
+    if (message.profile !== void 0) {
+      ProfileInfo.encode(message.profile, writer.uint32(34).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m02.Reader ? input : _m02.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseFindResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+          message.numColumns = reader.int32();
+          continue;
+        case 2:
+          if (tag !== 16) {
+            break;
+          }
+          message.numRows = reader.int32();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+          message.buffer = reader.bytes();
+          continue;
+        case 4:
+          if (tag !== 34) {
+            break;
+          }
+          message.profile = ProfileInfo.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      numColumns: isSet2(object.numColumns) ? globalThis.Number(object.numColumns) : 0,
+      numRows: isSet2(object.numRows) ? globalThis.Number(object.numRows) : 0,
+      buffer: isSet2(object.buffer) ? Buffer.from(bytesFromBase64(object.buffer)) : Buffer.alloc(0),
+      profile: isSet2(object.profile) ? ProfileInfo.fromJSON(object.profile) : void 0
+    };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.numColumns !== 0) {
+      obj.numColumns = Math.round(message.numColumns);
+    }
+    if (message.numRows !== 0) {
+      obj.numRows = Math.round(message.numRows);
+    }
+    if (message.buffer.length !== 0) {
+      obj.buffer = base64FromBytes(message.buffer);
+    }
+    if (message.profile !== void 0) {
+      obj.profile = ProfileInfo.toJSON(message.profile);
+    }
+    return obj;
+  },
+  create(base) {
+    return FindResponse.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a, _b, _c;
+    const message = createBaseFindResponse();
+    message.numColumns = (_a = object.numColumns) != null ? _a : 0;
+    message.numRows = (_b = object.numRows) != null ? _b : 0;
+    message.buffer = (_c = object.buffer) != null ? _c : Buffer.alloc(0);
+    message.profile = object.profile !== void 0 && object.profile !== null ? ProfileInfo.fromPartial(object.profile) : void 0;
+    return message;
+  }
+};
+function createBaseFindBatchRequest() {
+  return { requests: [] };
+}
+var FindBatchRequest = {
+  encode(message, writer = _m02.Writer.create()) {
+    for (const v of message.requests) {
+      FindRequest.encode(v, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m02.Reader ? input : _m02.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseFindBatchRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.requests.push(FindRequest.decode(reader, reader.uint32()));
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      requests: globalThis.Array.isArray(object == null ? void 0 : object.requests) ? object.requests.map((e) => FindRequest.fromJSON(e)) : []
+    };
+  },
+  toJSON(message) {
+    var _a;
+    const obj = {};
+    if ((_a = message.requests) == null ? void 0 : _a.length) {
+      obj.requests = message.requests.map((e) => FindRequest.toJSON(e));
+    }
+    return obj;
+  },
+  create(base) {
+    return FindBatchRequest.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a;
+    const message = createBaseFindBatchRequest();
+    message.requests = ((_a = object.requests) == null ? void 0 : _a.map((e) => FindRequest.fromPartial(e))) || [];
+    return message;
+  }
+};
+function createBaseFindBatchResponse() {
+  return { responses: [] };
+}
+var FindBatchResponse = {
+  encode(message, writer = _m02.Writer.create()) {
+    for (const v of message.responses) {
+      FindResponse.encode(v, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m02.Reader ? input : _m02.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseFindBatchResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.responses.push(FindResponse.decode(reader, reader.uint32()));
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      responses: globalThis.Array.isArray(object == null ? void 0 : object.responses) ? object.responses.map((e) => FindResponse.fromJSON(e)) : []
+    };
+  },
+  toJSON(message) {
+    var _a;
+    const obj = {};
+    if ((_a = message.responses) == null ? void 0 : _a.length) {
+      obj.responses = message.responses.map((e) => FindResponse.toJSON(e));
+    }
+    return obj;
+  },
+  create(base) {
+    return FindBatchResponse.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a;
+    const message = createBaseFindBatchResponse();
+    message.responses = ((_a = object.responses) == null ? void 0 : _a.map((e) => FindResponse.fromPartial(e))) || [];
+    return message;
+  }
+};
+function createBaseCountRequest() {
+  return { query: void 0 };
+}
+var CountRequest = {
+  encode(message, writer = _m02.Writer.create()) {
+    if (message.query !== void 0) {
+      Query.encode(message.query, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m02.Reader ? input : _m02.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseCountRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.query = Query.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return { query: isSet2(object.query) ? Query.fromJSON(object.query) : void 0 };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.query !== void 0) {
+      obj.query = Query.toJSON(message.query);
+    }
+    return obj;
+  },
+  create(base) {
+    return CountRequest.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    const message = createBaseCountRequest();
+    message.query = object.query !== void 0 && object.query !== null ? Query.fromPartial(object.query) : void 0;
+    return message;
+  }
+};
+function createBaseCountResponse() {
+  return { status: 0, message: "", count: 0, profile: void 0 };
+}
+var CountResponse = {
+  encode(message, writer = _m02.Writer.create()) {
+    if (message.status !== 0) {
+      writer.uint32(8).int32(message.status);
+    }
+    if (message.message !== "") {
+      writer.uint32(18).string(message.message);
+    }
+    if (message.count !== 0) {
+      writer.uint32(24).int64(message.count);
+    }
+    if (message.profile !== void 0) {
+      ProfileInfo.encode(message.profile, writer.uint32(34).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m02.Reader ? input : _m02.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseCountResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+          message.status = reader.int32();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.message = reader.string();
+          continue;
+        case 3:
+          if (tag !== 24) {
+            break;
+          }
+          message.count = longToNumber2(reader.int64());
+          continue;
+        case 4:
+          if (tag !== 34) {
+            break;
+          }
+          message.profile = ProfileInfo.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      status: isSet2(object.status) ? globalThis.Number(object.status) : 0,
+      message: isSet2(object.message) ? globalThis.String(object.message) : "",
+      count: isSet2(object.count) ? globalThis.Number(object.count) : 0,
+      profile: isSet2(object.profile) ? ProfileInfo.fromJSON(object.profile) : void 0
+    };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.status !== 0) {
+      obj.status = Math.round(message.status);
+    }
+    if (message.message !== "") {
+      obj.message = message.message;
+    }
+    if (message.count !== 0) {
+      obj.count = Math.round(message.count);
+    }
+    if (message.profile !== void 0) {
+      obj.profile = ProfileInfo.toJSON(message.profile);
+    }
+    return obj;
+  },
+  create(base) {
+    return CountResponse.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a, _b, _c;
+    const message = createBaseCountResponse();
+    message.status = (_a = object.status) != null ? _a : 0;
+    message.message = (_b = object.message) != null ? _b : "";
+    message.count = (_c = object.count) != null ? _c : 0;
+    message.profile = object.profile !== void 0 && object.profile !== null ? ProfileInfo.fromPartial(object.profile) : void 0;
+    return message;
+  }
+};
+function createBaseContainsRequest() {
+  return { query: void 0 };
+}
+var ContainsRequest = {
+  encode(message, writer = _m02.Writer.create()) {
+    if (message.query !== void 0) {
+      Query.encode(message.query, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m02.Reader ? input : _m02.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseContainsRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.query = Query.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return { query: isSet2(object.query) ? Query.fromJSON(object.query) : void 0 };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.query !== void 0) {
+      obj.query = Query.toJSON(message.query);
+    }
+    return obj;
+  },
+  create(base) {
+    return ContainsRequest.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    const message = createBaseContainsRequest();
+    message.query = object.query !== void 0 && object.query !== null ? Query.fromPartial(object.query) : void 0;
+    return message;
+  }
+};
+function createBaseContainsResponse() {
+  return { status: 0, message: "", found: false, profile: void 0 };
+}
+var ContainsResponse = {
+  encode(message, writer = _m02.Writer.create()) {
+    if (message.status !== 0) {
+      writer.uint32(8).int32(message.status);
+    }
+    if (message.message !== "") {
+      writer.uint32(18).string(message.message);
+    }
+    if (message.found === true) {
+      writer.uint32(24).bool(message.found);
+    }
+    if (message.profile !== void 0) {
+      ProfileInfo.encode(message.profile, writer.uint32(34).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m02.Reader ? input : _m02.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseContainsResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+          message.status = reader.int32();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.message = reader.string();
+          continue;
+        case 3:
+          if (tag !== 24) {
+            break;
+          }
+          message.found = reader.bool();
+          continue;
+        case 4:
+          if (tag !== 34) {
+            break;
+          }
+          message.profile = ProfileInfo.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      status: isSet2(object.status) ? globalThis.Number(object.status) : 0,
+      message: isSet2(object.message) ? globalThis.String(object.message) : "",
+      found: isSet2(object.found) ? globalThis.Boolean(object.found) : false,
+      profile: isSet2(object.profile) ? ProfileInfo.fromJSON(object.profile) : void 0
+    };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.status !== 0) {
+      obj.status = Math.round(message.status);
+    }
+    if (message.message !== "") {
+      obj.message = message.message;
+    }
+    if (message.found === true) {
+      obj.found = message.found;
+    }
+    if (message.profile !== void 0) {
+      obj.profile = ProfileInfo.toJSON(message.profile);
+    }
+    return obj;
+  },
+  create(base) {
+    return ContainsResponse.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a, _b, _c;
+    const message = createBaseContainsResponse();
+    message.status = (_a = object.status) != null ? _a : 0;
+    message.message = (_b = object.message) != null ? _b : "";
+    message.found = (_c = object.found) != null ? _c : false;
+    message.profile = object.profile !== void 0 && object.profile !== null ? ProfileInfo.fromPartial(object.profile) : void 0;
+    return message;
+  }
+};
+function createBaseInsertRequest() {
+  return { requests: [] };
+}
+var InsertRequest = {
+  encode(message, writer = _m02.Writer.create()) {
+    for (const v of message.requests) {
+      Query.encode(v, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m02.Reader ? input : _m02.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseInsertRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.requests.push(Query.decode(reader, reader.uint32()));
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      requests: globalThis.Array.isArray(object == null ? void 0 : object.requests) ? object.requests.map((e) => Query.fromJSON(e)) : []
+    };
+  },
+  toJSON(message) {
+    var _a;
+    const obj = {};
+    if ((_a = message.requests) == null ? void 0 : _a.length) {
+      obj.requests = message.requests.map((e) => Query.toJSON(e));
+    }
+    return obj;
+  },
+  create(base) {
+    return InsertRequest.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a;
+    const message = createBaseInsertRequest();
+    message.requests = ((_a = object.requests) == null ? void 0 : _a.map((e) => Query.fromPartial(e))) || [];
+    return message;
+  }
+};
+function createBaseInsertResponse() {
+  return { status: 0, message: "", profile: void 0 };
+}
+var InsertResponse = {
+  encode(message, writer = _m02.Writer.create()) {
+    if (message.status !== 0) {
+      writer.uint32(8).int32(message.status);
+    }
+    if (message.message !== "") {
+      writer.uint32(18).string(message.message);
+    }
+    if (message.profile !== void 0) {
+      ProfileInfo.encode(message.profile, writer.uint32(26).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m02.Reader ? input : _m02.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseInsertResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+          message.status = reader.int32();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.message = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+          message.profile = ProfileInfo.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      status: isSet2(object.status) ? globalThis.Number(object.status) : 0,
+      message: isSet2(object.message) ? globalThis.String(object.message) : "",
+      profile: isSet2(object.profile) ? ProfileInfo.fromJSON(object.profile) : void 0
+    };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.status !== 0) {
+      obj.status = Math.round(message.status);
+    }
+    if (message.message !== "") {
+      obj.message = message.message;
+    }
+    if (message.profile !== void 0) {
+      obj.profile = ProfileInfo.toJSON(message.profile);
+    }
+    return obj;
+  },
+  create(base) {
+    return InsertResponse.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a, _b;
+    const message = createBaseInsertResponse();
+    message.status = (_a = object.status) != null ? _a : 0;
+    message.message = (_b = object.message) != null ? _b : "";
+    message.profile = object.profile !== void 0 && object.profile !== null ? ProfileInfo.fromPartial(object.profile) : void 0;
+    return message;
+  }
+};
+function createBaseUpdateRequest() {
+  return { collectionName: "", filter: void 0, updates: void 0 };
+}
+var UpdateRequest = {
+  encode(message, writer = _m02.Writer.create()) {
+    if (message.collectionName !== "") {
+      writer.uint32(10).string(message.collectionName);
+    }
+    if (message.filter !== void 0) {
+      Document.encode(message.filter, writer.uint32(18).fork()).ldelim();
+    }
+    if (message.updates !== void 0) {
+      Document.encode(message.updates, writer.uint32(26).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m02.Reader ? input : _m02.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseUpdateRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.collectionName = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.filter = Document.decode(reader, reader.uint32());
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+          message.updates = Document.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      collectionName: isSet2(object.collectionName) ? globalThis.String(object.collectionName) : "",
+      filter: isSet2(object.filter) ? Document.fromJSON(object.filter) : void 0,
+      updates: isSet2(object.updates) ? Document.fromJSON(object.updates) : void 0
+    };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.collectionName !== "") {
+      obj.collectionName = message.collectionName;
+    }
+    if (message.filter !== void 0) {
+      obj.filter = Document.toJSON(message.filter);
+    }
+    if (message.updates !== void 0) {
+      obj.updates = Document.toJSON(message.updates);
+    }
+    return obj;
+  },
+  create(base) {
+    return UpdateRequest.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a;
+    const message = createBaseUpdateRequest();
+    message.collectionName = (_a = object.collectionName) != null ? _a : "";
+    message.filter = object.filter !== void 0 && object.filter !== null ? Document.fromPartial(object.filter) : void 0;
+    message.updates = object.updates !== void 0 && object.updates !== null ? Document.fromPartial(object.updates) : void 0;
+    return message;
+  }
+};
+function createBaseUpdateResponse() {
+  return { status: 0, message: "", profile: void 0 };
+}
+var UpdateResponse = {
+  encode(message, writer = _m02.Writer.create()) {
+    if (message.status !== 0) {
+      writer.uint32(8).int32(message.status);
+    }
+    if (message.message !== "") {
+      writer.uint32(18).string(message.message);
+    }
+    if (message.profile !== void 0) {
+      ProfileInfo.encode(message.profile, writer.uint32(26).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m02.Reader ? input : _m02.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseUpdateResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+          message.status = reader.int32();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.message = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+          message.profile = ProfileInfo.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      status: isSet2(object.status) ? globalThis.Number(object.status) : 0,
+      message: isSet2(object.message) ? globalThis.String(object.message) : "",
+      profile: isSet2(object.profile) ? ProfileInfo.fromJSON(object.profile) : void 0
+    };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.status !== 0) {
+      obj.status = Math.round(message.status);
+    }
+    if (message.message !== "") {
+      obj.message = message.message;
+    }
+    if (message.profile !== void 0) {
+      obj.profile = ProfileInfo.toJSON(message.profile);
+    }
+    return obj;
+  },
+  create(base) {
+    return UpdateResponse.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a, _b;
+    const message = createBaseUpdateResponse();
+    message.status = (_a = object.status) != null ? _a : 0;
+    message.message = (_b = object.message) != null ? _b : "";
+    message.profile = object.profile !== void 0 && object.profile !== null ? ProfileInfo.fromPartial(object.profile) : void 0;
+    return message;
+  }
+};
+function createBaseRemoveRequest() {
+  return { requests: [] };
+}
+var RemoveRequest = {
+  encode(message, writer = _m02.Writer.create()) {
+    for (const v of message.requests) {
+      Query.encode(v, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m02.Reader ? input : _m02.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseRemoveRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.requests.push(Query.decode(reader, reader.uint32()));
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      requests: globalThis.Array.isArray(object == null ? void 0 : object.requests) ? object.requests.map((e) => Query.fromJSON(e)) : []
+    };
+  },
+  toJSON(message) {
+    var _a;
+    const obj = {};
+    if ((_a = message.requests) == null ? void 0 : _a.length) {
+      obj.requests = message.requests.map((e) => Query.toJSON(e));
+    }
+    return obj;
+  },
+  create(base) {
+    return RemoveRequest.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a;
+    const message = createBaseRemoveRequest();
+    message.requests = ((_a = object.requests) == null ? void 0 : _a.map((e) => Query.fromPartial(e))) || [];
+    return message;
+  }
+};
+function createBaseRemoveResponse() {
+  return { status: 0, message: "", profile: void 0 };
+}
+var RemoveResponse = {
+  encode(message, writer = _m02.Writer.create()) {
+    if (message.status !== 0) {
+      writer.uint32(8).int32(message.status);
+    }
+    if (message.message !== "") {
+      writer.uint32(18).string(message.message);
+    }
+    if (message.profile !== void 0) {
+      ProfileInfo.encode(message.profile, writer.uint32(26).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m02.Reader ? input : _m02.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseRemoveResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+          message.status = reader.int32();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.message = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+          message.profile = ProfileInfo.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      status: isSet2(object.status) ? globalThis.Number(object.status) : 0,
+      message: isSet2(object.message) ? globalThis.String(object.message) : "",
+      profile: isSet2(object.profile) ? ProfileInfo.fromJSON(object.profile) : void 0
+    };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.status !== 0) {
+      obj.status = Math.round(message.status);
+    }
+    if (message.message !== "") {
+      obj.message = message.message;
+    }
+    if (message.profile !== void 0) {
+      obj.profile = ProfileInfo.toJSON(message.profile);
+    }
+    return obj;
+  },
+  create(base) {
+    return RemoveResponse.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a, _b;
+    const message = createBaseRemoveResponse();
+    message.status = (_a = object.status) != null ? _a : 0;
+    message.message = (_b = object.message) != null ? _b : "";
+    message.profile = object.profile !== void 0 && object.profile !== null ? ProfileInfo.fromPartial(object.profile) : void 0;
+    return message;
+  }
+};
+function createBaseExplainRequest() {
+  return { queries: [] };
+}
+var ExplainRequest = {
+  encode(message, writer = _m02.Writer.create()) {
+    for (const v of message.queries) {
+      Query.encode(v, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m02.Reader ? input : _m02.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseExplainRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.queries.push(Query.decode(reader, reader.uint32()));
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      queries: globalThis.Array.isArray(object == null ? void 0 : object.queries) ? object.queries.map((e) => Query.fromJSON(e)) : []
+    };
+  },
+  toJSON(message) {
+    var _a;
+    const obj = {};
+    if ((_a = message.queries) == null ? void 0 : _a.length) {
+      obj.queries = message.queries.map((e) => Query.toJSON(e));
+    }
+    return obj;
+  },
+  create(base) {
+    return ExplainRequest.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a;
+    const message = createBaseExplainRequest();
+    message.queries = ((_a = object.queries) == null ? void 0 : _a.map((e) => Query.fromPartial(e))) || [];
+    return message;
+  }
+};
+function createBaseQueryPlan() {
+  return { status: 0, message: "", collectionName: "", indexName: "", queryPlan: "" };
+}
+var QueryPlan = {
+  encode(message, writer = _m02.Writer.create()) {
+    if (message.status !== 0) {
+      writer.uint32(8).int32(message.status);
+    }
+    if (message.message !== "") {
+      writer.uint32(18).string(message.message);
+    }
+    if (message.collectionName !== "") {
+      writer.uint32(26).string(message.collectionName);
+    }
+    if (message.indexName !== "") {
+      writer.uint32(34).string(message.indexName);
+    }
+    if (message.queryPlan !== "") {
+      writer.uint32(42).string(message.queryPlan);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m02.Reader ? input : _m02.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseQueryPlan();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+          message.status = reader.int32();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.message = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+          message.collectionName = reader.string();
+          continue;
+        case 4:
+          if (tag !== 34) {
+            break;
+          }
+          message.indexName = reader.string();
+          continue;
+        case 5:
+          if (tag !== 42) {
+            break;
+          }
+          message.queryPlan = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      status: isSet2(object.status) ? globalThis.Number(object.status) : 0,
+      message: isSet2(object.message) ? globalThis.String(object.message) : "",
+      collectionName: isSet2(object.collectionName) ? globalThis.String(object.collectionName) : "",
+      indexName: isSet2(object.indexName) ? globalThis.String(object.indexName) : "",
+      queryPlan: isSet2(object.queryPlan) ? globalThis.String(object.queryPlan) : ""
+    };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.status !== 0) {
+      obj.status = Math.round(message.status);
+    }
+    if (message.message !== "") {
+      obj.message = message.message;
+    }
+    if (message.collectionName !== "") {
+      obj.collectionName = message.collectionName;
+    }
+    if (message.indexName !== "") {
+      obj.indexName = message.indexName;
+    }
+    if (message.queryPlan !== "") {
+      obj.queryPlan = message.queryPlan;
+    }
+    return obj;
+  },
+  create(base) {
+    return QueryPlan.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a, _b, _c, _d, _e;
+    const message = createBaseQueryPlan();
+    message.status = (_a = object.status) != null ? _a : 0;
+    message.message = (_b = object.message) != null ? _b : "";
+    message.collectionName = (_c = object.collectionName) != null ? _c : "";
+    message.indexName = (_d = object.indexName) != null ? _d : "";
+    message.queryPlan = (_e = object.queryPlan) != null ? _e : "";
+    return message;
+  }
+};
+function createBaseExplainResponse() {
+  return { status: 0, queryPlans: [] };
+}
+var ExplainResponse = {
+  encode(message, writer = _m02.Writer.create()) {
+    if (message.status !== 0) {
+      writer.uint32(8).int32(message.status);
+    }
+    for (const v of message.queryPlans) {
+      QueryPlan.encode(v, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m02.Reader ? input : _m02.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseExplainResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+          message.status = reader.int32();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.queryPlans.push(QueryPlan.decode(reader, reader.uint32()));
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      status: isSet2(object.status) ? globalThis.Number(object.status) : 0,
+      queryPlans: globalThis.Array.isArray(object == null ? void 0 : object.queryPlans) ? object.queryPlans.map((e) => QueryPlan.fromJSON(e)) : []
+    };
+  },
+  toJSON(message) {
+    var _a;
+    const obj = {};
+    if (message.status !== 0) {
+      obj.status = Math.round(message.status);
+    }
+    if ((_a = message.queryPlans) == null ? void 0 : _a.length) {
+      obj.queryPlans = message.queryPlans.map((e) => QueryPlan.toJSON(e));
+    }
+    return obj;
+  },
+  create(base) {
+    return ExplainResponse.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a, _b;
+    const message = createBaseExplainResponse();
+    message.status = (_a = object.status) != null ? _a : 0;
+    message.queryPlans = ((_b = object.queryPlans) == null ? void 0 : _b.map((e) => QueryPlan.fromPartial(e))) || [];
+    return message;
+  }
+};
+function createBaseTruncateCollectionRequest() {
+  return { collectionName: "" };
+}
+var TruncateCollectionRequest = {
+  encode(message, writer = _m02.Writer.create()) {
+    if (message.collectionName !== "") {
+      writer.uint32(10).string(message.collectionName);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m02.Reader ? input : _m02.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseTruncateCollectionRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.collectionName = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return { collectionName: isSet2(object.collectionName) ? globalThis.String(object.collectionName) : "" };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.collectionName !== "") {
+      obj.collectionName = message.collectionName;
+    }
+    return obj;
+  },
+  create(base) {
+    return TruncateCollectionRequest.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a;
+    const message = createBaseTruncateCollectionRequest();
+    message.collectionName = (_a = object.collectionName) != null ? _a : "";
+    return message;
+  }
+};
+function createBaseTruncateCollectionResponse() {
+  return { status: 0, message: "", profile: void 0 };
+}
+var TruncateCollectionResponse = {
+  encode(message, writer = _m02.Writer.create()) {
+    if (message.status !== 0) {
+      writer.uint32(8).int32(message.status);
+    }
+    if (message.message !== "") {
+      writer.uint32(18).string(message.message);
+    }
+    if (message.profile !== void 0) {
+      ProfileInfo.encode(message.profile, writer.uint32(26).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m02.Reader ? input : _m02.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseTruncateCollectionResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+          message.status = reader.int32();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.message = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+          message.profile = ProfileInfo.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      status: isSet2(object.status) ? globalThis.Number(object.status) : 0,
+      message: isSet2(object.message) ? globalThis.String(object.message) : "",
+      profile: isSet2(object.profile) ? ProfileInfo.fromJSON(object.profile) : void 0
+    };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.status !== 0) {
+      obj.status = Math.round(message.status);
+    }
+    if (message.message !== "") {
+      obj.message = message.message;
+    }
+    if (message.profile !== void 0) {
+      obj.profile = ProfileInfo.toJSON(message.profile);
+    }
+    return obj;
+  },
+  create(base) {
+    return TruncateCollectionResponse.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a, _b;
+    const message = createBaseTruncateCollectionResponse();
+    message.status = (_a = object.status) != null ? _a : 0;
+    message.message = (_b = object.message) != null ? _b : "";
+    message.profile = object.profile !== void 0 && object.profile !== null ? ProfileInfo.fromPartial(object.profile) : void 0;
+    return message;
+  }
+};
+function createBaseListCollectionsRequest() {
+  return {};
+}
+var ListCollectionsRequest = {
+  encode(_, writer = _m02.Writer.create()) {
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m02.Reader ? input : _m02.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseListCollectionsRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(_) {
+    return {};
+  },
+  toJSON(_) {
+    const obj = {};
+    return obj;
+  },
+  create(base) {
+    return ListCollectionsRequest.fromPartial(base != null ? base : {});
+  },
+  fromPartial(_) {
+    const message = createBaseListCollectionsRequest();
+    return message;
+  }
+};
+function createBaseListCollectionsResponse() {
+  return { status: 0, message: "", collectionNames: [], profile: void 0 };
+}
+var ListCollectionsResponse = {
+  encode(message, writer = _m02.Writer.create()) {
+    if (message.status !== 0) {
+      writer.uint32(8).int32(message.status);
+    }
+    if (message.message !== "") {
+      writer.uint32(18).string(message.message);
+    }
+    for (const v of message.collectionNames) {
+      writer.uint32(26).string(v);
+    }
+    if (message.profile !== void 0) {
+      ProfileInfo.encode(message.profile, writer.uint32(34).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m02.Reader ? input : _m02.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseListCollectionsResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+          message.status = reader.int32();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.message = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+          message.collectionNames.push(reader.string());
+          continue;
+        case 4:
+          if (tag !== 34) {
+            break;
+          }
+          message.profile = ProfileInfo.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      status: isSet2(object.status) ? globalThis.Number(object.status) : 0,
+      message: isSet2(object.message) ? globalThis.String(object.message) : "",
+      collectionNames: globalThis.Array.isArray(object == null ? void 0 : object.collectionNames) ? object.collectionNames.map((e) => globalThis.String(e)) : [],
+      profile: isSet2(object.profile) ? ProfileInfo.fromJSON(object.profile) : void 0
+    };
+  },
+  toJSON(message) {
+    var _a;
+    const obj = {};
+    if (message.status !== 0) {
+      obj.status = Math.round(message.status);
+    }
+    if (message.message !== "") {
+      obj.message = message.message;
+    }
+    if ((_a = message.collectionNames) == null ? void 0 : _a.length) {
+      obj.collectionNames = message.collectionNames;
+    }
+    if (message.profile !== void 0) {
+      obj.profile = ProfileInfo.toJSON(message.profile);
+    }
+    return obj;
+  },
+  create(base) {
+    return ListCollectionsResponse.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a, _b, _c;
+    const message = createBaseListCollectionsResponse();
+    message.status = (_a = object.status) != null ? _a : 0;
+    message.message = (_b = object.message) != null ? _b : "";
+    message.collectionNames = ((_c = object.collectionNames) == null ? void 0 : _c.map((e) => e)) || [];
+    message.profile = object.profile !== void 0 && object.profile !== null ? ProfileInfo.fromPartial(object.profile) : void 0;
+    return message;
+  }
+};
+var DocumentDBServiceService = {
+  find: {
+    path: "/cognica.rpc.db.document.DocumentDBService/find",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value) => Buffer.from(FindRequest.encode(value).finish()),
+    requestDeserialize: (value) => FindRequest.decode(value),
+    responseSerialize: (value) => Buffer.from(FindResponse.encode(value).finish()),
+    responseDeserialize: (value) => FindResponse.decode(value)
+  },
+  findBatch: {
+    path: "/cognica.rpc.db.document.DocumentDBService/find_batch",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value) => Buffer.from(FindBatchRequest.encode(value).finish()),
+    requestDeserialize: (value) => FindBatchRequest.decode(value),
+    responseSerialize: (value) => Buffer.from(FindBatchResponse.encode(value).finish()),
+    responseDeserialize: (value) => FindBatchResponse.decode(value)
+  },
+  count: {
+    path: "/cognica.rpc.db.document.DocumentDBService/count",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value) => Buffer.from(CountRequest.encode(value).finish()),
+    requestDeserialize: (value) => CountRequest.decode(value),
+    responseSerialize: (value) => Buffer.from(CountResponse.encode(value).finish()),
+    responseDeserialize: (value) => CountResponse.decode(value)
+  },
+  contains: {
+    path: "/cognica.rpc.db.document.DocumentDBService/contains",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value) => Buffer.from(ContainsRequest.encode(value).finish()),
+    requestDeserialize: (value) => ContainsRequest.decode(value),
+    responseSerialize: (value) => Buffer.from(ContainsResponse.encode(value).finish()),
+    responseDeserialize: (value) => ContainsResponse.decode(value)
+  },
+  insert: {
+    path: "/cognica.rpc.db.document.DocumentDBService/insert",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value) => Buffer.from(InsertRequest.encode(value).finish()),
+    requestDeserialize: (value) => InsertRequest.decode(value),
+    responseSerialize: (value) => Buffer.from(InsertResponse.encode(value).finish()),
+    responseDeserialize: (value) => InsertResponse.decode(value)
+  },
+  update: {
+    path: "/cognica.rpc.db.document.DocumentDBService/update",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value) => Buffer.from(UpdateRequest.encode(value).finish()),
+    requestDeserialize: (value) => UpdateRequest.decode(value),
+    responseSerialize: (value) => Buffer.from(UpdateResponse.encode(value).finish()),
+    responseDeserialize: (value) => UpdateResponse.decode(value)
+  },
+  remove: {
+    path: "/cognica.rpc.db.document.DocumentDBService/remove",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value) => Buffer.from(RemoveRequest.encode(value).finish()),
+    requestDeserialize: (value) => RemoveRequest.decode(value),
+    responseSerialize: (value) => Buffer.from(RemoveResponse.encode(value).finish()),
+    responseDeserialize: (value) => RemoveResponse.decode(value)
+  },
+  explain: {
+    path: "/cognica.rpc.db.document.DocumentDBService/explain",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value) => Buffer.from(ExplainRequest.encode(value).finish()),
+    requestDeserialize: (value) => ExplainRequest.decode(value),
+    responseSerialize: (value) => Buffer.from(ExplainResponse.encode(value).finish()),
+    responseDeserialize: (value) => ExplainResponse.decode(value)
+  },
+  createCollection: {
+    path: "/cognica.rpc.db.document.DocumentDBService/create_collection",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value) => Buffer.from(CreateCollectionRequest.encode(value).finish()),
+    requestDeserialize: (value) => CreateCollectionRequest.decode(value),
+    responseSerialize: (value) => Buffer.from(CreateCollectionResponse.encode(value).finish()),
+    responseDeserialize: (value) => CreateCollectionResponse.decode(value)
+  },
+  dropCollection: {
+    path: "/cognica.rpc.db.document.DocumentDBService/drop_collection",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value) => Buffer.from(DropCollectionRequest.encode(value).finish()),
+    requestDeserialize: (value) => DropCollectionRequest.decode(value),
+    responseSerialize: (value) => Buffer.from(DropCollectionResponse.encode(value).finish()),
+    responseDeserialize: (value) => DropCollectionResponse.decode(value)
+  },
+  renameCollection: {
+    path: "/cognica.rpc.db.document.DocumentDBService/rename_collection",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value) => Buffer.from(RenameCollectionRequest.encode(value).finish()),
+    requestDeserialize: (value) => RenameCollectionRequest.decode(value),
+    responseSerialize: (value) => Buffer.from(RenameCollectionResponse.encode(value).finish()),
+    responseDeserialize: (value) => RenameCollectionResponse.decode(value)
+  },
+  getCollection: {
+    path: "/cognica.rpc.db.document.DocumentDBService/get_collection",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value) => Buffer.from(GetCollectionRequest.encode(value).finish()),
+    requestDeserialize: (value) => GetCollectionRequest.decode(value),
+    responseSerialize: (value) => Buffer.from(GetCollectionResponse.encode(value).finish()),
+    responseDeserialize: (value) => GetCollectionResponse.decode(value)
+  },
+  getCollections: {
+    path: "/cognica.rpc.db.document.DocumentDBService/get_collections",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value) => Buffer.from(GetCollectionsRequest.encode(value).finish()),
+    requestDeserialize: (value) => GetCollectionsRequest.decode(value),
+    responseSerialize: (value) => Buffer.from(GetCollectionsResponse.encode(value).finish()),
+    responseDeserialize: (value) => GetCollectionsResponse.decode(value)
+  },
+  listCollections: {
+    path: "/cognica.rpc.db.document.DocumentDBService/list_collections",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value) => Buffer.from(ListCollectionsRequest.encode(value).finish()),
+    requestDeserialize: (value) => ListCollectionsRequest.decode(value),
+    responseSerialize: (value) => Buffer.from(ListCollectionsResponse.encode(value).finish()),
+    responseDeserialize: (value) => ListCollectionsResponse.decode(value)
+  },
+  truncateCollection: {
+    path: "/cognica.rpc.db.document.DocumentDBService/truncate_collection",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value) => Buffer.from(TruncateCollectionRequest.encode(value).finish()),
+    requestDeserialize: (value) => TruncateCollectionRequest.decode(value),
+    responseSerialize: (value) => Buffer.from(TruncateCollectionResponse.encode(value).finish()),
+    responseDeserialize: (value) => TruncateCollectionResponse.decode(value)
+  },
+  createIndex: {
+    path: "/cognica.rpc.db.document.DocumentDBService/create_index",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value) => Buffer.from(CreateIndexRequest.encode(value).finish()),
+    requestDeserialize: (value) => CreateIndexRequest.decode(value),
+    responseSerialize: (value) => Buffer.from(CreateIndexResponse.encode(value).finish()),
+    responseDeserialize: (value) => CreateIndexResponse.decode(value)
+  },
+  dropIndex: {
+    path: "/cognica.rpc.db.document.DocumentDBService/drop_index",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value) => Buffer.from(DropIndexRequest.encode(value).finish()),
+    requestDeserialize: (value) => DropIndexRequest.decode(value),
+    responseSerialize: (value) => Buffer.from(DropIndexResponse.encode(value).finish()),
+    responseDeserialize: (value) => DropIndexResponse.decode(value)
+  },
+  renameIndex: {
+    path: "/cognica.rpc.db.document.DocumentDBService/rename_index",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value) => Buffer.from(RenameIndexRequest.encode(value).finish()),
+    requestDeserialize: (value) => RenameIndexRequest.decode(value),
+    responseSerialize: (value) => Buffer.from(RenameIndexResponse.encode(value).finish()),
+    responseDeserialize: (value) => RenameIndexResponse.decode(value)
+  },
+  getIndex: {
+    path: "/cognica.rpc.db.document.DocumentDBService/get_index",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value) => Buffer.from(GetIndexRequest.encode(value).finish()),
+    requestDeserialize: (value) => GetIndexRequest.decode(value),
+    responseSerialize: (value) => Buffer.from(GetIndexResponse.encode(value).finish()),
+    responseDeserialize: (value) => GetIndexResponse.decode(value)
+  }
+};
+var DocumentDBServiceClient = makeGenericClientConstructor(
+  DocumentDBServiceService,
+  "cognica.rpc.db.document.DocumentDBService"
+);
+function bytesFromBase64(b64) {
+  if (globalThis.Buffer) {
+    return Uint8Array.from(globalThis.Buffer.from(b64, "base64"));
+  } else {
+    const bin = globalThis.atob(b64);
+    const arr = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; ++i) {
+      arr[i] = bin.charCodeAt(i);
+    }
+    return arr;
+  }
+}
+function base64FromBytes(arr) {
+  if (globalThis.Buffer) {
+    return globalThis.Buffer.from(arr).toString("base64");
+  } else {
+    const bin = [];
+    arr.forEach((byte) => {
+      bin.push(globalThis.String.fromCharCode(byte));
+    });
+    return globalThis.btoa(bin.join(""));
+  }
+}
+function longToNumber2(long) {
+  if (long.gt(globalThis.Number.MAX_SAFE_INTEGER)) {
+    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+  }
+  return long.toNumber();
+}
+if (_m02.util.Long !== Long2) {
+  _m02.util.Long = Long2;
+  _m02.configure();
+}
+function isObject2(value) {
+  return typeof value === "object" && value !== null;
+}
+function isSet2(value) {
+  return value !== null && value !== void 0;
+}
+
+// src/client.ts
+import { Metadata as Metadata2 } from "@grpc/grpc-js";
+import { status } from "@grpc/grpc-js";
+var GrpcClient = class {
+  constructor(channel, client, timeout = void 0) {
+    this._channel = channel;
+    this._client = client;
+    this._timeout = timeout;
+  }
+  createPromise(request, methodName, response_mapper = () => null, waitForReady = true) {
+    const metadata = new Metadata2();
+    if (waitForReady) {
+      metadata.setOptions({ waitForReady });
+    }
+    if (this._timeout) {
+      metadata.set("grpc-timeout", `${this._timeout}m`);
+    }
+    return new Promise((resove, reject) => {
+      ;
+      this._client[methodName](
+        request,
+        metadata,
+        (error, response) => {
+          if (error) {
+            reject(error);
+          } else {
+            resove(response_mapper(response));
+          }
+        }
+      );
+    });
+  }
+  static toDocument(doc) {
+    let result;
+    if (doc.json === void 0) {
+      result = Document.fromJSON({ json: JSON.stringify(doc) });
+    } else {
+      result = doc;
+    }
+    return result;
+  }
+  get channel() {
+    return this._channel;
+  }
+  get timeout() {
+    return this._timeout;
+  }
+  close() {
+    ;
+    this._client.close();
+  }
+};
+
+// src/document_db.ts
+var IndexType = /* @__PURE__ */ ((IndexType2) => {
+  IndexType2[IndexType2["kPrimaryKey"] = 0] = "kPrimaryKey";
+  IndexType2[IndexType2["kSecondaryKey"] = 1] = "kSecondaryKey";
+  IndexType2[IndexType2["kClusteredSecondaryKey"] = 2] = "kClusteredSecondaryKey";
+  IndexType2[IndexType2["kFullTextSearchIndex"] = 3] = "kFullTextSearchIndex";
+  IndexType2[IndexType2["UNRECOGNIZED"] = -1] = "UNRECOGNIZED";
+  return IndexType2;
+})(IndexType || {});
+var indexTypeFromJSON2 = indexTypeFromJSON;
+var indexStatusFromJSON2 = indexStatusFromJSON;
+var DocumentDB = class _DocumentDB extends GrpcClient {
+  constructor(channel, timeout = void 0) {
+    const client = new DocumentDBServiceClient(
+      channel.address,
+      channel.credential,
+      channel.options
+    );
+    super(channel, client, timeout);
+  }
+  // find(
+  //   collectionName: string,
+  //   query: Document,
+  //   limit?: number,
+  //   indexColumns?: string[],
+  //   columns?: string[],
+  //   dtypes?: { [key: string]: string },
+  // ): Promise<DataFrame | null>
+  // find(request: Request): Promise<DataFrame | null>
+  // find(
+  //   request: string | Request,
+  //   query?: Document,
+  //   limit?: number,
+  //   indexColumns?: string[],
+  //   columns?: string[],
+  //   dtypes?: { [key: string]: string },
+  // ) {
+  //   let findRequest
+  //   if (typeof request === "string") {
+  //     findRequest = DocumentDB.toFindRequest({
+  //       collectionName: request,
+  //       query: query!,
+  //       limit: limit,
+  //       indexColumns: indexColumns,
+  //       columns: columns,
+  //       dtypes: dtypes,
+  //     })
+  //   } else {
+  //     findRequest = DocumentDB.toFindRequest(request)
+  //   }
+  //   return this.createPromise<
+  //     DataFrame | null,
+  //     proto.FindRequest,
+  //     proto.FindResponse
+  //   >(findRequest, "find", (response: proto.FindResponse) => {
+  //     return DocumentDB.toDataFrame(response)
+  //   })
+  // }
+  findRaw(request) {
+    const findRequest = _DocumentDB.toFindRequest(request);
+    return this.createPromise(findRequest, "find", (response) => {
+      return response.buffer;
+    });
+  }
+  // findBatch(requests: Request[]) {
+  //   const findRequests: proto.FindBatchRequest = {
+  //     requests: requests.map((request) => {
+  //       return DocumentDB.toFindRequest(request)
+  //     }),
+  //   }
+  //   return this.createPromise<
+  //     (DataFrame | null)[],
+  //     proto.FindBatchRequest,
+  //     proto.FindBatchResponse
+  //   >(findRequests, "findBatch", (response: proto.FindBatchResponse) => {
+  //     return response.responses.map((response) => DocumentDB.toDataFrame(response))
+  //   })
+  // }
+  insert(collectionName, docs) {
+    if (!Array.isArray(docs)) {
+      docs = [docs];
+    }
+    const queries = docs.map((doc) => {
+      return {
+        collectionName,
+        query: _DocumentDB.toDocument(doc)
+      };
+    });
+    const request = {
+      requests: queries
+    };
+    return this.createPromise(request, "insert");
+  }
+  update(collectionName, filter, updates) {
+    const request = {
+      collectionName,
+      filter: _DocumentDB.toDocument(filter),
+      updates: _DocumentDB.toDocument(updates)
+    };
+    return this.createPromise(request, "update");
+  }
+  remove(collectionName, docs) {
+    if (!Array.isArray(docs)) {
+      docs = [docs];
+    }
+    const queries = docs.map((doc) => {
+      return {
+        collectionName,
+        query: _DocumentDB.toDocument(doc)
+      };
+    });
+    const request = {
+      requests: queries
+    };
+    return this.createPromise(request, "remove");
+  }
+  createCollection(collectionName, indexDescriptors) {
+    const indexes = indexDescriptors.map((index) => {
+      return _DocumentDB.toIndexDescriptor(index);
+    });
+    return this.createPromise(
+      {
+        collection: {
+          collectionName,
+          indexDescriptors: indexes,
+          indexStats: []
+        }
+      },
+      "createCollection"
+    );
+  }
+  getCollection(collectionName) {
+    return this.createPromise(
+      { collectionName },
+      "getCollection",
+      (response) => {
+        if (response && response.collection) {
+          return _DocumentDB.fromCollectionInfo(response.collection);
+        }
+        return null;
+      }
+    );
+  }
+  getCollections(collectionNames) {
+    return this.createPromise(
+      { collectionNames },
+      "getCollections",
+      (response) => {
+        if (response && response.collections) {
+          return response.collections.map(_DocumentDB.fromCollectionInfo);
+        }
+        return null;
+      }
+    );
+  }
+  listCollections() {
+    return this.createPromise(
+      {},
+      "listCollections",
+      (response) => {
+        if (response) {
+          return response.collectionNames;
+        }
+        return null;
+      }
+    );
+  }
+  renameCollection(oldCollectionName, newCollectionName) {
+    return this.createPromise(
+      {
+        oldCollectionName,
+        newCollectionName
+      },
+      "renameCollection"
+    );
+  }
+  truncateCollection(collectionName) {
+    return this.createPromise(
+      {
+        collectionName
+      },
+      "truncateCollection"
+    );
+  }
+  dropCollection(collectionName) {
+    return this.createPromise(
+      {
+        collectionName
+      },
+      "dropCollection"
+    );
+  }
+  createIndex(collectionName, indexDescriptor) {
+    const index = _DocumentDB.toIndexDescriptor(indexDescriptor);
+    return this.createPromise(
+      {
+        collectionName,
+        indexDesc: index
+      },
+      "createIndex"
+    );
+  }
+  getIndex(collectionName, indexName) {
+    return this.createPromise(
+      {
+        collectionName,
+        indexName
+      },
+      "getIndex",
+      (response) => response
+    );
+  }
+  renameIndex(collectionName, oldIndexName, newIndexName) {
+    return this.createPromise(
+      {
+        collectionName,
+        oldIndexName,
+        newIndexName
+      },
+      "renameIndex"
+    );
+  }
+  dropIndex(collectionName, indexName) {
+    return this.createPromise(
+      {
+        collectionName,
+        indexName
+      },
+      "dropIndex"
+    );
+  }
+  // empty(
+  //   collectionName: string,
+  //   query: Document,
+  //   dtypes: { [key: string]: string } | undefined = undefined,
+  // ) {
+  //   return this.find({
+  //     collectionName: collectionName,
+  //     query: query,
+  //     dtypes: dtypes,
+  //   }).then((result): boolean => {
+  //     if (result) {
+  //       return result.numRows == 0
+  //     }
+  //     return true
+  //   })
+  // }
+  static toFindRequest(request) {
+    return FindRequest.fromJSON({
+      query: {
+        collectionName: request.collectionName,
+        query: _DocumentDB.toDocument(request.query)
+      },
+      limit: request.limit,
+      indexColumns: request.indexColumns,
+      columns: request.columns,
+      dtypes: request.dtypes
+    });
+  }
+  // private static toDataFrame(response: proto.FindResponse): DataFrame | null {
+  //   if (response.numRows) {
+  //     const arrowBuffer = readParquet(response.buffer)
+  //     const df = tableFromIPC(arrowBuffer.intoIPCStream())
+  //     return df
+  //   }
+  //   return null
+  // }
+  static fromCollectionInfo(collection) {
+    return {
+      collectionName: collection.collectionName,
+      indexDescriptors: collection.indexDescriptors.map(
+        (index) => _DocumentDB.fromIndexDescriptor(index)
+      ),
+      indexStats: collection.indexStats
+    };
+  }
+  static toIndexDescriptor(index) {
+    let options;
+    if (index.options) {
+      options = _DocumentDB.toDocument(index.options);
+    }
+    const descriptor = {
+      indexName: index.name,
+      fields: index.fields,
+      unique: index.unique,
+      indexType: index.index_type,
+      status: index.status,
+      options
+    };
+    return IndexDescriptor.fromJSON(descriptor);
+  }
+  static fromIndexDescriptor(index) {
+    const descriptor = {
+      name: index.indexName,
+      fields: index.fields,
+      unique: index.unique,
+      index_type: indexTypeToJSON(index.indexType),
+      status: indexStatusToJSON(index.status),
+      options: index.options
+    };
+    return descriptor;
+  }
+};
+
+// src/proto/generated/key_value_db.ts
+import { makeGenericClientConstructor as makeGenericClientConstructor2 } from "@grpc/grpc-js";
+import Long3 from "long";
+import _m03 from "protobufjs/minimal";
+function statusTypeFromJSON(object) {
+  switch (object) {
+    case 0:
+    case "kOK":
+      return 0 /* kOK */;
+    case 1:
+    case "kNotFound":
+      return 1 /* kNotFound */;
+    case 10:
+    case "kInternal":
+      return 10 /* kInternal */;
+    case -1:
+    case "UNRECOGNIZED":
+    default:
+      return -1 /* UNRECOGNIZED */;
+  }
+}
+function statusTypeToJSON(object) {
+  switch (object) {
+    case 0 /* kOK */:
+      return "kOK";
+    case 1 /* kNotFound */:
+      return "kNotFound";
+    case 10 /* kInternal */:
+      return "kInternal";
+    case -1 /* UNRECOGNIZED */:
+    default:
+      return "UNRECOGNIZED";
+  }
+}
+function createBaseProfileInfo2() {
+  return { durationUs: 0 };
+}
+var ProfileInfo2 = {
+  encode(message, writer = _m03.Writer.create()) {
+    if (message.durationUs !== 0) {
+      writer.uint32(8).uint64(message.durationUs);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m03.Reader ? input : _m03.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseProfileInfo2();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+          message.durationUs = longToNumber3(reader.uint64());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return { durationUs: isSet3(object.durationUs) ? globalThis.Number(object.durationUs) : 0 };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.durationUs !== 0) {
+      obj.durationUs = Math.round(message.durationUs);
+    }
+    return obj;
+  },
+  create(base) {
+    return ProfileInfo2.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a;
+    const message = createBaseProfileInfo2();
+    message.durationUs = (_a = object.durationUs) != null ? _a : 0;
+    return message;
+  }
+};
+function createBaseResponse() {
+  return { status: 0, message: "", profile: void 0 };
+}
+var Response = {
+  encode(message, writer = _m03.Writer.create()) {
+    if (message.status !== 0) {
+      writer.uint32(8).int32(message.status);
+    }
+    if (message.message !== "") {
+      writer.uint32(18).string(message.message);
+    }
+    if (message.profile !== void 0) {
+      ProfileInfo2.encode(message.profile, writer.uint32(26).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m03.Reader ? input : _m03.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+          message.status = reader.int32();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.message = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+          message.profile = ProfileInfo2.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      status: isSet3(object.status) ? statusTypeFromJSON(object.status) : 0,
+      message: isSet3(object.message) ? globalThis.String(object.message) : "",
+      profile: isSet3(object.profile) ? ProfileInfo2.fromJSON(object.profile) : void 0
+    };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.status !== 0) {
+      obj.status = statusTypeToJSON(message.status);
+    }
+    if (message.message !== "") {
+      obj.message = message.message;
+    }
+    if (message.profile !== void 0) {
+      obj.profile = ProfileInfo2.toJSON(message.profile);
+    }
+    return obj;
+  },
+  create(base) {
+    return Response.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a, _b;
+    const message = createBaseResponse();
+    message.status = (_a = object.status) != null ? _a : 0;
+    message.message = (_b = object.message) != null ? _b : "";
+    message.profile = object.profile !== void 0 && object.profile !== null ? ProfileInfo2.fromPartial(object.profile) : void 0;
+    return message;
+  }
+};
+function createBasePutRequest() {
+  return { keyspaceName: "", key: Buffer.alloc(0), value: Buffer.alloc(0), ttl: 0, createIfMissing: false };
+}
+var PutRequest = {
+  encode(message, writer = _m03.Writer.create()) {
+    if (message.keyspaceName !== "") {
+      writer.uint32(10).string(message.keyspaceName);
+    }
+    if (message.key.length !== 0) {
+      writer.uint32(18).bytes(message.key);
+    }
+    if (message.value.length !== 0) {
+      writer.uint32(26).bytes(message.value);
+    }
+    if (message.ttl !== 0) {
+      writer.uint32(32).int64(message.ttl);
+    }
+    if (message.createIfMissing === true) {
+      writer.uint32(40).bool(message.createIfMissing);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m03.Reader ? input : _m03.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBasePutRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.keyspaceName = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.key = reader.bytes();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+          message.value = reader.bytes();
+          continue;
+        case 4:
+          if (tag !== 32) {
+            break;
+          }
+          message.ttl = longToNumber3(reader.int64());
+          continue;
+        case 5:
+          if (tag !== 40) {
+            break;
+          }
+          message.createIfMissing = reader.bool();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      keyspaceName: isSet3(object.keyspaceName) ? globalThis.String(object.keyspaceName) : "",
+      key: isSet3(object.key) ? Buffer.from(bytesFromBase642(object.key)) : Buffer.alloc(0),
+      value: isSet3(object.value) ? Buffer.from(bytesFromBase642(object.value)) : Buffer.alloc(0),
+      ttl: isSet3(object.ttl) ? globalThis.Number(object.ttl) : 0,
+      createIfMissing: isSet3(object.createIfMissing) ? globalThis.Boolean(object.createIfMissing) : false
+    };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.keyspaceName !== "") {
+      obj.keyspaceName = message.keyspaceName;
+    }
+    if (message.key.length !== 0) {
+      obj.key = base64FromBytes2(message.key);
+    }
+    if (message.value.length !== 0) {
+      obj.value = base64FromBytes2(message.value);
+    }
+    if (message.ttl !== 0) {
+      obj.ttl = Math.round(message.ttl);
+    }
+    if (message.createIfMissing === true) {
+      obj.createIfMissing = message.createIfMissing;
+    }
+    return obj;
+  },
+  create(base) {
+    return PutRequest.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a, _b, _c, _d, _e;
+    const message = createBasePutRequest();
+    message.keyspaceName = (_a = object.keyspaceName) != null ? _a : "";
+    message.key = (_b = object.key) != null ? _b : Buffer.alloc(0);
+    message.value = (_c = object.value) != null ? _c : Buffer.alloc(0);
+    message.ttl = (_d = object.ttl) != null ? _d : 0;
+    message.createIfMissing = (_e = object.createIfMissing) != null ? _e : false;
+    return message;
+  }
+};
+function createBasePutResponse() {
+  return { response: void 0 };
+}
+var PutResponse = {
+  encode(message, writer = _m03.Writer.create()) {
+    if (message.response !== void 0) {
+      Response.encode(message.response, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m03.Reader ? input : _m03.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBasePutResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.response = Response.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return { response: isSet3(object.response) ? Response.fromJSON(object.response) : void 0 };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.response !== void 0) {
+      obj.response = Response.toJSON(message.response);
+    }
+    return obj;
+  },
+  create(base) {
+    return PutResponse.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    const message = createBasePutResponse();
+    message.response = object.response !== void 0 && object.response !== null ? Response.fromPartial(object.response) : void 0;
+    return message;
+  }
+};
+function createBaseRemoveRequest2() {
+  return { keyspaceName: "", key: Buffer.alloc(0) };
+}
+var RemoveRequest2 = {
+  encode(message, writer = _m03.Writer.create()) {
+    if (message.keyspaceName !== "") {
+      writer.uint32(10).string(message.keyspaceName);
+    }
+    if (message.key.length !== 0) {
+      writer.uint32(18).bytes(message.key);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m03.Reader ? input : _m03.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseRemoveRequest2();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.keyspaceName = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.key = reader.bytes();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      keyspaceName: isSet3(object.keyspaceName) ? globalThis.String(object.keyspaceName) : "",
+      key: isSet3(object.key) ? Buffer.from(bytesFromBase642(object.key)) : Buffer.alloc(0)
+    };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.keyspaceName !== "") {
+      obj.keyspaceName = message.keyspaceName;
+    }
+    if (message.key.length !== 0) {
+      obj.key = base64FromBytes2(message.key);
+    }
+    return obj;
+  },
+  create(base) {
+    return RemoveRequest2.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a, _b;
+    const message = createBaseRemoveRequest2();
+    message.keyspaceName = (_a = object.keyspaceName) != null ? _a : "";
+    message.key = (_b = object.key) != null ? _b : Buffer.alloc(0);
+    return message;
+  }
+};
+function createBaseRemoveResponse2() {
+  return { response: void 0 };
+}
+var RemoveResponse2 = {
+  encode(message, writer = _m03.Writer.create()) {
+    if (message.response !== void 0) {
+      Response.encode(message.response, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m03.Reader ? input : _m03.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseRemoveResponse2();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.response = Response.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return { response: isSet3(object.response) ? Response.fromJSON(object.response) : void 0 };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.response !== void 0) {
+      obj.response = Response.toJSON(message.response);
+    }
+    return obj;
+  },
+  create(base) {
+    return RemoveResponse2.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    const message = createBaseRemoveResponse2();
+    message.response = object.response !== void 0 && object.response !== null ? Response.fromPartial(object.response) : void 0;
+    return message;
+  }
+};
+function createBaseGetRequest() {
+  return { keyspaceName: "", key: Buffer.alloc(0) };
+}
+var GetRequest = {
+  encode(message, writer = _m03.Writer.create()) {
+    if (message.keyspaceName !== "") {
+      writer.uint32(10).string(message.keyspaceName);
+    }
+    if (message.key.length !== 0) {
+      writer.uint32(18).bytes(message.key);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m03.Reader ? input : _m03.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseGetRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.keyspaceName = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.key = reader.bytes();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      keyspaceName: isSet3(object.keyspaceName) ? globalThis.String(object.keyspaceName) : "",
+      key: isSet3(object.key) ? Buffer.from(bytesFromBase642(object.key)) : Buffer.alloc(0)
+    };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.keyspaceName !== "") {
+      obj.keyspaceName = message.keyspaceName;
+    }
+    if (message.key.length !== 0) {
+      obj.key = base64FromBytes2(message.key);
+    }
+    return obj;
+  },
+  create(base) {
+    return GetRequest.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a, _b;
+    const message = createBaseGetRequest();
+    message.keyspaceName = (_a = object.keyspaceName) != null ? _a : "";
+    message.key = (_b = object.key) != null ? _b : Buffer.alloc(0);
+    return message;
+  }
+};
+function createBaseGetResponse() {
+  return { response: void 0, value: Buffer.alloc(0) };
+}
+var GetResponse = {
+  encode(message, writer = _m03.Writer.create()) {
+    if (message.response !== void 0) {
+      Response.encode(message.response, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.value.length !== 0) {
+      writer.uint32(18).bytes(message.value);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m03.Reader ? input : _m03.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseGetResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.response = Response.decode(reader, reader.uint32());
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.value = reader.bytes();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      response: isSet3(object.response) ? Response.fromJSON(object.response) : void 0,
+      value: isSet3(object.value) ? Buffer.from(bytesFromBase642(object.value)) : Buffer.alloc(0)
+    };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.response !== void 0) {
+      obj.response = Response.toJSON(message.response);
+    }
+    if (message.value.length !== 0) {
+      obj.value = base64FromBytes2(message.value);
+    }
+    return obj;
+  },
+  create(base) {
+    return GetResponse.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a;
+    const message = createBaseGetResponse();
+    message.response = object.response !== void 0 && object.response !== null ? Response.fromPartial(object.response) : void 0;
+    message.value = (_a = object.value) != null ? _a : Buffer.alloc(0);
+    return message;
+  }
+};
+function createBaseMultiGetRequest() {
+  return { keyspaceName: "", keys: [] };
+}
+var MultiGetRequest = {
+  encode(message, writer = _m03.Writer.create()) {
+    if (message.keyspaceName !== "") {
+      writer.uint32(10).string(message.keyspaceName);
+    }
+    for (const v of message.keys) {
+      writer.uint32(18).bytes(v);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m03.Reader ? input : _m03.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseMultiGetRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.keyspaceName = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.keys.push(reader.bytes());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      keyspaceName: isSet3(object.keyspaceName) ? globalThis.String(object.keyspaceName) : "",
+      keys: globalThis.Array.isArray(object == null ? void 0 : object.keys) ? object.keys.map((e) => Buffer.from(bytesFromBase642(e))) : []
+    };
+  },
+  toJSON(message) {
+    var _a;
+    const obj = {};
+    if (message.keyspaceName !== "") {
+      obj.keyspaceName = message.keyspaceName;
+    }
+    if ((_a = message.keys) == null ? void 0 : _a.length) {
+      obj.keys = message.keys.map((e) => base64FromBytes2(e));
+    }
+    return obj;
+  },
+  create(base) {
+    return MultiGetRequest.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a, _b;
+    const message = createBaseMultiGetRequest();
+    message.keyspaceName = (_a = object.keyspaceName) != null ? _a : "";
+    message.keys = ((_b = object.keys) == null ? void 0 : _b.map((e) => e)) || [];
+    return message;
+  }
+};
+function createBaseMultiGetResponse() {
+  return { responses: [], values: [] };
+}
+var MultiGetResponse = {
+  encode(message, writer = _m03.Writer.create()) {
+    for (const v of message.responses) {
+      Response.encode(v, writer.uint32(10).fork()).ldelim();
+    }
+    for (const v of message.values) {
+      writer.uint32(18).bytes(v);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m03.Reader ? input : _m03.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseMultiGetResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.responses.push(Response.decode(reader, reader.uint32()));
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.values.push(reader.bytes());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      responses: globalThis.Array.isArray(object == null ? void 0 : object.responses) ? object.responses.map((e) => Response.fromJSON(e)) : [],
+      values: globalThis.Array.isArray(object == null ? void 0 : object.values) ? object.values.map((e) => Buffer.from(bytesFromBase642(e))) : []
+    };
+  },
+  toJSON(message) {
+    var _a, _b;
+    const obj = {};
+    if ((_a = message.responses) == null ? void 0 : _a.length) {
+      obj.responses = message.responses.map((e) => Response.toJSON(e));
+    }
+    if ((_b = message.values) == null ? void 0 : _b.length) {
+      obj.values = message.values.map((e) => base64FromBytes2(e));
+    }
+    return obj;
+  },
+  create(base) {
+    return MultiGetResponse.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a, _b;
+    const message = createBaseMultiGetResponse();
+    message.responses = ((_a = object.responses) == null ? void 0 : _a.map((e) => Response.fromPartial(e))) || [];
+    message.values = ((_b = object.values) == null ? void 0 : _b.map((e) => e)) || [];
+    return message;
+  }
+};
+function createBaseBatchedPutRequest() {
+  return { keyspaceName: "", keys: [], values: [], ttls: [], createIfMissing: false };
+}
+var BatchedPutRequest = {
+  encode(message, writer = _m03.Writer.create()) {
+    if (message.keyspaceName !== "") {
+      writer.uint32(10).string(message.keyspaceName);
+    }
+    for (const v of message.keys) {
+      writer.uint32(18).bytes(v);
+    }
+    for (const v of message.values) {
+      writer.uint32(26).bytes(v);
+    }
+    writer.uint32(34).fork();
+    for (const v of message.ttls) {
+      writer.int64(v);
+    }
+    writer.ldelim();
+    if (message.createIfMissing === true) {
+      writer.uint32(40).bool(message.createIfMissing);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m03.Reader ? input : _m03.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseBatchedPutRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.keyspaceName = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.keys.push(reader.bytes());
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+          message.values.push(reader.bytes());
+          continue;
+        case 4:
+          if (tag === 32) {
+            message.ttls.push(longToNumber3(reader.int64()));
+            continue;
+          }
+          if (tag === 34) {
+            const end2 = reader.uint32() + reader.pos;
+            while (reader.pos < end2) {
+              message.ttls.push(longToNumber3(reader.int64()));
+            }
+            continue;
+          }
+          break;
+        case 5:
+          if (tag !== 40) {
+            break;
+          }
+          message.createIfMissing = reader.bool();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      keyspaceName: isSet3(object.keyspaceName) ? globalThis.String(object.keyspaceName) : "",
+      keys: globalThis.Array.isArray(object == null ? void 0 : object.keys) ? object.keys.map((e) => Buffer.from(bytesFromBase642(e))) : [],
+      values: globalThis.Array.isArray(object == null ? void 0 : object.values) ? object.values.map((e) => Buffer.from(bytesFromBase642(e))) : [],
+      ttls: globalThis.Array.isArray(object == null ? void 0 : object.ttls) ? object.ttls.map((e) => globalThis.Number(e)) : [],
+      createIfMissing: isSet3(object.createIfMissing) ? globalThis.Boolean(object.createIfMissing) : false
+    };
+  },
+  toJSON(message) {
+    var _a, _b, _c;
+    const obj = {};
+    if (message.keyspaceName !== "") {
+      obj.keyspaceName = message.keyspaceName;
+    }
+    if ((_a = message.keys) == null ? void 0 : _a.length) {
+      obj.keys = message.keys.map((e) => base64FromBytes2(e));
+    }
+    if ((_b = message.values) == null ? void 0 : _b.length) {
+      obj.values = message.values.map((e) => base64FromBytes2(e));
+    }
+    if ((_c = message.ttls) == null ? void 0 : _c.length) {
+      obj.ttls = message.ttls.map((e) => Math.round(e));
+    }
+    if (message.createIfMissing === true) {
+      obj.createIfMissing = message.createIfMissing;
+    }
+    return obj;
+  },
+  create(base) {
+    return BatchedPutRequest.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a, _b, _c, _d, _e;
+    const message = createBaseBatchedPutRequest();
+    message.keyspaceName = (_a = object.keyspaceName) != null ? _a : "";
+    message.keys = ((_b = object.keys) == null ? void 0 : _b.map((e) => e)) || [];
+    message.values = ((_c = object.values) == null ? void 0 : _c.map((e) => e)) || [];
+    message.ttls = ((_d = object.ttls) == null ? void 0 : _d.map((e) => e)) || [];
+    message.createIfMissing = (_e = object.createIfMissing) != null ? _e : false;
+    return message;
+  }
+};
+function createBaseBatchedPutResponse() {
+  return { responses: [] };
+}
+var BatchedPutResponse = {
+  encode(message, writer = _m03.Writer.create()) {
+    for (const v of message.responses) {
+      Response.encode(v, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m03.Reader ? input : _m03.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseBatchedPutResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.responses.push(Response.decode(reader, reader.uint32()));
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      responses: globalThis.Array.isArray(object == null ? void 0 : object.responses) ? object.responses.map((e) => Response.fromJSON(e)) : []
+    };
+  },
+  toJSON(message) {
+    var _a;
+    const obj = {};
+    if ((_a = message.responses) == null ? void 0 : _a.length) {
+      obj.responses = message.responses.map((e) => Response.toJSON(e));
+    }
+    return obj;
+  },
+  create(base) {
+    return BatchedPutResponse.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a;
+    const message = createBaseBatchedPutResponse();
+    message.responses = ((_a = object.responses) == null ? void 0 : _a.map((e) => Response.fromPartial(e))) || [];
+    return message;
+  }
+};
+function createBaseBatchedRemoveRequest() {
+  return { keyspaceName: "", keys: [] };
+}
+var BatchedRemoveRequest = {
+  encode(message, writer = _m03.Writer.create()) {
+    if (message.keyspaceName !== "") {
+      writer.uint32(10).string(message.keyspaceName);
+    }
+    for (const v of message.keys) {
+      writer.uint32(18).bytes(v);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m03.Reader ? input : _m03.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseBatchedRemoveRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.keyspaceName = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.keys.push(reader.bytes());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      keyspaceName: isSet3(object.keyspaceName) ? globalThis.String(object.keyspaceName) : "",
+      keys: globalThis.Array.isArray(object == null ? void 0 : object.keys) ? object.keys.map((e) => Buffer.from(bytesFromBase642(e))) : []
+    };
+  },
+  toJSON(message) {
+    var _a;
+    const obj = {};
+    if (message.keyspaceName !== "") {
+      obj.keyspaceName = message.keyspaceName;
+    }
+    if ((_a = message.keys) == null ? void 0 : _a.length) {
+      obj.keys = message.keys.map((e) => base64FromBytes2(e));
+    }
+    return obj;
+  },
+  create(base) {
+    return BatchedRemoveRequest.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a, _b;
+    const message = createBaseBatchedRemoveRequest();
+    message.keyspaceName = (_a = object.keyspaceName) != null ? _a : "";
+    message.keys = ((_b = object.keys) == null ? void 0 : _b.map((e) => e)) || [];
+    return message;
+  }
+};
+function createBaseBatchedRemoveResponse() {
+  return { responses: [] };
+}
+var BatchedRemoveResponse = {
+  encode(message, writer = _m03.Writer.create()) {
+    for (const v of message.responses) {
+      Response.encode(v, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m03.Reader ? input : _m03.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseBatchedRemoveResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.responses.push(Response.decode(reader, reader.uint32()));
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      responses: globalThis.Array.isArray(object == null ? void 0 : object.responses) ? object.responses.map((e) => Response.fromJSON(e)) : []
+    };
+  },
+  toJSON(message) {
+    var _a;
+    const obj = {};
+    if ((_a = message.responses) == null ? void 0 : _a.length) {
+      obj.responses = message.responses.map((e) => Response.toJSON(e));
+    }
+    return obj;
+  },
+  create(base) {
+    return BatchedRemoveResponse.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a;
+    const message = createBaseBatchedRemoveResponse();
+    message.responses = ((_a = object.responses) == null ? void 0 : _a.map((e) => Response.fromPartial(e))) || [];
+    return message;
+  }
+};
+function createBaseBatchedGetRequest() {
+  return { keyspaceName: "", keys: [] };
+}
+var BatchedGetRequest = {
+  encode(message, writer = _m03.Writer.create()) {
+    if (message.keyspaceName !== "") {
+      writer.uint32(10).string(message.keyspaceName);
+    }
+    for (const v of message.keys) {
+      writer.uint32(18).bytes(v);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m03.Reader ? input : _m03.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseBatchedGetRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.keyspaceName = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.keys.push(reader.bytes());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      keyspaceName: isSet3(object.keyspaceName) ? globalThis.String(object.keyspaceName) : "",
+      keys: globalThis.Array.isArray(object == null ? void 0 : object.keys) ? object.keys.map((e) => Buffer.from(bytesFromBase642(e))) : []
+    };
+  },
+  toJSON(message) {
+    var _a;
+    const obj = {};
+    if (message.keyspaceName !== "") {
+      obj.keyspaceName = message.keyspaceName;
+    }
+    if ((_a = message.keys) == null ? void 0 : _a.length) {
+      obj.keys = message.keys.map((e) => base64FromBytes2(e));
+    }
+    return obj;
+  },
+  create(base) {
+    return BatchedGetRequest.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a, _b;
+    const message = createBaseBatchedGetRequest();
+    message.keyspaceName = (_a = object.keyspaceName) != null ? _a : "";
+    message.keys = ((_b = object.keys) == null ? void 0 : _b.map((e) => e)) || [];
+    return message;
+  }
+};
+function createBaseBatchedGetResponse() {
+  return { responses: [], values: [] };
+}
+var BatchedGetResponse = {
+  encode(message, writer = _m03.Writer.create()) {
+    for (const v of message.responses) {
+      Response.encode(v, writer.uint32(10).fork()).ldelim();
+    }
+    for (const v of message.values) {
+      writer.uint32(18).bytes(v);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m03.Reader ? input : _m03.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseBatchedGetResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.responses.push(Response.decode(reader, reader.uint32()));
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.values.push(reader.bytes());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      responses: globalThis.Array.isArray(object == null ? void 0 : object.responses) ? object.responses.map((e) => Response.fromJSON(e)) : [],
+      values: globalThis.Array.isArray(object == null ? void 0 : object.values) ? object.values.map((e) => Buffer.from(bytesFromBase642(e))) : []
+    };
+  },
+  toJSON(message) {
+    var _a, _b;
+    const obj = {};
+    if ((_a = message.responses) == null ? void 0 : _a.length) {
+      obj.responses = message.responses.map((e) => Response.toJSON(e));
+    }
+    if ((_b = message.values) == null ? void 0 : _b.length) {
+      obj.values = message.values.map((e) => base64FromBytes2(e));
+    }
+    return obj;
+  },
+  create(base) {
+    return BatchedGetResponse.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a, _b;
+    const message = createBaseBatchedGetResponse();
+    message.responses = ((_a = object.responses) == null ? void 0 : _a.map((e) => Response.fromPartial(e))) || [];
+    message.values = ((_b = object.values) == null ? void 0 : _b.map((e) => e)) || [];
+    return message;
+  }
+};
+function createBaseCreateKeyspaceRequest() {
+  return { keyspaceName: "" };
+}
+var CreateKeyspaceRequest = {
+  encode(message, writer = _m03.Writer.create()) {
+    if (message.keyspaceName !== "") {
+      writer.uint32(10).string(message.keyspaceName);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m03.Reader ? input : _m03.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseCreateKeyspaceRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.keyspaceName = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return { keyspaceName: isSet3(object.keyspaceName) ? globalThis.String(object.keyspaceName) : "" };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.keyspaceName !== "") {
+      obj.keyspaceName = message.keyspaceName;
+    }
+    return obj;
+  },
+  create(base) {
+    return CreateKeyspaceRequest.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a;
+    const message = createBaseCreateKeyspaceRequest();
+    message.keyspaceName = (_a = object.keyspaceName) != null ? _a : "";
+    return message;
+  }
+};
+function createBaseCreateKeyspaceResponse() {
+  return { response: void 0 };
+}
+var CreateKeyspaceResponse = {
+  encode(message, writer = _m03.Writer.create()) {
+    if (message.response !== void 0) {
+      Response.encode(message.response, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m03.Reader ? input : _m03.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseCreateKeyspaceResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.response = Response.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return { response: isSet3(object.response) ? Response.fromJSON(object.response) : void 0 };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.response !== void 0) {
+      obj.response = Response.toJSON(message.response);
+    }
+    return obj;
+  },
+  create(base) {
+    return CreateKeyspaceResponse.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    const message = createBaseCreateKeyspaceResponse();
+    message.response = object.response !== void 0 && object.response !== null ? Response.fromPartial(object.response) : void 0;
+    return message;
+  }
+};
+function createBaseDropKeyspaceRequest() {
+  return { keyspaceName: "" };
+}
+var DropKeyspaceRequest = {
+  encode(message, writer = _m03.Writer.create()) {
+    if (message.keyspaceName !== "") {
+      writer.uint32(10).string(message.keyspaceName);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m03.Reader ? input : _m03.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseDropKeyspaceRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.keyspaceName = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return { keyspaceName: isSet3(object.keyspaceName) ? globalThis.String(object.keyspaceName) : "" };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.keyspaceName !== "") {
+      obj.keyspaceName = message.keyspaceName;
+    }
+    return obj;
+  },
+  create(base) {
+    return DropKeyspaceRequest.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a;
+    const message = createBaseDropKeyspaceRequest();
+    message.keyspaceName = (_a = object.keyspaceName) != null ? _a : "";
+    return message;
+  }
+};
+function createBaseDropKeyspaceResponse() {
+  return { response: void 0 };
+}
+var DropKeyspaceResponse = {
+  encode(message, writer = _m03.Writer.create()) {
+    if (message.response !== void 0) {
+      Response.encode(message.response, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m03.Reader ? input : _m03.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseDropKeyspaceResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.response = Response.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return { response: isSet3(object.response) ? Response.fromJSON(object.response) : void 0 };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.response !== void 0) {
+      obj.response = Response.toJSON(message.response);
+    }
+    return obj;
+  },
+  create(base) {
+    return DropKeyspaceResponse.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    const message = createBaseDropKeyspaceResponse();
+    message.response = object.response !== void 0 && object.response !== null ? Response.fromPartial(object.response) : void 0;
+    return message;
+  }
+};
+function createBaseTruncateKeyspaceRequest() {
+  return { keyspaceName: "" };
+}
+var TruncateKeyspaceRequest = {
+  encode(message, writer = _m03.Writer.create()) {
+    if (message.keyspaceName !== "") {
+      writer.uint32(10).string(message.keyspaceName);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m03.Reader ? input : _m03.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseTruncateKeyspaceRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.keyspaceName = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return { keyspaceName: isSet3(object.keyspaceName) ? globalThis.String(object.keyspaceName) : "" };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.keyspaceName !== "") {
+      obj.keyspaceName = message.keyspaceName;
+    }
+    return obj;
+  },
+  create(base) {
+    return TruncateKeyspaceRequest.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a;
+    const message = createBaseTruncateKeyspaceRequest();
+    message.keyspaceName = (_a = object.keyspaceName) != null ? _a : "";
+    return message;
+  }
+};
+function createBaseTruncateKeyspaceResponse() {
+  return { response: void 0 };
+}
+var TruncateKeyspaceResponse = {
+  encode(message, writer = _m03.Writer.create()) {
+    if (message.response !== void 0) {
+      Response.encode(message.response, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m03.Reader ? input : _m03.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseTruncateKeyspaceResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.response = Response.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return { response: isSet3(object.response) ? Response.fromJSON(object.response) : void 0 };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.response !== void 0) {
+      obj.response = Response.toJSON(message.response);
+    }
+    return obj;
+  },
+  create(base) {
+    return TruncateKeyspaceResponse.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    const message = createBaseTruncateKeyspaceResponse();
+    message.response = object.response !== void 0 && object.response !== null ? Response.fromPartial(object.response) : void 0;
+    return message;
+  }
+};
+function createBaseListKeyspacesRequest() {
+  return {};
+}
+var ListKeyspacesRequest = {
+  encode(_, writer = _m03.Writer.create()) {
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m03.Reader ? input : _m03.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseListKeyspacesRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(_) {
+    return {};
+  },
+  toJSON(_) {
+    const obj = {};
+    return obj;
+  },
+  create(base) {
+    return ListKeyspacesRequest.fromPartial(base != null ? base : {});
+  },
+  fromPartial(_) {
+    const message = createBaseListKeyspacesRequest();
+    return message;
+  }
+};
+function createBaseListKeyspacesResponse() {
+  return { response: void 0, keyspaceNames: [] };
+}
+var ListKeyspacesResponse = {
+  encode(message, writer = _m03.Writer.create()) {
+    if (message.response !== void 0) {
+      Response.encode(message.response, writer.uint32(10).fork()).ldelim();
+    }
+    for (const v of message.keyspaceNames) {
+      writer.uint32(18).string(v);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof _m03.Reader ? input : _m03.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseListKeyspacesResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.response = Response.decode(reader, reader.uint32());
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.keyspaceNames.push(reader.string());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      response: isSet3(object.response) ? Response.fromJSON(object.response) : void 0,
+      keyspaceNames: globalThis.Array.isArray(object == null ? void 0 : object.keyspaceNames) ? object.keyspaceNames.map((e) => globalThis.String(e)) : []
+    };
+  },
+  toJSON(message) {
+    var _a;
+    const obj = {};
+    if (message.response !== void 0) {
+      obj.response = Response.toJSON(message.response);
+    }
+    if ((_a = message.keyspaceNames) == null ? void 0 : _a.length) {
+      obj.keyspaceNames = message.keyspaceNames;
+    }
+    return obj;
+  },
+  create(base) {
+    return ListKeyspacesResponse.fromPartial(base != null ? base : {});
+  },
+  fromPartial(object) {
+    var _a;
+    const message = createBaseListKeyspacesResponse();
+    message.response = object.response !== void 0 && object.response !== null ? Response.fromPartial(object.response) : void 0;
+    message.keyspaceNames = ((_a = object.keyspaceNames) == null ? void 0 : _a.map((e) => e)) || [];
+    return message;
+  }
+};
+var KeyValueDBServiceService = {
+  put: {
+    path: "/cognica.rpc.db.kv.KeyValueDBService/put",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value) => Buffer.from(PutRequest.encode(value).finish()),
+    requestDeserialize: (value) => PutRequest.decode(value),
+    responseSerialize: (value) => Buffer.from(PutResponse.encode(value).finish()),
+    responseDeserialize: (value) => PutResponse.decode(value)
+  },
+  remove: {
+    path: "/cognica.rpc.db.kv.KeyValueDBService/remove",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value) => Buffer.from(RemoveRequest2.encode(value).finish()),
+    requestDeserialize: (value) => RemoveRequest2.decode(value),
+    responseSerialize: (value) => Buffer.from(RemoveResponse2.encode(value).finish()),
+    responseDeserialize: (value) => RemoveResponse2.decode(value)
+  },
+  get: {
+    path: "/cognica.rpc.db.kv.KeyValueDBService/get",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value) => Buffer.from(GetRequest.encode(value).finish()),
+    requestDeserialize: (value) => GetRequest.decode(value),
+    responseSerialize: (value) => Buffer.from(GetResponse.encode(value).finish()),
+    responseDeserialize: (value) => GetResponse.decode(value)
+  },
+  mget: {
+    path: "/cognica.rpc.db.kv.KeyValueDBService/mget",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value) => Buffer.from(MultiGetRequest.encode(value).finish()),
+    requestDeserialize: (value) => MultiGetRequest.decode(value),
+    responseSerialize: (value) => Buffer.from(MultiGetResponse.encode(value).finish()),
+    responseDeserialize: (value) => MultiGetResponse.decode(value)
+  },
+  putBatch: {
+    path: "/cognica.rpc.db.kv.KeyValueDBService/put_batch",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value) => Buffer.from(BatchedPutRequest.encode(value).finish()),
+    requestDeserialize: (value) => BatchedPutRequest.decode(value),
+    responseSerialize: (value) => Buffer.from(BatchedPutResponse.encode(value).finish()),
+    responseDeserialize: (value) => BatchedPutResponse.decode(value)
+  },
+  removeBatch: {
+    path: "/cognica.rpc.db.kv.KeyValueDBService/remove_batch",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value) => Buffer.from(BatchedRemoveRequest.encode(value).finish()),
+    requestDeserialize: (value) => BatchedRemoveRequest.decode(value),
+    responseSerialize: (value) => Buffer.from(BatchedRemoveResponse.encode(value).finish()),
+    responseDeserialize: (value) => BatchedRemoveResponse.decode(value)
+  },
+  getBatch: {
+    path: "/cognica.rpc.db.kv.KeyValueDBService/get_batch",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value) => Buffer.from(BatchedGetRequest.encode(value).finish()),
+    requestDeserialize: (value) => BatchedGetRequest.decode(value),
+    responseSerialize: (value) => Buffer.from(BatchedGetResponse.encode(value).finish()),
+    responseDeserialize: (value) => BatchedGetResponse.decode(value)
+  }
+};
+var KeyValueDBServiceClient = makeGenericClientConstructor2(
+  KeyValueDBServiceService,
+  "cognica.rpc.db.kv.KeyValueDBService"
+);
+var KeyspaceManagerServiceService = {
+  createKeyspace: {
+    path: "/cognica.rpc.db.kv.KeyspaceManagerService/create_keyspace",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value) => Buffer.from(CreateKeyspaceRequest.encode(value).finish()),
+    requestDeserialize: (value) => CreateKeyspaceRequest.decode(value),
+    responseSerialize: (value) => Buffer.from(CreateKeyspaceResponse.encode(value).finish()),
+    responseDeserialize: (value) => CreateKeyspaceResponse.decode(value)
+  },
+  dropKeyspace: {
+    path: "/cognica.rpc.db.kv.KeyspaceManagerService/drop_keyspace",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value) => Buffer.from(DropKeyspaceRequest.encode(value).finish()),
+    requestDeserialize: (value) => DropKeyspaceRequest.decode(value),
+    responseSerialize: (value) => Buffer.from(DropKeyspaceResponse.encode(value).finish()),
+    responseDeserialize: (value) => DropKeyspaceResponse.decode(value)
+  },
+  truncateKeyspace: {
+    path: "/cognica.rpc.db.kv.KeyspaceManagerService/truncate_keyspace",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value) => Buffer.from(TruncateKeyspaceRequest.encode(value).finish()),
+    requestDeserialize: (value) => TruncateKeyspaceRequest.decode(value),
+    responseSerialize: (value) => Buffer.from(TruncateKeyspaceResponse.encode(value).finish()),
+    responseDeserialize: (value) => TruncateKeyspaceResponse.decode(value)
+  },
+  listKeyspaces: {
+    path: "/cognica.rpc.db.kv.KeyspaceManagerService/list_keyspaces",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value) => Buffer.from(ListKeyspacesRequest.encode(value).finish()),
+    requestDeserialize: (value) => ListKeyspacesRequest.decode(value),
+    responseSerialize: (value) => Buffer.from(ListKeyspacesResponse.encode(value).finish()),
+    responseDeserialize: (value) => ListKeyspacesResponse.decode(value)
+  }
+};
+var KeyspaceManagerServiceClient = makeGenericClientConstructor2(
+  KeyspaceManagerServiceService,
+  "cognica.rpc.db.kv.KeyspaceManagerService"
+);
+function bytesFromBase642(b64) {
+  if (globalThis.Buffer) {
+    return Uint8Array.from(globalThis.Buffer.from(b64, "base64"));
+  } else {
+    const bin = globalThis.atob(b64);
+    const arr = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; ++i) {
+      arr[i] = bin.charCodeAt(i);
+    }
+    return arr;
+  }
+}
+function base64FromBytes2(arr) {
+  if (globalThis.Buffer) {
+    return globalThis.Buffer.from(arr).toString("base64");
+  } else {
+    const bin = [];
+    arr.forEach((byte) => {
+      bin.push(globalThis.String.fromCharCode(byte));
+    });
+    return globalThis.btoa(bin.join(""));
+  }
+}
+function longToNumber3(long) {
+  if (long.gt(globalThis.Number.MAX_SAFE_INTEGER)) {
+    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+  }
+  return long.toNumber();
+}
+if (_m03.util.Long !== Long3) {
+  _m03.util.Long = Long3;
+  _m03.configure();
+}
+function isSet3(value) {
+  return value !== null && value !== void 0;
+}
+
+// src/key_value_db.ts
+var KeyValueDB = class extends GrpcClient {
+  constructor(channel, timeout = void 0) {
+    const client = new KeyValueDBServiceClient(
+      channel.address,
+      channel.credential,
+      channel.options
+    );
+    super(channel, client, timeout);
+  }
+  get(keyspaceName, key) {
+    const request = {
+      keyspaceName,
+      key: this.toBuffer(key)
+    };
+    return this.createPromise(
+      request,
+      "get",
+      (response) => {
+        return response.value;
+      }
+    );
+  }
+  getBatch(keyspaceName, keys) {
+    const request = {
+      keyspaceName,
+      keys: keys.map((key) => this.toBuffer(key))
+    };
+    return this.createPromise(request, "getBatch", (response) => {
+      return response.values;
+    });
+  }
+  put(request, key, value, ttl = 0, createIfMissing = true) {
+    let putRequest;
+    if (typeof request === "string") {
+      putRequest = {
+        keyspaceName: request,
+        key: this.toBuffer(key),
+        value: this.toBuffer(value),
+        ttl,
+        createIfMissing
+      };
+    } else {
+      putRequest = PutRequest.fromJSON(request);
+    }
+    return this.createPromise(
+      putRequest,
+      "put",
+      (response) => {
+        var _a;
+        return ((_a = response.response) == null ? void 0 : _a.status) == 0 /* kOK */;
+      }
+    );
+  }
+  putBatch(requests, keys, values, ttls, createIfMissing = true) {
+    let batchedRequest;
+    if (typeof requests === "string") {
+      batchedRequest = {
+        keyspaceName: requests,
+        keys: keys == null ? void 0 : keys.map((key) => this.toBuffer(key)),
+        values: values == null ? void 0 : values.map((value) => this.toBuffer(value)),
+        ttls: ttls || Array(keys.length).fill(0),
+        createIfMissing
+      };
+    } else {
+      batchedRequest = BatchedPutRequest.fromJSON(requests);
+    }
+    return this.createPromise(batchedRequest, "putBatch", (response) => {
+      return response.responses.map(
+        (response2) => response2.status == 0 /* kOK */
+      );
+    });
+  }
+  remove(keyspaceName, key) {
+    const request = {
+      keyspaceName,
+      key: this.toBuffer(key)
+    };
+    return this.createPromise(request, "remove", (response) => {
+      var _a;
+      return ((_a = response.response) == null ? void 0 : _a.status) == 0 /* kOK */;
+    });
+  }
+  removeBatch(keyspaceName, keys) {
+    const request = {
+      keyspaceName,
+      keys: keys.map((key) => this.toBuffer(key))
+    };
+    return this.createPromise(request, "removeBatch", (response) => {
+      var _a;
+      return (_a = response.responses) == null ? void 0 : _a.map(
+        (response2) => response2.status == 0 /* kOK */
+      );
+    });
+  }
+  toBuffer(value) {
+    if (typeof value === "string") {
+      return Buffer.from(value, "utf-8");
+    }
+    return value;
+  }
+};
+var KeyspaceManager = class extends GrpcClient {
+  constructor(channel, timeout = void 0) {
+    const client = new KeyspaceManagerServiceClient(
+      channel.address,
+      channel.credential,
+      channel.options
+    );
+    super(channel, client, timeout);
+  }
+  createKeyspace(keyspaceName) {
+    return this.createPromise(
+      { keyspaceName },
+      "createKeyspace",
+      (response) => {
+        var _a;
+        return ((_a = response.response) == null ? void 0 : _a.status) === 0 /* kOK */;
+      }
+    );
+  }
+  listKeyspace() {
+    return this.createPromise({}, "listKeyspaces", (response) => {
+      return response.keyspaceNames;
+    });
+  }
+  truncateKeyspace(keyspaceName) {
+    return this.createPromise(
+      {
+        keyspaceName
+      },
+      "truncateKeyspace",
+      (response) => {
+        var _a;
+        return ((_a = response.response) == null ? void 0 : _a.status) === 0 /* kOK */;
+      }
+    );
+  }
+  dropKeyspace(keyspaceName) {
+    return this.createPromise(
+      { keyspaceName },
+      "dropKeyspace",
+      (response) => {
+        var _a;
+        return ((_a = response.response) == null ? void 0 : _a.status) === 0 /* kOK */;
+      }
+    );
+  }
+};
+export {
+  Channel,
+  DocumentDB,
+  IndexType,
+  KeyValueDB,
+  KeyspaceManager,
+  indexStatusFromJSON2 as indexStatusFromJSON,
+  indexTypeFromJSON2 as indexTypeFromJSON
+};

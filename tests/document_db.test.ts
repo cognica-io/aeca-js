@@ -168,6 +168,62 @@ describe("DocumentDB", () => {
     expect(index).not.toBeNull()
   })
 
+  test("createIndex:duplicated", async () => {
+    await doc_db
+      .getIndex(_COLLECTION, "sk_doc_id")
+      .then(() => {
+        doc_db.dropIndex(_COLLECTION, "sk_doc_id")
+      })
+      .catch(() => {
+        return
+      })
+    const indexDescriptor = {
+      name: "sk_doc_id",
+      index_type: "kSecondaryKey",
+      fields: ["doc_id"],
+      unique: true,
+    }
+    await doc_db.createIndex(_COLLECTION, indexDescriptor)
+    await timeout(10)
+    const result = await doc_db.createIndex(_COLLECTION, indexDescriptor)
+  })
+
+  test("createIndex:not_exist_field", async () => {
+    await doc_db
+      .getIndex(_COLLECTION, "sk_title")
+      .then(() => {
+        doc_db.dropIndex(_COLLECTION, "sk_title")
+      })
+      .catch(() => {
+        return
+      })
+    const indexDescriptor = {
+      name: "sk_title",
+      index_type: "kSecondaryKey",
+      fields: ["doc_id", "title"],
+      unique: true,
+    }
+    await doc_db.createIndex(_COLLECTION, indexDescriptor)
+  })
+
+  test("createIndex", async () => {
+    await doc_db
+      .getIndex(_COLLECTION, "sk_author_2")
+      .then(() => {
+        doc_db.dropIndex(_COLLECTION, "sk_author_2")
+      })
+      .catch(() => {
+        return
+      })
+    const indexDescriptor = {
+      name: "sk_author_2",
+      index_type: "kSecondaryKey",
+      fields: ["doc_id", "author"],
+      unique: true,
+    }
+    await doc_db.createIndex(_COLLECTION, indexDescriptor)
+  })
+
   test("getIndex", async () => {
     const index = await doc_db.getIndex(_COLLECTION, "sk_fts")
     expect(index).not.toBeNull()
@@ -186,7 +242,7 @@ describe("DocumentDB", () => {
 
   afterAll(async () => {
     const collections = await doc_db.listCollections()
-    await doc_db.dropCollection(_COLLECTION)
+    // await doc_db.dropCollection(_COLLECTION)
 
     const oldCollectionName = `${_COLLECTION}.rename`
     if (collections.includes(oldCollectionName)) {
