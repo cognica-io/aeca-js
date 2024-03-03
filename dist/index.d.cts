@@ -1,6 +1,7 @@
 import * as grpc from '@grpc/grpc-js';
 import { Client, ServiceError as ServiceError$1, ClientUnaryCall, Metadata, CallOptions, ChannelCredentials, ClientOptions } from '@grpc/grpc-js';
 import _m0 from 'protobufjs/minimal';
+import { Table } from 'apache-arrow';
 
 interface Value {
     null?: boolean | undefined;
@@ -15737,15 +15738,15 @@ declare const GetIndexResponse: {
         } & { [K_75 in Exclude<keyof I_1["profile"], keyof ProfileInfo$1>]: never; }) | undefined;
     } & { [K_76 in Exclude<keyof I_1, keyof GetIndexResponse>]: never; }>(object: I_1): GetIndexResponse;
 };
-interface Query {
+interface Query$1 {
     collectionName: string;
     query: Document$1 | undefined;
 }
-declare const Query: {
-    encode(message: Query, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): Query;
-    fromJSON(object: any): Query;
-    toJSON(message: Query): unknown;
+declare const Query$1: {
+    encode(message: Query$1, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): Query$1;
+    fromJSON(object: any): Query$1;
+    toJSON(message: Query$1): unknown;
     create<I extends {
         collectionName?: string | undefined;
         query?: {
@@ -16262,7 +16263,7 @@ declare const Query: {
             } & { [K_38 in Exclude<keyof I["query"]["object"], "value">]: never; }) | undefined;
             json?: string | undefined;
         } & { [K_39 in Exclude<keyof I["query"], keyof Document$1>]: never; }) | undefined;
-    } & { [K_40 in Exclude<keyof I, keyof Query>]: never; }>(base?: I | undefined): Query;
+    } & { [K_40 in Exclude<keyof I, keyof Query$1>]: never; }>(base?: I | undefined): Query$1;
     fromPartial<I_1 extends {
         collectionName?: string | undefined;
         query?: {
@@ -16779,10 +16780,10 @@ declare const Query: {
             } & { [K_81 in Exclude<keyof I_1["query"]["object"], "value">]: never; }) | undefined;
             json?: string | undefined;
         } & { [K_82 in Exclude<keyof I_1["query"], keyof Document$1>]: never; }) | undefined;
-    } & { [K_83 in Exclude<keyof I_1, keyof Query>]: never; }>(object: I_1): Query;
+    } & { [K_83 in Exclude<keyof I_1, keyof Query$1>]: never; }>(object: I_1): Query$1;
 };
 interface FindRequest {
-    query: Query | undefined;
+    query: Query$1 | undefined;
     limit: number;
     indexColumns: string[];
     columns: string[];
@@ -17220,7 +17221,7 @@ declare const FindRequest: {
                 } & { [K_29 in Exclude<keyof I["query"]["query"]["object"], "value">]: never; }) | undefined;
                 json?: string | undefined;
             } & { [K_30 in Exclude<keyof I["query"]["query"], keyof Document$1>]: never; }) | undefined;
-        } & { [K_31 in Exclude<keyof I["query"], keyof Query>]: never; }) | undefined;
+        } & { [K_31 in Exclude<keyof I["query"], keyof Query$1>]: never; }) | undefined;
         limit?: number | undefined;
         indexColumns?: (string[] & string[] & { [K_32 in Exclude<keyof I["indexColumns"], keyof string[]>]: never; }) | undefined;
         columns?: (string[] & string[] & { [K_33 in Exclude<keyof I["columns"], keyof string[]>]: never; }) | undefined;
@@ -17655,7 +17656,7 @@ declare const FindRequest: {
                 } & { [K_65 in Exclude<keyof I_1["query"]["query"]["object"], "value">]: never; }) | undefined;
                 json?: string | undefined;
             } & { [K_66 in Exclude<keyof I_1["query"]["query"], keyof Document$1>]: never; }) | undefined;
-        } & { [K_67 in Exclude<keyof I_1["query"], keyof Query>]: never; }) | undefined;
+        } & { [K_67 in Exclude<keyof I_1["query"], keyof Query$1>]: never; }) | undefined;
         limit?: number | undefined;
         indexColumns?: (string[] & string[] & { [K_68 in Exclude<keyof I_1["indexColumns"], keyof string[]>]: never; }) | undefined;
         columns?: (string[] & string[] & { [K_69 in Exclude<keyof I_1["columns"], keyof string[]>]: never; }) | undefined;
@@ -18137,7 +18138,7 @@ declare const FindBatchRequest: {
                     } & { [K_19 in Exclude<keyof I["requests"][number]["query"]["query"]["object"], "value">]: never; }) | undefined;
                     json?: string | undefined;
                 } & { [K_20 in Exclude<keyof I["requests"][number]["query"]["query"], keyof Document$1>]: never; }) | undefined;
-            } & { [K_21 in Exclude<keyof I["requests"][number]["query"], keyof Query>]: never; }) | undefined;
+            } & { [K_21 in Exclude<keyof I["requests"][number]["query"], keyof Query$1>]: never; }) | undefined;
             limit?: number | undefined;
             indexColumns?: (string[] & string[] & { [K_22 in Exclude<keyof I["requests"][number]["indexColumns"], keyof string[]>]: never; }) | undefined;
             columns?: (string[] & string[] & { [K_23 in Exclude<keyof I["requests"][number]["columns"], keyof string[]>]: never; }) | undefined;
@@ -18570,7 +18571,7 @@ declare const FindBatchRequest: {
                     } & { [K_49 in Exclude<keyof I_1["requests"][number]["query"]["query"]["object"], "value">]: never; }) | undefined;
                     json?: string | undefined;
                 } & { [K_50 in Exclude<keyof I_1["requests"][number]["query"]["query"], keyof Document$1>]: never; }) | undefined;
-            } & { [K_51 in Exclude<keyof I_1["requests"][number]["query"], keyof Query>]: never; }) | undefined;
+            } & { [K_51 in Exclude<keyof I_1["requests"][number]["query"], keyof Query$1>]: never; }) | undefined;
             limit?: number | undefined;
             indexColumns?: (string[] & string[] & { [K_52 in Exclude<keyof I_1["requests"][number]["indexColumns"], keyof string[]>]: never; }) | undefined;
             columns?: (string[] & string[] & { [K_53 in Exclude<keyof I_1["requests"][number]["columns"], keyof string[]>]: never; }) | undefined;
@@ -18753,7 +18754,7 @@ declare const FindBatchResponse: {
     } & { [K_7 in Exclude<keyof I_1, "responses">]: never; }>(object: I_1): FindBatchResponse;
 };
 interface CountRequest {
-    query: Query | undefined;
+    query: Query$1 | undefined;
 }
 declare const CountRequest: {
     encode(message: CountRequest, writer?: _m0.Writer): _m0.Writer;
@@ -19179,7 +19180,7 @@ declare const CountRequest: {
                 } & { [K_29 in Exclude<keyof I["query"]["query"]["object"], "value">]: never; }) | undefined;
                 json?: string | undefined;
             } & { [K_30 in Exclude<keyof I["query"]["query"], keyof Document$1>]: never; }) | undefined;
-        } & { [K_31 in Exclude<keyof I["query"], keyof Query>]: never; }) | undefined;
+        } & { [K_31 in Exclude<keyof I["query"], keyof Query$1>]: never; }) | undefined;
     } & { [K_32 in Exclude<keyof I, "query">]: never; }>(base?: I | undefined): CountRequest;
     fromPartial<I_1 extends {
         query?: {
@@ -19600,7 +19601,7 @@ declare const CountRequest: {
                 } & { [K_62 in Exclude<keyof I_1["query"]["query"]["object"], "value">]: never; }) | undefined;
                 json?: string | undefined;
             } & { [K_63 in Exclude<keyof I_1["query"]["query"], keyof Document$1>]: never; }) | undefined;
-        } & { [K_64 in Exclude<keyof I_1["query"], keyof Query>]: never; }) | undefined;
+        } & { [K_64 in Exclude<keyof I_1["query"], keyof Query$1>]: never; }) | undefined;
     } & { [K_65 in Exclude<keyof I_1, "query">]: never; }>(object: I_1): CountRequest;
 };
 interface CountResponse {
@@ -19674,7 +19675,7 @@ declare const CountResponse: {
     } & { [K_3 in Exclude<keyof I_1, keyof CountResponse>]: never; }>(object: I_1): CountResponse;
 };
 interface ContainsRequest {
-    query: Query | undefined;
+    query: Query$1 | undefined;
 }
 declare const ContainsRequest: {
     encode(message: ContainsRequest, writer?: _m0.Writer): _m0.Writer;
@@ -20100,7 +20101,7 @@ declare const ContainsRequest: {
                 } & { [K_29 in Exclude<keyof I["query"]["query"]["object"], "value">]: never; }) | undefined;
                 json?: string | undefined;
             } & { [K_30 in Exclude<keyof I["query"]["query"], keyof Document$1>]: never; }) | undefined;
-        } & { [K_31 in Exclude<keyof I["query"], keyof Query>]: never; }) | undefined;
+        } & { [K_31 in Exclude<keyof I["query"], keyof Query$1>]: never; }) | undefined;
     } & { [K_32 in Exclude<keyof I, "query">]: never; }>(base?: I | undefined): ContainsRequest;
     fromPartial<I_1 extends {
         query?: {
@@ -20521,7 +20522,7 @@ declare const ContainsRequest: {
                 } & { [K_62 in Exclude<keyof I_1["query"]["query"]["object"], "value">]: never; }) | undefined;
                 json?: string | undefined;
             } & { [K_63 in Exclude<keyof I_1["query"]["query"], keyof Document$1>]: never; }) | undefined;
-        } & { [K_64 in Exclude<keyof I_1["query"], keyof Query>]: never; }) | undefined;
+        } & { [K_64 in Exclude<keyof I_1["query"], keyof Query$1>]: never; }) | undefined;
     } & { [K_65 in Exclude<keyof I_1, "query">]: never; }>(object: I_1): ContainsRequest;
 };
 interface ContainsResponse {
@@ -20595,7 +20596,7 @@ declare const ContainsResponse: {
     } & { [K_3 in Exclude<keyof I_1, keyof ContainsResponse>]: never; }>(object: I_1): ContainsResponse;
 };
 interface InsertRequest {
-    requests: Query[];
+    requests: Query$1[];
 }
 declare const InsertRequest: {
     encode(message: InsertRequest, writer?: _m0.Writer): _m0.Writer;
@@ -21042,7 +21043,7 @@ declare const InsertRequest: {
                 } & { [K_29 in Exclude<keyof I["requests"][number]["query"]["object"], "value">]: never; }) | undefined;
                 json?: string | undefined;
             } & { [K_30 in Exclude<keyof I["requests"][number]["query"], keyof Document$1>]: never; }) | undefined;
-        } & { [K_31 in Exclude<keyof I["requests"][number], keyof Query>]: never; })[] & { [K_32 in Exclude<keyof I["requests"], keyof {
+        } & { [K_31 in Exclude<keyof I["requests"][number], keyof Query$1>]: never; })[] & { [K_32 in Exclude<keyof I["requests"], keyof {
             collectionName?: string | undefined;
             query?: {
                 object?: {
@@ -21505,7 +21506,7 @@ declare const InsertRequest: {
                 } & { [K_63 in Exclude<keyof I_1["requests"][number]["query"]["object"], "value">]: never; }) | undefined;
                 json?: string | undefined;
             } & { [K_64 in Exclude<keyof I_1["requests"][number]["query"], keyof Document$1>]: never; }) | undefined;
-        } & { [K_65 in Exclude<keyof I_1["requests"][number], keyof Query>]: never; })[] & { [K_66 in Exclude<keyof I_1["requests"], keyof {
+        } & { [K_65 in Exclude<keyof I_1["requests"][number], keyof Query$1>]: never; })[] & { [K_66 in Exclude<keyof I_1["requests"], keyof {
             collectionName?: string | undefined;
             query?: {
                 object?: {
@@ -23729,7 +23730,7 @@ declare const UpdateResponse: {
     } & { [K_3 in Exclude<keyof I_1, keyof UpdateResponse>]: never; }>(object: I_1): UpdateResponse;
 };
 interface RemoveRequest$1 {
-    requests: Query[];
+    requests: Query$1[];
 }
 declare const RemoveRequest$1: {
     encode(message: RemoveRequest$1, writer?: _m0.Writer): _m0.Writer;
@@ -24176,7 +24177,7 @@ declare const RemoveRequest$1: {
                 } & { [K_29 in Exclude<keyof I["requests"][number]["query"]["object"], "value">]: never; }) | undefined;
                 json?: string | undefined;
             } & { [K_30 in Exclude<keyof I["requests"][number]["query"], keyof Document$1>]: never; }) | undefined;
-        } & { [K_31 in Exclude<keyof I["requests"][number], keyof Query>]: never; })[] & { [K_32 in Exclude<keyof I["requests"], keyof {
+        } & { [K_31 in Exclude<keyof I["requests"][number], keyof Query$1>]: never; })[] & { [K_32 in Exclude<keyof I["requests"], keyof {
             collectionName?: string | undefined;
             query?: {
                 object?: {
@@ -24639,7 +24640,7 @@ declare const RemoveRequest$1: {
                 } & { [K_63 in Exclude<keyof I_1["requests"][number]["query"]["object"], "value">]: never; }) | undefined;
                 json?: string | undefined;
             } & { [K_64 in Exclude<keyof I_1["requests"][number]["query"], keyof Document$1>]: never; }) | undefined;
-        } & { [K_65 in Exclude<keyof I_1["requests"][number], keyof Query>]: never; })[] & { [K_66 in Exclude<keyof I_1["requests"], keyof {
+        } & { [K_65 in Exclude<keyof I_1["requests"][number], keyof Query$1>]: never; })[] & { [K_66 in Exclude<keyof I_1["requests"], keyof {
             collectionName?: string | undefined;
             query?: {
                 object?: {
@@ -24729,7 +24730,7 @@ declare const RemoveResponse$1: {
     } & { [K_3 in Exclude<keyof I_1, keyof RemoveResponse$1>]: never; }>(object: I_1): RemoveResponse$1;
 };
 interface ExplainRequest {
-    queries: Query[];
+    queries: Query$1[];
 }
 declare const ExplainRequest: {
     encode(message: ExplainRequest, writer?: _m0.Writer): _m0.Writer;
@@ -25176,7 +25177,7 @@ declare const ExplainRequest: {
                 } & { [K_29 in Exclude<keyof I["queries"][number]["query"]["object"], "value">]: never; }) | undefined;
                 json?: string | undefined;
             } & { [K_30 in Exclude<keyof I["queries"][number]["query"], keyof Document$1>]: never; }) | undefined;
-        } & { [K_31 in Exclude<keyof I["queries"][number], keyof Query>]: never; })[] & { [K_32 in Exclude<keyof I["queries"], keyof {
+        } & { [K_31 in Exclude<keyof I["queries"][number], keyof Query$1>]: never; })[] & { [K_32 in Exclude<keyof I["queries"], keyof {
             collectionName?: string | undefined;
             query?: {
                 object?: {
@@ -25639,7 +25640,7 @@ declare const ExplainRequest: {
                 } & { [K_63 in Exclude<keyof I_1["queries"][number]["query"]["object"], "value">]: never; }) | undefined;
                 json?: string | undefined;
             } & { [K_64 in Exclude<keyof I_1["queries"][number]["query"], keyof Document$1>]: never; }) | undefined;
-        } & { [K_65 in Exclude<keyof I_1["queries"][number], keyof Query>]: never; })[] & { [K_66 in Exclude<keyof I_1["queries"], keyof {
+        } & { [K_65 in Exclude<keyof I_1["queries"][number], keyof Query$1>]: never; })[] & { [K_66 in Exclude<keyof I_1["queries"], keyof {
             collectionName?: string | undefined;
             query?: {
                 object?: {
@@ -26198,9 +26199,10 @@ interface IndexDescriptor {
     status?: string;
     options?: Document;
 }
+type Query = Document | Document[];
 interface Request {
     collectionName: string;
-    query: Document;
+    query: Query;
     limit?: number;
     indexColumns?: string[];
     columns?: string[];
@@ -26223,9 +26225,18 @@ type CollectionInfo = {
     indexDescriptors: IndexDescriptor[];
     indexStats: IndexStats[];
 };
+interface DataFrame {
+    data: Table<any>;
+    meta?: Document;
+}
 declare class DocumentDB extends GrpcClient<DocumentDBServiceClient> {
     constructor(channel: Channel, timeout?: number | undefined);
+    find(collectionName: string, query: Document, limit?: number, indexColumns?: string[], columns?: string[], dtypes?: {
+        [key: string]: string;
+    }): Promise<DataFrame | null>;
+    find(request: Request): Promise<DataFrame | null>;
     findRaw(request: Request): Promise<Buffer | null>;
+    findBatch(requests: Request[]): Promise<(DataFrame | null)[]>;
     insert(collectionName: string, docs: Document | Document[]): Promise<unknown>;
     update(collectionName: string, filter: Document, updates: Document): Promise<unknown>;
     remove(collectionName: string, docs: Document | Document[]): Promise<unknown>;
@@ -26240,7 +26251,11 @@ declare class DocumentDB extends GrpcClient<DocumentDBServiceClient> {
     getIndex(collectionName: string, indexName: string): Promise<GetIndexResponse>;
     renameIndex(collectionName: string, oldIndexName: string, newIndexName: string): Promise<unknown>;
     dropIndex(collectionName: string, indexName: string): Promise<unknown>;
+    empty(collectionName: string, query: Document, dtypes?: {
+        [key: string]: string;
+    } | undefined): Promise<boolean>;
     private static toFindRequest;
+    private static toDataFrame;
     private static fromCollectionInfo;
     private static toIndexDescriptor;
     private static fromIndexDescriptor;
@@ -27529,4 +27544,4 @@ declare class KeyspaceManager extends GrpcClient<KeyspaceManagerServiceClient> {
     dropKeyspace(keyspaceName: string): Promise<boolean>;
 }
 
-export { type BatchedPutRequest, Channel, type CollectionInfo, type Document, DocumentDB, type IndexDescriptor, type IndexStats, IndexType, KeyValueDB, KeyspaceManager, type PutRequest, type Request, type ServiceError, indexStatusFromJSON, indexTypeFromJSON };
+export { type BatchedPutRequest, Channel, type CollectionInfo, type Document, DocumentDB, type IndexDescriptor, type IndexStats, IndexType, KeyValueDB, KeyspaceManager, type PutRequest, type Query, type Request, type ServiceError, indexStatusFromJSON, indexTypeFromJSON };

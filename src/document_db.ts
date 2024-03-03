@@ -4,9 +4,8 @@
 // Copyright (c) 2023-2024 Cognica
 //
 
-// import { Table, tableFromIPC } from "apache-arrow"
-// import { readParquet } from "parquet-wasm"
-
+import { Table, tableFromIPC } from "apache-arrow"
+// import * as parquet from "parquet-wasm/esm/arrow1"
 import * as proto from "@/proto/generated/document_db"
 
 import { Channel } from "./channel"
@@ -21,9 +20,10 @@ export interface IndexDescriptor {
   status?: string
   options?: Document
 }
+export type Query = Document | Document[]
 export interface Request {
   collectionName: string
-  query: Document
+  query: Query
   limit?: number
   indexColumns?: string[]
   columns?: string[]
@@ -44,7 +44,10 @@ export type CollectionInfo = {
   indexDescriptors: IndexDescriptor[]
   indexStats: IndexStats[]
 }
-// export type DataFrame = Table<any>
+interface DataFrame {
+  data: Table<any>
+  meta?: Document
+}
 
 export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
   constructor(channel: Channel, timeout: number | undefined = undefined) {
@@ -56,44 +59,44 @@ export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
     super(channel, client, timeout)
   }
 
-  // find(
-  //   collectionName: string,
-  //   query: Document,
-  //   limit?: number,
-  //   indexColumns?: string[],
-  //   columns?: string[],
-  //   dtypes?: { [key: string]: string },
-  // ): Promise<DataFrame | null>
-  // find(request: Request): Promise<DataFrame | null>
-  // find(
-  //   request: string | Request,
-  //   query?: Document,
-  //   limit?: number,
-  //   indexColumns?: string[],
-  //   columns?: string[],
-  //   dtypes?: { [key: string]: string },
-  // ) {
-  //   let findRequest
-  //   if (typeof request === "string") {
-  //     findRequest = DocumentDB.toFindRequest({
-  //       collectionName: request,
-  //       query: query!,
-  //       limit: limit,
-  //       indexColumns: indexColumns,
-  //       columns: columns,
-  //       dtypes: dtypes,
-  //     })
-  //   } else {
-  //     findRequest = DocumentDB.toFindRequest(request)
-  //   }
-  //   return this.createPromise<
-  //     DataFrame | null,
-  //     proto.FindRequest,
-  //     proto.FindResponse
-  //   >(findRequest, "find", (response: proto.FindResponse) => {
-  //     return DocumentDB.toDataFrame(response)
-  //   })
-  // }
+  find(
+    collectionName: string,
+    query: Document,
+    limit?: number,
+    indexColumns?: string[],
+    columns?: string[],
+    dtypes?: { [key: string]: string },
+  ): Promise<DataFrame | null>
+  find(request: Request): Promise<DataFrame | null>
+  find(
+    request: string | Request,
+    query?: Document,
+    limit?: number,
+    indexColumns?: string[],
+    columns?: string[],
+    dtypes?: { [key: string]: string },
+  ) {
+    let findRequest
+    if (typeof request === "string") {
+      findRequest = DocumentDB.toFindRequest({
+        collectionName: request,
+        query: query!,
+        limit: limit,
+        indexColumns: indexColumns,
+        columns: columns,
+        dtypes: dtypes,
+      })
+    } else {
+      findRequest = DocumentDB.toFindRequest(request)
+    }
+    return this.createPromise<
+      DataFrame | null,
+      proto.FindRequest,
+      proto.FindResponse
+    >(findRequest, "find", (response: proto.FindResponse) => {
+      return DocumentDB.toDataFrame(response)
+    })
+  }
 
   findRaw(request: Request): Promise<Buffer | null> {
     const findRequest = DocumentDB.toFindRequest(request)
@@ -106,20 +109,22 @@ export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
     })
   }
 
-  // findBatch(requests: Request[]) {
-  //   const findRequests: proto.FindBatchRequest = {
-  //     requests: requests.map((request) => {
-  //       return DocumentDB.toFindRequest(request)
-  //     }),
-  //   }
-  //   return this.createPromise<
-  //     (DataFrame | null)[],
-  //     proto.FindBatchRequest,
-  //     proto.FindBatchResponse
-  //   >(findRequests, "findBatch", (response: proto.FindBatchResponse) => {
-  //     return response.responses.map((response) => DocumentDB.toDataFrame(response))
-  //   })
-  // }
+  findBatch(requests: Request[]) {
+    const findRequests: proto.FindBatchRequest = {
+      requests: requests.map((request) => {
+        return DocumentDB.toFindRequest(request)
+      }),
+    }
+    return this.createPromise<
+      (DataFrame | null)[],
+      proto.FindBatchRequest,
+      proto.FindBatchResponse
+    >(findRequests, "findBatch", (response: proto.FindBatchResponse) => {
+      return response.responses.map((response) =>
+        DocumentDB.toDataFrame(response),
+      )
+    })
+  }
 
   insert(collectionName: string, docs: Document | Document[]) {
     if (!Array.isArray(docs)) {
@@ -311,22 +316,22 @@ export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
     )
   }
 
-  // empty(
-  //   collectionName: string,
-  //   query: Document,
-  //   dtypes: { [key: string]: string } | undefined = undefined,
-  // ) {
-  //   return this.find({
-  //     collectionName: collectionName,
-  //     query: query,
-  //     dtypes: dtypes,
-  //   }).then((result): boolean => {
-  //     if (result) {
-  //       return result.numRows == 0
-  //     }
-  //     return true
-  //   })
-  // }
+  empty(
+    collectionName: string,
+    query: Document,
+    dtypes: { [key: string]: string } | undefined = undefined,
+  ) {
+    return this.find({
+      collectionName: collectionName,
+      query: query,
+      dtypes: dtypes,
+    }).then((result): boolean => {
+      if (result) {
+        return result.data.numRows == 0
+      }
+      return true
+    })
+  }
 
   private static toFindRequest(request: Request): proto.FindRequest {
     return proto.FindRequest.fromJSON({
@@ -341,14 +346,26 @@ export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
     })
   }
 
-  // private static toDataFrame(response: proto.FindResponse): DataFrame | null {
-  //   if (response.numRows) {
-  //     const arrowBuffer = readParquet(response.buffer)
-  //     const df = tableFromIPC(arrowBuffer.intoIPCStream())
-  //     return df
-  //   }
-  //   return null
-  // }
+  private static async toDataFrame(
+    response: proto.FindResponse,
+  ): Promise<DataFrame | null> {
+    if (response.numRows) {
+      const parquet = await import("parquet-wasm/node/arrow1")
+
+      const arrowBuffer = parquet.readParquet(response.buffer)
+      const df = tableFromIPC(arrowBuffer.intoIPCStream())
+      const meta_json = df.schema.metadata.get("pandas")
+      let meta
+      if (meta_json) {
+        meta = JSON.parse(meta_json)
+      }
+      return {
+        data: df,
+        meta: meta,
+      }
+    }
+    return null
+  }
 
   private static fromCollectionInfo(
     collection: proto.CollectionInfo,

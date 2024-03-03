@@ -1,18 +1,16 @@
+"use strict";
 var __create = Object.create;
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __require = /* @__PURE__ */ ((x) => typeof require !== "undefined" ? require : typeof Proxy !== "undefined" ? new Proxy(x, {
-  get: (a, b) => (typeof require !== "undefined" ? require : a)[b]
-}) : x)(function(x) {
-  if (typeof require !== "undefined")
-    return require.apply(this, arguments);
-  throw Error('Dynamic require of "' + x + '" is not supported');
-});
-var __commonJS = (cb, mod2) => function __require2() {
+var __commonJS = (cb, mod2) => function __require() {
   return mod2 || (0, cb[__getOwnPropNames(cb)[0]])((mod2 = { exports: {} }).exports, mod2), mod2.exports;
+};
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
 };
 var __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
@@ -30,6 +28,7 @@ var __toESM = (mod2, isNodeMode, target) => (target = mod2 != null ? __create(__
   isNodeMode || !mod2 || !mod2.__esModule ? __defProp(target, "default", { value: mod2, enumerable: true }) : target,
   mod2
 ));
+var __toCommonJS = (mod2) => __copyProps(__defProp({}, "__esModule", { value: true }), mod2);
 
 // node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/constants.js
 var require_constants = __commonJS({
@@ -179,7 +178,7 @@ var require_logging = __commonJS({
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.isTracerEnabled = exports2.trace = exports2.log = exports2.setLoggerVerbosity = exports2.setLogger = exports2.getLogger = void 0;
     var constants_1 = require_constants();
-    var process_1 = __require("process");
+    var process_1 = require("process");
     var clientVersion = require_package().version;
     var DEFAULT_LOGGER = {
       error: (message, ...optionalParams) => {
@@ -654,7 +653,7 @@ var require_tls_helpers = __commonJS({
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.getDefaultRootsData = exports2.CIPHER_SUITES = void 0;
-    var fs = __require("fs");
+    var fs = require("fs");
     exports2.CIPHER_SUITES = process.env.GRPC_SSL_CIPHER_SUITES;
     var DEFAULT_ROOTS_FILE_PATH = process.env.GRPC_DEFAULT_SSL_ROOTS_FILE_PATH;
     var defaultRootsData = null;
@@ -677,7 +676,7 @@ var require_channel_credentials = __commonJS({
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.ChannelCredentials = void 0;
-    var tls_1 = __require("tls");
+    var tls_1 = require("tls");
     var call_credentials_1 = require_call_credentials();
     var tls_helpers_1 = require_tls_helpers();
     function verifyIsBufferOrNull(obj, friendlyName) {
@@ -921,7 +920,7 @@ var require_service_config = __commonJS({
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.extractAndSelectServiceConfig = exports2.validateServiceConfig = exports2.validateRetryThrottling = void 0;
-    var os = __require("os");
+    var os = require("os");
     var constants_1 = require_constants();
     var DURATION_REGEX = /^\d+(\.\d{1,9})?s$/;
     var CLIENT_LANGUAGE_STRING = "node";
@@ -2047,7 +2046,7 @@ var require_subchannel_address = __commonJS({
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.EndpointMap = exports2.endpointHasAddress = exports2.endpointToString = exports2.endpointEqual = exports2.stringToSubchannelAddress = exports2.subchannelAddressToString = exports2.subchannelAddressEqual = exports2.isTcpSubchannelAddress = void 0;
-    var net_1 = __require("net");
+    var net_1 = require("net");
     function isTcpSubchannelAddress(address) {
       return "port" in address;
     }
@@ -2248,8 +2247,8 @@ var require_call = __commonJS({
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.ClientDuplexStreamImpl = exports2.ClientWritableStreamImpl = exports2.ClientReadableStreamImpl = exports2.ClientUnaryCallImpl = exports2.callErrorFromStatus = void 0;
-    var events_1 = __require("events");
-    var stream_1 = __require("stream");
+    var events_1 = require("events");
+    var stream_1 = require("stream");
     var constants_1 = require_constants();
     function callErrorFromStatus(status2, callerStack) {
       const message = `${status2.code} ${constants_1.Status[status2.code]}: ${status2.details}`;
@@ -10339,8 +10338,8 @@ var require_util2 = __commonJS({
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.addCommonProtos = exports2.loadProtosWithOptionsSync = exports2.loadProtosWithOptions = void 0;
-    var fs = __require("fs");
-    var path = __require("path");
+    var fs = require("fs");
+    var path = require("path");
     var Protobuf = require_protobufjs();
     function addIncludePathResolver(root, includePaths) {
       const originalResolvePath = root.resolvePath;
@@ -11166,7 +11165,7 @@ var require_channelz = __commonJS({
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.setup = exports2.getChannelzServiceDefinition = exports2.getChannelzHandlers = exports2.unregisterChannelzRef = exports2.registerChannelzSocket = exports2.registerChannelzServer = exports2.registerChannelzSubchannel = exports2.registerChannelzChannel = exports2.ChannelzCallTracker = exports2.ChannelzChildrenTracker = exports2.ChannelzTrace = void 0;
-    var net_1 = __require("net");
+    var net_1 = require("net");
     var connectivity_state_1 = require_connectivity_state();
     var constants_1 = require_constants();
     var subchannel_address_1 = require_subchannel_address();
@@ -12034,15 +12033,15 @@ var require_resolver_dns = __commonJS({
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.setup = exports2.DEFAULT_PORT = void 0;
     var resolver_1 = require_resolver();
-    var dns = __require("dns");
-    var util = __require("util");
+    var dns = require("dns");
+    var util = require("util");
     var service_config_1 = require_service_config();
     var constants_1 = require_constants();
     var metadata_1 = require_metadata();
     var logging = require_logging();
     var constants_2 = require_constants();
     var uri_parser_1 = require_uri_parser();
-    var net_1 = __require("net");
+    var net_1 = require("net");
     var backoff_timeout_1 = require_backoff_timeout();
     var TRACER_NAME = "dns_resolver";
     function trace(text) {
@@ -12283,12 +12282,12 @@ var require_http_proxy = __commonJS({
     var logging_1 = require_logging();
     var constants_1 = require_constants();
     var resolver_1 = require_resolver();
-    var http = __require("http");
-    var tls = __require("tls");
+    var http = require("http");
+    var tls = require("tls");
     var logging = require_logging();
     var subchannel_address_1 = require_subchannel_address();
     var uri_parser_1 = require_uri_parser();
-    var url_1 = __require("url");
+    var url_1 = require("url");
     var resolver_dns_1 = require_resolver_dns();
     var TRACER_NAME = "proxy";
     function trace(text) {
@@ -12564,8 +12563,8 @@ var require_subchannel_call = __commonJS({
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.Http2SubchannelCall = void 0;
-    var http2 = __require("http2");
-    var os = __require("os");
+    var http2 = require("http2");
+    var os = require("os");
     var constants_1 = require_constants();
     var metadata_1 = require_metadata();
     var stream_decoder_1 = require_stream_decoder();
@@ -12922,8 +12921,8 @@ var require_transport = __commonJS({
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.Http2SubchannelConnector = void 0;
-    var http2 = __require("http2");
-    var tls_1 = __require("tls");
+    var http2 = require("http2");
+    var tls_1 = require("tls");
     var channelz_1 = require_channelz();
     var constants_1 = require_constants();
     var http_proxy_1 = require_http_proxy();
@@ -12931,7 +12930,7 @@ var require_transport = __commonJS({
     var resolver_1 = require_resolver();
     var subchannel_address_1 = require_subchannel_address();
     var uri_parser_1 = require_uri_parser();
-    var net = __require("net");
+    var net = require("net");
     var subchannel_call_1 = require_subchannel_call();
     var call_number_1 = require_call_number();
     var TRACER_NAME = "transport";
@@ -13605,7 +13604,7 @@ var require_compression_filter = __commonJS({
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.CompressionFilterFactory = exports2.CompressionFilter = void 0;
-    var zlib = __require("zlib");
+    var zlib = require("zlib");
     var compression_algorithms_1 = require_compression_algorithms();
     var constants_1 = require_constants();
     var filter_1 = require_filter();
@@ -13996,7 +13995,7 @@ var require_load_balancing_call = __commonJS({
     var uri_parser_1 = require_uri_parser();
     var logging = require_logging();
     var control_plane_status_1 = require_control_plane_status();
-    var http2 = __require("http2");
+    var http2 = require("http2");
     var TRACER_NAME = "load_balancing_call";
     var LoadBalancingCall = class {
       constructor(channel, callConfig, methodName, host, credentials2, deadline, callNumber) {
@@ -15602,8 +15601,8 @@ var require_server_call = __commonJS({
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.ServerDuplexStreamImpl = exports2.ServerWritableStreamImpl = exports2.ServerReadableStreamImpl = exports2.ServerUnaryCallImpl = exports2.serverErrorToStatus = void 0;
-    var events_1 = __require("events");
-    var stream_1 = __require("stream");
+    var events_1 = require("events");
+    var stream_1 = require("stream");
     var constants_1 = require_constants();
     var metadata_1 = require_metadata();
     function serverErrorToStatus(error, overrideTrailers) {
@@ -15922,10 +15921,10 @@ var require_server_interceptors = __commonJS({
     exports2.getServerInterceptingCall = exports2.BaseServerInterceptingCall = exports2.ServerInterceptingCall = exports2.ResponderBuilder = exports2.isInterceptingServerListener = exports2.ServerListenerBuilder = void 0;
     var metadata_1 = require_metadata();
     var constants_1 = require_constants();
-    var http2 = __require("http2");
+    var http2 = require("http2");
     var error_1 = require_error();
-    var zlib = __require("zlib");
-    var util_1 = __require("util");
+    var zlib = require("zlib");
+    var util_1 = require("util");
     var stream_decoder_1 = require_stream_decoder();
     var logging = require_logging();
     var unzip = (0, util_1.promisify)(zlib.unzip);
@@ -16626,8 +16625,8 @@ var require_server = __commonJS({
     };
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.Server = void 0;
-    var http2 = __require("http2");
-    var util = __require("util");
+    var http2 = require("http2");
+    var util = require("util");
     var constants_1 = require_constants();
     var server_call_1 = require_server_call();
     var server_credentials_1 = require_server_credentials();
@@ -17790,7 +17789,7 @@ var require_load_balancer_pick_first = __commonJS({
     var logging = require_logging();
     var constants_1 = require_constants();
     var subchannel_address_1 = require_subchannel_address();
-    var net_1 = __require("net");
+    var net_1 = require("net");
     var TRACER_NAME = "pick_first";
     function trace(text) {
       logging.trace(constants_1.LogVerbosity.DEBUG, TRACER_NAME, text);
@@ -18311,7 +18310,7 @@ var require_resolver_ip = __commonJS({
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.setup = void 0;
-    var net_1 = __require("net");
+    var net_1 = require("net");
     var constants_1 = require_constants();
     var metadata_1 = require_metadata();
     var resolver_1 = require_resolver();
@@ -19219,6 +19218,19 @@ var require_minimal2 = __commonJS({
   }
 });
 
+// src/index.ts
+var src_exports = {};
+__export(src_exports, {
+  Channel: () => Channel,
+  DocumentDB: () => DocumentDB,
+  IndexType: () => IndexType,
+  KeyValueDB: () => KeyValueDB,
+  KeyspaceManager: () => KeyspaceManager,
+  indexStatusFromJSON: () => indexStatusFromJSON2,
+  indexTypeFromJSON: () => indexTypeFromJSON2
+});
+module.exports = __toCommonJS(src_exports);
+
 // src/channel.ts
 var grpc = __toESM(require_src3(), 1);
 var _Channel = class _Channel {
@@ -19251,7 +19263,7 @@ _Channel._OPTIONS = {
 var Channel = _Channel;
 
 // src/document_db.ts
-import { tableFromIPC } from "apache-arrow";
+var import_apache_arrow = require("apache-arrow");
 
 // src/proto/generated/document_db.ts
 var import_grpc_js = __toESM(require_src3(), 1);
@@ -24982,7 +24994,7 @@ var DocumentDB = class _DocumentDB extends GrpcClient {
     if (response.numRows) {
       const parquet = await import("parquet-wasm/node/arrow1");
       const arrowBuffer = parquet.readParquet(response.buffer);
-      const df = tableFromIPC(arrowBuffer.intoIPCStream());
+      const df = (0, import_apache_arrow.tableFromIPC)(arrowBuffer.intoIPCStream());
       const meta_json = df.schema.metadata.get("pandas");
       let meta;
       if (meta_json) {
@@ -26846,15 +26858,16 @@ var KeyspaceManager = class extends GrpcClient {
     );
   }
 };
-export {
+// Annotate the CommonJS export names for ESM import in node:
+0 && (module.exports = {
   Channel,
   DocumentDB,
   IndexType,
   KeyValueDB,
   KeyspaceManager,
-  indexStatusFromJSON2 as indexStatusFromJSON,
-  indexTypeFromJSON2 as indexTypeFromJSON
-};
+  indexStatusFromJSON,
+  indexTypeFromJSON
+});
 /*! Bundled license information:
 
 @grpc/proto-loader/build/src/util.js:

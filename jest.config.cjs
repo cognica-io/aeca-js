@@ -4,9 +4,14 @@
  */
 /** @type {import('jest').Config} */
 module.exports = {
-  preset: "ts-jest",
+  preset: "ts-jest/presets/default-esm",
   transform: {
-    "^.+\\.(ts|tsx)?$": "ts-jest",
+    "^.+\\.(ts|tsx)?$": [
+      "ts-jest",
+      {
+        useESM: true,
+      },
+    ],
   },
   roots: ["<rootDir>"],
   moduleDirectories: ["node_modules", "src"],
