@@ -1,14 +1,14 @@
 //
-// Cognica
+// Aeca
 //
-// Copyright (c) 2023-2024 Cognica
+// Copyright (c) 2024 Aeca
 //
 
 import { Channel, DocumentDB, Request } from "@/index"
 import { timeout } from "./helper"
 
 describe("DocumentDB", () => {
-  const _COLLECTION = "cognica.js.test"
+  const _COLLECTION = "aeca.js.test"
   const channel = new Channel("localhost", 10080)
   const doc_db = new DocumentDB(channel)
 

@@ -1,3 +1,3 @@
-# Cognica Javascript Client
+# Aeca Javascript Client
 
-A Javascript client for Cognica database server.
+A Javascript client for Aeca database server.

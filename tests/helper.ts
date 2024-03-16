@@ -1,7 +1,7 @@
 //
-// Cognica
+// Aeca
 //
-// Copyright (c) 2023-2024 Cognica
+// Copyright (c) 2024 Aeca
 //
 
 export function timeout(ms: number) {

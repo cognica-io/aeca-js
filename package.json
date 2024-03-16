@@ -1,14 +1,14 @@
 {
-  "name": "@cognica/client",
-  "description": "Javascript client for Cognica database",
+  "name": "@aeca/client",
+  "description": "Javascript client for Aeca database",
   "version": "0.1.1",
-  "homepage": "https://cognica.io",
+  "homepage": "https://aeca.ai",
   "repository": {
     "type": "git",
-    "url": "https://github.com/cognica-io/cognica-js.git"
+    "url": "https://github.com/aeca-io/aeca-js.git"
   },
   "bugs": {
-    "url": "https://forum.cognica.io"
+    "url": "https://forum.aeca.ai"
   },
   "engines": {
     "node": ">=18.0.0",
@@ -40,6 +40,7 @@
     "test": "jest"
   },
   "keywords": [
+    "Aeca",
     "Cognica",
     "key-value",
     "document store",
@@ -53,7 +54,7 @@
     "transformer",
     "vector embedding"
   ],
-  "author": "finn@cognica.io",
+  "author": "finn@aeca.ai",
   "license": "Apache-2.0",
   "devDependencies": {
     "@grpc/grpc-js": "^1.10.1",
