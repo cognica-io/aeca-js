@@ -338,7 +338,7 @@ var require_metadata = __commonJS({
         }
       }
     }
-    var Metadata4 = class _Metadata {
+    var Metadata5 = class _Metadata {
       constructor(options = {}) {
         this.internalRepr = /* @__PURE__ */ new Map();
         this.options = options;
@@ -507,7 +507,7 @@ var require_metadata = __commonJS({
         return result;
       }
     };
-    exports2.Metadata = Metadata4;
+    exports2.Metadata = Metadata5;
     var bufToString = (val) => {
       return Buffer.isBuffer(val) ? val.toString("base64") : val;
     };
@@ -684,7 +684,7 @@ var require_channel_credentials = __commonJS({
         throw new TypeError(`${friendlyName}, if provided, must be a Buffer.`);
       }
     }
-    var ChannelCredentials3 = class {
+    var ChannelCredentials4 = class {
       constructor(callCredentials) {
         this.callCredentials = callCredentials || call_credentials_1.CallCredentials.createEmpty();
       }
@@ -742,8 +742,8 @@ var require_channel_credentials = __commonJS({
         return new InsecureChannelCredentialsImpl();
       }
     };
-    exports2.ChannelCredentials = ChannelCredentials3;
-    var InsecureChannelCredentialsImpl = class _InsecureChannelCredentialsImpl extends ChannelCredentials3 {
+    exports2.ChannelCredentials = ChannelCredentials4;
+    var InsecureChannelCredentialsImpl = class _InsecureChannelCredentialsImpl extends ChannelCredentials4 {
       constructor() {
         super();
       }
@@ -760,7 +760,7 @@ var require_channel_credentials = __commonJS({
         return other instanceof _InsecureChannelCredentialsImpl;
       }
     };
-    var SecureChannelCredentialsImpl = class _SecureChannelCredentialsImpl extends ChannelCredentials3 {
+    var SecureChannelCredentialsImpl = class _SecureChannelCredentialsImpl extends ChannelCredentials4 {
       constructor(secureContext, verifyOptions) {
         super();
         this.secureContext = secureContext;
@@ -793,7 +793,7 @@ var require_channel_credentials = __commonJS({
         }
       }
     };
-    var ComposedChannelCredentialsImpl = class _ComposedChannelCredentialsImpl extends ChannelCredentials3 {
+    var ComposedChannelCredentialsImpl = class _ComposedChannelCredentialsImpl extends ChannelCredentials4 {
       constructor(channelCredentials, callCreds) {
         super(callCreds);
         this.channelCredentials = channelCredentials;
@@ -2799,7 +2799,7 @@ var require_client = __commonJS({
     function getErrorStackString(error) {
       return error.stack.split("\n").slice(1).join("\n");
     }
-    var Client4 = class {
+    var Client5 = class {
       constructor(address, credentials2, options = {}) {
         var _a, _b;
         options = Object.assign({}, options);
@@ -3145,7 +3145,7 @@ var require_client = __commonJS({
         return stream;
       }
     };
-    exports2.Client = Client4;
+    exports2.Client = Client5;
   }
 });
 
@@ -4262,7 +4262,7 @@ var require_minimal = __commonJS({
      * @param {string} prop Property name
      * @returns {boolean} `true` if considered to be present, otherwise `false`
      */
-    util.isSet = function isSet4(obj, prop) {
+    util.isSet = function isSet5(obj, prop) {
       var value = obj[prop];
       if (value != null && obj.hasOwnProperty(prop))
         return typeof value !== "object" || (Array.isArray(value) ? value.length : Object.keys(value).length) > 0;
@@ -19226,6 +19226,7 @@ __export(src_exports, {
   IndexType: () => IndexType,
   KeyValueDB: () => KeyValueDB,
   KeyspaceManager: () => KeyspaceManager,
+  SentenceTransformer: () => SentenceTransformer,
   indexStatusFromJSON: () => indexStatusFromJSON2,
   indexTypeFromJSON: () => indexTypeFromJSON2
 });
@@ -26858,6 +26859,1211 @@ var KeyspaceManager = class extends GrpcClient {
     );
   }
 };
+
+// src/proto/generated/sentence_transformer.ts
+var import_grpc_js5 = __toESM(require_src3(), 1);
+var import_minimal4 = __toESM(require_minimal2(), 1);
+function statusTypeFromJSON2(object) {
+  switch (object) {
+    case 0:
+    case "kOK":
+      return 0 /* kOK */;
+    case 1:
+    case "kNotFound":
+      return 1 /* kNotFound */;
+    case 10:
+    case "kInternal":
+      return 10 /* kInternal */;
+    case -1:
+    case "UNRECOGNIZED":
+    default:
+      return -1 /* UNRECOGNIZED */;
+  }
+}
+function statusTypeToJSON2(object) {
+  switch (object) {
+    case 0 /* kOK */:
+      return "kOK";
+    case 1 /* kNotFound */:
+      return "kNotFound";
+    case 10 /* kInternal */:
+      return "kInternal";
+    case -1 /* UNRECOGNIZED */:
+    default:
+      return "UNRECOGNIZED";
+  }
+}
+function cLIPEncoderRequest_InputFormatFromJSON(object) {
+  switch (object) {
+    case 0:
+    case "kText":
+      return 0 /* kText */;
+    case 1:
+    case "kImage":
+      return 1 /* kImage */;
+    case -1:
+    case "UNRECOGNIZED":
+    default:
+      return -1 /* UNRECOGNIZED */;
+  }
+}
+function cLIPEncoderRequest_InputFormatToJSON(object) {
+  switch (object) {
+    case 0 /* kText */:
+      return "kText";
+    case 1 /* kImage */:
+      return "kImage";
+    case -1 /* UNRECOGNIZED */:
+    default:
+      return "UNRECOGNIZED";
+  }
+}
+function createBaseTensor() {
+  return { dims: 0, data: [] };
+}
+var Tensor = {
+  encode(message, writer = import_minimal4.default.Writer.create()) {
+    if (message.dims !== 0) {
+      writer.uint32(8).int32(message.dims);
+    }
+    writer.uint32(18).fork();
+    for (const v of message.data) {
+      writer.float(v);
+    }
+    writer.ldelim();
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_minimal4.default.Reader ? input : import_minimal4.default.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseTensor();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+          message.dims = reader.int32();
+          continue;
+        case 2:
+          if (tag === 21) {
+            message.data.push(reader.float());
+            continue;
+          }
+          if (tag === 18) {
+            const end2 = reader.uint32() + reader.pos;
+            while (reader.pos < end2) {
+              message.data.push(reader.float());
+            }
+            continue;
+          }
+          break;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      dims: isSet4(object.dims) ? globalThis.Number(object.dims) : 0,
+      data: globalThis.Array.isArray(object?.data) ? object.data.map((e) => globalThis.Number(e)) : []
+    };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.dims !== 0) {
+      obj.dims = Math.round(message.dims);
+    }
+    if (message.data?.length) {
+      obj.data = message.data;
+    }
+    return obj;
+  },
+  create(base) {
+    return Tensor.fromPartial(base ?? {});
+  },
+  fromPartial(object) {
+    const message = createBaseTensor();
+    message.dims = object.dims ?? 0;
+    message.data = object.data?.map((e) => e) || [];
+    return message;
+  }
+};
+function createBaseProfileInfo3() {
+  return { durationUs: 0 };
+}
+var ProfileInfo3 = {
+  encode(message, writer = import_minimal4.default.Writer.create()) {
+    if (message.durationUs !== 0) {
+      writer.uint32(8).uint64(message.durationUs);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_minimal4.default.Reader ? input : import_minimal4.default.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseProfileInfo3();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+          message.durationUs = longToNumber4(reader.uint64());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return { durationUs: isSet4(object.durationUs) ? globalThis.Number(object.durationUs) : 0 };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.durationUs !== 0) {
+      obj.durationUs = Math.round(message.durationUs);
+    }
+    return obj;
+  },
+  create(base) {
+    return ProfileInfo3.fromPartial(base ?? {});
+  },
+  fromPartial(object) {
+    const message = createBaseProfileInfo3();
+    message.durationUs = object.durationUs ?? 0;
+    return message;
+  }
+};
+function createBaseSentenceEncoderRequest() {
+  return { modelName: "", sentences: [] };
+}
+var SentenceEncoderRequest = {
+  encode(message, writer = import_minimal4.default.Writer.create()) {
+    if (message.modelName !== "") {
+      writer.uint32(10).string(message.modelName);
+    }
+    for (const v of message.sentences) {
+      writer.uint32(18).string(v);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_minimal4.default.Reader ? input : import_minimal4.default.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseSentenceEncoderRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.modelName = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.sentences.push(reader.string());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      modelName: isSet4(object.modelName) ? globalThis.String(object.modelName) : "",
+      sentences: globalThis.Array.isArray(object?.sentences) ? object.sentences.map((e) => globalThis.String(e)) : []
+    };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.modelName !== "") {
+      obj.modelName = message.modelName;
+    }
+    if (message.sentences?.length) {
+      obj.sentences = message.sentences;
+    }
+    return obj;
+  },
+  create(base) {
+    return SentenceEncoderRequest.fromPartial(base ?? {});
+  },
+  fromPartial(object) {
+    const message = createBaseSentenceEncoderRequest();
+    message.modelName = object.modelName ?? "";
+    message.sentences = object.sentences?.map((e) => e) || [];
+    return message;
+  }
+};
+function createBaseSentenceEncoderResponse() {
+  return { status: 0, modelName: "", tensors: [], profiles: [] };
+}
+var SentenceEncoderResponse = {
+  encode(message, writer = import_minimal4.default.Writer.create()) {
+    if (message.status !== 0) {
+      writer.uint32(8).int32(message.status);
+    }
+    if (message.modelName !== "") {
+      writer.uint32(18).string(message.modelName);
+    }
+    for (const v of message.tensors) {
+      Tensor.encode(v, writer.uint32(26).fork()).ldelim();
+    }
+    for (const v of message.profiles) {
+      ProfileInfo3.encode(v, writer.uint32(34).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_minimal4.default.Reader ? input : import_minimal4.default.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseSentenceEncoderResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+          message.status = reader.int32();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.modelName = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+          message.tensors.push(Tensor.decode(reader, reader.uint32()));
+          continue;
+        case 4:
+          if (tag !== 34) {
+            break;
+          }
+          message.profiles.push(ProfileInfo3.decode(reader, reader.uint32()));
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      status: isSet4(object.status) ? statusTypeFromJSON2(object.status) : 0,
+      modelName: isSet4(object.modelName) ? globalThis.String(object.modelName) : "",
+      tensors: globalThis.Array.isArray(object?.tensors) ? object.tensors.map((e) => Tensor.fromJSON(e)) : [],
+      profiles: globalThis.Array.isArray(object?.profiles) ? object.profiles.map((e) => ProfileInfo3.fromJSON(e)) : []
+    };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.status !== 0) {
+      obj.status = statusTypeToJSON2(message.status);
+    }
+    if (message.modelName !== "") {
+      obj.modelName = message.modelName;
+    }
+    if (message.tensors?.length) {
+      obj.tensors = message.tensors.map((e) => Tensor.toJSON(e));
+    }
+    if (message.profiles?.length) {
+      obj.profiles = message.profiles.map((e) => ProfileInfo3.toJSON(e));
+    }
+    return obj;
+  },
+  create(base) {
+    return SentenceEncoderResponse.fromPartial(base ?? {});
+  },
+  fromPartial(object) {
+    const message = createBaseSentenceEncoderResponse();
+    message.status = object.status ?? 0;
+    message.modelName = object.modelName ?? "";
+    message.tensors = object.tensors?.map((e) => Tensor.fromPartial(e)) || [];
+    message.profiles = object.profiles?.map((e) => ProfileInfo3.fromPartial(e)) || [];
+    return message;
+  }
+};
+function createBaseSentencePair() {
+  return { sentence1: "", sentence2: "" };
+}
+var SentencePair = {
+  encode(message, writer = import_minimal4.default.Writer.create()) {
+    if (message.sentence1 !== "") {
+      writer.uint32(10).string(message.sentence1);
+    }
+    if (message.sentence2 !== "") {
+      writer.uint32(18).string(message.sentence2);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_minimal4.default.Reader ? input : import_minimal4.default.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseSentencePair();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.sentence1 = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.sentence2 = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      sentence1: isSet4(object.sentence1) ? globalThis.String(object.sentence1) : "",
+      sentence2: isSet4(object.sentence2) ? globalThis.String(object.sentence2) : ""
+    };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.sentence1 !== "") {
+      obj.sentence1 = message.sentence1;
+    }
+    if (message.sentence2 !== "") {
+      obj.sentence2 = message.sentence2;
+    }
+    return obj;
+  },
+  create(base) {
+    return SentencePair.fromPartial(base ?? {});
+  },
+  fromPartial(object) {
+    const message = createBaseSentencePair();
+    message.sentence1 = object.sentence1 ?? "";
+    message.sentence2 = object.sentence2 ?? "";
+    return message;
+  }
+};
+function createBaseCrossEncoderRequest() {
+  return { modelName: "", sentences: [] };
+}
+var CrossEncoderRequest = {
+  encode(message, writer = import_minimal4.default.Writer.create()) {
+    if (message.modelName !== "") {
+      writer.uint32(10).string(message.modelName);
+    }
+    for (const v of message.sentences) {
+      SentencePair.encode(v, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_minimal4.default.Reader ? input : import_minimal4.default.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseCrossEncoderRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.modelName = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.sentences.push(SentencePair.decode(reader, reader.uint32()));
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      modelName: isSet4(object.modelName) ? globalThis.String(object.modelName) : "",
+      sentences: globalThis.Array.isArray(object?.sentences) ? object.sentences.map((e) => SentencePair.fromJSON(e)) : []
+    };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.modelName !== "") {
+      obj.modelName = message.modelName;
+    }
+    if (message.sentences?.length) {
+      obj.sentences = message.sentences.map((e) => SentencePair.toJSON(e));
+    }
+    return obj;
+  },
+  create(base) {
+    return CrossEncoderRequest.fromPartial(base ?? {});
+  },
+  fromPartial(object) {
+    const message = createBaseCrossEncoderRequest();
+    message.modelName = object.modelName ?? "";
+    message.sentences = object.sentences?.map((e) => SentencePair.fromPartial(e)) || [];
+    return message;
+  }
+};
+function createBaseCrossEncoderResponse() {
+  return { status: 0, modelName: "", scores: [], profiles: [] };
+}
+var CrossEncoderResponse = {
+  encode(message, writer = import_minimal4.default.Writer.create()) {
+    if (message.status !== 0) {
+      writer.uint32(8).int32(message.status);
+    }
+    if (message.modelName !== "") {
+      writer.uint32(18).string(message.modelName);
+    }
+    writer.uint32(26).fork();
+    for (const v of message.scores) {
+      writer.float(v);
+    }
+    writer.ldelim();
+    for (const v of message.profiles) {
+      ProfileInfo3.encode(v, writer.uint32(34).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_minimal4.default.Reader ? input : import_minimal4.default.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseCrossEncoderResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+          message.status = reader.int32();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.modelName = reader.string();
+          continue;
+        case 3:
+          if (tag === 29) {
+            message.scores.push(reader.float());
+            continue;
+          }
+          if (tag === 26) {
+            const end2 = reader.uint32() + reader.pos;
+            while (reader.pos < end2) {
+              message.scores.push(reader.float());
+            }
+            continue;
+          }
+          break;
+        case 4:
+          if (tag !== 34) {
+            break;
+          }
+          message.profiles.push(ProfileInfo3.decode(reader, reader.uint32()));
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      status: isSet4(object.status) ? statusTypeFromJSON2(object.status) : 0,
+      modelName: isSet4(object.modelName) ? globalThis.String(object.modelName) : "",
+      scores: globalThis.Array.isArray(object?.scores) ? object.scores.map((e) => globalThis.Number(e)) : [],
+      profiles: globalThis.Array.isArray(object?.profiles) ? object.profiles.map((e) => ProfileInfo3.fromJSON(e)) : []
+    };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.status !== 0) {
+      obj.status = statusTypeToJSON2(message.status);
+    }
+    if (message.modelName !== "") {
+      obj.modelName = message.modelName;
+    }
+    if (message.scores?.length) {
+      obj.scores = message.scores;
+    }
+    if (message.profiles?.length) {
+      obj.profiles = message.profiles.map((e) => ProfileInfo3.toJSON(e));
+    }
+    return obj;
+  },
+  create(base) {
+    return CrossEncoderResponse.fromPartial(base ?? {});
+  },
+  fromPartial(object) {
+    const message = createBaseCrossEncoderResponse();
+    message.status = object.status ?? 0;
+    message.modelName = object.modelName ?? "";
+    message.scores = object.scores?.map((e) => e) || [];
+    message.profiles = object.profiles?.map((e) => ProfileInfo3.fromPartial(e)) || [];
+    return message;
+  }
+};
+function createBaseCLIPEncoderRequest() {
+  return { modelName: "", format: 0, inputs: [] };
+}
+var CLIPEncoderRequest = {
+  encode(message, writer = import_minimal4.default.Writer.create()) {
+    if (message.modelName !== "") {
+      writer.uint32(10).string(message.modelName);
+    }
+    if (message.format !== 0) {
+      writer.uint32(16).int32(message.format);
+    }
+    for (const v of message.inputs) {
+      writer.uint32(26).bytes(v);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_minimal4.default.Reader ? input : import_minimal4.default.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseCLIPEncoderRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.modelName = reader.string();
+          continue;
+        case 2:
+          if (tag !== 16) {
+            break;
+          }
+          message.format = reader.int32();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+          message.inputs.push(reader.bytes());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      modelName: isSet4(object.modelName) ? globalThis.String(object.modelName) : "",
+      format: isSet4(object.format) ? cLIPEncoderRequest_InputFormatFromJSON(object.format) : 0,
+      inputs: globalThis.Array.isArray(object?.inputs) ? object.inputs.map((e) => Buffer.from(bytesFromBase643(e))) : []
+    };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.modelName !== "") {
+      obj.modelName = message.modelName;
+    }
+    if (message.format !== 0) {
+      obj.format = cLIPEncoderRequest_InputFormatToJSON(message.format);
+    }
+    if (message.inputs?.length) {
+      obj.inputs = message.inputs.map((e) => base64FromBytes3(e));
+    }
+    return obj;
+  },
+  create(base) {
+    return CLIPEncoderRequest.fromPartial(base ?? {});
+  },
+  fromPartial(object) {
+    const message = createBaseCLIPEncoderRequest();
+    message.modelName = object.modelName ?? "";
+    message.format = object.format ?? 0;
+    message.inputs = object.inputs?.map((e) => e) || [];
+    return message;
+  }
+};
+function createBaseCLIPEncoderResponse() {
+  return { status: 0, modelName: "", tensors: [], profiles: [] };
+}
+var CLIPEncoderResponse = {
+  encode(message, writer = import_minimal4.default.Writer.create()) {
+    if (message.status !== 0) {
+      writer.uint32(8).int32(message.status);
+    }
+    if (message.modelName !== "") {
+      writer.uint32(18).string(message.modelName);
+    }
+    for (const v of message.tensors) {
+      Tensor.encode(v, writer.uint32(26).fork()).ldelim();
+    }
+    for (const v of message.profiles) {
+      ProfileInfo3.encode(v, writer.uint32(34).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_minimal4.default.Reader ? input : import_minimal4.default.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseCLIPEncoderResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+          message.status = reader.int32();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.modelName = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+          message.tensors.push(Tensor.decode(reader, reader.uint32()));
+          continue;
+        case 4:
+          if (tag !== 34) {
+            break;
+          }
+          message.profiles.push(ProfileInfo3.decode(reader, reader.uint32()));
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      status: isSet4(object.status) ? statusTypeFromJSON2(object.status) : 0,
+      modelName: isSet4(object.modelName) ? globalThis.String(object.modelName) : "",
+      tensors: globalThis.Array.isArray(object?.tensors) ? object.tensors.map((e) => Tensor.fromJSON(e)) : [],
+      profiles: globalThis.Array.isArray(object?.profiles) ? object.profiles.map((e) => ProfileInfo3.fromJSON(e)) : []
+    };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.status !== 0) {
+      obj.status = statusTypeToJSON2(message.status);
+    }
+    if (message.modelName !== "") {
+      obj.modelName = message.modelName;
+    }
+    if (message.tensors?.length) {
+      obj.tensors = message.tensors.map((e) => Tensor.toJSON(e));
+    }
+    if (message.profiles?.length) {
+      obj.profiles = message.profiles.map((e) => ProfileInfo3.toJSON(e));
+    }
+    return obj;
+  },
+  create(base) {
+    return CLIPEncoderResponse.fromPartial(base ?? {});
+  },
+  fromPartial(object) {
+    const message = createBaseCLIPEncoderResponse();
+    message.status = object.status ?? 0;
+    message.modelName = object.modelName ?? "";
+    message.tensors = object.tensors?.map((e) => Tensor.fromPartial(e)) || [];
+    message.profiles = object.profiles?.map((e) => ProfileInfo3.fromPartial(e)) || [];
+    return message;
+  }
+};
+function createBaseQAEncoderRequest() {
+  return { modelName: "", questions: [], contexts: [], topK: 0 };
+}
+var QAEncoderRequest = {
+  encode(message, writer = import_minimal4.default.Writer.create()) {
+    if (message.modelName !== "") {
+      writer.uint32(10).string(message.modelName);
+    }
+    for (const v of message.questions) {
+      writer.uint32(18).string(v);
+    }
+    for (const v of message.contexts) {
+      writer.uint32(26).string(v);
+    }
+    if (message.topK !== 0) {
+      writer.uint32(32).int32(message.topK);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_minimal4.default.Reader ? input : import_minimal4.default.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseQAEncoderRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.modelName = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.questions.push(reader.string());
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+          message.contexts.push(reader.string());
+          continue;
+        case 4:
+          if (tag !== 32) {
+            break;
+          }
+          message.topK = reader.int32();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      modelName: isSet4(object.modelName) ? globalThis.String(object.modelName) : "",
+      questions: globalThis.Array.isArray(object?.questions) ? object.questions.map((e) => globalThis.String(e)) : [],
+      contexts: globalThis.Array.isArray(object?.contexts) ? object.contexts.map((e) => globalThis.String(e)) : [],
+      topK: isSet4(object.topK) ? globalThis.Number(object.topK) : 0
+    };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.modelName !== "") {
+      obj.modelName = message.modelName;
+    }
+    if (message.questions?.length) {
+      obj.questions = message.questions;
+    }
+    if (message.contexts?.length) {
+      obj.contexts = message.contexts;
+    }
+    if (message.topK !== 0) {
+      obj.topK = Math.round(message.topK);
+    }
+    return obj;
+  },
+  create(base) {
+    return QAEncoderRequest.fromPartial(base ?? {});
+  },
+  fromPartial(object) {
+    const message = createBaseQAEncoderRequest();
+    message.modelName = object.modelName ?? "";
+    message.questions = object.questions?.map((e) => e) || [];
+    message.contexts = object.contexts?.map((e) => e) || [];
+    message.topK = object.topK ?? 0;
+    return message;
+  }
+};
+function createBaseQAEncoderResponse() {
+  return { status: 0, modelName: "", answers: [], profiles: [] };
+}
+var QAEncoderResponse = {
+  encode(message, writer = import_minimal4.default.Writer.create()) {
+    if (message.status !== 0) {
+      writer.uint32(8).int32(message.status);
+    }
+    if (message.modelName !== "") {
+      writer.uint32(18).string(message.modelName);
+    }
+    for (const v of message.answers) {
+      QAEncoderResponse_CandidateList.encode(v, writer.uint32(26).fork()).ldelim();
+    }
+    for (const v of message.profiles) {
+      ProfileInfo3.encode(v, writer.uint32(34).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_minimal4.default.Reader ? input : import_minimal4.default.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseQAEncoderResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+          message.status = reader.int32();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.modelName = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+          message.answers.push(QAEncoderResponse_CandidateList.decode(reader, reader.uint32()));
+          continue;
+        case 4:
+          if (tag !== 34) {
+            break;
+          }
+          message.profiles.push(ProfileInfo3.decode(reader, reader.uint32()));
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      status: isSet4(object.status) ? statusTypeFromJSON2(object.status) : 0,
+      modelName: isSet4(object.modelName) ? globalThis.String(object.modelName) : "",
+      answers: globalThis.Array.isArray(object?.answers) ? object.answers.map((e) => QAEncoderResponse_CandidateList.fromJSON(e)) : [],
+      profiles: globalThis.Array.isArray(object?.profiles) ? object.profiles.map((e) => ProfileInfo3.fromJSON(e)) : []
+    };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.status !== 0) {
+      obj.status = statusTypeToJSON2(message.status);
+    }
+    if (message.modelName !== "") {
+      obj.modelName = message.modelName;
+    }
+    if (message.answers?.length) {
+      obj.answers = message.answers.map((e) => QAEncoderResponse_CandidateList.toJSON(e));
+    }
+    if (message.profiles?.length) {
+      obj.profiles = message.profiles.map((e) => ProfileInfo3.toJSON(e));
+    }
+    return obj;
+  },
+  create(base) {
+    return QAEncoderResponse.fromPartial(base ?? {});
+  },
+  fromPartial(object) {
+    const message = createBaseQAEncoderResponse();
+    message.status = object.status ?? 0;
+    message.modelName = object.modelName ?? "";
+    message.answers = object.answers?.map((e) => QAEncoderResponse_CandidateList.fromPartial(e)) || [];
+    message.profiles = object.profiles?.map((e) => ProfileInfo3.fromPartial(e)) || [];
+    return message;
+  }
+};
+function createBaseQAEncoderResponse_Candidate() {
+  return { score: 0, begin: 0, end: 0, answer: "" };
+}
+var QAEncoderResponse_Candidate = {
+  encode(message, writer = import_minimal4.default.Writer.create()) {
+    if (message.score !== 0) {
+      writer.uint32(13).float(message.score);
+    }
+    if (message.begin !== 0) {
+      writer.uint32(16).int32(message.begin);
+    }
+    if (message.end !== 0) {
+      writer.uint32(24).int32(message.end);
+    }
+    if (message.answer !== "") {
+      writer.uint32(34).string(message.answer);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_minimal4.default.Reader ? input : import_minimal4.default.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseQAEncoderResponse_Candidate();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 13) {
+            break;
+          }
+          message.score = reader.float();
+          continue;
+        case 2:
+          if (tag !== 16) {
+            break;
+          }
+          message.begin = reader.int32();
+          continue;
+        case 3:
+          if (tag !== 24) {
+            break;
+          }
+          message.end = reader.int32();
+          continue;
+        case 4:
+          if (tag !== 34) {
+            break;
+          }
+          message.answer = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      score: isSet4(object.score) ? globalThis.Number(object.score) : 0,
+      begin: isSet4(object.begin) ? globalThis.Number(object.begin) : 0,
+      end: isSet4(object.end) ? globalThis.Number(object.end) : 0,
+      answer: isSet4(object.answer) ? globalThis.String(object.answer) : ""
+    };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.score !== 0) {
+      obj.score = message.score;
+    }
+    if (message.begin !== 0) {
+      obj.begin = Math.round(message.begin);
+    }
+    if (message.end !== 0) {
+      obj.end = Math.round(message.end);
+    }
+    if (message.answer !== "") {
+      obj.answer = message.answer;
+    }
+    return obj;
+  },
+  create(base) {
+    return QAEncoderResponse_Candidate.fromPartial(base ?? {});
+  },
+  fromPartial(object) {
+    const message = createBaseQAEncoderResponse_Candidate();
+    message.score = object.score ?? 0;
+    message.begin = object.begin ?? 0;
+    message.end = object.end ?? 0;
+    message.answer = object.answer ?? "";
+    return message;
+  }
+};
+function createBaseQAEncoderResponse_CandidateList() {
+  return { candidates: [] };
+}
+var QAEncoderResponse_CandidateList = {
+  encode(message, writer = import_minimal4.default.Writer.create()) {
+    for (const v of message.candidates) {
+      QAEncoderResponse_Candidate.encode(v, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_minimal4.default.Reader ? input : import_minimal4.default.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseQAEncoderResponse_CandidateList();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.candidates.push(QAEncoderResponse_Candidate.decode(reader, reader.uint32()));
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      candidates: globalThis.Array.isArray(object?.candidates) ? object.candidates.map((e) => QAEncoderResponse_Candidate.fromJSON(e)) : []
+    };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.candidates?.length) {
+      obj.candidates = message.candidates.map((e) => QAEncoderResponse_Candidate.toJSON(e));
+    }
+    return obj;
+  },
+  create(base) {
+    return QAEncoderResponse_CandidateList.fromPartial(base ?? {});
+  },
+  fromPartial(object) {
+    const message = createBaseQAEncoderResponse_CandidateList();
+    message.candidates = object.candidates?.map((e) => QAEncoderResponse_Candidate.fromPartial(e)) || [];
+    return message;
+  }
+};
+var SentenceTransformerServiceService = {
+  encode: {
+    path: "/cognica.rpc.sentence_transformer.SentenceTransformerService/encode",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value) => Buffer.from(SentenceEncoderRequest.encode(value).finish()),
+    requestDeserialize: (value) => SentenceEncoderRequest.decode(value),
+    responseSerialize: (value) => Buffer.from(SentenceEncoderResponse.encode(value).finish()),
+    responseDeserialize: (value) => SentenceEncoderResponse.decode(value)
+  }
+};
+var SentenceTransformerServiceClient = (0, import_grpc_js5.makeGenericClientConstructor)(
+  SentenceTransformerServiceService,
+  "cognica.rpc.sentence_transformer.SentenceTransformerService"
+);
+var CrossEncoderServiceService = {
+  predict: {
+    path: "/cognica.rpc.sentence_transformer.CrossEncoderService/predict",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value) => Buffer.from(CrossEncoderRequest.encode(value).finish()),
+    requestDeserialize: (value) => CrossEncoderRequest.decode(value),
+    responseSerialize: (value) => Buffer.from(CrossEncoderResponse.encode(value).finish()),
+    responseDeserialize: (value) => CrossEncoderResponse.decode(value)
+  }
+};
+var CrossEncoderServiceClient = (0, import_grpc_js5.makeGenericClientConstructor)(
+  CrossEncoderServiceService,
+  "cognica.rpc.sentence_transformer.CrossEncoderService"
+);
+var CLIPEncoderServiceService = {
+  encode: {
+    path: "/cognica.rpc.sentence_transformer.CLIPEncoderService/encode",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value) => Buffer.from(CLIPEncoderRequest.encode(value).finish()),
+    requestDeserialize: (value) => CLIPEncoderRequest.decode(value),
+    responseSerialize: (value) => Buffer.from(CLIPEncoderResponse.encode(value).finish()),
+    responseDeserialize: (value) => CLIPEncoderResponse.decode(value)
+  }
+};
+var CLIPEncoderServiceClient = (0, import_grpc_js5.makeGenericClientConstructor)(
+  CLIPEncoderServiceService,
+  "cognica.rpc.sentence_transformer.CLIPEncoderService"
+);
+var QAEncoderServiceService = {
+  predict: {
+    path: "/cognica.rpc.sentence_transformer.QAEncoderService/predict",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value) => Buffer.from(QAEncoderRequest.encode(value).finish()),
+    requestDeserialize: (value) => QAEncoderRequest.decode(value),
+    responseSerialize: (value) => Buffer.from(QAEncoderResponse.encode(value).finish()),
+    responseDeserialize: (value) => QAEncoderResponse.decode(value)
+  }
+};
+var QAEncoderServiceClient = (0, import_grpc_js5.makeGenericClientConstructor)(
+  QAEncoderServiceService,
+  "cognica.rpc.sentence_transformer.QAEncoderService"
+);
+function bytesFromBase643(b64) {
+  if (globalThis.Buffer) {
+    return Uint8Array.from(globalThis.Buffer.from(b64, "base64"));
+  } else {
+    const bin = globalThis.atob(b64);
+    const arr = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; ++i) {
+      arr[i] = bin.charCodeAt(i);
+    }
+    return arr;
+  }
+}
+function base64FromBytes3(arr) {
+  if (globalThis.Buffer) {
+    return globalThis.Buffer.from(arr).toString("base64");
+  } else {
+    const bin = [];
+    arr.forEach((byte) => {
+      bin.push(globalThis.String.fromCharCode(byte));
+    });
+    return globalThis.btoa(bin.join(""));
+  }
+}
+function longToNumber4(long) {
+  if (long.gt(globalThis.Number.MAX_SAFE_INTEGER)) {
+    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+  }
+  return long.toNumber();
+}
+if (import_minimal4.default.util.Long !== long_default) {
+  import_minimal4.default.util.Long = long_default;
+  import_minimal4.default.configure();
+}
+function isSet4(value) {
+  return value !== null && value !== void 0;
+}
+
+// src/sentence_transformer.ts
+var SentenceTransformer = class extends GrpcClient {
+  constructor(channel, modelName, timeout = void 0) {
+    const client = new SentenceTransformerServiceClient(
+      channel.address,
+      channel.credential,
+      channel.options
+    );
+    super(channel, client, timeout);
+    this._modelName = modelName;
+  }
+  encode(sentences) {
+    const request = {
+      modelName: this._modelName,
+      sentences
+    };
+    return this.createPromise(request, "encode", (response) => {
+      return response.tensors;
+    });
+  }
+};
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   Channel,
@@ -26865,6 +28071,7 @@ var KeyspaceManager = class extends GrpcClient {
   IndexType,
   KeyValueDB,
   KeyspaceManager,
+  SentenceTransformer,
   indexStatusFromJSON,
   indexTypeFromJSON
 });

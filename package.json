@@ -1,11 +1,11 @@
 {
   "name": "@aeca/client",
   "description": "Javascript client for Aeca database",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "homepage": "https://aeca.ai",
   "repository": {
     "type": "git",
-    "url": "https://github.com/aeca-io/aeca-js.git"
+    "url": "git+https://github.com/cognica-io/aeca-js.git"
   },
   "bugs": {
     "url": "https://forum.aeca.ai"

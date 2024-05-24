@@ -8900,18 +8900,18 @@ declare const CollectionInfo$1: {
         }[]>]: never; }) | undefined;
     } & { [K_78 in Exclude<keyof I_1, keyof CollectionInfo$1>]: never; }>(object: I_1): CollectionInfo$1;
 };
-interface ProfileInfo$1 {
+interface ProfileInfo$2 {
     matched: number;
     scanned: number;
     filtered: number;
     queryDurationUs: number;
     serializationDurationUs: number;
 }
-declare const ProfileInfo$1: {
-    encode(message: ProfileInfo$1, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): ProfileInfo$1;
-    fromJSON(object: any): ProfileInfo$1;
-    toJSON(message: ProfileInfo$1): unknown;
+declare const ProfileInfo$2: {
+    encode(message: ProfileInfo$2, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): ProfileInfo$2;
+    fromJSON(object: any): ProfileInfo$2;
+    toJSON(message: ProfileInfo$2): unknown;
     create<I extends {
         matched?: number | undefined;
         scanned?: number | undefined;
@@ -8924,7 +8924,7 @@ declare const ProfileInfo$1: {
         filtered?: number | undefined;
         queryDurationUs?: number | undefined;
         serializationDurationUs?: number | undefined;
-    } & { [K in Exclude<keyof I, keyof ProfileInfo$1>]: never; }>(base?: I | undefined): ProfileInfo$1;
+    } & { [K in Exclude<keyof I, keyof ProfileInfo$2>]: never; }>(base?: I | undefined): ProfileInfo$2;
     fromPartial<I_1 extends {
         matched?: number | undefined;
         scanned?: number | undefined;
@@ -8937,7 +8937,7 @@ declare const ProfileInfo$1: {
         filtered?: number | undefined;
         queryDurationUs?: number | undefined;
         serializationDurationUs?: number | undefined;
-    } & { [K_1 in Exclude<keyof I_1, keyof ProfileInfo$1>]: never; }>(object: I_1): ProfileInfo$1;
+    } & { [K_1 in Exclude<keyof I_1, keyof ProfileInfo$2>]: never; }>(object: I_1): ProfileInfo$2;
 };
 interface CreateCollectionRequest {
     collection: CollectionInfo$1 | undefined;
@@ -10225,7 +10225,7 @@ declare const CreateCollectionRequest: {
 interface CreateCollectionResponse {
     status: number;
     message: string;
-    profile: ProfileInfo$1 | undefined;
+    profile: ProfileInfo$2 | undefined;
 }
 declare const CreateCollectionResponse: {
     encode(message: CreateCollectionResponse, writer?: _m0.Writer): _m0.Writer;
@@ -10257,7 +10257,7 @@ declare const CreateCollectionResponse: {
             filtered?: number | undefined;
             queryDurationUs?: number | undefined;
             serializationDurationUs?: number | undefined;
-        } & { [K in Exclude<keyof I["profile"], keyof ProfileInfo$1>]: never; }) | undefined;
+        } & { [K in Exclude<keyof I["profile"], keyof ProfileInfo$2>]: never; }) | undefined;
     } & { [K_1 in Exclude<keyof I, keyof CreateCollectionResponse>]: never; }>(base?: I | undefined): CreateCollectionResponse;
     fromPartial<I_1 extends {
         status?: number | undefined;
@@ -10284,7 +10284,7 @@ declare const CreateCollectionResponse: {
             filtered?: number | undefined;
             queryDurationUs?: number | undefined;
             serializationDurationUs?: number | undefined;
-        } & { [K_2 in Exclude<keyof I_1["profile"], keyof ProfileInfo$1>]: never; }) | undefined;
+        } & { [K_2 in Exclude<keyof I_1["profile"], keyof ProfileInfo$2>]: never; }) | undefined;
     } & { [K_3 in Exclude<keyof I_1, keyof CreateCollectionResponse>]: never; }>(object: I_1): CreateCollectionResponse;
 };
 interface DropCollectionRequest {
@@ -10309,7 +10309,7 @@ declare const DropCollectionRequest: {
 interface DropCollectionResponse {
     status: number;
     message: string;
-    profile: ProfileInfo$1 | undefined;
+    profile: ProfileInfo$2 | undefined;
 }
 declare const DropCollectionResponse: {
     encode(message: DropCollectionResponse, writer?: _m0.Writer): _m0.Writer;
@@ -10341,7 +10341,7 @@ declare const DropCollectionResponse: {
             filtered?: number | undefined;
             queryDurationUs?: number | undefined;
             serializationDurationUs?: number | undefined;
-        } & { [K in Exclude<keyof I["profile"], keyof ProfileInfo$1>]: never; }) | undefined;
+        } & { [K in Exclude<keyof I["profile"], keyof ProfileInfo$2>]: never; }) | undefined;
     } & { [K_1 in Exclude<keyof I, keyof DropCollectionResponse>]: never; }>(base?: I | undefined): DropCollectionResponse;
     fromPartial<I_1 extends {
         status?: number | undefined;
@@ -10368,7 +10368,7 @@ declare const DropCollectionResponse: {
             filtered?: number | undefined;
             queryDurationUs?: number | undefined;
             serializationDurationUs?: number | undefined;
-        } & { [K_2 in Exclude<keyof I_1["profile"], keyof ProfileInfo$1>]: never; }) | undefined;
+        } & { [K_2 in Exclude<keyof I_1["profile"], keyof ProfileInfo$2>]: never; }) | undefined;
     } & { [K_3 in Exclude<keyof I_1, keyof DropCollectionResponse>]: never; }>(object: I_1): DropCollectionResponse;
 };
 interface RenameCollectionRequest {
@@ -10398,7 +10398,7 @@ declare const RenameCollectionRequest: {
 interface RenameCollectionResponse {
     status: number;
     message: string;
-    profile: ProfileInfo$1 | undefined;
+    profile: ProfileInfo$2 | undefined;
 }
 declare const RenameCollectionResponse: {
     encode(message: RenameCollectionResponse, writer?: _m0.Writer): _m0.Writer;
@@ -10430,7 +10430,7 @@ declare const RenameCollectionResponse: {
             filtered?: number | undefined;
             queryDurationUs?: number | undefined;
             serializationDurationUs?: number | undefined;
-        } & { [K in Exclude<keyof I["profile"], keyof ProfileInfo$1>]: never; }) | undefined;
+        } & { [K in Exclude<keyof I["profile"], keyof ProfileInfo$2>]: never; }) | undefined;
     } & { [K_1 in Exclude<keyof I, keyof RenameCollectionResponse>]: never; }>(base?: I | undefined): RenameCollectionResponse;
     fromPartial<I_1 extends {
         status?: number | undefined;
@@ -10457,7 +10457,7 @@ declare const RenameCollectionResponse: {
             filtered?: number | undefined;
             queryDurationUs?: number | undefined;
             serializationDurationUs?: number | undefined;
-        } & { [K_2 in Exclude<keyof I_1["profile"], keyof ProfileInfo$1>]: never; }) | undefined;
+        } & { [K_2 in Exclude<keyof I_1["profile"], keyof ProfileInfo$2>]: never; }) | undefined;
     } & { [K_3 in Exclude<keyof I_1, keyof RenameCollectionResponse>]: never; }>(object: I_1): RenameCollectionResponse;
 };
 interface GetCollectionRequest {
@@ -10483,7 +10483,7 @@ interface GetCollectionResponse {
     status: number;
     message: string;
     collection: CollectionInfo$1 | undefined;
-    profile: ProfileInfo$1 | undefined;
+    profile: ProfileInfo$2 | undefined;
 }
 declare const GetCollectionResponse: {
     encode(message: GetCollectionResponse, writer?: _m0.Writer): _m0.Writer;
@@ -11149,7 +11149,7 @@ declare const GetCollectionResponse: {
             filtered?: number | undefined;
             queryDurationUs?: number | undefined;
             serializationDurationUs?: number | undefined;
-        } & { [K_29 in Exclude<keyof I["profile"], keyof ProfileInfo$1>]: never; }) | undefined;
+        } & { [K_29 in Exclude<keyof I["profile"], keyof ProfileInfo$2>]: never; }) | undefined;
     } & { [K_30 in Exclude<keyof I, keyof GetCollectionResponse>]: never; }>(base?: I | undefined): GetCollectionResponse;
     fromPartial<I_1 extends {
         status?: number | undefined;
@@ -11810,7 +11810,7 @@ declare const GetCollectionResponse: {
             filtered?: number | undefined;
             queryDurationUs?: number | undefined;
             serializationDurationUs?: number | undefined;
-        } & { [K_63 in Exclude<keyof I_1["profile"], keyof ProfileInfo$1>]: never; }) | undefined;
+        } & { [K_63 in Exclude<keyof I_1["profile"], keyof ProfileInfo$2>]: never; }) | undefined;
     } & { [K_64 in Exclude<keyof I_1, keyof GetCollectionResponse>]: never; }>(object: I_1): GetCollectionResponse;
 };
 interface GetCollectionsRequest {
@@ -11836,7 +11836,7 @@ interface GetCollectionsResponse {
     status: number;
     message: string;
     collections: CollectionInfo$1[];
-    profile: ProfileInfo$1 | undefined;
+    profile: ProfileInfo$2 | undefined;
 }
 declare const GetCollectionsResponse: {
     encode(message: GetCollectionsResponse, writer?: _m0.Writer): _m0.Writer;
@@ -12618,7 +12618,7 @@ declare const GetCollectionsResponse: {
             filtered?: number | undefined;
             queryDurationUs?: number | undefined;
             serializationDurationUs?: number | undefined;
-        } & { [K_30 in Exclude<keyof I["profile"], keyof ProfileInfo$1>]: never; }) | undefined;
+        } & { [K_30 in Exclude<keyof I["profile"], keyof ProfileInfo$2>]: never; }) | undefined;
     } & { [K_31 in Exclude<keyof I, keyof GetCollectionsResponse>]: never; }>(base?: I | undefined): GetCollectionsResponse;
     fromPartial<I_1 extends {
         status?: number | undefined;
@@ -13395,7 +13395,7 @@ declare const GetCollectionsResponse: {
             filtered?: number | undefined;
             queryDurationUs?: number | undefined;
             serializationDurationUs?: number | undefined;
-        } & { [K_65 in Exclude<keyof I_1["profile"], keyof ProfileInfo$1>]: never; }) | undefined;
+        } & { [K_65 in Exclude<keyof I_1["profile"], keyof ProfileInfo$2>]: never; }) | undefined;
     } & { [K_66 in Exclude<keyof I_1, keyof GetCollectionsResponse>]: never; }>(object: I_1): GetCollectionsResponse;
 };
 interface CreateIndexRequest {
@@ -14287,7 +14287,7 @@ declare const CreateIndexRequest: {
 interface CreateIndexResponse {
     status: number;
     message: string;
-    profile: ProfileInfo$1 | undefined;
+    profile: ProfileInfo$2 | undefined;
 }
 declare const CreateIndexResponse: {
     encode(message: CreateIndexResponse, writer?: _m0.Writer): _m0.Writer;
@@ -14319,7 +14319,7 @@ declare const CreateIndexResponse: {
             filtered?: number | undefined;
             queryDurationUs?: number | undefined;
             serializationDurationUs?: number | undefined;
-        } & { [K in Exclude<keyof I["profile"], keyof ProfileInfo$1>]: never; }) | undefined;
+        } & { [K in Exclude<keyof I["profile"], keyof ProfileInfo$2>]: never; }) | undefined;
     } & { [K_1 in Exclude<keyof I, keyof CreateIndexResponse>]: never; }>(base?: I | undefined): CreateIndexResponse;
     fromPartial<I_1 extends {
         status?: number | undefined;
@@ -14346,7 +14346,7 @@ declare const CreateIndexResponse: {
             filtered?: number | undefined;
             queryDurationUs?: number | undefined;
             serializationDurationUs?: number | undefined;
-        } & { [K_2 in Exclude<keyof I_1["profile"], keyof ProfileInfo$1>]: never; }) | undefined;
+        } & { [K_2 in Exclude<keyof I_1["profile"], keyof ProfileInfo$2>]: never; }) | undefined;
     } & { [K_3 in Exclude<keyof I_1, keyof CreateIndexResponse>]: never; }>(object: I_1): CreateIndexResponse;
 };
 interface DropIndexRequest {
@@ -14376,7 +14376,7 @@ declare const DropIndexRequest: {
 interface DropIndexResponse {
     status: number;
     message: string;
-    profile: ProfileInfo$1 | undefined;
+    profile: ProfileInfo$2 | undefined;
 }
 declare const DropIndexResponse: {
     encode(message: DropIndexResponse, writer?: _m0.Writer): _m0.Writer;
@@ -14408,7 +14408,7 @@ declare const DropIndexResponse: {
             filtered?: number | undefined;
             queryDurationUs?: number | undefined;
             serializationDurationUs?: number | undefined;
-        } & { [K in Exclude<keyof I["profile"], keyof ProfileInfo$1>]: never; }) | undefined;
+        } & { [K in Exclude<keyof I["profile"], keyof ProfileInfo$2>]: never; }) | undefined;
     } & { [K_1 in Exclude<keyof I, keyof DropIndexResponse>]: never; }>(base?: I | undefined): DropIndexResponse;
     fromPartial<I_1 extends {
         status?: number | undefined;
@@ -14435,7 +14435,7 @@ declare const DropIndexResponse: {
             filtered?: number | undefined;
             queryDurationUs?: number | undefined;
             serializationDurationUs?: number | undefined;
-        } & { [K_2 in Exclude<keyof I_1["profile"], keyof ProfileInfo$1>]: never; }) | undefined;
+        } & { [K_2 in Exclude<keyof I_1["profile"], keyof ProfileInfo$2>]: never; }) | undefined;
     } & { [K_3 in Exclude<keyof I_1, keyof DropIndexResponse>]: never; }>(object: I_1): DropIndexResponse;
 };
 interface RenameIndexRequest {
@@ -14470,7 +14470,7 @@ declare const RenameIndexRequest: {
 interface RenameIndexResponse {
     status: number;
     message: string;
-    profile: ProfileInfo$1 | undefined;
+    profile: ProfileInfo$2 | undefined;
 }
 declare const RenameIndexResponse: {
     encode(message: RenameIndexResponse, writer?: _m0.Writer): _m0.Writer;
@@ -14502,7 +14502,7 @@ declare const RenameIndexResponse: {
             filtered?: number | undefined;
             queryDurationUs?: number | undefined;
             serializationDurationUs?: number | undefined;
-        } & { [K in Exclude<keyof I["profile"], keyof ProfileInfo$1>]: never; }) | undefined;
+        } & { [K in Exclude<keyof I["profile"], keyof ProfileInfo$2>]: never; }) | undefined;
     } & { [K_1 in Exclude<keyof I, keyof RenameIndexResponse>]: never; }>(base?: I | undefined): RenameIndexResponse;
     fromPartial<I_1 extends {
         status?: number | undefined;
@@ -14529,7 +14529,7 @@ declare const RenameIndexResponse: {
             filtered?: number | undefined;
             queryDurationUs?: number | undefined;
             serializationDurationUs?: number | undefined;
-        } & { [K_2 in Exclude<keyof I_1["profile"], keyof ProfileInfo$1>]: never; }) | undefined;
+        } & { [K_2 in Exclude<keyof I_1["profile"], keyof ProfileInfo$2>]: never; }) | undefined;
     } & { [K_3 in Exclude<keyof I_1, keyof RenameIndexResponse>]: never; }>(object: I_1): RenameIndexResponse;
 };
 interface GetIndexRequest {
@@ -14562,7 +14562,7 @@ interface GetIndexResponse {
     collectionName: string;
     indexDesc: IndexDescriptor$1 | undefined;
     indexStats: IndexStats$1 | undefined;
-    profile: ProfileInfo$1 | undefined;
+    profile: ProfileInfo$2 | undefined;
 }
 declare const GetIndexResponse: {
     encode(message: GetIndexResponse, writer?: _m0.Writer): _m0.Writer;
@@ -15151,7 +15151,7 @@ declare const GetIndexResponse: {
             filtered?: number | undefined;
             queryDurationUs?: number | undefined;
             serializationDurationUs?: number | undefined;
-        } & { [K_36 in Exclude<keyof I["profile"], keyof ProfileInfo$1>]: never; }) | undefined;
+        } & { [K_36 in Exclude<keyof I["profile"], keyof ProfileInfo$2>]: never; }) | undefined;
     } & { [K_37 in Exclude<keyof I, keyof GetIndexResponse>]: never; }>(base?: I | undefined): GetIndexResponse;
     fromPartial<I_1 extends {
         status?: number | undefined;
@@ -15735,7 +15735,7 @@ declare const GetIndexResponse: {
             filtered?: number | undefined;
             queryDurationUs?: number | undefined;
             serializationDurationUs?: number | undefined;
-        } & { [K_75 in Exclude<keyof I_1["profile"], keyof ProfileInfo$1>]: never; }) | undefined;
+        } & { [K_75 in Exclude<keyof I_1["profile"], keyof ProfileInfo$2>]: never; }) | undefined;
     } & { [K_76 in Exclude<keyof I_1, keyof GetIndexResponse>]: never; }>(object: I_1): GetIndexResponse;
 };
 interface Query$1 {
@@ -17671,7 +17671,7 @@ interface FindResponse {
     numColumns: number;
     numRows: number;
     buffer: Buffer;
-    profile: ProfileInfo$1 | undefined;
+    profile: ProfileInfo$2 | undefined;
 }
 declare const FindResponse: {
     encode(message: FindResponse, writer?: _m0.Writer): _m0.Writer;
@@ -17705,7 +17705,7 @@ declare const FindResponse: {
             filtered?: number | undefined;
             queryDurationUs?: number | undefined;
             serializationDurationUs?: number | undefined;
-        } & { [K in Exclude<keyof I["profile"], keyof ProfileInfo$1>]: never; }) | undefined;
+        } & { [K in Exclude<keyof I["profile"], keyof ProfileInfo$2>]: never; }) | undefined;
     } & { [K_1 in Exclude<keyof I, keyof FindResponse>]: never; }>(base?: I | undefined): FindResponse;
     fromPartial<I_1 extends {
         numColumns?: number | undefined;
@@ -17734,7 +17734,7 @@ declare const FindResponse: {
             filtered?: number | undefined;
             queryDurationUs?: number | undefined;
             serializationDurationUs?: number | undefined;
-        } & { [K_2 in Exclude<keyof I_1["profile"], keyof ProfileInfo$1>]: never; }) | undefined;
+        } & { [K_2 in Exclude<keyof I_1["profile"], keyof ProfileInfo$2>]: never; }) | undefined;
     } & { [K_3 in Exclude<keyof I_1, keyof FindResponse>]: never; }>(object: I_1): FindResponse;
 };
 interface FindBatchRequest {
@@ -18672,7 +18672,7 @@ declare const FindBatchResponse: {
                 filtered?: number | undefined;
                 queryDurationUs?: number | undefined;
                 serializationDurationUs?: number | undefined;
-            } & { [K in Exclude<keyof I["responses"][number]["profile"], keyof ProfileInfo$1>]: never; }) | undefined;
+            } & { [K in Exclude<keyof I["responses"][number]["profile"], keyof ProfileInfo$2>]: never; }) | undefined;
         } & { [K_1 in Exclude<keyof I["responses"][number], keyof FindResponse>]: never; })[] & { [K_2 in Exclude<keyof I["responses"], keyof {
             numColumns?: number | undefined;
             numRows?: number | undefined;
@@ -18738,7 +18738,7 @@ declare const FindBatchResponse: {
                 filtered?: number | undefined;
                 queryDurationUs?: number | undefined;
                 serializationDurationUs?: number | undefined;
-            } & { [K_4 in Exclude<keyof I_1["responses"][number]["profile"], keyof ProfileInfo$1>]: never; }) | undefined;
+            } & { [K_4 in Exclude<keyof I_1["responses"][number]["profile"], keyof ProfileInfo$2>]: never; }) | undefined;
         } & { [K_5 in Exclude<keyof I_1["responses"][number], keyof FindResponse>]: never; })[] & { [K_6 in Exclude<keyof I_1["responses"], keyof {
             numColumns?: number | undefined;
             numRows?: number | undefined;
@@ -19608,7 +19608,7 @@ interface CountResponse {
     status: number;
     message: string;
     count: number;
-    profile: ProfileInfo$1 | undefined;
+    profile: ProfileInfo$2 | undefined;
 }
 declare const CountResponse: {
     encode(message: CountResponse, writer?: _m0.Writer): _m0.Writer;
@@ -19642,7 +19642,7 @@ declare const CountResponse: {
             filtered?: number | undefined;
             queryDurationUs?: number | undefined;
             serializationDurationUs?: number | undefined;
-        } & { [K in Exclude<keyof I["profile"], keyof ProfileInfo$1>]: never; }) | undefined;
+        } & { [K in Exclude<keyof I["profile"], keyof ProfileInfo$2>]: never; }) | undefined;
     } & { [K_1 in Exclude<keyof I, keyof CountResponse>]: never; }>(base?: I | undefined): CountResponse;
     fromPartial<I_1 extends {
         status?: number | undefined;
@@ -19671,7 +19671,7 @@ declare const CountResponse: {
             filtered?: number | undefined;
             queryDurationUs?: number | undefined;
             serializationDurationUs?: number | undefined;
-        } & { [K_2 in Exclude<keyof I_1["profile"], keyof ProfileInfo$1>]: never; }) | undefined;
+        } & { [K_2 in Exclude<keyof I_1["profile"], keyof ProfileInfo$2>]: never; }) | undefined;
     } & { [K_3 in Exclude<keyof I_1, keyof CountResponse>]: never; }>(object: I_1): CountResponse;
 };
 interface ContainsRequest {
@@ -20529,7 +20529,7 @@ interface ContainsResponse {
     status: number;
     message: string;
     found: boolean;
-    profile: ProfileInfo$1 | undefined;
+    profile: ProfileInfo$2 | undefined;
 }
 declare const ContainsResponse: {
     encode(message: ContainsResponse, writer?: _m0.Writer): _m0.Writer;
@@ -20563,7 +20563,7 @@ declare const ContainsResponse: {
             filtered?: number | undefined;
             queryDurationUs?: number | undefined;
             serializationDurationUs?: number | undefined;
-        } & { [K in Exclude<keyof I["profile"], keyof ProfileInfo$1>]: never; }) | undefined;
+        } & { [K in Exclude<keyof I["profile"], keyof ProfileInfo$2>]: never; }) | undefined;
     } & { [K_1 in Exclude<keyof I, keyof ContainsResponse>]: never; }>(base?: I | undefined): ContainsResponse;
     fromPartial<I_1 extends {
         status?: number | undefined;
@@ -20592,7 +20592,7 @@ declare const ContainsResponse: {
             filtered?: number | undefined;
             queryDurationUs?: number | undefined;
             serializationDurationUs?: number | undefined;
-        } & { [K_2 in Exclude<keyof I_1["profile"], keyof ProfileInfo$1>]: never; }) | undefined;
+        } & { [K_2 in Exclude<keyof I_1["profile"], keyof ProfileInfo$2>]: never; }) | undefined;
     } & { [K_3 in Exclude<keyof I_1, keyof ContainsResponse>]: never; }>(object: I_1): ContainsResponse;
 };
 interface InsertRequest {
@@ -21533,7 +21533,7 @@ declare const InsertRequest: {
 interface InsertResponse {
     status: number;
     message: string;
-    profile: ProfileInfo$1 | undefined;
+    profile: ProfileInfo$2 | undefined;
 }
 declare const InsertResponse: {
     encode(message: InsertResponse, writer?: _m0.Writer): _m0.Writer;
@@ -21565,7 +21565,7 @@ declare const InsertResponse: {
             filtered?: number | undefined;
             queryDurationUs?: number | undefined;
             serializationDurationUs?: number | undefined;
-        } & { [K in Exclude<keyof I["profile"], keyof ProfileInfo$1>]: never; }) | undefined;
+        } & { [K in Exclude<keyof I["profile"], keyof ProfileInfo$2>]: never; }) | undefined;
     } & { [K_1 in Exclude<keyof I, keyof InsertResponse>]: never; }>(base?: I | undefined): InsertResponse;
     fromPartial<I_1 extends {
         status?: number | undefined;
@@ -21592,7 +21592,7 @@ declare const InsertResponse: {
             filtered?: number | undefined;
             queryDurationUs?: number | undefined;
             serializationDurationUs?: number | undefined;
-        } & { [K_2 in Exclude<keyof I_1["profile"], keyof ProfileInfo$1>]: never; }) | undefined;
+        } & { [K_2 in Exclude<keyof I_1["profile"], keyof ProfileInfo$2>]: never; }) | undefined;
     } & { [K_3 in Exclude<keyof I_1, keyof InsertResponse>]: never; }>(object: I_1): InsertResponse;
 };
 interface UpdateRequest {
@@ -23667,7 +23667,7 @@ declare const UpdateRequest: {
 interface UpdateResponse {
     status: number;
     message: string;
-    profile: ProfileInfo$1 | undefined;
+    profile: ProfileInfo$2 | undefined;
 }
 declare const UpdateResponse: {
     encode(message: UpdateResponse, writer?: _m0.Writer): _m0.Writer;
@@ -23699,7 +23699,7 @@ declare const UpdateResponse: {
             filtered?: number | undefined;
             queryDurationUs?: number | undefined;
             serializationDurationUs?: number | undefined;
-        } & { [K in Exclude<keyof I["profile"], keyof ProfileInfo$1>]: never; }) | undefined;
+        } & { [K in Exclude<keyof I["profile"], keyof ProfileInfo$2>]: never; }) | undefined;
     } & { [K_1 in Exclude<keyof I, keyof UpdateResponse>]: never; }>(base?: I | undefined): UpdateResponse;
     fromPartial<I_1 extends {
         status?: number | undefined;
@@ -23726,7 +23726,7 @@ declare const UpdateResponse: {
             filtered?: number | undefined;
             queryDurationUs?: number | undefined;
             serializationDurationUs?: number | undefined;
-        } & { [K_2 in Exclude<keyof I_1["profile"], keyof ProfileInfo$1>]: never; }) | undefined;
+        } & { [K_2 in Exclude<keyof I_1["profile"], keyof ProfileInfo$2>]: never; }) | undefined;
     } & { [K_3 in Exclude<keyof I_1, keyof UpdateResponse>]: never; }>(object: I_1): UpdateResponse;
 };
 interface RemoveRequest$1 {
@@ -24667,7 +24667,7 @@ declare const RemoveRequest$1: {
 interface RemoveResponse$1 {
     status: number;
     message: string;
-    profile: ProfileInfo$1 | undefined;
+    profile: ProfileInfo$2 | undefined;
 }
 declare const RemoveResponse$1: {
     encode(message: RemoveResponse$1, writer?: _m0.Writer): _m0.Writer;
@@ -24699,7 +24699,7 @@ declare const RemoveResponse$1: {
             filtered?: number | undefined;
             queryDurationUs?: number | undefined;
             serializationDurationUs?: number | undefined;
-        } & { [K in Exclude<keyof I["profile"], keyof ProfileInfo$1>]: never; }) | undefined;
+        } & { [K in Exclude<keyof I["profile"], keyof ProfileInfo$2>]: never; }) | undefined;
     } & { [K_1 in Exclude<keyof I, keyof RemoveResponse$1>]: never; }>(base?: I | undefined): RemoveResponse$1;
     fromPartial<I_1 extends {
         status?: number | undefined;
@@ -24726,7 +24726,7 @@ declare const RemoveResponse$1: {
             filtered?: number | undefined;
             queryDurationUs?: number | undefined;
             serializationDurationUs?: number | undefined;
-        } & { [K_2 in Exclude<keyof I_1["profile"], keyof ProfileInfo$1>]: never; }) | undefined;
+        } & { [K_2 in Exclude<keyof I_1["profile"], keyof ProfileInfo$2>]: never; }) | undefined;
     } & { [K_3 in Exclude<keyof I_1, keyof RemoveResponse$1>]: never; }>(object: I_1): RemoveResponse$1;
 };
 interface ExplainRequest {
@@ -25809,7 +25809,7 @@ declare const TruncateCollectionRequest: {
 interface TruncateCollectionResponse {
     status: number;
     message: string;
-    profile: ProfileInfo$1 | undefined;
+    profile: ProfileInfo$2 | undefined;
 }
 declare const TruncateCollectionResponse: {
     encode(message: TruncateCollectionResponse, writer?: _m0.Writer): _m0.Writer;
@@ -25841,7 +25841,7 @@ declare const TruncateCollectionResponse: {
             filtered?: number | undefined;
             queryDurationUs?: number | undefined;
             serializationDurationUs?: number | undefined;
-        } & { [K in Exclude<keyof I["profile"], keyof ProfileInfo$1>]: never; }) | undefined;
+        } & { [K in Exclude<keyof I["profile"], keyof ProfileInfo$2>]: never; }) | undefined;
     } & { [K_1 in Exclude<keyof I, keyof TruncateCollectionResponse>]: never; }>(base?: I | undefined): TruncateCollectionResponse;
     fromPartial<I_1 extends {
         status?: number | undefined;
@@ -25868,7 +25868,7 @@ declare const TruncateCollectionResponse: {
             filtered?: number | undefined;
             queryDurationUs?: number | undefined;
             serializationDurationUs?: number | undefined;
-        } & { [K_2 in Exclude<keyof I_1["profile"], keyof ProfileInfo$1>]: never; }) | undefined;
+        } & { [K_2 in Exclude<keyof I_1["profile"], keyof ProfileInfo$2>]: never; }) | undefined;
     } & { [K_3 in Exclude<keyof I_1, keyof TruncateCollectionResponse>]: never; }>(object: I_1): TruncateCollectionResponse;
 };
 interface ListCollectionsRequest {
@@ -25885,7 +25885,7 @@ interface ListCollectionsResponse {
     status: number;
     message: string;
     collectionNames: string[];
-    profile: ProfileInfo$1 | undefined;
+    profile: ProfileInfo$2 | undefined;
 }
 declare const ListCollectionsResponse: {
     encode(message: ListCollectionsResponse, writer?: _m0.Writer): _m0.Writer;
@@ -25919,7 +25919,7 @@ declare const ListCollectionsResponse: {
             filtered?: number | undefined;
             queryDurationUs?: number | undefined;
             serializationDurationUs?: number | undefined;
-        } & { [K_1 in Exclude<keyof I["profile"], keyof ProfileInfo$1>]: never; }) | undefined;
+        } & { [K_1 in Exclude<keyof I["profile"], keyof ProfileInfo$2>]: never; }) | undefined;
     } & { [K_2 in Exclude<keyof I, keyof ListCollectionsResponse>]: never; }>(base?: I | undefined): ListCollectionsResponse;
     fromPartial<I_1 extends {
         status?: number | undefined;
@@ -25948,7 +25948,7 @@ declare const ListCollectionsResponse: {
             filtered?: number | undefined;
             queryDurationUs?: number | undefined;
             serializationDurationUs?: number | undefined;
-        } & { [K_4 in Exclude<keyof I_1["profile"], keyof ProfileInfo$1>]: never; }) | undefined;
+        } & { [K_4 in Exclude<keyof I_1["profile"], keyof ProfileInfo$2>]: never; }) | undefined;
     } & { [K_5 in Exclude<keyof I_1, keyof ListCollectionsResponse>]: never; }>(object: I_1): ListCollectionsResponse;
 };
 type DocumentDBServiceService = typeof DocumentDBServiceService;
@@ -26261,35 +26261,35 @@ declare class DocumentDB extends GrpcClient<DocumentDBServiceClient> {
     private static fromIndexDescriptor;
 }
 
-declare enum StatusType {
+declare enum StatusType$1 {
     kOK = 0,
     kNotFound = 1,
     kInternal = 10,
     UNRECOGNIZED = -1
 }
-interface ProfileInfo {
+interface ProfileInfo$1 {
     durationUs: number;
 }
-declare const ProfileInfo: {
-    encode(message: ProfileInfo, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): ProfileInfo;
-    fromJSON(object: any): ProfileInfo;
-    toJSON(message: ProfileInfo): unknown;
+declare const ProfileInfo$1: {
+    encode(message: ProfileInfo$1, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): ProfileInfo$1;
+    fromJSON(object: any): ProfileInfo$1;
+    toJSON(message: ProfileInfo$1): unknown;
     create<I extends {
         durationUs?: number | undefined;
     } & {
         durationUs?: number | undefined;
-    } & { [K in Exclude<keyof I, "durationUs">]: never; }>(base?: I | undefined): ProfileInfo;
+    } & { [K in Exclude<keyof I, "durationUs">]: never; }>(base?: I | undefined): ProfileInfo$1;
     fromPartial<I_1 extends {
         durationUs?: number | undefined;
     } & {
         durationUs?: number | undefined;
-    } & { [K_1 in Exclude<keyof I_1, "durationUs">]: never; }>(object: I_1): ProfileInfo;
+    } & { [K_1 in Exclude<keyof I_1, "durationUs">]: never; }>(object: I_1): ProfileInfo$1;
 };
 interface Response {
-    status: StatusType;
+    status: StatusType$1;
     message: string;
-    profile: ProfileInfo | undefined;
+    profile: ProfileInfo$1 | undefined;
 }
 declare const Response: {
     encode(message: Response, writer?: _m0.Writer): _m0.Writer;
@@ -26297,13 +26297,13 @@ declare const Response: {
     fromJSON(object: any): Response;
     toJSON(message: Response): unknown;
     create<I extends {
-        status?: StatusType | undefined;
+        status?: StatusType$1 | undefined;
         message?: string | undefined;
         profile?: {
             durationUs?: number | undefined;
         } | undefined;
     } & {
-        status?: StatusType | undefined;
+        status?: StatusType$1 | undefined;
         message?: string | undefined;
         profile?: ({
             durationUs?: number | undefined;
@@ -26312,13 +26312,13 @@ declare const Response: {
         } & { [K in Exclude<keyof I["profile"], "durationUs">]: never; }) | undefined;
     } & { [K_1 in Exclude<keyof I, keyof Response>]: never; }>(base?: I | undefined): Response;
     fromPartial<I_1 extends {
-        status?: StatusType | undefined;
+        status?: StatusType$1 | undefined;
         message?: string | undefined;
         profile?: {
             durationUs?: number | undefined;
         } | undefined;
     } & {
-        status?: StatusType | undefined;
+        status?: StatusType$1 | undefined;
         message?: string | undefined;
         profile?: ({
             durationUs?: number | undefined;
@@ -26376,7 +26376,7 @@ declare const PutResponse: {
     toJSON(message: PutResponse): unknown;
     create<I extends {
         response?: {
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
@@ -26384,13 +26384,13 @@ declare const PutResponse: {
         } | undefined;
     } & {
         response?: ({
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
             } | undefined;
         } & {
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: ({
                 durationUs?: number | undefined;
@@ -26401,7 +26401,7 @@ declare const PutResponse: {
     } & { [K_2 in Exclude<keyof I, "response">]: never; }>(base?: I | undefined): PutResponse;
     fromPartial<I_1 extends {
         response?: {
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
@@ -26409,13 +26409,13 @@ declare const PutResponse: {
         } | undefined;
     } & {
         response?: ({
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
             } | undefined;
         } & {
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: ({
                 durationUs?: number | undefined;
@@ -26459,7 +26459,7 @@ declare const RemoveResponse: {
     toJSON(message: RemoveResponse): unknown;
     create<I extends {
         response?: {
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
@@ -26467,13 +26467,13 @@ declare const RemoveResponse: {
         } | undefined;
     } & {
         response?: ({
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
             } | undefined;
         } & {
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: ({
                 durationUs?: number | undefined;
@@ -26484,7 +26484,7 @@ declare const RemoveResponse: {
     } & { [K_2 in Exclude<keyof I, "response">]: never; }>(base?: I | undefined): RemoveResponse;
     fromPartial<I_1 extends {
         response?: {
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
@@ -26492,13 +26492,13 @@ declare const RemoveResponse: {
         } | undefined;
     } & {
         response?: ({
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
             } | undefined;
         } & {
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: ({
                 durationUs?: number | undefined;
@@ -26543,7 +26543,7 @@ declare const GetResponse: {
     toJSON(message: GetResponse): unknown;
     create<I extends {
         response?: {
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
@@ -26552,13 +26552,13 @@ declare const GetResponse: {
         value?: Buffer | undefined;
     } & {
         response?: ({
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
             } | undefined;
         } & {
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: ({
                 durationUs?: number | undefined;
@@ -26570,7 +26570,7 @@ declare const GetResponse: {
     } & { [K_2 in Exclude<keyof I, keyof GetResponse>]: never; }>(base?: I | undefined): GetResponse;
     fromPartial<I_1 extends {
         response?: {
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
@@ -26579,13 +26579,13 @@ declare const GetResponse: {
         value?: Buffer | undefined;
     } & {
         response?: ({
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
             } | undefined;
         } & {
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: ({
                 durationUs?: number | undefined;
@@ -26631,7 +26631,7 @@ declare const MultiGetResponse: {
     toJSON(message: MultiGetResponse): unknown;
     create<I extends {
         responses?: {
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
@@ -26640,19 +26640,19 @@ declare const MultiGetResponse: {
         values?: Buffer[] | undefined;
     } & {
         responses?: ({
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
             } | undefined;
         }[] & ({
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
             } | undefined;
         } & {
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: ({
                 durationUs?: number | undefined;
@@ -26660,7 +26660,7 @@ declare const MultiGetResponse: {
                 durationUs?: number | undefined;
             } & { [K in Exclude<keyof I["responses"][number]["profile"], "durationUs">]: never; }) | undefined;
         } & { [K_1 in Exclude<keyof I["responses"][number], keyof Response>]: never; })[] & { [K_2 in Exclude<keyof I["responses"], keyof {
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
@@ -26670,7 +26670,7 @@ declare const MultiGetResponse: {
     } & { [K_4 in Exclude<keyof I, keyof MultiGetResponse>]: never; }>(base?: I | undefined): MultiGetResponse;
     fromPartial<I_1 extends {
         responses?: {
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
@@ -26679,19 +26679,19 @@ declare const MultiGetResponse: {
         values?: Buffer[] | undefined;
     } & {
         responses?: ({
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
             } | undefined;
         }[] & ({
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
             } | undefined;
         } & {
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: ({
                 durationUs?: number | undefined;
@@ -26699,7 +26699,7 @@ declare const MultiGetResponse: {
                 durationUs?: number | undefined;
             } & { [K_5 in Exclude<keyof I_1["responses"][number]["profile"], "durationUs">]: never; }) | undefined;
         } & { [K_6 in Exclude<keyof I_1["responses"][number], keyof Response>]: never; })[] & { [K_7 in Exclude<keyof I_1["responses"], keyof {
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
@@ -26757,7 +26757,7 @@ declare const BatchedPutResponse: {
     toJSON(message: BatchedPutResponse): unknown;
     create<I extends {
         responses?: {
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
@@ -26765,19 +26765,19 @@ declare const BatchedPutResponse: {
         }[] | undefined;
     } & {
         responses?: ({
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
             } | undefined;
         }[] & ({
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
             } | undefined;
         } & {
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: ({
                 durationUs?: number | undefined;
@@ -26785,7 +26785,7 @@ declare const BatchedPutResponse: {
                 durationUs?: number | undefined;
             } & { [K in Exclude<keyof I["responses"][number]["profile"], "durationUs">]: never; }) | undefined;
         } & { [K_1 in Exclude<keyof I["responses"][number], keyof Response>]: never; })[] & { [K_2 in Exclude<keyof I["responses"], keyof {
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
@@ -26794,7 +26794,7 @@ declare const BatchedPutResponse: {
     } & { [K_3 in Exclude<keyof I, "responses">]: never; }>(base?: I | undefined): BatchedPutResponse;
     fromPartial<I_1 extends {
         responses?: {
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
@@ -26802,19 +26802,19 @@ declare const BatchedPutResponse: {
         }[] | undefined;
     } & {
         responses?: ({
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
             } | undefined;
         }[] & ({
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
             } | undefined;
         } & {
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: ({
                 durationUs?: number | undefined;
@@ -26822,7 +26822,7 @@ declare const BatchedPutResponse: {
                 durationUs?: number | undefined;
             } & { [K_4 in Exclude<keyof I_1["responses"][number]["profile"], "durationUs">]: never; }) | undefined;
         } & { [K_5 in Exclude<keyof I_1["responses"][number], keyof Response>]: never; })[] & { [K_6 in Exclude<keyof I_1["responses"], keyof {
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
@@ -26864,7 +26864,7 @@ declare const BatchedRemoveResponse: {
     toJSON(message: BatchedRemoveResponse): unknown;
     create<I extends {
         responses?: {
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
@@ -26872,19 +26872,19 @@ declare const BatchedRemoveResponse: {
         }[] | undefined;
     } & {
         responses?: ({
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
             } | undefined;
         }[] & ({
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
             } | undefined;
         } & {
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: ({
                 durationUs?: number | undefined;
@@ -26892,7 +26892,7 @@ declare const BatchedRemoveResponse: {
                 durationUs?: number | undefined;
             } & { [K in Exclude<keyof I["responses"][number]["profile"], "durationUs">]: never; }) | undefined;
         } & { [K_1 in Exclude<keyof I["responses"][number], keyof Response>]: never; })[] & { [K_2 in Exclude<keyof I["responses"], keyof {
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
@@ -26901,7 +26901,7 @@ declare const BatchedRemoveResponse: {
     } & { [K_3 in Exclude<keyof I, "responses">]: never; }>(base?: I | undefined): BatchedRemoveResponse;
     fromPartial<I_1 extends {
         responses?: {
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
@@ -26909,19 +26909,19 @@ declare const BatchedRemoveResponse: {
         }[] | undefined;
     } & {
         responses?: ({
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
             } | undefined;
         }[] & ({
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
             } | undefined;
         } & {
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: ({
                 durationUs?: number | undefined;
@@ -26929,7 +26929,7 @@ declare const BatchedRemoveResponse: {
                 durationUs?: number | undefined;
             } & { [K_4 in Exclude<keyof I_1["responses"][number]["profile"], "durationUs">]: never; }) | undefined;
         } & { [K_5 in Exclude<keyof I_1["responses"][number], keyof Response>]: never; })[] & { [K_6 in Exclude<keyof I_1["responses"], keyof {
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
@@ -26972,7 +26972,7 @@ declare const BatchedGetResponse: {
     toJSON(message: BatchedGetResponse): unknown;
     create<I extends {
         responses?: {
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
@@ -26981,19 +26981,19 @@ declare const BatchedGetResponse: {
         values?: Buffer[] | undefined;
     } & {
         responses?: ({
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
             } | undefined;
         }[] & ({
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
             } | undefined;
         } & {
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: ({
                 durationUs?: number | undefined;
@@ -27001,7 +27001,7 @@ declare const BatchedGetResponse: {
                 durationUs?: number | undefined;
             } & { [K in Exclude<keyof I["responses"][number]["profile"], "durationUs">]: never; }) | undefined;
         } & { [K_1 in Exclude<keyof I["responses"][number], keyof Response>]: never; })[] & { [K_2 in Exclude<keyof I["responses"], keyof {
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
@@ -27011,7 +27011,7 @@ declare const BatchedGetResponse: {
     } & { [K_4 in Exclude<keyof I, keyof BatchedGetResponse>]: never; }>(base?: I | undefined): BatchedGetResponse;
     fromPartial<I_1 extends {
         responses?: {
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
@@ -27020,19 +27020,19 @@ declare const BatchedGetResponse: {
         values?: Buffer[] | undefined;
     } & {
         responses?: ({
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
             } | undefined;
         }[] & ({
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
             } | undefined;
         } & {
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: ({
                 durationUs?: number | undefined;
@@ -27040,7 +27040,7 @@ declare const BatchedGetResponse: {
                 durationUs?: number | undefined;
             } & { [K_5 in Exclude<keyof I_1["responses"][number]["profile"], "durationUs">]: never; }) | undefined;
         } & { [K_6 in Exclude<keyof I_1["responses"][number], keyof Response>]: never; })[] & { [K_7 in Exclude<keyof I_1["responses"], keyof {
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
@@ -27078,7 +27078,7 @@ declare const CreateKeyspaceResponse: {
     toJSON(message: CreateKeyspaceResponse): unknown;
     create<I extends {
         response?: {
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
@@ -27086,13 +27086,13 @@ declare const CreateKeyspaceResponse: {
         } | undefined;
     } & {
         response?: ({
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
             } | undefined;
         } & {
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: ({
                 durationUs?: number | undefined;
@@ -27103,7 +27103,7 @@ declare const CreateKeyspaceResponse: {
     } & { [K_2 in Exclude<keyof I, "response">]: never; }>(base?: I | undefined): CreateKeyspaceResponse;
     fromPartial<I_1 extends {
         response?: {
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
@@ -27111,13 +27111,13 @@ declare const CreateKeyspaceResponse: {
         } | undefined;
     } & {
         response?: ({
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
             } | undefined;
         } & {
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: ({
                 durationUs?: number | undefined;
@@ -27156,7 +27156,7 @@ declare const DropKeyspaceResponse: {
     toJSON(message: DropKeyspaceResponse): unknown;
     create<I extends {
         response?: {
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
@@ -27164,13 +27164,13 @@ declare const DropKeyspaceResponse: {
         } | undefined;
     } & {
         response?: ({
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
             } | undefined;
         } & {
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: ({
                 durationUs?: number | undefined;
@@ -27181,7 +27181,7 @@ declare const DropKeyspaceResponse: {
     } & { [K_2 in Exclude<keyof I, "response">]: never; }>(base?: I | undefined): DropKeyspaceResponse;
     fromPartial<I_1 extends {
         response?: {
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
@@ -27189,13 +27189,13 @@ declare const DropKeyspaceResponse: {
         } | undefined;
     } & {
         response?: ({
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
             } | undefined;
         } & {
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: ({
                 durationUs?: number | undefined;
@@ -27234,7 +27234,7 @@ declare const TruncateKeyspaceResponse: {
     toJSON(message: TruncateKeyspaceResponse): unknown;
     create<I extends {
         response?: {
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
@@ -27242,13 +27242,13 @@ declare const TruncateKeyspaceResponse: {
         } | undefined;
     } & {
         response?: ({
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
             } | undefined;
         } & {
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: ({
                 durationUs?: number | undefined;
@@ -27259,7 +27259,7 @@ declare const TruncateKeyspaceResponse: {
     } & { [K_2 in Exclude<keyof I, "response">]: never; }>(base?: I | undefined): TruncateKeyspaceResponse;
     fromPartial<I_1 extends {
         response?: {
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
@@ -27267,13 +27267,13 @@ declare const TruncateKeyspaceResponse: {
         } | undefined;
     } & {
         response?: ({
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
             } | undefined;
         } & {
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: ({
                 durationUs?: number | undefined;
@@ -27304,7 +27304,7 @@ declare const ListKeyspacesResponse: {
     toJSON(message: ListKeyspacesResponse): unknown;
     create<I extends {
         response?: {
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
@@ -27313,13 +27313,13 @@ declare const ListKeyspacesResponse: {
         keyspaceNames?: string[] | undefined;
     } & {
         response?: ({
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
             } | undefined;
         } & {
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: ({
                 durationUs?: number | undefined;
@@ -27331,7 +27331,7 @@ declare const ListKeyspacesResponse: {
     } & { [K_3 in Exclude<keyof I, keyof ListKeyspacesResponse>]: never; }>(base?: I | undefined): ListKeyspacesResponse;
     fromPartial<I_1 extends {
         response?: {
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
@@ -27340,13 +27340,13 @@ declare const ListKeyspacesResponse: {
         keyspaceNames?: string[] | undefined;
     } & {
         response?: ({
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: {
                 durationUs?: number | undefined;
             } | undefined;
         } & {
-            status?: StatusType | undefined;
+            status?: StatusType$1 | undefined;
             message?: string | undefined;
             profile?: ({
                 durationUs?: number | undefined;
@@ -27544,4 +27544,191 @@ declare class KeyspaceManager extends GrpcClient<KeyspaceManagerServiceClient> {
     dropKeyspace(keyspaceName: string): Promise<boolean>;
 }
 
-export { type BatchedPutRequest, Channel, type CollectionInfo, type Document, DocumentDB, type IndexDescriptor, type IndexStats, IndexType, KeyValueDB, KeyspaceManager, type PutRequest, type Query, type Request, type ServiceError, indexStatusFromJSON, indexTypeFromJSON };
+declare enum StatusType {
+    kOK = 0,
+    kNotFound = 1,
+    kInternal = 10,
+    UNRECOGNIZED = -1
+}
+interface Tensor$1 {
+    dims: number;
+    data: number[];
+}
+declare const Tensor$1: {
+    encode(message: Tensor$1, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): Tensor$1;
+    fromJSON(object: any): Tensor$1;
+    toJSON(message: Tensor$1): unknown;
+    create<I extends {
+        dims?: number | undefined;
+        data?: number[] | undefined;
+    } & {
+        dims?: number | undefined;
+        data?: (number[] & number[] & { [K in Exclude<keyof I["data"], keyof number[]>]: never; }) | undefined;
+    } & { [K_1 in Exclude<keyof I, keyof Tensor$1>]: never; }>(base?: I | undefined): Tensor$1;
+    fromPartial<I_1 extends {
+        dims?: number | undefined;
+        data?: number[] | undefined;
+    } & {
+        dims?: number | undefined;
+        data?: (number[] & number[] & { [K_2 in Exclude<keyof I_1["data"], keyof number[]>]: never; }) | undefined;
+    } & { [K_3 in Exclude<keyof I_1, keyof Tensor$1>]: never; }>(object: I_1): Tensor$1;
+};
+interface ProfileInfo {
+    durationUs: number;
+}
+declare const ProfileInfo: {
+    encode(message: ProfileInfo, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): ProfileInfo;
+    fromJSON(object: any): ProfileInfo;
+    toJSON(message: ProfileInfo): unknown;
+    create<I extends {
+        durationUs?: number | undefined;
+    } & {
+        durationUs?: number | undefined;
+    } & { [K in Exclude<keyof I, "durationUs">]: never; }>(base?: I | undefined): ProfileInfo;
+    fromPartial<I_1 extends {
+        durationUs?: number | undefined;
+    } & {
+        durationUs?: number | undefined;
+    } & { [K_1 in Exclude<keyof I_1, "durationUs">]: never; }>(object: I_1): ProfileInfo;
+};
+interface SentenceEncoderRequest {
+    modelName: string;
+    sentences: string[];
+}
+declare const SentenceEncoderRequest: {
+    encode(message: SentenceEncoderRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): SentenceEncoderRequest;
+    fromJSON(object: any): SentenceEncoderRequest;
+    toJSON(message: SentenceEncoderRequest): unknown;
+    create<I extends {
+        modelName?: string | undefined;
+        sentences?: string[] | undefined;
+    } & {
+        modelName?: string | undefined;
+        sentences?: (string[] & string[] & { [K in Exclude<keyof I["sentences"], keyof string[]>]: never; }) | undefined;
+    } & { [K_1 in Exclude<keyof I, keyof SentenceEncoderRequest>]: never; }>(base?: I | undefined): SentenceEncoderRequest;
+    fromPartial<I_1 extends {
+        modelName?: string | undefined;
+        sentences?: string[] | undefined;
+    } & {
+        modelName?: string | undefined;
+        sentences?: (string[] & string[] & { [K_2 in Exclude<keyof I_1["sentences"], keyof string[]>]: never; }) | undefined;
+    } & { [K_3 in Exclude<keyof I_1, keyof SentenceEncoderRequest>]: never; }>(object: I_1): SentenceEncoderRequest;
+};
+interface SentenceEncoderResponse {
+    status: StatusType;
+    modelName: string;
+    tensors: Tensor$1[];
+    profiles: ProfileInfo[];
+}
+declare const SentenceEncoderResponse: {
+    encode(message: SentenceEncoderResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): SentenceEncoderResponse;
+    fromJSON(object: any): SentenceEncoderResponse;
+    toJSON(message: SentenceEncoderResponse): unknown;
+    create<I extends {
+        status?: StatusType | undefined;
+        modelName?: string | undefined;
+        tensors?: {
+            dims?: number | undefined;
+            data?: number[] | undefined;
+        }[] | undefined;
+        profiles?: {
+            durationUs?: number | undefined;
+        }[] | undefined;
+    } & {
+        status?: StatusType | undefined;
+        modelName?: string | undefined;
+        tensors?: ({
+            dims?: number | undefined;
+            data?: number[] | undefined;
+        }[] & ({
+            dims?: number | undefined;
+            data?: number[] | undefined;
+        } & {
+            dims?: number | undefined;
+            data?: (number[] & number[] & { [K in Exclude<keyof I["tensors"][number]["data"], keyof number[]>]: never; }) | undefined;
+        } & { [K_1 in Exclude<keyof I["tensors"][number], keyof Tensor$1>]: never; })[] & { [K_2 in Exclude<keyof I["tensors"], keyof {
+            dims?: number | undefined;
+            data?: number[] | undefined;
+        }[]>]: never; }) | undefined;
+        profiles?: ({
+            durationUs?: number | undefined;
+        }[] & ({
+            durationUs?: number | undefined;
+        } & {
+            durationUs?: number | undefined;
+        } & { [K_3 in Exclude<keyof I["profiles"][number], "durationUs">]: never; })[] & { [K_4 in Exclude<keyof I["profiles"], keyof {
+            durationUs?: number | undefined;
+        }[]>]: never; }) | undefined;
+    } & { [K_5 in Exclude<keyof I, keyof SentenceEncoderResponse>]: never; }>(base?: I | undefined): SentenceEncoderResponse;
+    fromPartial<I_1 extends {
+        status?: StatusType | undefined;
+        modelName?: string | undefined;
+        tensors?: {
+            dims?: number | undefined;
+            data?: number[] | undefined;
+        }[] | undefined;
+        profiles?: {
+            durationUs?: number | undefined;
+        }[] | undefined;
+    } & {
+        status?: StatusType | undefined;
+        modelName?: string | undefined;
+        tensors?: ({
+            dims?: number | undefined;
+            data?: number[] | undefined;
+        }[] & ({
+            dims?: number | undefined;
+            data?: number[] | undefined;
+        } & {
+            dims?: number | undefined;
+            data?: (number[] & number[] & { [K_6 in Exclude<keyof I_1["tensors"][number]["data"], keyof number[]>]: never; }) | undefined;
+        } & { [K_7 in Exclude<keyof I_1["tensors"][number], keyof Tensor$1>]: never; })[] & { [K_8 in Exclude<keyof I_1["tensors"], keyof {
+            dims?: number | undefined;
+            data?: number[] | undefined;
+        }[]>]: never; }) | undefined;
+        profiles?: ({
+            durationUs?: number | undefined;
+        }[] & ({
+            durationUs?: number | undefined;
+        } & {
+            durationUs?: number | undefined;
+        } & { [K_9 in Exclude<keyof I_1["profiles"][number], "durationUs">]: never; })[] & { [K_10 in Exclude<keyof I_1["profiles"], keyof {
+            durationUs?: number | undefined;
+        }[]>]: never; }) | undefined;
+    } & { [K_11 in Exclude<keyof I_1, keyof SentenceEncoderResponse>]: never; }>(object: I_1): SentenceEncoderResponse;
+};
+type SentenceTransformerServiceService = typeof SentenceTransformerServiceService;
+declare const SentenceTransformerServiceService: {
+    readonly encode: {
+        readonly path: "/cognica.rpc.sentence_transformer.SentenceTransformerService/encode";
+        readonly requestStream: false;
+        readonly responseStream: false;
+        readonly requestSerialize: (value: SentenceEncoderRequest) => Buffer;
+        readonly requestDeserialize: (value: Buffer) => SentenceEncoderRequest;
+        readonly responseSerialize: (value: SentenceEncoderResponse) => Buffer;
+        readonly responseDeserialize: (value: Buffer) => SentenceEncoderResponse;
+    };
+};
+interface SentenceTransformerServiceClient extends Client {
+    encode(request: SentenceEncoderRequest, callback: (error: ServiceError$1 | null, response: SentenceEncoderResponse) => void): ClientUnaryCall;
+    encode(request: SentenceEncoderRequest, metadata: Metadata, callback: (error: ServiceError$1 | null, response: SentenceEncoderResponse) => void): ClientUnaryCall;
+    encode(request: SentenceEncoderRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError$1 | null, response: SentenceEncoderResponse) => void): ClientUnaryCall;
+}
+declare const SentenceTransformerServiceClient: {
+    new (address: string, credentials: ChannelCredentials, options?: Partial<ClientOptions>): SentenceTransformerServiceClient;
+    service: typeof SentenceTransformerServiceService;
+    serviceName: string;
+};
+
+type Tensor = Tensor$1;
+declare class SentenceTransformer extends GrpcClient<SentenceTransformerServiceClient> {
+    private _modelName;
+    constructor(channel: Channel, modelName: string, timeout?: number | undefined);
+    encode(sentences: string[]): Promise<Tensor[]>;
+}
+
+export { type BatchedPutRequest, Channel, type CollectionInfo, type Document, DocumentDB, type IndexDescriptor, type IndexStats, IndexType, KeyValueDB, KeyspaceManager, type PutRequest, type Query, type Request, SentenceTransformer, type ServiceError, type Tensor, indexStatusFromJSON, indexTypeFromJSON };
