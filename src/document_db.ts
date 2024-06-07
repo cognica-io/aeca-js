@@ -4,11 +4,11 @@
 // Copyright (c) 2024 Aeca
 //
 
-import { Table, tableFromIPC } from "apache-arrow"
 import * as proto from "@/proto/generated/document_db"
 import { Channel } from "./channel"
 import { Document, GrpcClient } from "./client"
 import { readParquet } from "parquet-wasm"
+import { Table, tableFromIPC } from "@apache-arrow/esnext-esm"
 
 export interface IndexDescriptor {
   index_type: string

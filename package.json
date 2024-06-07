@@ -73,7 +73,7 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
-    "apache-arrow": "^15.0.0",
+    "@apache-arrow/esnext-esm": "^16.1.0",
     "parquet-wasm": "^0.6.1"
   }
 }
