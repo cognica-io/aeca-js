@@ -11,7 +11,7 @@ import type {
 import Long from "long";
 import _m0 from "protobufjs/minimal";
 
-export const protobufPackage = "cognica.rpc.db.kv";
+export const protobufPackage = "aeca.rpc.db.kv";
 
 export enum StatusType {
   kOK = 0,
@@ -1880,7 +1880,7 @@ export const ListKeyspacesResponse = {
 export type KeyValueDBServiceService = typeof KeyValueDBServiceService;
 export const KeyValueDBServiceService = {
   put: {
-    path: "/cognica.rpc.db.kv.KeyValueDBService/put",
+    path: "/aeca.rpc.db.kv.KeyValueDBService/put",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value: PutRequest) => Buffer.from(PutRequest.encode(value).finish()),
@@ -1889,7 +1889,7 @@ export const KeyValueDBServiceService = {
     responseDeserialize: (value: Buffer) => PutResponse.decode(value),
   },
   remove: {
-    path: "/cognica.rpc.db.kv.KeyValueDBService/remove",
+    path: "/aeca.rpc.db.kv.KeyValueDBService/remove",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value: RemoveRequest) => Buffer.from(RemoveRequest.encode(value).finish()),
@@ -1898,7 +1898,7 @@ export const KeyValueDBServiceService = {
     responseDeserialize: (value: Buffer) => RemoveResponse.decode(value),
   },
   get: {
-    path: "/cognica.rpc.db.kv.KeyValueDBService/get",
+    path: "/aeca.rpc.db.kv.KeyValueDBService/get",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value: GetRequest) => Buffer.from(GetRequest.encode(value).finish()),
@@ -1907,7 +1907,7 @@ export const KeyValueDBServiceService = {
     responseDeserialize: (value: Buffer) => GetResponse.decode(value),
   },
   mget: {
-    path: "/cognica.rpc.db.kv.KeyValueDBService/mget",
+    path: "/aeca.rpc.db.kv.KeyValueDBService/mget",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value: MultiGetRequest) => Buffer.from(MultiGetRequest.encode(value).finish()),
@@ -1916,7 +1916,7 @@ export const KeyValueDBServiceService = {
     responseDeserialize: (value: Buffer) => MultiGetResponse.decode(value),
   },
   putBatch: {
-    path: "/cognica.rpc.db.kv.KeyValueDBService/put_batch",
+    path: "/aeca.rpc.db.kv.KeyValueDBService/put_batch",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value: BatchedPutRequest) => Buffer.from(BatchedPutRequest.encode(value).finish()),
@@ -1925,7 +1925,7 @@ export const KeyValueDBServiceService = {
     responseDeserialize: (value: Buffer) => BatchedPutResponse.decode(value),
   },
   removeBatch: {
-    path: "/cognica.rpc.db.kv.KeyValueDBService/remove_batch",
+    path: "/aeca.rpc.db.kv.KeyValueDBService/remove_batch",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value: BatchedRemoveRequest) => Buffer.from(BatchedRemoveRequest.encode(value).finish()),
@@ -1934,7 +1934,7 @@ export const KeyValueDBServiceService = {
     responseDeserialize: (value: Buffer) => BatchedRemoveResponse.decode(value),
   },
   getBatch: {
-    path: "/cognica.rpc.db.kv.KeyValueDBService/get_batch",
+    path: "/aeca.rpc.db.kv.KeyValueDBService/get_batch",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value: BatchedGetRequest) => Buffer.from(BatchedGetRequest.encode(value).finish()),
@@ -2058,7 +2058,7 @@ export interface KeyValueDBServiceClient extends Client {
 
 export const KeyValueDBServiceClient = makeGenericClientConstructor(
   KeyValueDBServiceService,
-  "cognica.rpc.db.kv.KeyValueDBService",
+  "aeca.rpc.db.kv.KeyValueDBService",
 ) as unknown as {
   new (address: string, credentials: ChannelCredentials, options?: Partial<ClientOptions>): KeyValueDBServiceClient;
   service: typeof KeyValueDBServiceService;
@@ -2068,7 +2068,7 @@ export const KeyValueDBServiceClient = makeGenericClientConstructor(
 export type KeyspaceManagerServiceService = typeof KeyspaceManagerServiceService;
 export const KeyspaceManagerServiceService = {
   createKeyspace: {
-    path: "/cognica.rpc.db.kv.KeyspaceManagerService/create_keyspace",
+    path: "/aeca.rpc.db.kv.KeyspaceManagerService/create_keyspace",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value: CreateKeyspaceRequest) => Buffer.from(CreateKeyspaceRequest.encode(value).finish()),
@@ -2077,7 +2077,7 @@ export const KeyspaceManagerServiceService = {
     responseDeserialize: (value: Buffer) => CreateKeyspaceResponse.decode(value),
   },
   dropKeyspace: {
-    path: "/cognica.rpc.db.kv.KeyspaceManagerService/drop_keyspace",
+    path: "/aeca.rpc.db.kv.KeyspaceManagerService/drop_keyspace",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value: DropKeyspaceRequest) => Buffer.from(DropKeyspaceRequest.encode(value).finish()),
@@ -2086,7 +2086,7 @@ export const KeyspaceManagerServiceService = {
     responseDeserialize: (value: Buffer) => DropKeyspaceResponse.decode(value),
   },
   truncateKeyspace: {
-    path: "/cognica.rpc.db.kv.KeyspaceManagerService/truncate_keyspace",
+    path: "/aeca.rpc.db.kv.KeyspaceManagerService/truncate_keyspace",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value: TruncateKeyspaceRequest) => Buffer.from(TruncateKeyspaceRequest.encode(value).finish()),
@@ -2096,7 +2096,7 @@ export const KeyspaceManagerServiceService = {
     responseDeserialize: (value: Buffer) => TruncateKeyspaceResponse.decode(value),
   },
   listKeyspaces: {
-    path: "/cognica.rpc.db.kv.KeyspaceManagerService/list_keyspaces",
+    path: "/aeca.rpc.db.kv.KeyspaceManagerService/list_keyspaces",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value: ListKeyspacesRequest) => Buffer.from(ListKeyspacesRequest.encode(value).finish()),
@@ -2178,7 +2178,7 @@ export interface KeyspaceManagerServiceClient extends Client {
 
 export const KeyspaceManagerServiceClient = makeGenericClientConstructor(
   KeyspaceManagerServiceService,
-  "cognica.rpc.db.kv.KeyspaceManagerService",
+  "aeca.rpc.db.kv.KeyspaceManagerService",
 ) as unknown as {
   new (
     address: string,
@@ -2190,28 +2190,11 @@ export const KeyspaceManagerServiceClient = makeGenericClientConstructor(
 };
 
 function bytesFromBase64(b64: string): Uint8Array {
-  if (globalThis.Buffer) {
-    return Uint8Array.from(globalThis.Buffer.from(b64, "base64"));
-  } else {
-    const bin = globalThis.atob(b64);
-    const arr = new Uint8Array(bin.length);
-    for (let i = 0; i < bin.length; ++i) {
-      arr[i] = bin.charCodeAt(i);
-    }
-    return arr;
-  }
+  return Uint8Array.from(globalThis.Buffer.from(b64, "base64"));
 }
 
 function base64FromBytes(arr: Uint8Array): string {
-  if (globalThis.Buffer) {
-    return globalThis.Buffer.from(arr).toString("base64");
-  } else {
-    const bin: string[] = [];
-    arr.forEach((byte) => {
-      bin.push(globalThis.String.fromCharCode(byte));
-    });
-    return globalThis.btoa(bin.join(""));
-  }
+  return globalThis.Buffer.from(arr).toString("base64");
 }
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;

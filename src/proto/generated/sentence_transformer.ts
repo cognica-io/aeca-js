@@ -11,7 +11,7 @@ import type {
 import Long from "long";
 import _m0 from "protobufjs/minimal";
 
-export const protobufPackage = "cognica.rpc.sentence_transformer";
+export const protobufPackage = "aeca.rpc.sentence_transformer";
 
 export enum StatusType {
   kOK = 0,
@@ -1335,7 +1335,7 @@ export const QAEncoderResponse_CandidateList = {
 export type SentenceTransformerServiceService = typeof SentenceTransformerServiceService;
 export const SentenceTransformerServiceService = {
   encode: {
-    path: "/cognica.rpc.sentence_transformer.SentenceTransformerService/encode",
+    path: "/aeca.rpc.sentence_transformer.SentenceTransformerService/encode",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value: SentenceEncoderRequest) => Buffer.from(SentenceEncoderRequest.encode(value).finish()),
@@ -1369,7 +1369,7 @@ export interface SentenceTransformerServiceClient extends Client {
 
 export const SentenceTransformerServiceClient = makeGenericClientConstructor(
   SentenceTransformerServiceService,
-  "cognica.rpc.sentence_transformer.SentenceTransformerService",
+  "aeca.rpc.sentence_transformer.SentenceTransformerService",
 ) as unknown as {
   new (
     address: string,
@@ -1383,7 +1383,7 @@ export const SentenceTransformerServiceClient = makeGenericClientConstructor(
 export type CrossEncoderServiceService = typeof CrossEncoderServiceService;
 export const CrossEncoderServiceService = {
   predict: {
-    path: "/cognica.rpc.sentence_transformer.CrossEncoderService/predict",
+    path: "/aeca.rpc.sentence_transformer.CrossEncoderService/predict",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value: CrossEncoderRequest) => Buffer.from(CrossEncoderRequest.encode(value).finish()),
@@ -1417,7 +1417,7 @@ export interface CrossEncoderServiceClient extends Client {
 
 export const CrossEncoderServiceClient = makeGenericClientConstructor(
   CrossEncoderServiceService,
-  "cognica.rpc.sentence_transformer.CrossEncoderService",
+  "aeca.rpc.sentence_transformer.CrossEncoderService",
 ) as unknown as {
   new (address: string, credentials: ChannelCredentials, options?: Partial<ClientOptions>): CrossEncoderServiceClient;
   service: typeof CrossEncoderServiceService;
@@ -1427,7 +1427,7 @@ export const CrossEncoderServiceClient = makeGenericClientConstructor(
 export type CLIPEncoderServiceService = typeof CLIPEncoderServiceService;
 export const CLIPEncoderServiceService = {
   encode: {
-    path: "/cognica.rpc.sentence_transformer.CLIPEncoderService/encode",
+    path: "/aeca.rpc.sentence_transformer.CLIPEncoderService/encode",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value: CLIPEncoderRequest) => Buffer.from(CLIPEncoderRequest.encode(value).finish()),
@@ -1461,7 +1461,7 @@ export interface CLIPEncoderServiceClient extends Client {
 
 export const CLIPEncoderServiceClient = makeGenericClientConstructor(
   CLIPEncoderServiceService,
-  "cognica.rpc.sentence_transformer.CLIPEncoderService",
+  "aeca.rpc.sentence_transformer.CLIPEncoderService",
 ) as unknown as {
   new (address: string, credentials: ChannelCredentials, options?: Partial<ClientOptions>): CLIPEncoderServiceClient;
   service: typeof CLIPEncoderServiceService;
@@ -1471,7 +1471,7 @@ export const CLIPEncoderServiceClient = makeGenericClientConstructor(
 export type QAEncoderServiceService = typeof QAEncoderServiceService;
 export const QAEncoderServiceService = {
   predict: {
-    path: "/cognica.rpc.sentence_transformer.QAEncoderService/predict",
+    path: "/aeca.rpc.sentence_transformer.QAEncoderService/predict",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value: QAEncoderRequest) => Buffer.from(QAEncoderRequest.encode(value).finish()),
@@ -1505,7 +1505,7 @@ export interface QAEncoderServiceClient extends Client {
 
 export const QAEncoderServiceClient = makeGenericClientConstructor(
   QAEncoderServiceService,
-  "cognica.rpc.sentence_transformer.QAEncoderService",
+  "aeca.rpc.sentence_transformer.QAEncoderService",
 ) as unknown as {
   new (address: string, credentials: ChannelCredentials, options?: Partial<ClientOptions>): QAEncoderServiceClient;
   service: typeof QAEncoderServiceService;
@@ -1513,28 +1513,11 @@ export const QAEncoderServiceClient = makeGenericClientConstructor(
 };
 
 function bytesFromBase64(b64: string): Uint8Array {
-  if (globalThis.Buffer) {
-    return Uint8Array.from(globalThis.Buffer.from(b64, "base64"));
-  } else {
-    const bin = globalThis.atob(b64);
-    const arr = new Uint8Array(bin.length);
-    for (let i = 0; i < bin.length; ++i) {
-      arr[i] = bin.charCodeAt(i);
-    }
-    return arr;
-  }
+  return Uint8Array.from(globalThis.Buffer.from(b64, "base64"));
 }
 
 function base64FromBytes(arr: Uint8Array): string {
-  if (globalThis.Buffer) {
-    return globalThis.Buffer.from(arr).toString("base64");
-  } else {
-    const bin: string[] = [];
-    arr.forEach((byte) => {
-      bin.push(globalThis.String.fromCharCode(byte));
-    });
-    return globalThis.btoa(bin.join(""));
-  }
+  return globalThis.Buffer.from(arr).toString("base64");
 }
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;

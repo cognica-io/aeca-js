@@ -10,7 +10,7 @@ import type {
 } from "@grpc/grpc-js";
 import _m0 from "protobufjs/minimal";
 
-export const protobufPackage = "cognica.rpc";
+export const protobufPackage = "aeca.rpc";
 
 export interface CreateWorkspaceRequest {
   workspaceName: string;
@@ -570,7 +570,7 @@ export const ListWorkspacesResponse = {
 export type WorkspacesServiceService = typeof WorkspacesServiceService;
 export const WorkspacesServiceService = {
   createWorkspace: {
-    path: "/cognica.rpc.WorkspacesService/create_workspace",
+    path: "/aeca.rpc.WorkspacesService/create_workspace",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value: CreateWorkspaceRequest) => Buffer.from(CreateWorkspaceRequest.encode(value).finish()),
@@ -579,7 +579,7 @@ export const WorkspacesServiceService = {
     responseDeserialize: (value: Buffer) => CreateWorkspaceResponse.decode(value),
   },
   dropWorkspace: {
-    path: "/cognica.rpc.WorkspacesService/drop_workspace",
+    path: "/aeca.rpc.WorkspacesService/drop_workspace",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value: DropWorkspaceRequest) => Buffer.from(DropWorkspaceRequest.encode(value).finish()),
@@ -588,7 +588,7 @@ export const WorkspacesServiceService = {
     responseDeserialize: (value: Buffer) => DropWorkspaceResponse.decode(value),
   },
   listWorkspaces: {
-    path: "/cognica.rpc.WorkspacesService/list_workspaces",
+    path: "/aeca.rpc.WorkspacesService/list_workspaces",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value: ListWorkspacesRequest) => Buffer.from(ListWorkspacesRequest.encode(value).finish()),
@@ -654,7 +654,7 @@ export interface WorkspacesServiceClient extends Client {
 
 export const WorkspacesServiceClient = makeGenericClientConstructor(
   WorkspacesServiceService,
-  "cognica.rpc.WorkspacesService",
+  "aeca.rpc.WorkspacesService",
 ) as unknown as {
   new (address: string, credentials: ChannelCredentials, options?: Partial<ClientOptions>): WorkspacesServiceClient;
   service: typeof WorkspacesServiceService;

@@ -12,7 +12,7 @@ import Long from "long";
 import _m0 from "protobufjs/minimal";
 import { Document } from "./document";
 
-export const protobufPackage = "cognica.rpc.db.document";
+export const protobufPackage = "aeca.rpc.db.document";
 
 export enum IndexType {
   kPrimaryKey = 0,
@@ -4718,7 +4718,7 @@ export const ListCollectionsResponse = {
 export type DocumentDBServiceService = typeof DocumentDBServiceService;
 export const DocumentDBServiceService = {
   find: {
-    path: "/cognica.rpc.db.document.DocumentDBService/find",
+    path: "/aeca.rpc.db.document.DocumentDBService/find",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value: FindRequest) => Buffer.from(FindRequest.encode(value).finish()),
@@ -4727,7 +4727,7 @@ export const DocumentDBServiceService = {
     responseDeserialize: (value: Buffer) => FindResponse.decode(value),
   },
   findBatch: {
-    path: "/cognica.rpc.db.document.DocumentDBService/find_batch",
+    path: "/aeca.rpc.db.document.DocumentDBService/find_batch",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value: FindBatchRequest) => Buffer.from(FindBatchRequest.encode(value).finish()),
@@ -4736,7 +4736,7 @@ export const DocumentDBServiceService = {
     responseDeserialize: (value: Buffer) => FindBatchResponse.decode(value),
   },
   count: {
-    path: "/cognica.rpc.db.document.DocumentDBService/count",
+    path: "/aeca.rpc.db.document.DocumentDBService/count",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value: CountRequest) => Buffer.from(CountRequest.encode(value).finish()),
@@ -4745,7 +4745,7 @@ export const DocumentDBServiceService = {
     responseDeserialize: (value: Buffer) => CountResponse.decode(value),
   },
   contains: {
-    path: "/cognica.rpc.db.document.DocumentDBService/contains",
+    path: "/aeca.rpc.db.document.DocumentDBService/contains",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value: ContainsRequest) => Buffer.from(ContainsRequest.encode(value).finish()),
@@ -4754,7 +4754,7 @@ export const DocumentDBServiceService = {
     responseDeserialize: (value: Buffer) => ContainsResponse.decode(value),
   },
   insert: {
-    path: "/cognica.rpc.db.document.DocumentDBService/insert",
+    path: "/aeca.rpc.db.document.DocumentDBService/insert",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value: InsertRequest) => Buffer.from(InsertRequest.encode(value).finish()),
@@ -4763,7 +4763,7 @@ export const DocumentDBServiceService = {
     responseDeserialize: (value: Buffer) => InsertResponse.decode(value),
   },
   update: {
-    path: "/cognica.rpc.db.document.DocumentDBService/update",
+    path: "/aeca.rpc.db.document.DocumentDBService/update",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value: UpdateRequest) => Buffer.from(UpdateRequest.encode(value).finish()),
@@ -4772,7 +4772,7 @@ export const DocumentDBServiceService = {
     responseDeserialize: (value: Buffer) => UpdateResponse.decode(value),
   },
   remove: {
-    path: "/cognica.rpc.db.document.DocumentDBService/remove",
+    path: "/aeca.rpc.db.document.DocumentDBService/remove",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value: RemoveRequest) => Buffer.from(RemoveRequest.encode(value).finish()),
@@ -4781,7 +4781,7 @@ export const DocumentDBServiceService = {
     responseDeserialize: (value: Buffer) => RemoveResponse.decode(value),
   },
   explain: {
-    path: "/cognica.rpc.db.document.DocumentDBService/explain",
+    path: "/aeca.rpc.db.document.DocumentDBService/explain",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value: ExplainRequest) => Buffer.from(ExplainRequest.encode(value).finish()),
@@ -4790,7 +4790,7 @@ export const DocumentDBServiceService = {
     responseDeserialize: (value: Buffer) => ExplainResponse.decode(value),
   },
   createCollection: {
-    path: "/cognica.rpc.db.document.DocumentDBService/create_collection",
+    path: "/aeca.rpc.db.document.DocumentDBService/create_collection",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value: CreateCollectionRequest) => Buffer.from(CreateCollectionRequest.encode(value).finish()),
@@ -4800,7 +4800,7 @@ export const DocumentDBServiceService = {
     responseDeserialize: (value: Buffer) => CreateCollectionResponse.decode(value),
   },
   dropCollection: {
-    path: "/cognica.rpc.db.document.DocumentDBService/drop_collection",
+    path: "/aeca.rpc.db.document.DocumentDBService/drop_collection",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value: DropCollectionRequest) => Buffer.from(DropCollectionRequest.encode(value).finish()),
@@ -4809,7 +4809,7 @@ export const DocumentDBServiceService = {
     responseDeserialize: (value: Buffer) => DropCollectionResponse.decode(value),
   },
   renameCollection: {
-    path: "/cognica.rpc.db.document.DocumentDBService/rename_collection",
+    path: "/aeca.rpc.db.document.DocumentDBService/rename_collection",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value: RenameCollectionRequest) => Buffer.from(RenameCollectionRequest.encode(value).finish()),
@@ -4819,7 +4819,7 @@ export const DocumentDBServiceService = {
     responseDeserialize: (value: Buffer) => RenameCollectionResponse.decode(value),
   },
   getCollection: {
-    path: "/cognica.rpc.db.document.DocumentDBService/get_collection",
+    path: "/aeca.rpc.db.document.DocumentDBService/get_collection",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value: GetCollectionRequest) => Buffer.from(GetCollectionRequest.encode(value).finish()),
@@ -4828,7 +4828,7 @@ export const DocumentDBServiceService = {
     responseDeserialize: (value: Buffer) => GetCollectionResponse.decode(value),
   },
   getCollections: {
-    path: "/cognica.rpc.db.document.DocumentDBService/get_collections",
+    path: "/aeca.rpc.db.document.DocumentDBService/get_collections",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value: GetCollectionsRequest) => Buffer.from(GetCollectionsRequest.encode(value).finish()),
@@ -4837,7 +4837,7 @@ export const DocumentDBServiceService = {
     responseDeserialize: (value: Buffer) => GetCollectionsResponse.decode(value),
   },
   listCollections: {
-    path: "/cognica.rpc.db.document.DocumentDBService/list_collections",
+    path: "/aeca.rpc.db.document.DocumentDBService/list_collections",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value: ListCollectionsRequest) => Buffer.from(ListCollectionsRequest.encode(value).finish()),
@@ -4846,7 +4846,7 @@ export const DocumentDBServiceService = {
     responseDeserialize: (value: Buffer) => ListCollectionsResponse.decode(value),
   },
   truncateCollection: {
-    path: "/cognica.rpc.db.document.DocumentDBService/truncate_collection",
+    path: "/aeca.rpc.db.document.DocumentDBService/truncate_collection",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value: TruncateCollectionRequest) =>
@@ -4857,7 +4857,7 @@ export const DocumentDBServiceService = {
     responseDeserialize: (value: Buffer) => TruncateCollectionResponse.decode(value),
   },
   createIndex: {
-    path: "/cognica.rpc.db.document.DocumentDBService/create_index",
+    path: "/aeca.rpc.db.document.DocumentDBService/create_index",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value: CreateIndexRequest) => Buffer.from(CreateIndexRequest.encode(value).finish()),
@@ -4866,7 +4866,7 @@ export const DocumentDBServiceService = {
     responseDeserialize: (value: Buffer) => CreateIndexResponse.decode(value),
   },
   dropIndex: {
-    path: "/cognica.rpc.db.document.DocumentDBService/drop_index",
+    path: "/aeca.rpc.db.document.DocumentDBService/drop_index",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value: DropIndexRequest) => Buffer.from(DropIndexRequest.encode(value).finish()),
@@ -4875,7 +4875,7 @@ export const DocumentDBServiceService = {
     responseDeserialize: (value: Buffer) => DropIndexResponse.decode(value),
   },
   renameIndex: {
-    path: "/cognica.rpc.db.document.DocumentDBService/rename_index",
+    path: "/aeca.rpc.db.document.DocumentDBService/rename_index",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value: RenameIndexRequest) => Buffer.from(RenameIndexRequest.encode(value).finish()),
@@ -4884,7 +4884,7 @@ export const DocumentDBServiceService = {
     responseDeserialize: (value: Buffer) => RenameIndexResponse.decode(value),
   },
   getIndex: {
-    path: "/cognica.rpc.db.document.DocumentDBService/get_index",
+    path: "/aeca.rpc.db.document.DocumentDBService/get_index",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value: GetIndexRequest) => Buffer.from(GetIndexRequest.encode(value).finish()),
@@ -5203,7 +5203,7 @@ export interface DocumentDBServiceClient extends Client {
 
 export const DocumentDBServiceClient = makeGenericClientConstructor(
   DocumentDBServiceService,
-  "cognica.rpc.db.document.DocumentDBService",
+  "aeca.rpc.db.document.DocumentDBService",
 ) as unknown as {
   new (address: string, credentials: ChannelCredentials, options?: Partial<ClientOptions>): DocumentDBServiceClient;
   service: typeof DocumentDBServiceService;
@@ -5211,28 +5211,11 @@ export const DocumentDBServiceClient = makeGenericClientConstructor(
 };
 
 function bytesFromBase64(b64: string): Uint8Array {
-  if (globalThis.Buffer) {
-    return Uint8Array.from(globalThis.Buffer.from(b64, "base64"));
-  } else {
-    const bin = globalThis.atob(b64);
-    const arr = new Uint8Array(bin.length);
-    for (let i = 0; i < bin.length; ++i) {
-      arr[i] = bin.charCodeAt(i);
-    }
-    return arr;
-  }
+  return Uint8Array.from(globalThis.Buffer.from(b64, "base64"));
 }
 
 function base64FromBytes(arr: Uint8Array): string {
-  if (globalThis.Buffer) {
-    return globalThis.Buffer.from(arr).toString("base64");
-  } else {
-    const bin: string[] = [];
-    arr.forEach((byte) => {
-      bin.push(globalThis.String.fromCharCode(byte));
-    });
-    return globalThis.btoa(bin.join(""));
-  }
+  return globalThis.Buffer.from(arr).toString("base64");
 }
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;

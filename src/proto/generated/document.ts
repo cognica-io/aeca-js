@@ -2,7 +2,7 @@
 import Long from "long";
 import _m0 from "protobufjs/minimal";
 
-export const protobufPackage = "cognica.rpc.db.document";
+export const protobufPackage = "aeca.rpc.db.document";
 
 export interface Value {
   null?: boolean | undefined;

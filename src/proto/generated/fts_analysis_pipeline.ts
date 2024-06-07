@@ -11,7 +11,7 @@ import type {
 import Long from "long";
 import _m0 from "protobufjs/minimal";
 
-export const protobufPackage = "cognica.rpc.db.fts";
+export const protobufPackage = "aeca.rpc.db.fts";
 
 export interface ProfileInfo {
   durationUs: number;
@@ -485,7 +485,7 @@ export const AdhocPipelineExecutionResponse = {
 export type FTSAnalysisPipelineServiceService = typeof FTSAnalysisPipelineServiceService;
 export const FTSAnalysisPipelineServiceService = {
   execute: {
-    path: "/cognica.rpc.db.fts.FTSAnalysisPipelineService/execute",
+    path: "/aeca.rpc.db.fts.FTSAnalysisPipelineService/execute",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value: PipelineExecutionRequest) => Buffer.from(PipelineExecutionRequest.encode(value).finish()),
@@ -495,7 +495,7 @@ export const FTSAnalysisPipelineServiceService = {
     responseDeserialize: (value: Buffer) => PipelineExecutionResponse.decode(value),
   },
   executeAdhoc: {
-    path: "/cognica.rpc.db.fts.FTSAnalysisPipelineService/execute_adhoc",
+    path: "/aeca.rpc.db.fts.FTSAnalysisPipelineService/execute_adhoc",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value: AdhocPipelineExecutionRequest) =>
@@ -547,7 +547,7 @@ export interface FTSAnalysisPipelineServiceClient extends Client {
 
 export const FTSAnalysisPipelineServiceClient = makeGenericClientConstructor(
   FTSAnalysisPipelineServiceService,
-  "cognica.rpc.db.fts.FTSAnalysisPipelineService",
+  "aeca.rpc.db.fts.FTSAnalysisPipelineService",
 ) as unknown as {
   new (
     address: string,
