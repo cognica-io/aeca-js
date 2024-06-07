@@ -24477,7 +24477,7 @@ var ListCollectionsResponse = {
 };
 var DocumentDBServiceService = {
   find: {
-    path: "/cognica.rpc.db.document.DocumentDBService/find",
+    path: "/aeca.rpc.db.document.DocumentDBService/find",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value) => Buffer.from(FindRequest.encode(value).finish()),
@@ -24486,7 +24486,7 @@ var DocumentDBServiceService = {
     responseDeserialize: (value) => FindResponse.decode(value)
   },
   findBatch: {
-    path: "/cognica.rpc.db.document.DocumentDBService/find_batch",
+    path: "/aeca.rpc.db.document.DocumentDBService/find_batch",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value) => Buffer.from(FindBatchRequest.encode(value).finish()),
@@ -24495,7 +24495,7 @@ var DocumentDBServiceService = {
     responseDeserialize: (value) => FindBatchResponse.decode(value)
   },
   count: {
-    path: "/cognica.rpc.db.document.DocumentDBService/count",
+    path: "/aeca.rpc.db.document.DocumentDBService/count",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value) => Buffer.from(CountRequest.encode(value).finish()),
@@ -24504,7 +24504,7 @@ var DocumentDBServiceService = {
     responseDeserialize: (value) => CountResponse.decode(value)
   },
   contains: {
-    path: "/cognica.rpc.db.document.DocumentDBService/contains",
+    path: "/aeca.rpc.db.document.DocumentDBService/contains",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value) => Buffer.from(ContainsRequest.encode(value).finish()),
@@ -24513,7 +24513,7 @@ var DocumentDBServiceService = {
     responseDeserialize: (value) => ContainsResponse.decode(value)
   },
   insert: {
-    path: "/cognica.rpc.db.document.DocumentDBService/insert",
+    path: "/aeca.rpc.db.document.DocumentDBService/insert",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value) => Buffer.from(InsertRequest.encode(value).finish()),
@@ -24522,7 +24522,7 @@ var DocumentDBServiceService = {
     responseDeserialize: (value) => InsertResponse.decode(value)
   },
   update: {
-    path: "/cognica.rpc.db.document.DocumentDBService/update",
+    path: "/aeca.rpc.db.document.DocumentDBService/update",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value) => Buffer.from(UpdateRequest.encode(value).finish()),
@@ -24531,7 +24531,7 @@ var DocumentDBServiceService = {
     responseDeserialize: (value) => UpdateResponse.decode(value)
   },
   remove: {
-    path: "/cognica.rpc.db.document.DocumentDBService/remove",
+    path: "/aeca.rpc.db.document.DocumentDBService/remove",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value) => Buffer.from(RemoveRequest.encode(value).finish()),
@@ -24540,7 +24540,7 @@ var DocumentDBServiceService = {
     responseDeserialize: (value) => RemoveResponse.decode(value)
   },
   explain: {
-    path: "/cognica.rpc.db.document.DocumentDBService/explain",
+    path: "/aeca.rpc.db.document.DocumentDBService/explain",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value) => Buffer.from(ExplainRequest.encode(value).finish()),
@@ -24549,7 +24549,7 @@ var DocumentDBServiceService = {
     responseDeserialize: (value) => ExplainResponse.decode(value)
   },
   createCollection: {
-    path: "/cognica.rpc.db.document.DocumentDBService/create_collection",
+    path: "/aeca.rpc.db.document.DocumentDBService/create_collection",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value) => Buffer.from(CreateCollectionRequest.encode(value).finish()),
@@ -24558,7 +24558,7 @@ var DocumentDBServiceService = {
     responseDeserialize: (value) => CreateCollectionResponse.decode(value)
   },
   dropCollection: {
-    path: "/cognica.rpc.db.document.DocumentDBService/drop_collection",
+    path: "/aeca.rpc.db.document.DocumentDBService/drop_collection",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value) => Buffer.from(DropCollectionRequest.encode(value).finish()),
@@ -24567,7 +24567,7 @@ var DocumentDBServiceService = {
     responseDeserialize: (value) => DropCollectionResponse.decode(value)
   },
   renameCollection: {
-    path: "/cognica.rpc.db.document.DocumentDBService/rename_collection",
+    path: "/aeca.rpc.db.document.DocumentDBService/rename_collection",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value) => Buffer.from(RenameCollectionRequest.encode(value).finish()),
@@ -24576,7 +24576,7 @@ var DocumentDBServiceService = {
     responseDeserialize: (value) => RenameCollectionResponse.decode(value)
   },
   getCollection: {
-    path: "/cognica.rpc.db.document.DocumentDBService/get_collection",
+    path: "/aeca.rpc.db.document.DocumentDBService/get_collection",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value) => Buffer.from(GetCollectionRequest.encode(value).finish()),
@@ -24585,7 +24585,7 @@ var DocumentDBServiceService = {
     responseDeserialize: (value) => GetCollectionResponse.decode(value)
   },
   getCollections: {
-    path: "/cognica.rpc.db.document.DocumentDBService/get_collections",
+    path: "/aeca.rpc.db.document.DocumentDBService/get_collections",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value) => Buffer.from(GetCollectionsRequest.encode(value).finish()),
@@ -24594,7 +24594,7 @@ var DocumentDBServiceService = {
     responseDeserialize: (value) => GetCollectionsResponse.decode(value)
   },
   listCollections: {
-    path: "/cognica.rpc.db.document.DocumentDBService/list_collections",
+    path: "/aeca.rpc.db.document.DocumentDBService/list_collections",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value) => Buffer.from(ListCollectionsRequest.encode(value).finish()),
@@ -24603,7 +24603,7 @@ var DocumentDBServiceService = {
     responseDeserialize: (value) => ListCollectionsResponse.decode(value)
   },
   truncateCollection: {
-    path: "/cognica.rpc.db.document.DocumentDBService/truncate_collection",
+    path: "/aeca.rpc.db.document.DocumentDBService/truncate_collection",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value) => Buffer.from(TruncateCollectionRequest.encode(value).finish()),
@@ -24612,7 +24612,7 @@ var DocumentDBServiceService = {
     responseDeserialize: (value) => TruncateCollectionResponse.decode(value)
   },
   createIndex: {
-    path: "/cognica.rpc.db.document.DocumentDBService/create_index",
+    path: "/aeca.rpc.db.document.DocumentDBService/create_index",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value) => Buffer.from(CreateIndexRequest.encode(value).finish()),
@@ -24621,7 +24621,7 @@ var DocumentDBServiceService = {
     responseDeserialize: (value) => CreateIndexResponse.decode(value)
   },
   dropIndex: {
-    path: "/cognica.rpc.db.document.DocumentDBService/drop_index",
+    path: "/aeca.rpc.db.document.DocumentDBService/drop_index",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value) => Buffer.from(DropIndexRequest.encode(value).finish()),
@@ -24630,7 +24630,7 @@ var DocumentDBServiceService = {
     responseDeserialize: (value) => DropIndexResponse.decode(value)
   },
   renameIndex: {
-    path: "/cognica.rpc.db.document.DocumentDBService/rename_index",
+    path: "/aeca.rpc.db.document.DocumentDBService/rename_index",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value) => Buffer.from(RenameIndexRequest.encode(value).finish()),
@@ -24639,7 +24639,7 @@ var DocumentDBServiceService = {
     responseDeserialize: (value) => RenameIndexResponse.decode(value)
   },
   getIndex: {
-    path: "/cognica.rpc.db.document.DocumentDBService/get_index",
+    path: "/aeca.rpc.db.document.DocumentDBService/get_index",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value) => Buffer.from(GetIndexRequest.encode(value).finish()),
@@ -24650,30 +24650,13 @@ var DocumentDBServiceService = {
 };
 var DocumentDBServiceClient = (0, import_grpc_js.makeGenericClientConstructor)(
   DocumentDBServiceService,
-  "cognica.rpc.db.document.DocumentDBService"
+  "aeca.rpc.db.document.DocumentDBService"
 );
 function bytesFromBase64(b64) {
-  if (globalThis.Buffer) {
-    return Uint8Array.from(globalThis.Buffer.from(b64, "base64"));
-  } else {
-    const bin = globalThis.atob(b64);
-    const arr = new Uint8Array(bin.length);
-    for (let i = 0; i < bin.length; ++i) {
-      arr[i] = bin.charCodeAt(i);
-    }
-    return arr;
-  }
+  return Uint8Array.from(globalThis.Buffer.from(b64, "base64"));
 }
 function base64FromBytes(arr) {
-  if (globalThis.Buffer) {
-    return globalThis.Buffer.from(arr).toString("base64");
-  } else {
-    const bin = [];
-    arr.forEach((byte) => {
-      bin.push(globalThis.String.fromCharCode(byte));
-    });
-    return globalThis.btoa(bin.join(""));
-  }
+  return globalThis.Buffer.from(arr).toString("base64");
 }
 function longToNumber2(long) {
   if (long.gt(globalThis.Number.MAX_SAFE_INTEGER)) {
@@ -24746,6 +24729,7 @@ var GrpcClient = class {
 };
 
 // src/document_db.ts
+import { readParquet } from "parquet-wasm";
 var IndexType = /* @__PURE__ */ ((IndexType2) => {
   IndexType2[IndexType2["kPrimaryKey"] = 0] = "kPrimaryKey";
   IndexType2[IndexType2["kSecondaryKey"] = 1] = "kSecondaryKey";
@@ -24980,8 +24964,7 @@ var DocumentDB = class _DocumentDB extends GrpcClient {
   }
   static async toDataFrame(response) {
     if (response.numRows) {
-      const parquet = await import("parquet-wasm/node/arrow1");
-      const arrowBuffer = parquet.readParquet(response.buffer);
+      const arrowBuffer = readParquet(response.buffer);
       const df = tableFromIPC(arrowBuffer.intoIPCStream());
       const meta_json = df.schema.metadata.get("pandas");
       let meta;
@@ -26557,7 +26540,7 @@ var ListKeyspacesResponse = {
 };
 var KeyValueDBServiceService = {
   put: {
-    path: "/cognica.rpc.db.kv.KeyValueDBService/put",
+    path: "/aeca.rpc.db.kv.KeyValueDBService/put",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value) => Buffer.from(PutRequest.encode(value).finish()),
@@ -26566,7 +26549,7 @@ var KeyValueDBServiceService = {
     responseDeserialize: (value) => PutResponse.decode(value)
   },
   remove: {
-    path: "/cognica.rpc.db.kv.KeyValueDBService/remove",
+    path: "/aeca.rpc.db.kv.KeyValueDBService/remove",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value) => Buffer.from(RemoveRequest2.encode(value).finish()),
@@ -26575,7 +26558,7 @@ var KeyValueDBServiceService = {
     responseDeserialize: (value) => RemoveResponse2.decode(value)
   },
   get: {
-    path: "/cognica.rpc.db.kv.KeyValueDBService/get",
+    path: "/aeca.rpc.db.kv.KeyValueDBService/get",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value) => Buffer.from(GetRequest.encode(value).finish()),
@@ -26584,7 +26567,7 @@ var KeyValueDBServiceService = {
     responseDeserialize: (value) => GetResponse.decode(value)
   },
   mget: {
-    path: "/cognica.rpc.db.kv.KeyValueDBService/mget",
+    path: "/aeca.rpc.db.kv.KeyValueDBService/mget",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value) => Buffer.from(MultiGetRequest.encode(value).finish()),
@@ -26593,7 +26576,7 @@ var KeyValueDBServiceService = {
     responseDeserialize: (value) => MultiGetResponse.decode(value)
   },
   putBatch: {
-    path: "/cognica.rpc.db.kv.KeyValueDBService/put_batch",
+    path: "/aeca.rpc.db.kv.KeyValueDBService/put_batch",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value) => Buffer.from(BatchedPutRequest.encode(value).finish()),
@@ -26602,7 +26585,7 @@ var KeyValueDBServiceService = {
     responseDeserialize: (value) => BatchedPutResponse.decode(value)
   },
   removeBatch: {
-    path: "/cognica.rpc.db.kv.KeyValueDBService/remove_batch",
+    path: "/aeca.rpc.db.kv.KeyValueDBService/remove_batch",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value) => Buffer.from(BatchedRemoveRequest.encode(value).finish()),
@@ -26611,7 +26594,7 @@ var KeyValueDBServiceService = {
     responseDeserialize: (value) => BatchedRemoveResponse.decode(value)
   },
   getBatch: {
-    path: "/cognica.rpc.db.kv.KeyValueDBService/get_batch",
+    path: "/aeca.rpc.db.kv.KeyValueDBService/get_batch",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value) => Buffer.from(BatchedGetRequest.encode(value).finish()),
@@ -26622,11 +26605,11 @@ var KeyValueDBServiceService = {
 };
 var KeyValueDBServiceClient = (0, import_grpc_js4.makeGenericClientConstructor)(
   KeyValueDBServiceService,
-  "cognica.rpc.db.kv.KeyValueDBService"
+  "aeca.rpc.db.kv.KeyValueDBService"
 );
 var KeyspaceManagerServiceService = {
   createKeyspace: {
-    path: "/cognica.rpc.db.kv.KeyspaceManagerService/create_keyspace",
+    path: "/aeca.rpc.db.kv.KeyspaceManagerService/create_keyspace",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value) => Buffer.from(CreateKeyspaceRequest.encode(value).finish()),
@@ -26635,7 +26618,7 @@ var KeyspaceManagerServiceService = {
     responseDeserialize: (value) => CreateKeyspaceResponse.decode(value)
   },
   dropKeyspace: {
-    path: "/cognica.rpc.db.kv.KeyspaceManagerService/drop_keyspace",
+    path: "/aeca.rpc.db.kv.KeyspaceManagerService/drop_keyspace",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value) => Buffer.from(DropKeyspaceRequest.encode(value).finish()),
@@ -26644,7 +26627,7 @@ var KeyspaceManagerServiceService = {
     responseDeserialize: (value) => DropKeyspaceResponse.decode(value)
   },
   truncateKeyspace: {
-    path: "/cognica.rpc.db.kv.KeyspaceManagerService/truncate_keyspace",
+    path: "/aeca.rpc.db.kv.KeyspaceManagerService/truncate_keyspace",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value) => Buffer.from(TruncateKeyspaceRequest.encode(value).finish()),
@@ -26653,7 +26636,7 @@ var KeyspaceManagerServiceService = {
     responseDeserialize: (value) => TruncateKeyspaceResponse.decode(value)
   },
   listKeyspaces: {
-    path: "/cognica.rpc.db.kv.KeyspaceManagerService/list_keyspaces",
+    path: "/aeca.rpc.db.kv.KeyspaceManagerService/list_keyspaces",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value) => Buffer.from(ListKeyspacesRequest.encode(value).finish()),
@@ -26664,30 +26647,13 @@ var KeyspaceManagerServiceService = {
 };
 var KeyspaceManagerServiceClient = (0, import_grpc_js4.makeGenericClientConstructor)(
   KeyspaceManagerServiceService,
-  "cognica.rpc.db.kv.KeyspaceManagerService"
+  "aeca.rpc.db.kv.KeyspaceManagerService"
 );
 function bytesFromBase642(b64) {
-  if (globalThis.Buffer) {
-    return Uint8Array.from(globalThis.Buffer.from(b64, "base64"));
-  } else {
-    const bin = globalThis.atob(b64);
-    const arr = new Uint8Array(bin.length);
-    for (let i = 0; i < bin.length; ++i) {
-      arr[i] = bin.charCodeAt(i);
-    }
-    return arr;
-  }
+  return Uint8Array.from(globalThis.Buffer.from(b64, "base64"));
 }
 function base64FromBytes2(arr) {
-  if (globalThis.Buffer) {
-    return globalThis.Buffer.from(arr).toString("base64");
-  } else {
-    const bin = [];
-    arr.forEach((byte) => {
-      bin.push(globalThis.String.fromCharCode(byte));
-    });
-    return globalThis.btoa(bin.join(""));
-  }
+  return globalThis.Buffer.from(arr).toString("base64");
 }
 function longToNumber3(long) {
   if (long.gt(globalThis.Number.MAX_SAFE_INTEGER)) {
@@ -27935,7 +27901,7 @@ var QAEncoderResponse_CandidateList = {
 };
 var SentenceTransformerServiceService = {
   encode: {
-    path: "/cognica.rpc.sentence_transformer.SentenceTransformerService/encode",
+    path: "/aeca.rpc.sentence_transformer.SentenceTransformerService/encode",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value) => Buffer.from(SentenceEncoderRequest.encode(value).finish()),
@@ -27946,11 +27912,11 @@ var SentenceTransformerServiceService = {
 };
 var SentenceTransformerServiceClient = (0, import_grpc_js5.makeGenericClientConstructor)(
   SentenceTransformerServiceService,
-  "cognica.rpc.sentence_transformer.SentenceTransformerService"
+  "aeca.rpc.sentence_transformer.SentenceTransformerService"
 );
 var CrossEncoderServiceService = {
   predict: {
-    path: "/cognica.rpc.sentence_transformer.CrossEncoderService/predict",
+    path: "/aeca.rpc.sentence_transformer.CrossEncoderService/predict",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value) => Buffer.from(CrossEncoderRequest.encode(value).finish()),
@@ -27961,11 +27927,11 @@ var CrossEncoderServiceService = {
 };
 var CrossEncoderServiceClient = (0, import_grpc_js5.makeGenericClientConstructor)(
   CrossEncoderServiceService,
-  "cognica.rpc.sentence_transformer.CrossEncoderService"
+  "aeca.rpc.sentence_transformer.CrossEncoderService"
 );
 var CLIPEncoderServiceService = {
   encode: {
-    path: "/cognica.rpc.sentence_transformer.CLIPEncoderService/encode",
+    path: "/aeca.rpc.sentence_transformer.CLIPEncoderService/encode",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value) => Buffer.from(CLIPEncoderRequest.encode(value).finish()),
@@ -27976,11 +27942,11 @@ var CLIPEncoderServiceService = {
 };
 var CLIPEncoderServiceClient = (0, import_grpc_js5.makeGenericClientConstructor)(
   CLIPEncoderServiceService,
-  "cognica.rpc.sentence_transformer.CLIPEncoderService"
+  "aeca.rpc.sentence_transformer.CLIPEncoderService"
 );
 var QAEncoderServiceService = {
   predict: {
-    path: "/cognica.rpc.sentence_transformer.QAEncoderService/predict",
+    path: "/aeca.rpc.sentence_transformer.QAEncoderService/predict",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value) => Buffer.from(QAEncoderRequest.encode(value).finish()),
@@ -27991,30 +27957,13 @@ var QAEncoderServiceService = {
 };
 var QAEncoderServiceClient = (0, import_grpc_js5.makeGenericClientConstructor)(
   QAEncoderServiceService,
-  "cognica.rpc.sentence_transformer.QAEncoderService"
+  "aeca.rpc.sentence_transformer.QAEncoderService"
 );
 function bytesFromBase643(b64) {
-  if (globalThis.Buffer) {
-    return Uint8Array.from(globalThis.Buffer.from(b64, "base64"));
-  } else {
-    const bin = globalThis.atob(b64);
-    const arr = new Uint8Array(bin.length);
-    for (let i = 0; i < bin.length; ++i) {
-      arr[i] = bin.charCodeAt(i);
-    }
-    return arr;
-  }
+  return Uint8Array.from(globalThis.Buffer.from(b64, "base64"));
 }
 function base64FromBytes3(arr) {
-  if (globalThis.Buffer) {
-    return globalThis.Buffer.from(arr).toString("base64");
-  } else {
-    const bin = [];
-    arr.forEach((byte) => {
-      bin.push(globalThis.String.fromCharCode(byte));
-    });
-    return globalThis.btoa(bin.join(""));
-  }
+  return globalThis.Buffer.from(arr).toString("base64");
 }
 function longToNumber4(long) {
   if (long.gt(globalThis.Number.MAX_SAFE_INTEGER)) {

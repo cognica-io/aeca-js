@@ -25954,7 +25954,7 @@ declare const ListCollectionsResponse: {
 type DocumentDBServiceService = typeof DocumentDBServiceService;
 declare const DocumentDBServiceService: {
     readonly find: {
-        readonly path: "/cognica.rpc.db.document.DocumentDBService/find";
+        readonly path: "/aeca.rpc.db.document.DocumentDBService/find";
         readonly requestStream: false;
         readonly responseStream: false;
         readonly requestSerialize: (value: FindRequest) => Buffer;
@@ -25963,7 +25963,7 @@ declare const DocumentDBServiceService: {
         readonly responseDeserialize: (value: Buffer) => FindResponse;
     };
     readonly findBatch: {
-        readonly path: "/cognica.rpc.db.document.DocumentDBService/find_batch";
+        readonly path: "/aeca.rpc.db.document.DocumentDBService/find_batch";
         readonly requestStream: false;
         readonly responseStream: false;
         readonly requestSerialize: (value: FindBatchRequest) => Buffer;
@@ -25972,7 +25972,7 @@ declare const DocumentDBServiceService: {
         readonly responseDeserialize: (value: Buffer) => FindBatchResponse;
     };
     readonly count: {
-        readonly path: "/cognica.rpc.db.document.DocumentDBService/count";
+        readonly path: "/aeca.rpc.db.document.DocumentDBService/count";
         readonly requestStream: false;
         readonly responseStream: false;
         readonly requestSerialize: (value: CountRequest) => Buffer;
@@ -25981,7 +25981,7 @@ declare const DocumentDBServiceService: {
         readonly responseDeserialize: (value: Buffer) => CountResponse;
     };
     readonly contains: {
-        readonly path: "/cognica.rpc.db.document.DocumentDBService/contains";
+        readonly path: "/aeca.rpc.db.document.DocumentDBService/contains";
         readonly requestStream: false;
         readonly responseStream: false;
         readonly requestSerialize: (value: ContainsRequest) => Buffer;
@@ -25990,7 +25990,7 @@ declare const DocumentDBServiceService: {
         readonly responseDeserialize: (value: Buffer) => ContainsResponse;
     };
     readonly insert: {
-        readonly path: "/cognica.rpc.db.document.DocumentDBService/insert";
+        readonly path: "/aeca.rpc.db.document.DocumentDBService/insert";
         readonly requestStream: false;
         readonly responseStream: false;
         readonly requestSerialize: (value: InsertRequest) => Buffer;
@@ -25999,7 +25999,7 @@ declare const DocumentDBServiceService: {
         readonly responseDeserialize: (value: Buffer) => InsertResponse;
     };
     readonly update: {
-        readonly path: "/cognica.rpc.db.document.DocumentDBService/update";
+        readonly path: "/aeca.rpc.db.document.DocumentDBService/update";
         readonly requestStream: false;
         readonly responseStream: false;
         readonly requestSerialize: (value: UpdateRequest) => Buffer;
@@ -26008,7 +26008,7 @@ declare const DocumentDBServiceService: {
         readonly responseDeserialize: (value: Buffer) => UpdateResponse;
     };
     readonly remove: {
-        readonly path: "/cognica.rpc.db.document.DocumentDBService/remove";
+        readonly path: "/aeca.rpc.db.document.DocumentDBService/remove";
         readonly requestStream: false;
         readonly responseStream: false;
         readonly requestSerialize: (value: RemoveRequest$1) => Buffer;
@@ -26017,7 +26017,7 @@ declare const DocumentDBServiceService: {
         readonly responseDeserialize: (value: Buffer) => RemoveResponse$1;
     };
     readonly explain: {
-        readonly path: "/cognica.rpc.db.document.DocumentDBService/explain";
+        readonly path: "/aeca.rpc.db.document.DocumentDBService/explain";
         readonly requestStream: false;
         readonly responseStream: false;
         readonly requestSerialize: (value: ExplainRequest) => Buffer;
@@ -26026,7 +26026,7 @@ declare const DocumentDBServiceService: {
         readonly responseDeserialize: (value: Buffer) => ExplainResponse;
     };
     readonly createCollection: {
-        readonly path: "/cognica.rpc.db.document.DocumentDBService/create_collection";
+        readonly path: "/aeca.rpc.db.document.DocumentDBService/create_collection";
         readonly requestStream: false;
         readonly responseStream: false;
         readonly requestSerialize: (value: CreateCollectionRequest) => Buffer;
@@ -26035,7 +26035,7 @@ declare const DocumentDBServiceService: {
         readonly responseDeserialize: (value: Buffer) => CreateCollectionResponse;
     };
     readonly dropCollection: {
-        readonly path: "/cognica.rpc.db.document.DocumentDBService/drop_collection";
+        readonly path: "/aeca.rpc.db.document.DocumentDBService/drop_collection";
         readonly requestStream: false;
         readonly responseStream: false;
         readonly requestSerialize: (value: DropCollectionRequest) => Buffer;
@@ -26044,7 +26044,7 @@ declare const DocumentDBServiceService: {
         readonly responseDeserialize: (value: Buffer) => DropCollectionResponse;
     };
     readonly renameCollection: {
-        readonly path: "/cognica.rpc.db.document.DocumentDBService/rename_collection";
+        readonly path: "/aeca.rpc.db.document.DocumentDBService/rename_collection";
         readonly requestStream: false;
         readonly responseStream: false;
         readonly requestSerialize: (value: RenameCollectionRequest) => Buffer;
@@ -26053,7 +26053,7 @@ declare const DocumentDBServiceService: {
         readonly responseDeserialize: (value: Buffer) => RenameCollectionResponse;
     };
     readonly getCollection: {
-        readonly path: "/cognica.rpc.db.document.DocumentDBService/get_collection";
+        readonly path: "/aeca.rpc.db.document.DocumentDBService/get_collection";
         readonly requestStream: false;
         readonly responseStream: false;
         readonly requestSerialize: (value: GetCollectionRequest) => Buffer;
@@ -26062,7 +26062,7 @@ declare const DocumentDBServiceService: {
         readonly responseDeserialize: (value: Buffer) => GetCollectionResponse;
     };
     readonly getCollections: {
-        readonly path: "/cognica.rpc.db.document.DocumentDBService/get_collections";
+        readonly path: "/aeca.rpc.db.document.DocumentDBService/get_collections";
         readonly requestStream: false;
         readonly responseStream: false;
         readonly requestSerialize: (value: GetCollectionsRequest) => Buffer;
@@ -26071,7 +26071,7 @@ declare const DocumentDBServiceService: {
         readonly responseDeserialize: (value: Buffer) => GetCollectionsResponse;
     };
     readonly listCollections: {
-        readonly path: "/cognica.rpc.db.document.DocumentDBService/list_collections";
+        readonly path: "/aeca.rpc.db.document.DocumentDBService/list_collections";
         readonly requestStream: false;
         readonly responseStream: false;
         readonly requestSerialize: (value: ListCollectionsRequest) => Buffer;
@@ -26080,7 +26080,7 @@ declare const DocumentDBServiceService: {
         readonly responseDeserialize: (value: Buffer) => ListCollectionsResponse;
     };
     readonly truncateCollection: {
-        readonly path: "/cognica.rpc.db.document.DocumentDBService/truncate_collection";
+        readonly path: "/aeca.rpc.db.document.DocumentDBService/truncate_collection";
         readonly requestStream: false;
         readonly responseStream: false;
         readonly requestSerialize: (value: TruncateCollectionRequest) => Buffer;
@@ -26089,7 +26089,7 @@ declare const DocumentDBServiceService: {
         readonly responseDeserialize: (value: Buffer) => TruncateCollectionResponse;
     };
     readonly createIndex: {
-        readonly path: "/cognica.rpc.db.document.DocumentDBService/create_index";
+        readonly path: "/aeca.rpc.db.document.DocumentDBService/create_index";
         readonly requestStream: false;
         readonly responseStream: false;
         readonly requestSerialize: (value: CreateIndexRequest) => Buffer;
@@ -26098,7 +26098,7 @@ declare const DocumentDBServiceService: {
         readonly responseDeserialize: (value: Buffer) => CreateIndexResponse;
     };
     readonly dropIndex: {
-        readonly path: "/cognica.rpc.db.document.DocumentDBService/drop_index";
+        readonly path: "/aeca.rpc.db.document.DocumentDBService/drop_index";
         readonly requestStream: false;
         readonly responseStream: false;
         readonly requestSerialize: (value: DropIndexRequest) => Buffer;
@@ -26107,7 +26107,7 @@ declare const DocumentDBServiceService: {
         readonly responseDeserialize: (value: Buffer) => DropIndexResponse;
     };
     readonly renameIndex: {
-        readonly path: "/cognica.rpc.db.document.DocumentDBService/rename_index";
+        readonly path: "/aeca.rpc.db.document.DocumentDBService/rename_index";
         readonly requestStream: false;
         readonly responseStream: false;
         readonly requestSerialize: (value: RenameIndexRequest) => Buffer;
@@ -26116,7 +26116,7 @@ declare const DocumentDBServiceService: {
         readonly responseDeserialize: (value: Buffer) => RenameIndexResponse;
     };
     readonly getIndex: {
-        readonly path: "/cognica.rpc.db.document.DocumentDBService/get_index";
+        readonly path: "/aeca.rpc.db.document.DocumentDBService/get_index";
         readonly requestStream: false;
         readonly responseStream: false;
         readonly requestSerialize: (value: GetIndexRequest) => Buffer;
@@ -27360,7 +27360,7 @@ declare const ListKeyspacesResponse: {
 type KeyValueDBServiceService = typeof KeyValueDBServiceService;
 declare const KeyValueDBServiceService: {
     readonly put: {
-        readonly path: "/cognica.rpc.db.kv.KeyValueDBService/put";
+        readonly path: "/aeca.rpc.db.kv.KeyValueDBService/put";
         readonly requestStream: false;
         readonly responseStream: false;
         readonly requestSerialize: (value: PutRequest$1) => Buffer;
@@ -27369,7 +27369,7 @@ declare const KeyValueDBServiceService: {
         readonly responseDeserialize: (value: Buffer) => PutResponse;
     };
     readonly remove: {
-        readonly path: "/cognica.rpc.db.kv.KeyValueDBService/remove";
+        readonly path: "/aeca.rpc.db.kv.KeyValueDBService/remove";
         readonly requestStream: false;
         readonly responseStream: false;
         readonly requestSerialize: (value: RemoveRequest) => Buffer;
@@ -27378,7 +27378,7 @@ declare const KeyValueDBServiceService: {
         readonly responseDeserialize: (value: Buffer) => RemoveResponse;
     };
     readonly get: {
-        readonly path: "/cognica.rpc.db.kv.KeyValueDBService/get";
+        readonly path: "/aeca.rpc.db.kv.KeyValueDBService/get";
         readonly requestStream: false;
         readonly responseStream: false;
         readonly requestSerialize: (value: GetRequest) => Buffer;
@@ -27387,7 +27387,7 @@ declare const KeyValueDBServiceService: {
         readonly responseDeserialize: (value: Buffer) => GetResponse;
     };
     readonly mget: {
-        readonly path: "/cognica.rpc.db.kv.KeyValueDBService/mget";
+        readonly path: "/aeca.rpc.db.kv.KeyValueDBService/mget";
         readonly requestStream: false;
         readonly responseStream: false;
         readonly requestSerialize: (value: MultiGetRequest) => Buffer;
@@ -27396,7 +27396,7 @@ declare const KeyValueDBServiceService: {
         readonly responseDeserialize: (value: Buffer) => MultiGetResponse;
     };
     readonly putBatch: {
-        readonly path: "/cognica.rpc.db.kv.KeyValueDBService/put_batch";
+        readonly path: "/aeca.rpc.db.kv.KeyValueDBService/put_batch";
         readonly requestStream: false;
         readonly responseStream: false;
         readonly requestSerialize: (value: BatchedPutRequest$1) => Buffer;
@@ -27405,7 +27405,7 @@ declare const KeyValueDBServiceService: {
         readonly responseDeserialize: (value: Buffer) => BatchedPutResponse;
     };
     readonly removeBatch: {
-        readonly path: "/cognica.rpc.db.kv.KeyValueDBService/remove_batch";
+        readonly path: "/aeca.rpc.db.kv.KeyValueDBService/remove_batch";
         readonly requestStream: false;
         readonly responseStream: false;
         readonly requestSerialize: (value: BatchedRemoveRequest) => Buffer;
@@ -27414,7 +27414,7 @@ declare const KeyValueDBServiceService: {
         readonly responseDeserialize: (value: Buffer) => BatchedRemoveResponse;
     };
     readonly getBatch: {
-        readonly path: "/cognica.rpc.db.kv.KeyValueDBService/get_batch";
+        readonly path: "/aeca.rpc.db.kv.KeyValueDBService/get_batch";
         readonly requestStream: false;
         readonly responseStream: false;
         readonly requestSerialize: (value: BatchedGetRequest) => Buffer;
@@ -27454,7 +27454,7 @@ declare const KeyValueDBServiceClient: {
 type KeyspaceManagerServiceService = typeof KeyspaceManagerServiceService;
 declare const KeyspaceManagerServiceService: {
     readonly createKeyspace: {
-        readonly path: "/cognica.rpc.db.kv.KeyspaceManagerService/create_keyspace";
+        readonly path: "/aeca.rpc.db.kv.KeyspaceManagerService/create_keyspace";
         readonly requestStream: false;
         readonly responseStream: false;
         readonly requestSerialize: (value: CreateKeyspaceRequest) => Buffer;
@@ -27463,7 +27463,7 @@ declare const KeyspaceManagerServiceService: {
         readonly responseDeserialize: (value: Buffer) => CreateKeyspaceResponse;
     };
     readonly dropKeyspace: {
-        readonly path: "/cognica.rpc.db.kv.KeyspaceManagerService/drop_keyspace";
+        readonly path: "/aeca.rpc.db.kv.KeyspaceManagerService/drop_keyspace";
         readonly requestStream: false;
         readonly responseStream: false;
         readonly requestSerialize: (value: DropKeyspaceRequest) => Buffer;
@@ -27472,7 +27472,7 @@ declare const KeyspaceManagerServiceService: {
         readonly responseDeserialize: (value: Buffer) => DropKeyspaceResponse;
     };
     readonly truncateKeyspace: {
-        readonly path: "/cognica.rpc.db.kv.KeyspaceManagerService/truncate_keyspace";
+        readonly path: "/aeca.rpc.db.kv.KeyspaceManagerService/truncate_keyspace";
         readonly requestStream: false;
         readonly responseStream: false;
         readonly requestSerialize: (value: TruncateKeyspaceRequest) => Buffer;
@@ -27481,7 +27481,7 @@ declare const KeyspaceManagerServiceService: {
         readonly responseDeserialize: (value: Buffer) => TruncateKeyspaceResponse;
     };
     readonly listKeyspaces: {
-        readonly path: "/cognica.rpc.db.kv.KeyspaceManagerService/list_keyspaces";
+        readonly path: "/aeca.rpc.db.kv.KeyspaceManagerService/list_keyspaces";
         readonly requestStream: false;
         readonly responseStream: false;
         readonly requestSerialize: (value: ListKeyspacesRequest) => Buffer;
@@ -27704,7 +27704,7 @@ declare const SentenceEncoderResponse: {
 type SentenceTransformerServiceService = typeof SentenceTransformerServiceService;
 declare const SentenceTransformerServiceService: {
     readonly encode: {
-        readonly path: "/cognica.rpc.sentence_transformer.SentenceTransformerService/encode";
+        readonly path: "/aeca.rpc.sentence_transformer.SentenceTransformerService/encode";
         readonly requestStream: false;
         readonly responseStream: false;
         readonly requestSerialize: (value: SentenceEncoderRequest) => Buffer;

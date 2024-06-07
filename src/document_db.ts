@@ -5,11 +5,10 @@
 //
 
 import { Table, tableFromIPC } from "apache-arrow"
-// import * as parquet from "parquet-wasm/esm/arrow1"
 import * as proto from "@/proto/generated/document_db"
-
 import { Channel } from "./channel"
 import { Document, GrpcClient } from "./client"
+import { readParquet } from "parquet-wasm"
 
 export interface IndexDescriptor {
   index_type: string
@@ -350,9 +349,7 @@ export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
     response: proto.FindResponse,
   ): Promise<DataFrame | null> {
     if (response.numRows) {
-      const parquet = await import("parquet-wasm/node/arrow1")
-
-      const arrowBuffer = parquet.readParquet(response.buffer)
+      const arrowBuffer = readParquet(response.buffer)
       const df = tableFromIPC(arrowBuffer.intoIPCStream())
       const meta_json = df.schema.metadata.get("pandas")
       let meta

@@ -9,8 +9,8 @@ dependencies:
     specifier: ^15.0.0
     version: 15.0.0
   parquet-wasm:
-    specifier: ^0.5
-    version: 0.5.0
+    specifier: ^0.6.1
+    version: 0.6.1
 
 devDependencies:
   '@grpc/grpc-js':
@@ -22,9 +22,6 @@ devDependencies:
   '@types/jest':
     specifier: ^29.5.12
     version: 29.5.12
-  esbuild-plugin-wasm:
-    specifier: ^1.1.0
-    version: 1.1.0
   eslint:
     specifier: ^8.57.0
     version: 8.57.0
@@ -1929,11 +1926,6 @@ packages:
       is-arrayish: 0.2.1
     dev: true
 
-  /esbuild-plugin-wasm@1.1.0:
-    resolution: {integrity: sha512-0bQ6+1tUbySSnxzn5jnXHMDvYnT0cN/Wd4Syk8g/sqAIJUg7buTIi22svS3Qz6ssx895NT+TgLPb33xi1OkZig==}
-    engines: {node: '>=0.10.0'}
-    dev: true
-
   /esbuild@0.19.12:
     resolution: {integrity: sha512-aARqgq8roFBj054KvQr5f1sFu0D65G+miZRCuJyJ0G13Zwx7vRar5Zhn2tkQNzIXcBrNVsv/8stehpj+GAjgbg==}
     engines: {node: '>=12'}
@@ -3258,8 +3250,8 @@ packages:
       callsites: 3.1.0
     dev: true
 
-  /parquet-wasm@0.5.0:
-    resolution: {integrity: sha512-XN3EW+3xf915QgpxCvfCdVYsxDLXz+BckKLDlMo41cbipSYD8x+F/3lGcrWtxdY6uJgAmtb+SX3tS+9PPsplQA==}
+  /parquet-wasm@0.6.1:
+    resolution: {integrity: sha512-wTM/9Y4EHny8i0qgcOlL9UHsTXftowwCqDsAD8axaZbHp0Opp3ue8oxexbzTVNhqBjFhyhLiU3MT0rnEYnYU0Q==}
     dev: false
 
   /parse-json@5.2.0:
