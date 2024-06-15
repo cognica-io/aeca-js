@@ -7,12 +7,18 @@ var __hasOwnProp = Object.prototype.hasOwnProperty;
 var __require = /* @__PURE__ */ ((x) => typeof require !== "undefined" ? require : typeof Proxy !== "undefined" ? new Proxy(x, {
   get: (a, b) => (typeof require !== "undefined" ? require : a)[b]
 }) : x)(function(x) {
-  if (typeof require !== "undefined")
-    return require.apply(this, arguments);
+  if (typeof require !== "undefined") return require.apply(this, arguments);
   throw Error('Dynamic require of "' + x + '" is not supported');
 });
+var __esm = (fn, res) => function __init() {
+  return fn && (res = (0, fn[__getOwnPropNames(fn)[0]])(fn = 0)), res;
+};
 var __commonJS = (cb, mod2) => function __require2() {
   return mod2 || (0, cb[__getOwnPropNames(cb)[0]])((mod2 = { exports: {} }).exports, mod2), mod2.exports;
+};
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
 };
 var __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
@@ -30,10 +36,11 @@ var __toESM = (mod2, isNodeMode, target) => (target = mod2 != null ? __create(__
   isNodeMode || !mod2 || !mod2.__esModule ? __defProp(target, "default", { value: mod2, enumerable: true }) : target,
   mod2
 ));
+var __toCommonJS = (mod2) => __copyProps(__defProp({}, "__esModule", { value: true }), mod2);
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/constants.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/constants.js
 var require_constants = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/constants.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/constants.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.DEFAULT_MAX_RECEIVE_MESSAGE_LENGTH = exports2.DEFAULT_MAX_SEND_MESSAGE_LENGTH = exports2.Propagate = exports2.LogVerbosity = exports2.Status = void 0;
@@ -77,18 +84,18 @@ var require_constants = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/package.json
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/package.json
 var require_package = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/package.json"(exports2, module2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/package.json"(exports2, module2) {
     module2.exports = {
       name: "@grpc/grpc-js",
-      version: "1.10.1",
+      version: "1.10.8",
       description: "gRPC Library for Node - pure JS implementation",
       homepage: "https://grpc.io/",
       repository: "https://github.com/grpc/grpc-node/tree/master/packages/grpc-js",
       main: "build/src/index.js",
       engines: {
-        node: "^8.13.0 || >=10.10.0"
+        node: ">=12.10.0"
       },
       keywords: [],
       author: {
@@ -97,17 +104,18 @@ var require_package = __commonJS({
       types: "build/src/index.d.ts",
       license: "Apache-2.0",
       devDependencies: {
-        "@types/gulp": "^4.0.6",
-        "@types/gulp-mocha": "0.0.32",
-        "@types/lodash": "^4.14.186",
-        "@types/mocha": "^5.2.6",
-        "@types/ncp": "^2.0.1",
-        "@types/pify": "^3.0.2",
-        "@types/semver": "^7.3.9",
-        "@typescript-eslint/eslint-plugin": "^5.59.11",
-        "@typescript-eslint/parser": "^5.59.11",
-        "@typescript-eslint/typescript-estree": "^5.59.11",
-        "clang-format": "^1.0.55",
+        "@types/gulp": "^4.0.17",
+        "@types/gulp-mocha": "0.0.37",
+        "@types/lodash": "^4.14.202",
+        "@types/mocha": "^10.0.6",
+        "@types/ncp": "^2.0.8",
+        "@types/node": ">=20.11.20",
+        "@types/pify": "^5.0.4",
+        "@types/semver": "^7.5.8",
+        "@typescript-eslint/eslint-plugin": "^7.1.0",
+        "@typescript-eslint/parser": "^7.1.0",
+        "@typescript-eslint/typescript-estree": "^7.1.0",
+        "clang-format": "^1.8.0",
         eslint: "^8.42.0",
         "eslint-config-prettier": "^8.8.0",
         "eslint-plugin-node": "^11.1.0",
@@ -115,16 +123,16 @@ var require_package = __commonJS({
         execa: "^2.0.3",
         gulp: "^4.0.2",
         "gulp-mocha": "^6.0.0",
-        lodash: "^4.17.4",
+        lodash: "^4.17.21",
         madge: "^5.0.1",
         "mocha-jenkins-reporter": "^0.4.1",
         ncp: "^2.0.0",
         pify: "^4.0.1",
         prettier: "^2.8.8",
         rimraf: "^3.0.2",
-        semver: "^7.3.5",
-        "ts-node": "^10.9.1",
-        typescript: "^5.1.3"
+        semver: "^7.6.0",
+        "ts-node": "^10.9.2",
+        typescript: "^5.3.3"
       },
       contributors: [
         {
@@ -147,8 +155,8 @@ var require_package = __commonJS({
         "generate-test-types": "proto-loader-gen-types --keepCase --longs String --enums String --defaults --oneofs --includeComments --include-dirs test/fixtures/ -O test/generated/ --grpcLib ../../src/index test_service.proto"
       },
       dependencies: {
-        "@grpc/proto-loader": "^0.7.8",
-        "@types/node": ">=12.12.47"
+        "@grpc/proto-loader": "^0.7.13",
+        "@js-sdsl/ordered-map": "^4.4.2"
       },
       files: [
         "src/**/*.ts",
@@ -168,9 +176,9 @@ var require_package = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/logging.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/logging.js
 var require_logging = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/logging.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/logging.js"(exports2) {
     "use strict";
     var _a;
     var _b;
@@ -269,9 +277,9 @@ var require_logging = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/error.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/error.js
 var require_error = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/error.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/error.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.getErrorCode = exports2.getErrorMessage = void 0;
@@ -294,9 +302,9 @@ var require_error = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/metadata.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/metadata.js
 var require_metadata = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/metadata.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/metadata.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.Metadata = void 0;
@@ -339,7 +347,7 @@ var require_metadata = __commonJS({
         }
       }
     }
-    var Metadata5 = class _Metadata {
+    var Metadata6 = class _Metadata {
       constructor(options = {}) {
         this.internalRepr = /* @__PURE__ */ new Map();
         this.options = options;
@@ -508,16 +516,16 @@ var require_metadata = __commonJS({
         return result;
       }
     };
-    exports2.Metadata = Metadata5;
+    exports2.Metadata = Metadata6;
     var bufToString = (val) => {
       return Buffer.isBuffer(val) ? val.toString("base64") : val;
     };
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/call-credentials.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/call-credentials.js
 var require_call_credentials = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/call-credentials.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/call-credentials.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.CallCredentials = void 0;
@@ -648,9 +656,9 @@ var require_call_credentials = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/tls-helpers.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/tls-helpers.js
 var require_tls_helpers = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/tls-helpers.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/tls-helpers.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.getDefaultRootsData = exports2.CIPHER_SUITES = void 0;
@@ -671,9 +679,9 @@ var require_tls_helpers = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/channel-credentials.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/channel-credentials.js
 var require_channel_credentials = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/channel-credentials.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/channel-credentials.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.ChannelCredentials = void 0;
@@ -685,7 +693,7 @@ var require_channel_credentials = __commonJS({
         throw new TypeError(`${friendlyName}, if provided, must be a Buffer.`);
       }
     }
-    var ChannelCredentials4 = class {
+    var ChannelCredentials5 = class {
       constructor(callCredentials) {
         this.callCredentials = callCredentials || call_credentials_1.CallCredentials.createEmpty();
       }
@@ -743,8 +751,8 @@ var require_channel_credentials = __commonJS({
         return new InsecureChannelCredentialsImpl();
       }
     };
-    exports2.ChannelCredentials = ChannelCredentials4;
-    var InsecureChannelCredentialsImpl = class _InsecureChannelCredentialsImpl extends ChannelCredentials4 {
+    exports2.ChannelCredentials = ChannelCredentials5;
+    var InsecureChannelCredentialsImpl = class _InsecureChannelCredentialsImpl extends ChannelCredentials5 {
       constructor() {
         super();
       }
@@ -761,7 +769,7 @@ var require_channel_credentials = __commonJS({
         return other instanceof _InsecureChannelCredentialsImpl;
       }
     };
-    var SecureChannelCredentialsImpl = class _SecureChannelCredentialsImpl extends ChannelCredentials4 {
+    var SecureChannelCredentialsImpl = class _SecureChannelCredentialsImpl extends ChannelCredentials5 {
       constructor(secureContext, verifyOptions) {
         super();
         this.secureContext = secureContext;
@@ -794,7 +802,7 @@ var require_channel_credentials = __commonJS({
         }
       }
     };
-    var ComposedChannelCredentialsImpl = class _ComposedChannelCredentialsImpl extends ChannelCredentials4 {
+    var ComposedChannelCredentialsImpl = class _ComposedChannelCredentialsImpl extends ChannelCredentials5 {
       constructor(channelCredentials, callCreds) {
         super(callCreds);
         this.channelCredentials = channelCredentials;
@@ -823,9 +831,9 @@ var require_channel_credentials = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/load-balancer.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/load-balancer.js
 var require_load_balancer = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/load-balancer.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/load-balancer.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.selectLbConfigFromList = exports2.getDefaultConfig = exports2.parseLoadBalancingConfig = exports2.isLoadBalancerNameRegistered = exports2.createLoadBalancer = exports2.registerDefaultLoadBalancerType = exports2.registerLoadBalancerType = exports2.createChildChannelControlHelper = void 0;
@@ -915,9 +923,9 @@ var require_load_balancer = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/service-config.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/service-config.js
 var require_service_config = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/service-config.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/service-config.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.extractAndSelectServiceConfig = exports2.validateServiceConfig = exports2.validateRetryThrottling = void 0;
@@ -1259,9 +1267,9 @@ var require_service_config = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/connectivity-state.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/connectivity-state.js
 var require_connectivity_state = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/connectivity-state.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/connectivity-state.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.ConnectivityState = void 0;
@@ -1276,9 +1284,9 @@ var require_connectivity_state = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/uri-parser.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/uri-parser.js
 var require_uri_parser = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/uri-parser.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/uri-parser.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.uriToString = exports2.combineHostPort = exports2.splitHostPort = exports2.parseUri = void 0;
@@ -1371,9 +1379,9 @@ var require_uri_parser = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/resolver.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/resolver.js
 var require_resolver = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/resolver.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/resolver.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.mapUriDefaultScheme = exports2.getDefaultAuthority = exports2.createResolver = exports2.registerDefaultScheme = exports2.registerResolver = void 0;
@@ -1422,9 +1430,9 @@ var require_resolver = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/picker.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/picker.js
 var require_picker = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/picker.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/picker.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.QueuePicker = exports2.UnavailablePicker = exports2.PickResultType = void 0;
@@ -1483,9 +1491,9 @@ var require_picker = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/backoff-timeout.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/backoff-timeout.js
 var require_backoff_timeout = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/backoff-timeout.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/backoff-timeout.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.BackoffTimeout = void 0;
@@ -1612,9 +1620,9 @@ var require_backoff_timeout = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/load-balancer-child-handler.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/load-balancer-child-handler.js
 var require_load_balancer_child_handler = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/load-balancer-child-handler.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/load-balancer-child-handler.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.ChildLoadBalancerHandler = void 0;
@@ -1743,9 +1751,9 @@ var require_load_balancer_child_handler = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/resolving-load-balancer.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/resolving-load-balancer.js
 var require_resolving_load_balancer = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/resolving-load-balancer.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/resolving-load-balancer.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.ResolvingLoadBalancer = void 0;
@@ -1986,9 +1994,9 @@ var require_resolving_load_balancer = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/channel-options.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/channel-options.js
 var require_channel_options = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/channel-options.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/channel-options.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.channelOptionsEqual = exports2.recognizedOptions = void 0;
@@ -2041,9 +2049,9 @@ var require_channel_options = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/subchannel-address.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/subchannel-address.js
 var require_subchannel_address = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/subchannel-address.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/subchannel-address.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.EndpointMap = exports2.endpointHasAddress = exports2.endpointToString = exports2.endpointEqual = exports2.stringToSubchannelAddress = exports2.subchannelAddressToString = exports2.subchannelAddressEqual = exports2.isTcpSubchannelAddress = void 0;
@@ -2068,7 +2076,11 @@ var require_subchannel_address = __commonJS({
     exports2.subchannelAddressEqual = subchannelAddressEqual;
     function subchannelAddressToString(address) {
       if (isTcpSubchannelAddress(address)) {
-        return address.host + ":" + address.port;
+        if ((0, net_1.isIPv6)(address.host)) {
+          return "[" + address.host + "]:" + address.port;
+        } else {
+          return address.host + ":" + address.port;
+        }
       } else {
         return address.path;
       }
@@ -2222,9 +2234,972 @@ var require_subchannel_address = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/admin.js
+// node_modules/.pnpm/@js-sdsl+ordered-map@4.4.2/node_modules/@js-sdsl/ordered-map/dist/esm/index.js
+var esm_exports = {};
+__export(esm_exports, {
+  OrderedMap: () => OrderedMap
+});
+function __extends(e, r) {
+  if (typeof r !== "function" && r !== null) throw new TypeError("Class extends value " + String(r) + " is not a constructor or null");
+  extendStatics(e, r);
+  function __() {
+    this.constructor = e;
+  }
+  e.prototype = r === null ? Object.create(r) : (__.prototype = r.prototype, new __());
+}
+function __generator(e, r) {
+  var t = {
+    label: 0,
+    sent: function() {
+      if (s[0] & 1) throw s[1];
+      return s[1];
+    },
+    trys: [],
+    ops: []
+  }, i, n, s, h;
+  return h = {
+    next: verb(0),
+    throw: verb(1),
+    return: verb(2)
+  }, typeof Symbol === "function" && (h[Symbol.iterator] = function() {
+    return this;
+  }), h;
+  function verb(e2) {
+    return function(r2) {
+      return step([e2, r2]);
+    };
+  }
+  function step(a) {
+    if (i) throw new TypeError("Generator is already executing.");
+    while (h && (h = 0, a[0] && (t = 0)), t) try {
+      if (i = 1, n && (s = a[0] & 2 ? n["return"] : a[0] ? n["throw"] || ((s = n["return"]) && s.call(n), 0) : n.next) && !(s = s.call(n, a[1])).done) return s;
+      if (n = 0, s) a = [a[0] & 2, s.value];
+      switch (a[0]) {
+        case 0:
+        case 1:
+          s = a;
+          break;
+        case 4:
+          t.label++;
+          return {
+            value: a[1],
+            done: false
+          };
+        case 5:
+          t.label++;
+          n = a[1];
+          a = [0];
+          continue;
+        case 7:
+          a = t.ops.pop();
+          t.trys.pop();
+          continue;
+        default:
+          if (!(s = t.trys, s = s.length > 0 && s[s.length - 1]) && (a[0] === 6 || a[0] === 2)) {
+            t = 0;
+            continue;
+          }
+          if (a[0] === 3 && (!s || a[1] > s[0] && a[1] < s[3])) {
+            t.label = a[1];
+            break;
+          }
+          if (a[0] === 6 && t.label < s[1]) {
+            t.label = s[1];
+            s = a;
+            break;
+          }
+          if (s && t.label < s[2]) {
+            t.label = s[2];
+            t.ops.push(a);
+            break;
+          }
+          if (s[2]) t.ops.pop();
+          t.trys.pop();
+          continue;
+      }
+      a = r.call(e, t);
+    } catch (e2) {
+      a = [6, e2];
+      n = 0;
+    } finally {
+      i = s = 0;
+    }
+    if (a[0] & 5) throw a[1];
+    return {
+      value: a[0] ? a[1] : void 0,
+      done: true
+    };
+  }
+}
+function throwIteratorAccessError() {
+  throw new RangeError("Iterator access denied!");
+}
+var extendStatics, TreeNode, TreeNodeEnableIndex, ContainerIterator, Base, Container, TreeContainer, TreeIterator, OrderedMapIterator, OrderedMap;
+var init_esm = __esm({
+  "node_modules/.pnpm/@js-sdsl+ordered-map@4.4.2/node_modules/@js-sdsl/ordered-map/dist/esm/index.js"() {
+    "use strict";
+    extendStatics = function(e, r) {
+      extendStatics = Object.setPrototypeOf || {
+        __proto__: []
+      } instanceof Array && function(e2, r2) {
+        e2.__proto__ = r2;
+      } || function(e2, r2) {
+        for (var t in r2) if (Object.prototype.hasOwnProperty.call(r2, t)) e2[t] = r2[t];
+      };
+      return extendStatics(e, r);
+    };
+    TreeNode = function() {
+      function TreeNode2(e, r, t) {
+        if (t === void 0) {
+          t = 1;
+        }
+        this.t = void 0;
+        this.i = void 0;
+        this.h = void 0;
+        this.u = e;
+        this.o = r;
+        this.l = t;
+      }
+      TreeNode2.prototype.v = function() {
+        var e = this;
+        var r = e.h.h === e;
+        if (r && e.l === 1) {
+          e = e.i;
+        } else if (e.t) {
+          e = e.t;
+          while (e.i) {
+            e = e.i;
+          }
+        } else {
+          if (r) {
+            return e.h;
+          }
+          var t = e.h;
+          while (t.t === e) {
+            e = t;
+            t = e.h;
+          }
+          e = t;
+        }
+        return e;
+      };
+      TreeNode2.prototype.p = function() {
+        var e = this;
+        if (e.i) {
+          e = e.i;
+          while (e.t) {
+            e = e.t;
+          }
+          return e;
+        } else {
+          var r = e.h;
+          while (r.i === e) {
+            e = r;
+            r = e.h;
+          }
+          if (e.i !== r) {
+            return r;
+          } else return e;
+        }
+      };
+      TreeNode2.prototype.T = function() {
+        var e = this.h;
+        var r = this.i;
+        var t = r.t;
+        if (e.h === this) e.h = r;
+        else if (e.t === this) e.t = r;
+        else e.i = r;
+        r.h = e;
+        r.t = this;
+        this.h = r;
+        this.i = t;
+        if (t) t.h = this;
+        return r;
+      };
+      TreeNode2.prototype.I = function() {
+        var e = this.h;
+        var r = this.t;
+        var t = r.i;
+        if (e.h === this) e.h = r;
+        else if (e.t === this) e.t = r;
+        else e.i = r;
+        r.h = e;
+        r.i = this;
+        this.h = r;
+        this.t = t;
+        if (t) t.h = this;
+        return r;
+      };
+      return TreeNode2;
+    }();
+    TreeNodeEnableIndex = function(e) {
+      __extends(TreeNodeEnableIndex2, e);
+      function TreeNodeEnableIndex2() {
+        var r = e !== null && e.apply(this, arguments) || this;
+        r.O = 1;
+        return r;
+      }
+      TreeNodeEnableIndex2.prototype.T = function() {
+        var r = e.prototype.T.call(this);
+        this.M();
+        r.M();
+        return r;
+      };
+      TreeNodeEnableIndex2.prototype.I = function() {
+        var r = e.prototype.I.call(this);
+        this.M();
+        r.M();
+        return r;
+      };
+      TreeNodeEnableIndex2.prototype.M = function() {
+        this.O = 1;
+        if (this.t) {
+          this.O += this.t.O;
+        }
+        if (this.i) {
+          this.O += this.i.O;
+        }
+      };
+      return TreeNodeEnableIndex2;
+    }(TreeNode);
+    ContainerIterator = function() {
+      function ContainerIterator2(e) {
+        if (e === void 0) {
+          e = 0;
+        }
+        this.iteratorType = e;
+      }
+      ContainerIterator2.prototype.equals = function(e) {
+        return this.C === e.C;
+      };
+      return ContainerIterator2;
+    }();
+    Base = function() {
+      function Base2() {
+        this._ = 0;
+      }
+      Object.defineProperty(Base2.prototype, "length", {
+        get: function() {
+          return this._;
+        },
+        enumerable: false,
+        configurable: true
+      });
+      Base2.prototype.size = function() {
+        return this._;
+      };
+      Base2.prototype.empty = function() {
+        return this._ === 0;
+      };
+      return Base2;
+    }();
+    Container = function(e) {
+      __extends(Container2, e);
+      function Container2() {
+        return e !== null && e.apply(this, arguments) || this;
+      }
+      return Container2;
+    }(Base);
+    TreeContainer = function(e) {
+      __extends(TreeContainer2, e);
+      function TreeContainer2(r, t) {
+        if (r === void 0) {
+          r = function(e2, r2) {
+            if (e2 < r2) return -1;
+            if (e2 > r2) return 1;
+            return 0;
+          };
+        }
+        if (t === void 0) {
+          t = false;
+        }
+        var i = e.call(this) || this;
+        i.N = void 0;
+        i.g = r;
+        i.enableIndex = t;
+        i.S = t ? TreeNodeEnableIndex : TreeNode;
+        i.A = new i.S();
+        return i;
+      }
+      TreeContainer2.prototype.m = function(e2, r) {
+        var t = this.A;
+        while (e2) {
+          var i = this.g(e2.u, r);
+          if (i < 0) {
+            e2 = e2.i;
+          } else if (i > 0) {
+            t = e2;
+            e2 = e2.t;
+          } else return e2;
+        }
+        return t;
+      };
+      TreeContainer2.prototype.B = function(e2, r) {
+        var t = this.A;
+        while (e2) {
+          var i = this.g(e2.u, r);
+          if (i <= 0) {
+            e2 = e2.i;
+          } else {
+            t = e2;
+            e2 = e2.t;
+          }
+        }
+        return t;
+      };
+      TreeContainer2.prototype.j = function(e2, r) {
+        var t = this.A;
+        while (e2) {
+          var i = this.g(e2.u, r);
+          if (i < 0) {
+            t = e2;
+            e2 = e2.i;
+          } else if (i > 0) {
+            e2 = e2.t;
+          } else return e2;
+        }
+        return t;
+      };
+      TreeContainer2.prototype.k = function(e2, r) {
+        var t = this.A;
+        while (e2) {
+          var i = this.g(e2.u, r);
+          if (i < 0) {
+            t = e2;
+            e2 = e2.i;
+          } else {
+            e2 = e2.t;
+          }
+        }
+        return t;
+      };
+      TreeContainer2.prototype.R = function(e2) {
+        while (true) {
+          var r = e2.h;
+          if (r === this.A) return;
+          if (e2.l === 1) {
+            e2.l = 0;
+            return;
+          }
+          if (e2 === r.t) {
+            var t = r.i;
+            if (t.l === 1) {
+              t.l = 0;
+              r.l = 1;
+              if (r === this.N) {
+                this.N = r.T();
+              } else r.T();
+            } else {
+              if (t.i && t.i.l === 1) {
+                t.l = r.l;
+                r.l = 0;
+                t.i.l = 0;
+                if (r === this.N) {
+                  this.N = r.T();
+                } else r.T();
+                return;
+              } else if (t.t && t.t.l === 1) {
+                t.l = 1;
+                t.t.l = 0;
+                t.I();
+              } else {
+                t.l = 1;
+                e2 = r;
+              }
+            }
+          } else {
+            var t = r.t;
+            if (t.l === 1) {
+              t.l = 0;
+              r.l = 1;
+              if (r === this.N) {
+                this.N = r.I();
+              } else r.I();
+            } else {
+              if (t.t && t.t.l === 1) {
+                t.l = r.l;
+                r.l = 0;
+                t.t.l = 0;
+                if (r === this.N) {
+                  this.N = r.I();
+                } else r.I();
+                return;
+              } else if (t.i && t.i.l === 1) {
+                t.l = 1;
+                t.i.l = 0;
+                t.T();
+              } else {
+                t.l = 1;
+                e2 = r;
+              }
+            }
+          }
+        }
+      };
+      TreeContainer2.prototype.G = function(e2) {
+        if (this._ === 1) {
+          this.clear();
+          return;
+        }
+        var r = e2;
+        while (r.t || r.i) {
+          if (r.i) {
+            r = r.i;
+            while (r.t) r = r.t;
+          } else {
+            r = r.t;
+          }
+          var t = e2.u;
+          e2.u = r.u;
+          r.u = t;
+          var i = e2.o;
+          e2.o = r.o;
+          r.o = i;
+          e2 = r;
+        }
+        if (this.A.t === r) {
+          this.A.t = r.h;
+        } else if (this.A.i === r) {
+          this.A.i = r.h;
+        }
+        this.R(r);
+        var n = r.h;
+        if (r === n.t) {
+          n.t = void 0;
+        } else n.i = void 0;
+        this._ -= 1;
+        this.N.l = 0;
+        if (this.enableIndex) {
+          while (n !== this.A) {
+            n.O -= 1;
+            n = n.h;
+          }
+        }
+      };
+      TreeContainer2.prototype.P = function(e2) {
+        var r = typeof e2 === "number" ? e2 : void 0;
+        var t = typeof e2 === "function" ? e2 : void 0;
+        var i = typeof e2 === "undefined" ? [] : void 0;
+        var n = 0;
+        var s = this.N;
+        var h = [];
+        while (h.length || s) {
+          if (s) {
+            h.push(s);
+            s = s.t;
+          } else {
+            s = h.pop();
+            if (n === r) return s;
+            i && i.push(s);
+            t && t(s, n, this);
+            n += 1;
+            s = s.i;
+          }
+        }
+        return i;
+      };
+      TreeContainer2.prototype.q = function(e2) {
+        while (true) {
+          var r = e2.h;
+          if (r.l === 0) return;
+          var t = r.h;
+          if (r === t.t) {
+            var i = t.i;
+            if (i && i.l === 1) {
+              i.l = r.l = 0;
+              if (t === this.N) return;
+              t.l = 1;
+              e2 = t;
+              continue;
+            } else if (e2 === r.i) {
+              e2.l = 0;
+              if (e2.t) {
+                e2.t.h = r;
+              }
+              if (e2.i) {
+                e2.i.h = t;
+              }
+              r.i = e2.t;
+              t.t = e2.i;
+              e2.t = r;
+              e2.i = t;
+              if (t === this.N) {
+                this.N = e2;
+                this.A.h = e2;
+              } else {
+                var n = t.h;
+                if (n.t === t) {
+                  n.t = e2;
+                } else n.i = e2;
+              }
+              e2.h = t.h;
+              r.h = e2;
+              t.h = e2;
+              t.l = 1;
+            } else {
+              r.l = 0;
+              if (t === this.N) {
+                this.N = t.I();
+              } else t.I();
+              t.l = 1;
+              return;
+            }
+          } else {
+            var i = t.t;
+            if (i && i.l === 1) {
+              i.l = r.l = 0;
+              if (t === this.N) return;
+              t.l = 1;
+              e2 = t;
+              continue;
+            } else if (e2 === r.t) {
+              e2.l = 0;
+              if (e2.t) {
+                e2.t.h = t;
+              }
+              if (e2.i) {
+                e2.i.h = r;
+              }
+              t.i = e2.t;
+              r.t = e2.i;
+              e2.t = t;
+              e2.i = r;
+              if (t === this.N) {
+                this.N = e2;
+                this.A.h = e2;
+              } else {
+                var n = t.h;
+                if (n.t === t) {
+                  n.t = e2;
+                } else n.i = e2;
+              }
+              e2.h = t.h;
+              r.h = e2;
+              t.h = e2;
+              t.l = 1;
+            } else {
+              r.l = 0;
+              if (t === this.N) {
+                this.N = t.T();
+              } else t.T();
+              t.l = 1;
+              return;
+            }
+          }
+          if (this.enableIndex) {
+            r.M();
+            t.M();
+            e2.M();
+          }
+          return;
+        }
+      };
+      TreeContainer2.prototype.D = function(e2, r, t) {
+        if (this.N === void 0) {
+          this._ += 1;
+          this.N = new this.S(e2, r, 0);
+          this.N.h = this.A;
+          this.A.h = this.A.t = this.A.i = this.N;
+          return this._;
+        }
+        var i;
+        var n = this.A.t;
+        var s = this.g(n.u, e2);
+        if (s === 0) {
+          n.o = r;
+          return this._;
+        } else if (s > 0) {
+          n.t = new this.S(e2, r);
+          n.t.h = n;
+          i = n.t;
+          this.A.t = i;
+        } else {
+          var h = this.A.i;
+          var a = this.g(h.u, e2);
+          if (a === 0) {
+            h.o = r;
+            return this._;
+          } else if (a < 0) {
+            h.i = new this.S(e2, r);
+            h.i.h = h;
+            i = h.i;
+            this.A.i = i;
+          } else {
+            if (t !== void 0) {
+              var u = t.C;
+              if (u !== this.A) {
+                var f = this.g(u.u, e2);
+                if (f === 0) {
+                  u.o = r;
+                  return this._;
+                } else if (f > 0) {
+                  var o = u.v();
+                  var d = this.g(o.u, e2);
+                  if (d === 0) {
+                    o.o = r;
+                    return this._;
+                  } else if (d < 0) {
+                    i = new this.S(e2, r);
+                    if (o.i === void 0) {
+                      o.i = i;
+                      i.h = o;
+                    } else {
+                      u.t = i;
+                      i.h = u;
+                    }
+                  }
+                }
+              }
+            }
+            if (i === void 0) {
+              i = this.N;
+              while (true) {
+                var c = this.g(i.u, e2);
+                if (c > 0) {
+                  if (i.t === void 0) {
+                    i.t = new this.S(e2, r);
+                    i.t.h = i;
+                    i = i.t;
+                    break;
+                  }
+                  i = i.t;
+                } else if (c < 0) {
+                  if (i.i === void 0) {
+                    i.i = new this.S(e2, r);
+                    i.i.h = i;
+                    i = i.i;
+                    break;
+                  }
+                  i = i.i;
+                } else {
+                  i.o = r;
+                  return this._;
+                }
+              }
+            }
+          }
+        }
+        if (this.enableIndex) {
+          var l = i.h;
+          while (l !== this.A) {
+            l.O += 1;
+            l = l.h;
+          }
+        }
+        this.q(i);
+        this._ += 1;
+        return this._;
+      };
+      TreeContainer2.prototype.F = function(e2, r) {
+        while (e2) {
+          var t = this.g(e2.u, r);
+          if (t < 0) {
+            e2 = e2.i;
+          } else if (t > 0) {
+            e2 = e2.t;
+          } else return e2;
+        }
+        return e2 || this.A;
+      };
+      TreeContainer2.prototype.clear = function() {
+        this._ = 0;
+        this.N = void 0;
+        this.A.h = void 0;
+        this.A.t = this.A.i = void 0;
+      };
+      TreeContainer2.prototype.updateKeyByIterator = function(e2, r) {
+        var t = e2.C;
+        if (t === this.A) {
+          throwIteratorAccessError();
+        }
+        if (this._ === 1) {
+          t.u = r;
+          return true;
+        }
+        var i = t.p().u;
+        if (t === this.A.t) {
+          if (this.g(i, r) > 0) {
+            t.u = r;
+            return true;
+          }
+          return false;
+        }
+        var n = t.v().u;
+        if (t === this.A.i) {
+          if (this.g(n, r) < 0) {
+            t.u = r;
+            return true;
+          }
+          return false;
+        }
+        if (this.g(n, r) >= 0 || this.g(i, r) <= 0) return false;
+        t.u = r;
+        return true;
+      };
+      TreeContainer2.prototype.eraseElementByPos = function(e2) {
+        if (e2 < 0 || e2 > this._ - 1) {
+          throw new RangeError();
+        }
+        var r = this.P(e2);
+        this.G(r);
+        return this._;
+      };
+      TreeContainer2.prototype.eraseElementByKey = function(e2) {
+        if (this._ === 0) return false;
+        var r = this.F(this.N, e2);
+        if (r === this.A) return false;
+        this.G(r);
+        return true;
+      };
+      TreeContainer2.prototype.eraseElementByIterator = function(e2) {
+        var r = e2.C;
+        if (r === this.A) {
+          throwIteratorAccessError();
+        }
+        var t = r.i === void 0;
+        var i = e2.iteratorType === 0;
+        if (i) {
+          if (t) e2.next();
+        } else {
+          if (!t || r.t === void 0) e2.next();
+        }
+        this.G(r);
+        return e2;
+      };
+      TreeContainer2.prototype.getHeight = function() {
+        if (this._ === 0) return 0;
+        function traversal(e2) {
+          if (!e2) return 0;
+          return Math.max(traversal(e2.t), traversal(e2.i)) + 1;
+        }
+        return traversal(this.N);
+      };
+      return TreeContainer2;
+    }(Container);
+    TreeIterator = function(e) {
+      __extends(TreeIterator2, e);
+      function TreeIterator2(r, t, i) {
+        var n = e.call(this, i) || this;
+        n.C = r;
+        n.A = t;
+        if (n.iteratorType === 0) {
+          n.pre = function() {
+            if (this.C === this.A.t) {
+              throwIteratorAccessError();
+            }
+            this.C = this.C.v();
+            return this;
+          };
+          n.next = function() {
+            if (this.C === this.A) {
+              throwIteratorAccessError();
+            }
+            this.C = this.C.p();
+            return this;
+          };
+        } else {
+          n.pre = function() {
+            if (this.C === this.A.i) {
+              throwIteratorAccessError();
+            }
+            this.C = this.C.p();
+            return this;
+          };
+          n.next = function() {
+            if (this.C === this.A) {
+              throwIteratorAccessError();
+            }
+            this.C = this.C.v();
+            return this;
+          };
+        }
+        return n;
+      }
+      Object.defineProperty(TreeIterator2.prototype, "index", {
+        get: function() {
+          var e2 = this.C;
+          var r = this.A.h;
+          if (e2 === this.A) {
+            if (r) {
+              return r.O - 1;
+            }
+            return 0;
+          }
+          var t = 0;
+          if (e2.t) {
+            t += e2.t.O;
+          }
+          while (e2 !== r) {
+            var i = e2.h;
+            if (e2 === i.i) {
+              t += 1;
+              if (i.t) {
+                t += i.t.O;
+              }
+            }
+            e2 = i;
+          }
+          return t;
+        },
+        enumerable: false,
+        configurable: true
+      });
+      TreeIterator2.prototype.isAccessible = function() {
+        return this.C !== this.A;
+      };
+      return TreeIterator2;
+    }(ContainerIterator);
+    OrderedMapIterator = function(e) {
+      __extends(OrderedMapIterator2, e);
+      function OrderedMapIterator2(r, t, i, n) {
+        var s = e.call(this, r, t, n) || this;
+        s.container = i;
+        return s;
+      }
+      Object.defineProperty(OrderedMapIterator2.prototype, "pointer", {
+        get: function() {
+          if (this.C === this.A) {
+            throwIteratorAccessError();
+          }
+          var e2 = this;
+          return new Proxy([], {
+            get: function(r, t) {
+              if (t === "0") return e2.C.u;
+              else if (t === "1") return e2.C.o;
+              r[0] = e2.C.u;
+              r[1] = e2.C.o;
+              return r[t];
+            },
+            set: function(r, t, i) {
+              if (t !== "1") {
+                throw new TypeError("prop must be 1");
+              }
+              e2.C.o = i;
+              return true;
+            }
+          });
+        },
+        enumerable: false,
+        configurable: true
+      });
+      OrderedMapIterator2.prototype.copy = function() {
+        return new OrderedMapIterator2(this.C, this.A, this.container, this.iteratorType);
+      };
+      return OrderedMapIterator2;
+    }(TreeIterator);
+    OrderedMap = function(e) {
+      __extends(OrderedMap2, e);
+      function OrderedMap2(r, t, i) {
+        if (r === void 0) {
+          r = [];
+        }
+        var n = e.call(this, t, i) || this;
+        var s = n;
+        r.forEach(function(e2) {
+          s.setElement(e2[0], e2[1]);
+        });
+        return n;
+      }
+      OrderedMap2.prototype.begin = function() {
+        return new OrderedMapIterator(this.A.t || this.A, this.A, this);
+      };
+      OrderedMap2.prototype.end = function() {
+        return new OrderedMapIterator(this.A, this.A, this);
+      };
+      OrderedMap2.prototype.rBegin = function() {
+        return new OrderedMapIterator(this.A.i || this.A, this.A, this, 1);
+      };
+      OrderedMap2.prototype.rEnd = function() {
+        return new OrderedMapIterator(this.A, this.A, this, 1);
+      };
+      OrderedMap2.prototype.front = function() {
+        if (this._ === 0) return;
+        var e2 = this.A.t;
+        return [e2.u, e2.o];
+      };
+      OrderedMap2.prototype.back = function() {
+        if (this._ === 0) return;
+        var e2 = this.A.i;
+        return [e2.u, e2.o];
+      };
+      OrderedMap2.prototype.lowerBound = function(e2) {
+        var r = this.m(this.N, e2);
+        return new OrderedMapIterator(r, this.A, this);
+      };
+      OrderedMap2.prototype.upperBound = function(e2) {
+        var r = this.B(this.N, e2);
+        return new OrderedMapIterator(r, this.A, this);
+      };
+      OrderedMap2.prototype.reverseLowerBound = function(e2) {
+        var r = this.j(this.N, e2);
+        return new OrderedMapIterator(r, this.A, this);
+      };
+      OrderedMap2.prototype.reverseUpperBound = function(e2) {
+        var r = this.k(this.N, e2);
+        return new OrderedMapIterator(r, this.A, this);
+      };
+      OrderedMap2.prototype.forEach = function(e2) {
+        this.P(function(r, t, i) {
+          e2([r.u, r.o], t, i);
+        });
+      };
+      OrderedMap2.prototype.setElement = function(e2, r, t) {
+        return this.D(e2, r, t);
+      };
+      OrderedMap2.prototype.getElementByPos = function(e2) {
+        if (e2 < 0 || e2 > this._ - 1) {
+          throw new RangeError();
+        }
+        var r = this.P(e2);
+        return [r.u, r.o];
+      };
+      OrderedMap2.prototype.find = function(e2) {
+        var r = this.F(this.N, e2);
+        return new OrderedMapIterator(r, this.A, this);
+      };
+      OrderedMap2.prototype.getElementByKey = function(e2) {
+        var r = this.F(this.N, e2);
+        return r.o;
+      };
+      OrderedMap2.prototype.union = function(e2) {
+        var r = this;
+        e2.forEach(function(e3) {
+          r.setElement(e3[0], e3[1]);
+        });
+        return this._;
+      };
+      OrderedMap2.prototype[Symbol.iterator] = function() {
+        var e2, r, t, i;
+        return __generator(this, function(n) {
+          switch (n.label) {
+            case 0:
+              e2 = this._;
+              r = this.P();
+              t = 0;
+              n.label = 1;
+            case 1:
+              if (!(t < e2)) return [3, 4];
+              i = r[t];
+              return [4, [i.u, i.o]];
+            case 2:
+              n.sent();
+              n.label = 3;
+            case 3:
+              ++t;
+              return [3, 1];
+            case 4:
+              return [2];
+          }
+        });
+      };
+      return OrderedMap2;
+    }(TreeContainer);
+  }
+});
+
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/admin.js
 var require_admin = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/admin.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/admin.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.addAdminServicesToServer = exports2.registerAdminService = void 0;
@@ -2242,9 +3217,9 @@ var require_admin = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/call.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/call.js
 var require_call = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/call.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/call.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.ClientDuplexStreamImpl = exports2.ClientWritableStreamImpl = exports2.ClientReadableStreamImpl = exports2.ClientUnaryCallImpl = exports2.callErrorFromStatus = void 0;
@@ -2363,9 +3338,9 @@ ${callerStack}`;
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/call-interface.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/call-interface.js
 var require_call_interface = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/call-interface.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/call-interface.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.InterceptingListenerImpl = exports2.isInterceptingListener = void 0;
@@ -2431,9 +3406,9 @@ var require_call_interface = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/client-interceptors.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/client-interceptors.js
 var require_client_interceptors = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/client-interceptors.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/client-interceptors.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.getInterceptingCall = exports2.InterceptingCall = exports2.RequesterBuilder = exports2.ListenerBuilder = exports2.InterceptorConfigurationError = void 0;
@@ -2778,9 +3753,9 @@ var require_client_interceptors = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/client.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/client.js
 var require_client = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/client.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/client.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.Client = void 0;
@@ -2798,9 +3773,10 @@ var require_client = __commonJS({
       return typeof arg === "function";
     }
     function getErrorStackString(error) {
-      return error.stack.split("\n").slice(1).join("\n");
+      var _a;
+      return ((_a = error.stack) === null || _a === void 0 ? void 0 : _a.split("\n").slice(1).join("\n")) || "no stack trace available";
     }
-    var Client5 = class {
+    var Client6 = class {
       constructor(address, credentials2, options = {}) {
         var _a, _b;
         options = Object.assign({}, options);
@@ -3146,13 +4122,13 @@ var require_client = __commonJS({
         return stream;
       }
     };
-    exports2.Client = Client5;
+    exports2.Client = Client6;
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/make-client.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/make-client.js
 var require_make_client = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/make-client.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/make-client.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.loadPackageDefinition = exports2.makeClientConstructor = void 0;
@@ -3810,175 +4786,171 @@ var require_float = __commonJS({
     "use strict";
     module2.exports = factory(factory);
     function factory(exports3) {
-      if (typeof Float32Array !== "undefined")
-        (function() {
-          var f32 = new Float32Array([-0]), f8b = new Uint8Array(f32.buffer), le = f8b[3] === 128;
-          function writeFloat_f32_cpy(val, buf, pos) {
-            f32[0] = val;
-            buf[pos] = f8b[0];
-            buf[pos + 1] = f8b[1];
-            buf[pos + 2] = f8b[2];
-            buf[pos + 3] = f8b[3];
+      if (typeof Float32Array !== "undefined") (function() {
+        var f32 = new Float32Array([-0]), f8b = new Uint8Array(f32.buffer), le = f8b[3] === 128;
+        function writeFloat_f32_cpy(val, buf, pos) {
+          f32[0] = val;
+          buf[pos] = f8b[0];
+          buf[pos + 1] = f8b[1];
+          buf[pos + 2] = f8b[2];
+          buf[pos + 3] = f8b[3];
+        }
+        function writeFloat_f32_rev(val, buf, pos) {
+          f32[0] = val;
+          buf[pos] = f8b[3];
+          buf[pos + 1] = f8b[2];
+          buf[pos + 2] = f8b[1];
+          buf[pos + 3] = f8b[0];
+        }
+        exports3.writeFloatLE = le ? writeFloat_f32_cpy : writeFloat_f32_rev;
+        exports3.writeFloatBE = le ? writeFloat_f32_rev : writeFloat_f32_cpy;
+        function readFloat_f32_cpy(buf, pos) {
+          f8b[0] = buf[pos];
+          f8b[1] = buf[pos + 1];
+          f8b[2] = buf[pos + 2];
+          f8b[3] = buf[pos + 3];
+          return f32[0];
+        }
+        function readFloat_f32_rev(buf, pos) {
+          f8b[3] = buf[pos];
+          f8b[2] = buf[pos + 1];
+          f8b[1] = buf[pos + 2];
+          f8b[0] = buf[pos + 3];
+          return f32[0];
+        }
+        exports3.readFloatLE = le ? readFloat_f32_cpy : readFloat_f32_rev;
+        exports3.readFloatBE = le ? readFloat_f32_rev : readFloat_f32_cpy;
+      })();
+      else (function() {
+        function writeFloat_ieee754(writeUint, val, buf, pos) {
+          var sign = val < 0 ? 1 : 0;
+          if (sign)
+            val = -val;
+          if (val === 0)
+            writeUint(1 / val > 0 ? (
+              /* positive */
+              0
+            ) : (
+              /* negative 0 */
+              2147483648
+            ), buf, pos);
+          else if (isNaN(val))
+            writeUint(2143289344, buf, pos);
+          else if (val > 34028234663852886e22)
+            writeUint((sign << 31 | 2139095040) >>> 0, buf, pos);
+          else if (val < 11754943508222875e-54)
+            writeUint((sign << 31 | Math.round(val / 1401298464324817e-60)) >>> 0, buf, pos);
+          else {
+            var exponent = Math.floor(Math.log(val) / Math.LN2), mantissa = Math.round(val * Math.pow(2, -exponent) * 8388608) & 8388607;
+            writeUint((sign << 31 | exponent + 127 << 23 | mantissa) >>> 0, buf, pos);
           }
-          function writeFloat_f32_rev(val, buf, pos) {
-            f32[0] = val;
-            buf[pos] = f8b[3];
-            buf[pos + 1] = f8b[2];
-            buf[pos + 2] = f8b[1];
-            buf[pos + 3] = f8b[0];
-          }
-          exports3.writeFloatLE = le ? writeFloat_f32_cpy : writeFloat_f32_rev;
-          exports3.writeFloatBE = le ? writeFloat_f32_rev : writeFloat_f32_cpy;
-          function readFloat_f32_cpy(buf, pos) {
-            f8b[0] = buf[pos];
-            f8b[1] = buf[pos + 1];
-            f8b[2] = buf[pos + 2];
-            f8b[3] = buf[pos + 3];
-            return f32[0];
-          }
-          function readFloat_f32_rev(buf, pos) {
-            f8b[3] = buf[pos];
-            f8b[2] = buf[pos + 1];
-            f8b[1] = buf[pos + 2];
-            f8b[0] = buf[pos + 3];
-            return f32[0];
-          }
-          exports3.readFloatLE = le ? readFloat_f32_cpy : readFloat_f32_rev;
-          exports3.readFloatBE = le ? readFloat_f32_rev : readFloat_f32_cpy;
-        })();
-      else
-        (function() {
-          function writeFloat_ieee754(writeUint, val, buf, pos) {
-            var sign = val < 0 ? 1 : 0;
-            if (sign)
-              val = -val;
-            if (val === 0)
-              writeUint(1 / val > 0 ? (
-                /* positive */
-                0
-              ) : (
-                /* negative 0 */
-                2147483648
-              ), buf, pos);
-            else if (isNaN(val))
-              writeUint(2143289344, buf, pos);
-            else if (val > 34028234663852886e22)
-              writeUint((sign << 31 | 2139095040) >>> 0, buf, pos);
-            else if (val < 11754943508222875e-54)
-              writeUint((sign << 31 | Math.round(val / 1401298464324817e-60)) >>> 0, buf, pos);
-            else {
-              var exponent = Math.floor(Math.log(val) / Math.LN2), mantissa = Math.round(val * Math.pow(2, -exponent) * 8388608) & 8388607;
-              writeUint((sign << 31 | exponent + 127 << 23 | mantissa) >>> 0, buf, pos);
-            }
-          }
-          exports3.writeFloatLE = writeFloat_ieee754.bind(null, writeUintLE);
-          exports3.writeFloatBE = writeFloat_ieee754.bind(null, writeUintBE);
-          function readFloat_ieee754(readUint, buf, pos) {
-            var uint = readUint(buf, pos), sign = (uint >> 31) * 2 + 1, exponent = uint >>> 23 & 255, mantissa = uint & 8388607;
-            return exponent === 255 ? mantissa ? NaN : sign * Infinity : exponent === 0 ? sign * 1401298464324817e-60 * mantissa : sign * Math.pow(2, exponent - 150) * (mantissa + 8388608);
-          }
-          exports3.readFloatLE = readFloat_ieee754.bind(null, readUintLE);
-          exports3.readFloatBE = readFloat_ieee754.bind(null, readUintBE);
-        })();
-      if (typeof Float64Array !== "undefined")
-        (function() {
-          var f64 = new Float64Array([-0]), f8b = new Uint8Array(f64.buffer), le = f8b[7] === 128;
-          function writeDouble_f64_cpy(val, buf, pos) {
-            f64[0] = val;
-            buf[pos] = f8b[0];
-            buf[pos + 1] = f8b[1];
-            buf[pos + 2] = f8b[2];
-            buf[pos + 3] = f8b[3];
-            buf[pos + 4] = f8b[4];
-            buf[pos + 5] = f8b[5];
-            buf[pos + 6] = f8b[6];
-            buf[pos + 7] = f8b[7];
-          }
-          function writeDouble_f64_rev(val, buf, pos) {
-            f64[0] = val;
-            buf[pos] = f8b[7];
-            buf[pos + 1] = f8b[6];
-            buf[pos + 2] = f8b[5];
-            buf[pos + 3] = f8b[4];
-            buf[pos + 4] = f8b[3];
-            buf[pos + 5] = f8b[2];
-            buf[pos + 6] = f8b[1];
-            buf[pos + 7] = f8b[0];
-          }
-          exports3.writeDoubleLE = le ? writeDouble_f64_cpy : writeDouble_f64_rev;
-          exports3.writeDoubleBE = le ? writeDouble_f64_rev : writeDouble_f64_cpy;
-          function readDouble_f64_cpy(buf, pos) {
-            f8b[0] = buf[pos];
-            f8b[1] = buf[pos + 1];
-            f8b[2] = buf[pos + 2];
-            f8b[3] = buf[pos + 3];
-            f8b[4] = buf[pos + 4];
-            f8b[5] = buf[pos + 5];
-            f8b[6] = buf[pos + 6];
-            f8b[7] = buf[pos + 7];
-            return f64[0];
-          }
-          function readDouble_f64_rev(buf, pos) {
-            f8b[7] = buf[pos];
-            f8b[6] = buf[pos + 1];
-            f8b[5] = buf[pos + 2];
-            f8b[4] = buf[pos + 3];
-            f8b[3] = buf[pos + 4];
-            f8b[2] = buf[pos + 5];
-            f8b[1] = buf[pos + 6];
-            f8b[0] = buf[pos + 7];
-            return f64[0];
-          }
-          exports3.readDoubleLE = le ? readDouble_f64_cpy : readDouble_f64_rev;
-          exports3.readDoubleBE = le ? readDouble_f64_rev : readDouble_f64_cpy;
-        })();
-      else
-        (function() {
-          function writeDouble_ieee754(writeUint, off0, off1, val, buf, pos) {
-            var sign = val < 0 ? 1 : 0;
-            if (sign)
-              val = -val;
-            if (val === 0) {
-              writeUint(0, buf, pos + off0);
-              writeUint(1 / val > 0 ? (
-                /* positive */
-                0
-              ) : (
-                /* negative 0 */
-                2147483648
-              ), buf, pos + off1);
-            } else if (isNaN(val)) {
-              writeUint(0, buf, pos + off0);
-              writeUint(2146959360, buf, pos + off1);
-            } else if (val > 17976931348623157e292) {
-              writeUint(0, buf, pos + off0);
-              writeUint((sign << 31 | 2146435072) >>> 0, buf, pos + off1);
+        }
+        exports3.writeFloatLE = writeFloat_ieee754.bind(null, writeUintLE);
+        exports3.writeFloatBE = writeFloat_ieee754.bind(null, writeUintBE);
+        function readFloat_ieee754(readUint, buf, pos) {
+          var uint = readUint(buf, pos), sign = (uint >> 31) * 2 + 1, exponent = uint >>> 23 & 255, mantissa = uint & 8388607;
+          return exponent === 255 ? mantissa ? NaN : sign * Infinity : exponent === 0 ? sign * 1401298464324817e-60 * mantissa : sign * Math.pow(2, exponent - 150) * (mantissa + 8388608);
+        }
+        exports3.readFloatLE = readFloat_ieee754.bind(null, readUintLE);
+        exports3.readFloatBE = readFloat_ieee754.bind(null, readUintBE);
+      })();
+      if (typeof Float64Array !== "undefined") (function() {
+        var f64 = new Float64Array([-0]), f8b = new Uint8Array(f64.buffer), le = f8b[7] === 128;
+        function writeDouble_f64_cpy(val, buf, pos) {
+          f64[0] = val;
+          buf[pos] = f8b[0];
+          buf[pos + 1] = f8b[1];
+          buf[pos + 2] = f8b[2];
+          buf[pos + 3] = f8b[3];
+          buf[pos + 4] = f8b[4];
+          buf[pos + 5] = f8b[5];
+          buf[pos + 6] = f8b[6];
+          buf[pos + 7] = f8b[7];
+        }
+        function writeDouble_f64_rev(val, buf, pos) {
+          f64[0] = val;
+          buf[pos] = f8b[7];
+          buf[pos + 1] = f8b[6];
+          buf[pos + 2] = f8b[5];
+          buf[pos + 3] = f8b[4];
+          buf[pos + 4] = f8b[3];
+          buf[pos + 5] = f8b[2];
+          buf[pos + 6] = f8b[1];
+          buf[pos + 7] = f8b[0];
+        }
+        exports3.writeDoubleLE = le ? writeDouble_f64_cpy : writeDouble_f64_rev;
+        exports3.writeDoubleBE = le ? writeDouble_f64_rev : writeDouble_f64_cpy;
+        function readDouble_f64_cpy(buf, pos) {
+          f8b[0] = buf[pos];
+          f8b[1] = buf[pos + 1];
+          f8b[2] = buf[pos + 2];
+          f8b[3] = buf[pos + 3];
+          f8b[4] = buf[pos + 4];
+          f8b[5] = buf[pos + 5];
+          f8b[6] = buf[pos + 6];
+          f8b[7] = buf[pos + 7];
+          return f64[0];
+        }
+        function readDouble_f64_rev(buf, pos) {
+          f8b[7] = buf[pos];
+          f8b[6] = buf[pos + 1];
+          f8b[5] = buf[pos + 2];
+          f8b[4] = buf[pos + 3];
+          f8b[3] = buf[pos + 4];
+          f8b[2] = buf[pos + 5];
+          f8b[1] = buf[pos + 6];
+          f8b[0] = buf[pos + 7];
+          return f64[0];
+        }
+        exports3.readDoubleLE = le ? readDouble_f64_cpy : readDouble_f64_rev;
+        exports3.readDoubleBE = le ? readDouble_f64_rev : readDouble_f64_cpy;
+      })();
+      else (function() {
+        function writeDouble_ieee754(writeUint, off0, off1, val, buf, pos) {
+          var sign = val < 0 ? 1 : 0;
+          if (sign)
+            val = -val;
+          if (val === 0) {
+            writeUint(0, buf, pos + off0);
+            writeUint(1 / val > 0 ? (
+              /* positive */
+              0
+            ) : (
+              /* negative 0 */
+              2147483648
+            ), buf, pos + off1);
+          } else if (isNaN(val)) {
+            writeUint(0, buf, pos + off0);
+            writeUint(2146959360, buf, pos + off1);
+          } else if (val > 17976931348623157e292) {
+            writeUint(0, buf, pos + off0);
+            writeUint((sign << 31 | 2146435072) >>> 0, buf, pos + off1);
+          } else {
+            var mantissa;
+            if (val < 22250738585072014e-324) {
+              mantissa = val / 5e-324;
+              writeUint(mantissa >>> 0, buf, pos + off0);
+              writeUint((sign << 31 | mantissa / 4294967296) >>> 0, buf, pos + off1);
             } else {
-              var mantissa;
-              if (val < 22250738585072014e-324) {
-                mantissa = val / 5e-324;
-                writeUint(mantissa >>> 0, buf, pos + off0);
-                writeUint((sign << 31 | mantissa / 4294967296) >>> 0, buf, pos + off1);
-              } else {
-                var exponent = Math.floor(Math.log(val) / Math.LN2);
-                if (exponent === 1024)
-                  exponent = 1023;
-                mantissa = val * Math.pow(2, -exponent);
-                writeUint(mantissa * 4503599627370496 >>> 0, buf, pos + off0);
-                writeUint((sign << 31 | exponent + 1023 << 20 | mantissa * 1048576 & 1048575) >>> 0, buf, pos + off1);
-              }
+              var exponent = Math.floor(Math.log(val) / Math.LN2);
+              if (exponent === 1024)
+                exponent = 1023;
+              mantissa = val * Math.pow(2, -exponent);
+              writeUint(mantissa * 4503599627370496 >>> 0, buf, pos + off0);
+              writeUint((sign << 31 | exponent + 1023 << 20 | mantissa * 1048576 & 1048575) >>> 0, buf, pos + off1);
             }
           }
-          exports3.writeDoubleLE = writeDouble_ieee754.bind(null, writeUintLE, 0, 4);
-          exports3.writeDoubleBE = writeDouble_ieee754.bind(null, writeUintBE, 4, 0);
-          function readDouble_ieee754(readUint, off0, off1, buf, pos) {
-            var lo = readUint(buf, pos + off0), hi = readUint(buf, pos + off1);
-            var sign = (hi >> 31) * 2 + 1, exponent = hi >>> 20 & 2047, mantissa = 4294967296 * (hi & 1048575) + lo;
-            return exponent === 2047 ? mantissa ? NaN : sign * Infinity : exponent === 0 ? sign * 5e-324 * mantissa : sign * Math.pow(2, exponent - 1075) * (mantissa + 4503599627370496);
-          }
-          exports3.readDoubleLE = readDouble_ieee754.bind(null, readUintLE, 0, 4);
-          exports3.readDoubleBE = readDouble_ieee754.bind(null, readUintBE, 4, 0);
-        })();
+        }
+        exports3.writeDoubleLE = writeDouble_ieee754.bind(null, writeUintLE, 0, 4);
+        exports3.writeDoubleBE = writeDouble_ieee754.bind(null, writeUintBE, 4, 0);
+        function readDouble_ieee754(readUint, off0, off1, buf, pos) {
+          var lo = readUint(buf, pos + off0), hi = readUint(buf, pos + off1);
+          var sign = (hi >> 31) * 2 + 1, exponent = hi >>> 20 & 2047, mantissa = 4294967296 * (hi & 1048575) + lo;
+          return exponent === 2047 ? mantissa ? NaN : sign * Infinity : exponent === 0 ? sign * 5e-324 * mantissa : sign * Math.pow(2, exponent - 1075) * (mantissa + 4503599627370496);
+        }
+        exports3.readDoubleLE = readDouble_ieee754.bind(null, readUintLE, 0, 4);
+        exports3.readDoubleBE = readDouble_ieee754.bind(null, readUintBE, 4, 0);
+      })();
       return exports3;
     }
     function writeUintLE(val, buf, pos) {
@@ -4122,9 +5094,9 @@ var require_pool = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/util/longbits.js
+// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/util/longbits.js
 var require_longbits = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/util/longbits.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/util/longbits.js"(exports2, module2) {
     "use strict";
     module2.exports = LongBits;
     var util = require_minimal();
@@ -4224,9 +5196,9 @@ var require_longbits = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/util/minimal.js
+// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/util/minimal.js
 var require_minimal = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/util/minimal.js"(exports2) {
+  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/util/minimal.js"(exports2) {
     "use strict";
     var util = exports2;
     util.asPromise = require_aspromise();
@@ -4263,7 +5235,7 @@ var require_minimal = __commonJS({
      * @param {string} prop Property name
      * @returns {boolean} `true` if considered to be present, otherwise `false`
      */
-    util.isSet = function isSet5(obj, prop) {
+    util.isSet = function isSet6(obj, prop) {
       var value = obj[prop];
       if (value != null && obj.hasOwnProperty(prop))
         return typeof value !== "object" || (Array.isArray(value) ? value.length : Object.keys(value).length) > 0;
@@ -4399,9 +5371,9 @@ var require_minimal = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/writer.js
+// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/writer.js
 var require_writer = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/writer.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/writer.js"(exports2, module2) {
     "use strict";
     module2.exports = Writer;
     var util = require_minimal();
@@ -4590,9 +5562,9 @@ var require_writer = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/writer_buffer.js
+// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/writer_buffer.js
 var require_writer_buffer = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/writer_buffer.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/writer_buffer.js"(exports2, module2) {
     "use strict";
     module2.exports = BufferWriter;
     var Writer = require_writer();
@@ -4608,9 +5580,8 @@ var require_writer_buffer = __commonJS({
       } : function writeBytesBuffer_copy(val, buf, pos) {
         if (val.copy)
           val.copy(buf, pos, 0, val.length);
-        else
-          for (var i = 0; i < val.length; )
-            buf[pos++] = val[i++];
+        else for (var i = 0; i < val.length; )
+          buf[pos++] = val[i++];
       };
     };
     BufferWriter.prototype.bytes = function write_bytes_buffer(value) {
@@ -4641,9 +5612,9 @@ var require_writer_buffer = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/reader.js
+// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/reader.js
 var require_reader = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/reader.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/reader.js"(exports2, module2) {
     "use strict";
     module2.exports = Reader;
     var util = require_minimal();
@@ -4681,20 +5652,15 @@ var require_reader = __commonJS({
       var value = 4294967295;
       return function read_uint32() {
         value = (this.buf[this.pos] & 127) >>> 0;
-        if (this.buf[this.pos++] < 128)
-          return value;
+        if (this.buf[this.pos++] < 128) return value;
         value = (value | (this.buf[this.pos] & 127) << 7) >>> 0;
-        if (this.buf[this.pos++] < 128)
-          return value;
+        if (this.buf[this.pos++] < 128) return value;
         value = (value | (this.buf[this.pos] & 127) << 14) >>> 0;
-        if (this.buf[this.pos++] < 128)
-          return value;
+        if (this.buf[this.pos++] < 128) return value;
         value = (value | (this.buf[this.pos] & 127) << 21) >>> 0;
-        if (this.buf[this.pos++] < 128)
-          return value;
+        if (this.buf[this.pos++] < 128) return value;
         value = (value | (this.buf[this.pos] & 15) << 28) >>> 0;
-        if (this.buf[this.pos++] < 128)
-          return value;
+        if (this.buf[this.pos++] < 128) return value;
         if ((this.pos += 5) > this.len) {
           this.pos = this.len;
           throw indexOutOfRange(this, 10);
@@ -4869,9 +5835,9 @@ var require_reader = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/reader_buffer.js
+// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/reader_buffer.js
 var require_reader_buffer = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/reader_buffer.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/reader_buffer.js"(exports2, module2) {
     "use strict";
     module2.exports = BufferReader;
     var Reader = require_reader();
@@ -4892,9 +5858,9 @@ var require_reader_buffer = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/rpc/service.js
+// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/rpc/service.js
 var require_service = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/rpc/service.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/rpc/service.js"(exports2, module2) {
     "use strict";
     module2.exports = Service;
     var util = require_minimal();
@@ -4967,26 +5933,26 @@ var require_service = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/rpc.js
+// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/rpc.js
 var require_rpc = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/rpc.js"(exports2) {
+  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/rpc.js"(exports2) {
     "use strict";
     var rpc = exports2;
     rpc.Service = require_service();
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/roots.js
+// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/roots.js
 var require_roots = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/roots.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/roots.js"(exports2, module2) {
     "use strict";
     module2.exports = {};
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/index-minimal.js
+// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/index-minimal.js
 var require_index_minimal = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/index-minimal.js"(exports2) {
+  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/index-minimal.js"(exports2) {
     "use strict";
     var protobuf = exports2;
     protobuf.build = "minimal";
@@ -5174,9 +6140,9 @@ var require_path = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/types.js
+// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/types.js
 var require_types = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/types.js"(exports2) {
+  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/types.js"(exports2) {
     "use strict";
     var types = exports2;
     var util = require_util();
@@ -5215,8 +6181,7 @@ var require_types = __commonJS({
     function bake(values, offset) {
       var i = 0, o = {};
       offset |= 0;
-      while (i < values.length)
-        o[s[i + offset]] = values[i++];
+      while (i < values.length) o[s[i + offset]] = values[i++];
       return o;
     }
     types.basic = bake([
@@ -5354,9 +6319,9 @@ var require_types = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/field.js
+// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/field.js
 var require_field = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/field.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/field.js"(exports2, module2) {
     "use strict";
     module2.exports = Field;
     var ReflectionObject = require_object();
@@ -5503,9 +6468,9 @@ var require_field = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/oneof.js
+// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/oneof.js
 var require_oneof = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/oneof.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/oneof.js"(exports2, module2) {
     "use strict";
     module2.exports = OneOf;
     var ReflectionObject = require_object();
@@ -5602,9 +6567,9 @@ var require_oneof = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/namespace.js
+// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/namespace.js
 var require_namespace = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/namespace.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/namespace.js"(exports2, module2) {
     "use strict";
     module2.exports = Namespace;
     var ReflectionObject = require_object();
@@ -5812,9 +6777,9 @@ var require_namespace = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/mapfield.js
+// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/mapfield.js
 var require_mapfield = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/mapfield.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/mapfield.js"(exports2, module2) {
     "use strict";
     module2.exports = MapField;
     var Field = require_field();
@@ -5868,9 +6833,9 @@ var require_mapfield = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/method.js
+// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/method.js
 var require_method = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/method.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/method.js"(exports2, module2) {
     "use strict";
     module2.exports = Method;
     var ReflectionObject = require_object();
@@ -5936,9 +6901,9 @@ var require_method = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/service.js
+// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/service.js
 var require_service2 = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/service.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/service.js"(exports2, module2) {
     "use strict";
     module2.exports = Service;
     var Namespace = require_namespace();
@@ -6030,9 +6995,9 @@ var require_service2 = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/message.js
+// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/message.js
 var require_message = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/message.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/message.js"(exports2, module2) {
     "use strict";
     module2.exports = Message;
     var util = require_minimal();
@@ -6071,9 +7036,9 @@ var require_message = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/decoder.js
+// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/decoder.js
 var require_decoder = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/decoder.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/decoder.js"(exports2, module2) {
     "use strict";
     module2.exports = decoder;
     var Enum = require_enum();
@@ -6086,8 +7051,7 @@ var require_decoder = __commonJS({
       var gen = util.codegen(["r", "l"], mtype.name + "$decode")("if(!(r instanceof Reader))")("r=Reader.create(r)")("var c=l===undefined?r.len:r.pos+l,m=new this.ctor" + (mtype.fieldsArray.filter(function(field2) {
         return field2.map;
       }).length ? ",k,value" : ""))("while(r.pos<c){")("var t=r.uint32()");
-      if (mtype.group)
-        gen("if((t&7)===4)")("break");
+      if (mtype.group) gen("if((t&7)===4)")("break");
       gen("switch(t>>>3){");
       var i = 0;
       for (; i < /* initializes */
@@ -6096,52 +7060,38 @@ var require_decoder = __commonJS({
         gen("case %i: {", field.id);
         if (field.map) {
           gen("if(%s===util.emptyObject)", ref)("%s={}", ref)("var c2 = r.uint32()+r.pos");
-          if (types.defaults[field.keyType] !== void 0)
-            gen("k=%j", types.defaults[field.keyType]);
-          else
-            gen("k=null");
-          if (types.defaults[type] !== void 0)
-            gen("value=%j", types.defaults[type]);
-          else
-            gen("value=null");
+          if (types.defaults[field.keyType] !== void 0) gen("k=%j", types.defaults[field.keyType]);
+          else gen("k=null");
+          if (types.defaults[type] !== void 0) gen("value=%j", types.defaults[type]);
+          else gen("value=null");
           gen("while(r.pos<c2){")("var tag2=r.uint32()")("switch(tag2>>>3){")("case 1: k=r.%s(); break", field.keyType)("case 2:");
-          if (types.basic[type] === void 0)
-            gen("value=types[%i].decode(r,r.uint32())", i);
-          else
-            gen("value=r.%s()", type);
+          if (types.basic[type] === void 0) gen("value=types[%i].decode(r,r.uint32())", i);
+          else gen("value=r.%s()", type);
           gen("break")("default:")("r.skipType(tag2&7)")("break")("}")("}");
-          if (types.long[field.keyType] !== void 0)
-            gen('%s[typeof k==="object"?util.longToHash(k):k]=value', ref);
-          else
-            gen("%s[k]=value", ref);
+          if (types.long[field.keyType] !== void 0) gen('%s[typeof k==="object"?util.longToHash(k):k]=value', ref);
+          else gen("%s[k]=value", ref);
         } else if (field.repeated) {
           gen("if(!(%s&&%s.length))", ref, ref)("%s=[]", ref);
-          if (types.packed[type] !== void 0)
-            gen("if((t&7)===2){")("var c2=r.uint32()+r.pos")("while(r.pos<c2)")("%s.push(r.%s())", ref, type)("}else");
-          if (types.basic[type] === void 0)
-            gen(field.resolvedType.group ? "%s.push(types[%i].decode(r))" : "%s.push(types[%i].decode(r,r.uint32()))", ref, i);
-          else
-            gen("%s.push(r.%s())", ref, type);
-        } else if (types.basic[type] === void 0)
-          gen(field.resolvedType.group ? "%s=types[%i].decode(r)" : "%s=types[%i].decode(r,r.uint32())", ref, i);
-        else
-          gen("%s=r.%s()", ref, type);
+          if (types.packed[type] !== void 0) gen("if((t&7)===2){")("var c2=r.uint32()+r.pos")("while(r.pos<c2)")("%s.push(r.%s())", ref, type)("}else");
+          if (types.basic[type] === void 0) gen(field.resolvedType.group ? "%s.push(types[%i].decode(r))" : "%s.push(types[%i].decode(r,r.uint32()))", ref, i);
+          else gen("%s.push(r.%s())", ref, type);
+        } else if (types.basic[type] === void 0) gen(field.resolvedType.group ? "%s=types[%i].decode(r)" : "%s=types[%i].decode(r,r.uint32())", ref, i);
+        else gen("%s=r.%s()", ref, type);
         gen("break")("}");
       }
       gen("default:")("r.skipType(t&7)")("break")("}")("}");
       for (i = 0; i < mtype._fieldsArray.length; ++i) {
         var rfield = mtype._fieldsArray[i];
-        if (rfield.required)
-          gen("if(!m.hasOwnProperty(%j))", rfield.name)("throw util.ProtocolError(%j,{instance:m})", missing(rfield));
+        if (rfield.required) gen("if(!m.hasOwnProperty(%j))", rfield.name)("throw util.ProtocolError(%j,{instance:m})", missing(rfield));
       }
       return gen("return m");
     }
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/verifier.js
+// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/verifier.js
 var require_verifier = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/verifier.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/verifier.js"(exports2, module2) {
     "use strict";
     module2.exports = verifier;
     var Enum = require_enum();
@@ -6153,8 +7103,7 @@ var require_verifier = __commonJS({
       if (field.resolvedType) {
         if (field.resolvedType instanceof Enum) {
           gen("switch(%s){", ref)("default:")("return%j", invalid(field, "enum value"));
-          for (var keys = Object.keys(field.resolvedType.values), j = 0; j < keys.length; ++j)
-            gen("case %i:", field.resolvedType.values[keys[j]]);
+          for (var keys = Object.keys(field.resolvedType.values), j = 0; j < keys.length; ++j) gen("case %i:", field.resolvedType.values[keys[j]]);
           gen("break")("}");
         } else {
           gen("{")("var e=types[%i].verify(%s);", fieldIndex, ref)("if(e)")("return%j+e", field.name + ".")("}");
@@ -6217,13 +7166,11 @@ var require_verifier = __commonJS({
     function verifier(mtype) {
       var gen = util.codegen(["m"], mtype.name + "$verify")('if(typeof m!=="object"||m===null)')("return%j", "object expected");
       var oneofs = mtype.oneofsArray, seenFirstField = {};
-      if (oneofs.length)
-        gen("var p={}");
+      if (oneofs.length) gen("var p={}");
       for (var i = 0; i < /* initializes */
       mtype.fieldsArray.length; ++i) {
         var field = mtype._fieldsArray[i].resolve(), ref = "m" + util.safeProp(field.name);
-        if (field.optional)
-          gen("if(%s!=null&&m.hasOwnProperty(%j)){", ref, field.name);
+        if (field.optional) gen("if(%s!=null&&m.hasOwnProperty(%j)){", ref, field.name);
         if (field.map) {
           gen("if(!util.isObject(%s))", ref)("return%j", invalid(field, "object"))("var k=Object.keys(%s)", ref)("for(var i=0;i<k.length;++i){");
           genVerifyKey(gen, field, "k[i]");
@@ -6234,24 +7181,22 @@ var require_verifier = __commonJS({
         } else {
           if (field.partOf) {
             var oneofProp = util.safeProp(field.partOf.name);
-            if (seenFirstField[field.partOf.name] === 1)
-              gen("if(p%s===1)", oneofProp)("return%j", field.partOf.name + ": multiple values");
+            if (seenFirstField[field.partOf.name] === 1) gen("if(p%s===1)", oneofProp)("return%j", field.partOf.name + ": multiple values");
             seenFirstField[field.partOf.name] = 1;
             gen("p%s=1", oneofProp);
           }
           genVerifyValue(gen, field, i, ref);
         }
-        if (field.optional)
-          gen("}");
+        if (field.optional) gen("}");
       }
       return gen("return null");
     }
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/converter.js
+// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/converter.js
 var require_converter = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/converter.js"(exports2) {
+  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/converter.js"(exports2) {
     "use strict";
     var converter = exports2;
     var Enum = require_enum();
@@ -6264,15 +7209,13 @@ var require_converter = __commonJS({
           for (var values = field.resolvedType.values, keys = Object.keys(values), i = 0; i < keys.length; ++i) {
             if (values[keys[i]] === field.typeDefault && !defaultAlreadyEmitted) {
               gen("default:")('if(typeof(d%s)==="number"){m%s=d%s;break}', prop, prop, prop);
-              if (!field.repeated)
-                gen("break");
+              if (!field.repeated) gen("break");
               defaultAlreadyEmitted = true;
             }
             gen("case%j:", keys[i])("case %i:", values[keys[i]])("m%s=%j", prop, values[keys[i]])("break");
           }
           gen("}");
-        } else
-          gen('if(typeof d%s!=="object")', prop)("throw TypeError(%j)", field.fullName + ": object expected")("m%s=types[%i].fromObject(d%s)", prop, fieldIndex, prop);
+        } else gen('if(typeof d%s!=="object")', prop)("throw TypeError(%j)", field.fullName + ": object expected")("m%s=types[%i].fromObject(d%s)", prop, fieldIndex, prop);
       } else {
         var isUnsigned = false;
         switch (field.type) {
@@ -6313,8 +7256,7 @@ var require_converter = __commonJS({
     converter.fromObject = function fromObject(mtype) {
       var fields = mtype.fieldsArray;
       var gen = util.codegen(["d"], mtype.name + "$fromObject")("if(d instanceof this.ctor)")("return d");
-      if (!fields.length)
-        return gen("return new this.ctor");
+      if (!fields.length) return gen("return new this.ctor");
       gen("var m=new this.ctor");
       for (var i = 0; i < fields.length; ++i) {
         var field = fields[i].resolve(), prop = util.safeProp(field.name);
@@ -6337,8 +7279,7 @@ var require_converter = __commonJS({
             prop + "[i]"
           )("}")("}");
         } else {
-          if (!(field.resolvedType instanceof Enum))
-            gen("if(d%s!=null){", prop);
+          if (!(field.resolvedType instanceof Enum)) gen("if(d%s!=null){", prop);
           genValuePartial_fromObject(
             gen,
             field,
@@ -6346,18 +7287,15 @@ var require_converter = __commonJS({
             i,
             prop
           );
-          if (!(field.resolvedType instanceof Enum))
-            gen("}");
+          if (!(field.resolvedType instanceof Enum)) gen("}");
         }
       }
       return gen("return m");
     };
     function genValuePartial_toObject(gen, field, fieldIndex, prop) {
       if (field.resolvedType) {
-        if (field.resolvedType instanceof Enum)
-          gen("d%s=o.enums===String?(types[%i].values[m%s]===undefined?m%s:types[%i].values[m%s]):m%s", prop, fieldIndex, prop, prop, fieldIndex, prop, prop);
-        else
-          gen("d%s=types[%i].toObject(m%s,o)", prop, fieldIndex, prop);
+        if (field.resolvedType instanceof Enum) gen("d%s=o.enums===String?(types[%i].values[m%s]===undefined?m%s:types[%i].values[m%s]):m%s", prop, fieldIndex, prop, prop, fieldIndex, prop, prop);
+        else gen("d%s=types[%i].toObject(m%s,o)", prop, fieldIndex, prop);
       } else {
         var isUnsigned = false;
         switch (field.type) {
@@ -6394,29 +7332,24 @@ var require_converter = __commonJS({
           (fields[i].resolve().repeated ? repeatedFields : fields[i].map ? mapFields : normalFields).push(fields[i]);
       if (repeatedFields.length) {
         gen("if(o.arrays||o.defaults){");
-        for (i = 0; i < repeatedFields.length; ++i)
-          gen("d%s=[]", util.safeProp(repeatedFields[i].name));
+        for (i = 0; i < repeatedFields.length; ++i) gen("d%s=[]", util.safeProp(repeatedFields[i].name));
         gen("}");
       }
       if (mapFields.length) {
         gen("if(o.objects||o.defaults){");
-        for (i = 0; i < mapFields.length; ++i)
-          gen("d%s={}", util.safeProp(mapFields[i].name));
+        for (i = 0; i < mapFields.length; ++i) gen("d%s={}", util.safeProp(mapFields[i].name));
         gen("}");
       }
       if (normalFields.length) {
         gen("if(o.defaults){");
         for (i = 0; i < normalFields.length; ++i) {
           var field = normalFields[i], prop = util.safeProp(field.name);
-          if (field.resolvedType instanceof Enum)
-            gen("d%s=o.enums===String?%j:%j", prop, field.resolvedType.valuesById[field.typeDefault], field.typeDefault);
-          else if (field.long)
-            gen("if(util.Long){")("var n=new util.Long(%i,%i,%j)", field.typeDefault.low, field.typeDefault.high, field.typeDefault.unsigned)("d%s=o.longs===String?n.toString():o.longs===Number?n.toNumber():n", prop)("}else")("d%s=o.longs===String?%j:%i", prop, field.typeDefault.toString(), field.typeDefault.toNumber());
+          if (field.resolvedType instanceof Enum) gen("d%s=o.enums===String?%j:%j", prop, field.resolvedType.valuesById[field.typeDefault], field.typeDefault);
+          else if (field.long) gen("if(util.Long){")("var n=new util.Long(%i,%i,%j)", field.typeDefault.low, field.typeDefault.high, field.typeDefault.unsigned)("d%s=o.longs===String?n.toString():o.longs===Number?n.toNumber():n", prop)("}else")("d%s=o.longs===String?%j:%i", prop, field.typeDefault.toString(), field.typeDefault.toNumber());
           else if (field.bytes) {
             var arrayDefault = "[" + Array.prototype.slice.call(field.typeDefault).join(",") + "]";
             gen("if(o.bytes===String)d%s=%j", prop, String.fromCharCode.apply(String, field.typeDefault))("else{")("d%s=%s", prop, arrayDefault)("if(o.bytes!==Array)d%s=util.newBuffer(d%s)", prop, prop)("}");
-          } else
-            gen("d%s=%j", prop, field.typeDefault);
+          } else gen("d%s=%j", prop, field.typeDefault);
         }
         gen("}");
       }
@@ -6454,8 +7387,7 @@ var require_converter = __commonJS({
             index,
             prop
           );
-          if (field.partOf)
-            gen("if(o.oneofs)")("d%s=%j", util.safeProp(field.partOf.name), field.name);
+          if (field.partOf) gen("if(o.oneofs)")("d%s=%j", util.safeProp(field.partOf.name), field.name);
         }
         gen("}");
       }
@@ -6464,9 +7396,9 @@ var require_converter = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/wrappers.js
+// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/wrappers.js
 var require_wrappers = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/wrappers.js"(exports2) {
+  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/wrappers.js"(exports2) {
     "use strict";
     var wrappers = exports2;
     var Message = require_message();
@@ -6515,9 +7447,9 @@ var require_wrappers = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/type.js
+// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/type.js
 var require_type = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/type.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/type.js"(exports2, module2) {
     "use strict";
     module2.exports = Type;
     var Namespace = require_namespace();
@@ -6629,10 +7561,8 @@ var require_type = __commonJS({
     Type.generateConstructor = function generateConstructor(mtype) {
       var gen = util.codegen(["p"], mtype.name);
       for (var i = 0, field; i < mtype.fieldsArray.length; ++i)
-        if ((field = mtype._fieldsArray[i]).map)
-          gen("this%s={}", util.safeProp(field.name));
-        else if (field.repeated)
-          gen("this%s=[]", util.safeProp(field.name));
+        if ((field = mtype._fieldsArray[i]).map) gen("this%s={}", util.safeProp(field.name));
+        else if (field.repeated) gen("this%s=[]", util.safeProp(field.name));
       return gen("if(p)for(var ks=Object.keys(p),i=0;i<ks.length;++i)if(p[ks[i]]!=null)")("this[ks[i]]=p[ks[i]]");
     };
     function clearCache(type) {
@@ -6834,9 +7764,9 @@ var require_type = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/root.js
+// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/root.js
 var require_root = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/root.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/root.js"(exports2, module2) {
     "use strict";
     module2.exports = Root;
     var Namespace = require_namespace();
@@ -6886,8 +7816,7 @@ var require_root = __commonJS({
         var idx = filename2.lastIndexOf("google/protobuf/");
         if (idx > -1) {
           var altname = filename2.substring(idx);
-          if (altname in common)
-            return altname;
+          if (altname in common) return altname;
         }
         return null;
       }
@@ -7064,9 +7993,9 @@ var require_root = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/util.js
+// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/util.js
 var require_util = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/util.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/util.js"(exports2, module2) {
     "use strict";
     var util = module2.exports = require_minimal();
     var roots = require_roots();
@@ -7176,9 +8105,9 @@ var require_util = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/object.js
+// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/object.js
 var require_object = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/object.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/object.js"(exports2, module2) {
     "use strict";
     module2.exports = ReflectionObject;
     ReflectionObject.className = "ReflectionObject";
@@ -7308,9 +8237,9 @@ var require_object = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/enum.js
+// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/enum.js
 var require_enum = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/enum.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/enum.js"(exports2, module2) {
     "use strict";
     module2.exports = Enum;
     var ReflectionObject = require_object();
@@ -7402,9 +8331,9 @@ var require_enum = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/encoder.js
+// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/encoder.js
 var require_encoder = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/encoder.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/encoder.js"(exports2, module2) {
     "use strict";
     module2.exports = encoder;
     var Enum = require_enum();
@@ -7425,10 +8354,8 @@ var require_encoder = __commonJS({
         ref = "m" + util.safeProp(field.name);
         if (field.map) {
           gen("if(%s!=null&&Object.hasOwnProperty.call(m,%j)){", ref, field.name)("for(var ks=Object.keys(%s),i=0;i<ks.length;++i){", ref)("w.uint32(%i).fork().uint32(%i).%s(ks[i])", (field.id << 3 | 2) >>> 0, 8 | types.mapKey[field.keyType], field.keyType);
-          if (wireType === void 0)
-            gen("types[%i].encode(%s[ks[i]],w.uint32(18).fork()).ldelim().ldelim()", index, ref);
-          else
-            gen(".uint32(%i).%s(%s[ks[i]]).ldelim()", 16 | wireType, type, ref);
+          if (wireType === void 0) gen("types[%i].encode(%s[ks[i]],w.uint32(18).fork()).ldelim().ldelim()", index, ref);
+          else gen(".uint32(%i).%s(%s[ks[i]]).ldelim()", 16 | wireType, type, ref);
           gen("}")("}");
         } else if (field.repeated) {
           gen("if(%s!=null&&%s.length){", ref, ref);
@@ -7438,17 +8365,14 @@ var require_encoder = __commonJS({
             gen("for(var i=0;i<%s.length;++i)", ref);
             if (wireType === void 0)
               genTypePartial(gen, field, index, ref + "[i]");
-            else
-              gen("w.uint32(%i).%s(%s[i])", (field.id << 3 | wireType) >>> 0, type, ref);
+            else gen("w.uint32(%i).%s(%s[i])", (field.id << 3 | wireType) >>> 0, type, ref);
           }
           gen("}");
         } else {
-          if (field.optional)
-            gen("if(%s!=null&&Object.hasOwnProperty.call(m,%j))", ref, field.name);
+          if (field.optional) gen("if(%s!=null&&Object.hasOwnProperty.call(m,%j))", ref, field.name);
           if (wireType === void 0)
             genTypePartial(gen, field, index, ref);
-          else
-            gen("w.uint32(%i).%s(%s)", (field.id << 3 | wireType) >>> 0, type, ref);
+          else gen("w.uint32(%i).%s(%s)", (field.id << 3 | wireType) >>> 0, type, ref);
         }
       }
       return gen("return w");
@@ -7456,9 +8380,9 @@ var require_encoder = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/index-light.js
+// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/index-light.js
 var require_index_light = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/index-light.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/index-light.js"(exports2, module2) {
     "use strict";
     var protobuf = module2.exports = require_index_minimal();
     protobuf.build = "light";
@@ -7502,9 +8426,9 @@ var require_index_light = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/tokenize.js
+// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/tokenize.js
 var require_tokenize = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/tokenize.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/tokenize.js"(exports2, module2) {
     "use strict";
     module2.exports = tokenize;
     var delimRe = /[\s{}=;:[\],'"()<>]/g;
@@ -7749,9 +8673,9 @@ var require_tokenize = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/parse.js
+// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/parse.js
 var require_parse = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/parse.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/parse.js"(exports2, module2) {
     "use strict";
     module2.exports = parse;
     parse.filename = null;
@@ -7842,7 +8766,24 @@ var require_parse = __commonJS({
           else
             target.push([start = parseId(next()), skip("to", true) ? parseId(next()) : start]);
         } while (skip(",", true));
-        skip(";");
+        var dummy = { options: void 0 };
+        dummy.setOption = function(name, value) {
+          if (this.options === void 0) this.options = {};
+          this.options[name] = value;
+        };
+        ifBlock(
+          dummy,
+          function parseRange_block(token3) {
+            if (token3 === "option") {
+              parseOption(dummy, token3);
+              skip(";");
+            } else
+              throw illegal(token3);
+          },
+          function parseRange_line() {
+            parseInlineOptions(dummy);
+          }
+        );
       }
       function parseNumber(token2, insideTryCatch) {
         var sign = 1;
@@ -8375,9 +9316,9 @@ var require_parse = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/common.js
+// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/common.js
 var require_common = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/common.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/common.js"(exports2, module2) {
     "use strict";
     module2.exports = common;
     var commonRe = /\/|\./;
@@ -8707,9 +9648,9 @@ var require_common = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/index.js
+// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/index.js
 var require_src = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/src/index.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/index.js"(exports2, module2) {
     "use strict";
     var protobuf = module2.exports = require_index_light();
     protobuf.build = "full";
@@ -8720,17 +9661,17 @@ var require_src = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/index.js
+// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/index.js
 var require_protobufjs = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/index.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/index.js"(exports2, module2) {
     "use strict";
     module2.exports = require_src();
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/google/protobuf/descriptor.json
+// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/google/protobuf/descriptor.json
 var require_descriptor = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/google/protobuf/descriptor.json"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/google/protobuf/descriptor.json"(exports2, module2) {
     module2.exports = {
       nested: {
         google: {
@@ -9473,9 +10414,9 @@ var require_descriptor = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/ext/descriptor/index.js
+// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/ext/descriptor/index.js
 var require_descriptor2 = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/ext/descriptor/index.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/ext/descriptor/index.js"(exports2, module2) {
     "use strict";
     var $protobuf = require_protobufjs();
     module2.exports = exports2 = $protobuf.descriptor = $protobuf.Root.fromJSON(require_descriptor()).lookup(".google.protobuf");
@@ -9963,8 +10904,7 @@ var require_descriptor2 = __commonJS({
           ++j;
         }
       else
-        for (; i < fromPath.length && j < k && fromPath[i] === toPath[j]; ++i, ++j)
-          ;
+        for (; i < fromPath.length && j < k && fromPath[i] === toPath[j]; ++i, ++j) ;
       return toPath.slice(j).join(".");
     }
     function underScore(str) {
@@ -9975,9 +10915,9 @@ var require_descriptor2 = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/google/protobuf/api.json
+// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/google/protobuf/api.json
 var require_api = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/google/protobuf/api.json"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/google/protobuf/api.json"(exports2, module2) {
     module2.exports = {
       nested: {
         google: {
@@ -10099,9 +11039,9 @@ var require_api = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/google/protobuf/source_context.json
+// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/google/protobuf/source_context.json
 var require_source_context = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/google/protobuf/source_context.json"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/google/protobuf/source_context.json"(exports2, module2) {
     module2.exports = {
       nested: {
         google: {
@@ -10125,9 +11065,9 @@ var require_source_context = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/google/protobuf/type.json
+// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/google/protobuf/type.json
 var require_type2 = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/google/protobuf/type.json"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/google/protobuf/type.json"(exports2, module2) {
     module2.exports = {
       nested: {
         google: {
@@ -10333,9 +11273,9 @@ var require_type2 = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+proto-loader@0.7.10/node_modules/@grpc/proto-loader/build/src/util.js
+// node_modules/.pnpm/@grpc+proto-loader@0.7.13/node_modules/@grpc/proto-loader/build/src/util.js
 var require_util2 = __commonJS({
-  "node_modules/.pnpm/@grpc+proto-loader@0.7.10/node_modules/@grpc/proto-loader/build/src/util.js"(exports2) {
+  "node_modules/.pnpm/@grpc+proto-loader@0.7.13/node_modules/@grpc/proto-loader/build/src/util.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.addCommonProtos = exports2.loadProtosWithOptionsSync = exports2.loadProtosWithOptions = void 0;
@@ -10443,43 +11383,33 @@ var require_umd = __commonJS({
           value >>>= 0;
           if (cache = 0 <= value && value < 256) {
             cachedObj = UINT_CACHE2[value];
-            if (cachedObj)
-              return cachedObj;
+            if (cachedObj) return cachedObj;
           }
           obj = fromBits2(value, 0, true);
-          if (cache)
-            UINT_CACHE2[value] = obj;
+          if (cache) UINT_CACHE2[value] = obj;
           return obj;
         } else {
           value |= 0;
           if (cache = -128 <= value && value < 128) {
             cachedObj = INT_CACHE2[value];
-            if (cachedObj)
-              return cachedObj;
+            if (cachedObj) return cachedObj;
           }
           obj = fromBits2(value, value < 0 ? -1 : 0, false);
-          if (cache)
-            INT_CACHE2[value] = obj;
+          if (cache) INT_CACHE2[value] = obj;
           return obj;
         }
       }
       Long3.fromInt = fromInt2;
       function fromNumber2(value, unsigned) {
-        if (isNaN(value))
-          return unsigned ? UZERO2 : ZERO2;
+        if (isNaN(value)) return unsigned ? UZERO2 : ZERO2;
         if (unsigned) {
-          if (value < 0)
-            return UZERO2;
-          if (value >= TWO_PWR_64_DBL2)
-            return MAX_UNSIGNED_VALUE2;
+          if (value < 0) return UZERO2;
+          if (value >= TWO_PWR_64_DBL2) return MAX_UNSIGNED_VALUE2;
         } else {
-          if (value <= -TWO_PWR_63_DBL2)
-            return MIN_VALUE2;
-          if (value + 1 >= TWO_PWR_63_DBL2)
-            return MAX_VALUE2;
+          if (value <= -TWO_PWR_63_DBL2) return MIN_VALUE2;
+          if (value + 1 >= TWO_PWR_63_DBL2) return MAX_VALUE2;
         }
-        if (value < 0)
-          return fromNumber2(-value, unsigned).neg();
+        if (value < 0) return fromNumber2(-value, unsigned).neg();
         return fromBits2(value % TWO_PWR_32_DBL2 | 0, value / TWO_PWR_32_DBL2 | 0, unsigned);
       }
       Long3.fromNumber = fromNumber2;
@@ -10489,22 +11419,18 @@ var require_umd = __commonJS({
       Long3.fromBits = fromBits2;
       var pow_dbl2 = Math.pow;
       function fromString2(str, unsigned, radix) {
-        if (str.length === 0)
-          throw Error("empty string");
+        if (str.length === 0) throw Error("empty string");
         if (typeof unsigned === "number") {
           radix = unsigned;
           unsigned = false;
         } else {
           unsigned = !!unsigned;
         }
-        if (str === "NaN" || str === "Infinity" || str === "+Infinity" || str === "-Infinity")
-          return unsigned ? UZERO2 : ZERO2;
+        if (str === "NaN" || str === "Infinity" || str === "+Infinity" || str === "-Infinity") return unsigned ? UZERO2 : ZERO2;
         radix = radix || 10;
-        if (radix < 2 || 36 < radix)
-          throw RangeError("radix");
+        if (radix < 2 || 36 < radix) throw RangeError("radix");
         var p;
-        if ((p = str.indexOf("-")) > 0)
-          throw Error("interior hyphen");
+        if ((p = str.indexOf("-")) > 0) throw Error("interior hyphen");
         else if (p === 0) {
           return fromString2(str.substring(1), unsigned, radix).neg();
         }
@@ -10525,10 +11451,8 @@ var require_umd = __commonJS({
       }
       Long3.fromString = fromString2;
       function fromValue2(val, unsigned) {
-        if (typeof val === "number")
-          return fromNumber2(val, unsigned);
-        if (typeof val === "string")
-          return fromString2(val, unsigned);
+        if (typeof val === "number") return fromNumber2(val, unsigned);
+        if (typeof val === "string") return fromString2(val, unsigned);
         return fromBits2(val.low, val.high, typeof unsigned === "boolean" ? unsigned : val.unsigned);
       }
       Long3.fromValue = fromValue2;
@@ -10559,33 +11483,27 @@ var require_umd = __commonJS({
         return this.unsigned ? this.low >>> 0 : this.low;
       };
       LongPrototype2.toNumber = function toNumber2() {
-        if (this.unsigned)
-          return (this.high >>> 0) * TWO_PWR_32_DBL2 + (this.low >>> 0);
+        if (this.unsigned) return (this.high >>> 0) * TWO_PWR_32_DBL2 + (this.low >>> 0);
         return this.high * TWO_PWR_32_DBL2 + (this.low >>> 0);
       };
       LongPrototype2.toString = function toString2(radix) {
         radix = radix || 10;
-        if (radix < 2 || 36 < radix)
-          throw RangeError("radix");
-        if (this.isZero())
-          return "0";
+        if (radix < 2 || 36 < radix) throw RangeError("radix");
+        if (this.isZero()) return "0";
         if (this.isNegative()) {
           if (this.eq(MIN_VALUE2)) {
             var radixLong = fromNumber2(radix), div = this.div(radixLong), rem1 = div.mul(radixLong).sub(this);
             return div.toString(radix) + rem1.toInt().toString(radix);
-          } else
-            return "-" + this.neg().toString(radix);
+          } else return "-" + this.neg().toString(radix);
         }
         var radixToPower = fromNumber2(pow_dbl2(radix, 6), this.unsigned), rem = this;
         var result = "";
         while (true) {
           var remDiv = rem.div(radixToPower), intval = rem.sub(remDiv.mul(radixToPower)).toInt() >>> 0, digits = intval.toString(radix);
           rem = remDiv;
-          if (rem.isZero())
-            return digits + result;
+          if (rem.isZero()) return digits + result;
           else {
-            while (digits.length < 6)
-              digits = "0" + digits;
+            while (digits.length < 6) digits = "0" + digits;
             result = "" + digits + result;
           }
         }
@@ -10606,9 +11524,7 @@ var require_umd = __commonJS({
         if (this.isNegative())
           return this.eq(MIN_VALUE2) ? 64 : this.neg().getNumBitsAbs();
         var val = this.high != 0 ? this.high : this.low;
-        for (var bit = 31; bit > 0; bit--)
-          if ((val & 1 << bit) != 0)
-            break;
+        for (var bit = 31; bit > 0; bit--) if ((val & 1 << bit) != 0) break;
         return this.high != 0 ? bit + 33 : bit + 1;
       };
       LongPrototype2.isZero = function isZero2() {
@@ -10628,10 +11544,8 @@ var require_umd = __commonJS({
         return (this.low & 1) === 0;
       };
       LongPrototype2.equals = function equals2(other) {
-        if (!isLong2(other))
-          other = fromValue2(other);
-        if (this.unsigned !== other.unsigned && this.high >>> 31 === 1 && other.high >>> 31 === 1)
-          return false;
+        if (!isLong2(other)) other = fromValue2(other);
+        if (this.unsigned !== other.unsigned && this.high >>> 31 === 1 && other.high >>> 31 === 1) return false;
         return this.high === other.high && this.low === other.low;
       };
       LongPrototype2.eq = LongPrototype2.equals;
@@ -10674,29 +11588,22 @@ var require_umd = __commonJS({
       LongPrototype2.gte = LongPrototype2.greaterThanOrEqual;
       LongPrototype2.ge = LongPrototype2.greaterThanOrEqual;
       LongPrototype2.compare = function compare2(other) {
-        if (!isLong2(other))
-          other = fromValue2(other);
-        if (this.eq(other))
-          return 0;
+        if (!isLong2(other)) other = fromValue2(other);
+        if (this.eq(other)) return 0;
         var thisNeg = this.isNegative(), otherNeg = other.isNegative();
-        if (thisNeg && !otherNeg)
-          return -1;
-        if (!thisNeg && otherNeg)
-          return 1;
-        if (!this.unsigned)
-          return this.sub(other).isNegative() ? -1 : 1;
+        if (thisNeg && !otherNeg) return -1;
+        if (!thisNeg && otherNeg) return 1;
+        if (!this.unsigned) return this.sub(other).isNegative() ? -1 : 1;
         return other.high >>> 0 > this.high >>> 0 || other.high === this.high && other.low >>> 0 > this.low >>> 0 ? -1 : 1;
       };
       LongPrototype2.comp = LongPrototype2.compare;
       LongPrototype2.negate = function negate2() {
-        if (!this.unsigned && this.eq(MIN_VALUE2))
-          return MIN_VALUE2;
+        if (!this.unsigned && this.eq(MIN_VALUE2)) return MIN_VALUE2;
         return this.not().add(ONE2);
       };
       LongPrototype2.neg = LongPrototype2.negate;
       LongPrototype2.add = function add2(addend) {
-        if (!isLong2(addend))
-          addend = fromValue2(addend);
+        if (!isLong2(addend)) addend = fromValue2(addend);
         var a48 = this.high >>> 16;
         var a32 = this.high & 65535;
         var a16 = this.low >>> 16;
@@ -10720,35 +11627,25 @@ var require_umd = __commonJS({
         return fromBits2(c16 << 16 | c00, c48 << 16 | c32, this.unsigned);
       };
       LongPrototype2.subtract = function subtract2(subtrahend) {
-        if (!isLong2(subtrahend))
-          subtrahend = fromValue2(subtrahend);
+        if (!isLong2(subtrahend)) subtrahend = fromValue2(subtrahend);
         return this.add(subtrahend.neg());
       };
       LongPrototype2.sub = LongPrototype2.subtract;
       LongPrototype2.multiply = function multiply2(multiplier) {
-        if (this.isZero())
-          return this;
-        if (!isLong2(multiplier))
-          multiplier = fromValue2(multiplier);
+        if (this.isZero()) return this;
+        if (!isLong2(multiplier)) multiplier = fromValue2(multiplier);
         if (wasm2) {
           var low = wasm2["mul"](this.low, this.high, multiplier.low, multiplier.high);
           return fromBits2(low, wasm2["get_high"](), this.unsigned);
         }
-        if (multiplier.isZero())
-          return this.unsigned ? UZERO2 : ZERO2;
-        if (this.eq(MIN_VALUE2))
-          return multiplier.isOdd() ? MIN_VALUE2 : ZERO2;
-        if (multiplier.eq(MIN_VALUE2))
-          return this.isOdd() ? MIN_VALUE2 : ZERO2;
+        if (multiplier.isZero()) return this.unsigned ? UZERO2 : ZERO2;
+        if (this.eq(MIN_VALUE2)) return multiplier.isOdd() ? MIN_VALUE2 : ZERO2;
+        if (multiplier.eq(MIN_VALUE2)) return this.isOdd() ? MIN_VALUE2 : ZERO2;
         if (this.isNegative()) {
-          if (multiplier.isNegative())
-            return this.neg().mul(multiplier.neg());
-          else
-            return this.neg().mul(multiplier).neg();
-        } else if (multiplier.isNegative())
-          return this.mul(multiplier.neg()).neg();
-        if (this.lt(TWO_PWR_242) && multiplier.lt(TWO_PWR_242))
-          return fromNumber2(this.toNumber() * multiplier.toNumber(), this.unsigned);
+          if (multiplier.isNegative()) return this.neg().mul(multiplier.neg());
+          else return this.neg().mul(multiplier).neg();
+        } else if (multiplier.isNegative()) return this.mul(multiplier.neg()).neg();
+        if (this.lt(TWO_PWR_242) && multiplier.lt(TWO_PWR_242)) return fromNumber2(this.toNumber() * multiplier.toNumber(), this.unsigned);
         var a48 = this.high >>> 16;
         var a32 = this.high & 65535;
         var a16 = this.low >>> 16;
@@ -10782,10 +11679,8 @@ var require_umd = __commonJS({
       };
       LongPrototype2.mul = LongPrototype2.multiply;
       LongPrototype2.divide = function divide2(divisor) {
-        if (!isLong2(divisor))
-          divisor = fromValue2(divisor);
-        if (divisor.isZero())
-          throw Error("division by zero");
+        if (!isLong2(divisor)) divisor = fromValue2(divisor);
+        if (divisor.isZero()) throw Error("division by zero");
         if (wasm2) {
           if (!this.unsigned && this.high === -2147483648 && divisor.low === -1 && divisor.high === -1) {
             return this;
@@ -10793,15 +11688,12 @@ var require_umd = __commonJS({
           var low = (this.unsigned ? wasm2["div_u"] : wasm2["div_s"])(this.low, this.high, divisor.low, divisor.high);
           return fromBits2(low, wasm2["get_high"](), this.unsigned);
         }
-        if (this.isZero())
-          return this.unsigned ? UZERO2 : ZERO2;
+        if (this.isZero()) return this.unsigned ? UZERO2 : ZERO2;
         var approx, rem, res;
         if (!this.unsigned) {
           if (this.eq(MIN_VALUE2)) {
-            if (divisor.eq(ONE2) || divisor.eq(NEG_ONE2))
-              return MIN_VALUE2;
-            else if (divisor.eq(MIN_VALUE2))
-              return ONE2;
+            if (divisor.eq(ONE2) || divisor.eq(NEG_ONE2)) return MIN_VALUE2;
+            else if (divisor.eq(MIN_VALUE2)) return ONE2;
             else {
               var halfThis = this.shr(1);
               approx = halfThis.div(divisor).shl(1);
@@ -10813,20 +11705,15 @@ var require_umd = __commonJS({
                 return res;
               }
             }
-          } else if (divisor.eq(MIN_VALUE2))
-            return this.unsigned ? UZERO2 : ZERO2;
+          } else if (divisor.eq(MIN_VALUE2)) return this.unsigned ? UZERO2 : ZERO2;
           if (this.isNegative()) {
-            if (divisor.isNegative())
-              return this.neg().div(divisor.neg());
+            if (divisor.isNegative()) return this.neg().div(divisor.neg());
             return this.neg().div(divisor).neg();
-          } else if (divisor.isNegative())
-            return this.div(divisor.neg()).neg();
+          } else if (divisor.isNegative()) return this.div(divisor.neg()).neg();
           res = ZERO2;
         } else {
-          if (!divisor.unsigned)
-            divisor = divisor.toUnsigned();
-          if (divisor.gt(this))
-            return UZERO2;
+          if (!divisor.unsigned) divisor = divisor.toUnsigned();
+          if (divisor.gt(this)) return UZERO2;
           if (divisor.gt(this.shru(1)))
             return UONE2;
           res = UZERO2;
@@ -10840,8 +11727,7 @@ var require_umd = __commonJS({
             approxRes = fromNumber2(approx, this.unsigned);
             approxRem = approxRes.mul(divisor);
           }
-          if (approxRes.isZero())
-            approxRes = ONE2;
+          if (approxRes.isZero()) approxRes = ONE2;
           res = res.add(approxRes);
           rem = rem.sub(approxRem);
         }
@@ -10849,8 +11735,7 @@ var require_umd = __commonJS({
       };
       LongPrototype2.div = LongPrototype2.divide;
       LongPrototype2.modulo = function modulo2(divisor) {
-        if (!isLong2(divisor))
-          divisor = fromValue2(divisor);
+        if (!isLong2(divisor)) divisor = fromValue2(divisor);
         if (wasm2) {
           var low = (this.unsigned ? wasm2["rem_u"] : wasm2["rem_s"])(this.low, this.high, divisor.low, divisor.high);
           return fromBits2(low, wasm2["get_high"](), this.unsigned);
@@ -10871,63 +11756,45 @@ var require_umd = __commonJS({
       };
       LongPrototype2.ctz = LongPrototype2.countTrailingZeros;
       LongPrototype2.and = function and2(other) {
-        if (!isLong2(other))
-          other = fromValue2(other);
+        if (!isLong2(other)) other = fromValue2(other);
         return fromBits2(this.low & other.low, this.high & other.high, this.unsigned);
       };
       LongPrototype2.or = function or2(other) {
-        if (!isLong2(other))
-          other = fromValue2(other);
+        if (!isLong2(other)) other = fromValue2(other);
         return fromBits2(this.low | other.low, this.high | other.high, this.unsigned);
       };
       LongPrototype2.xor = function xor2(other) {
-        if (!isLong2(other))
-          other = fromValue2(other);
+        if (!isLong2(other)) other = fromValue2(other);
         return fromBits2(this.low ^ other.low, this.high ^ other.high, this.unsigned);
       };
       LongPrototype2.shiftLeft = function shiftLeft2(numBits) {
-        if (isLong2(numBits))
-          numBits = numBits.toInt();
-        if ((numBits &= 63) === 0)
-          return this;
-        else if (numBits < 32)
-          return fromBits2(this.low << numBits, this.high << numBits | this.low >>> 32 - numBits, this.unsigned);
-        else
-          return fromBits2(0, this.low << numBits - 32, this.unsigned);
+        if (isLong2(numBits)) numBits = numBits.toInt();
+        if ((numBits &= 63) === 0) return this;
+        else if (numBits < 32) return fromBits2(this.low << numBits, this.high << numBits | this.low >>> 32 - numBits, this.unsigned);
+        else return fromBits2(0, this.low << numBits - 32, this.unsigned);
       };
       LongPrototype2.shl = LongPrototype2.shiftLeft;
       LongPrototype2.shiftRight = function shiftRight2(numBits) {
-        if (isLong2(numBits))
-          numBits = numBits.toInt();
-        if ((numBits &= 63) === 0)
-          return this;
-        else if (numBits < 32)
-          return fromBits2(this.low >>> numBits | this.high << 32 - numBits, this.high >> numBits, this.unsigned);
-        else
-          return fromBits2(this.high >> numBits - 32, this.high >= 0 ? 0 : -1, this.unsigned);
+        if (isLong2(numBits)) numBits = numBits.toInt();
+        if ((numBits &= 63) === 0) return this;
+        else if (numBits < 32) return fromBits2(this.low >>> numBits | this.high << 32 - numBits, this.high >> numBits, this.unsigned);
+        else return fromBits2(this.high >> numBits - 32, this.high >= 0 ? 0 : -1, this.unsigned);
       };
       LongPrototype2.shr = LongPrototype2.shiftRight;
       LongPrototype2.shiftRightUnsigned = function shiftRightUnsigned2(numBits) {
-        if (isLong2(numBits))
-          numBits = numBits.toInt();
-        if ((numBits &= 63) === 0)
-          return this;
-        if (numBits < 32)
-          return fromBits2(this.low >>> numBits | this.high << 32 - numBits, this.high >>> numBits, this.unsigned);
-        if (numBits === 32)
-          return fromBits2(this.high, 0, this.unsigned);
+        if (isLong2(numBits)) numBits = numBits.toInt();
+        if ((numBits &= 63) === 0) return this;
+        if (numBits < 32) return fromBits2(this.low >>> numBits | this.high << 32 - numBits, this.high >>> numBits, this.unsigned);
+        if (numBits === 32) return fromBits2(this.high, 0, this.unsigned);
         return fromBits2(this.high >>> numBits - 32, 0, this.unsigned);
       };
       LongPrototype2.shru = LongPrototype2.shiftRightUnsigned;
       LongPrototype2.shr_u = LongPrototype2.shiftRightUnsigned;
       LongPrototype2.rotateLeft = function rotateLeft2(numBits) {
         var b;
-        if (isLong2(numBits))
-          numBits = numBits.toInt();
-        if ((numBits &= 63) === 0)
-          return this;
-        if (numBits === 32)
-          return fromBits2(this.high, this.low, this.unsigned);
+        if (isLong2(numBits)) numBits = numBits.toInt();
+        if ((numBits &= 63) === 0) return this;
+        if (numBits === 32) return fromBits2(this.high, this.low, this.unsigned);
         if (numBits < 32) {
           b = 32 - numBits;
           return fromBits2(this.low << numBits | this.high >>> b, this.high << numBits | this.low >>> b, this.unsigned);
@@ -10939,12 +11806,9 @@ var require_umd = __commonJS({
       LongPrototype2.rotl = LongPrototype2.rotateLeft;
       LongPrototype2.rotateRight = function rotateRight2(numBits) {
         var b;
-        if (isLong2(numBits))
-          numBits = numBits.toInt();
-        if ((numBits &= 63) === 0)
-          return this;
-        if (numBits === 32)
-          return fromBits2(this.high, this.low, this.unsigned);
+        if (isLong2(numBits)) numBits = numBits.toInt();
+        if ((numBits &= 63) === 0) return this;
+        if (numBits === 32) return fromBits2(this.high, this.low, this.unsigned);
         if (numBits < 32) {
           b = 32 - numBits;
           return fromBits2(this.high << b | this.low >>> numBits, this.low << b | this.high >>> numBits, this.unsigned);
@@ -10955,13 +11819,11 @@ var require_umd = __commonJS({
       };
       LongPrototype2.rotr = LongPrototype2.rotateRight;
       LongPrototype2.toSigned = function toSigned2() {
-        if (!this.unsigned)
-          return this;
+        if (!this.unsigned) return this;
         return fromBits2(this.low, this.high, false);
       };
       LongPrototype2.toUnsigned = function toUnsigned2() {
-        if (this.unsigned)
-          return this;
+        if (this.unsigned) return this;
         return fromBits2(this.low, this.high, true);
       };
       LongPrototype2.toBytes = function toBytes2(le) {
@@ -10988,21 +11850,19 @@ var require_umd = __commonJS({
       exports3.default = _default;
       return "default" in exports3 ? exports3.default : exports3;
     }({});
-    if (typeof define === "function" && define.amd)
-      define([], function() {
-        return Long2;
-      });
-    else if (typeof module2 === "object" && typeof exports2 === "object")
-      module2.exports = Long2;
+    if (typeof define === "function" && define.amd) define([], function() {
+      return Long2;
+    });
+    else if (typeof module2 === "object" && typeof exports2 === "object") module2.exports = Long2;
   }
 });
 
-// node_modules/.pnpm/@grpc+proto-loader@0.7.10/node_modules/@grpc/proto-loader/build/src/index.js
+// node_modules/.pnpm/@grpc+proto-loader@0.7.13/node_modules/@grpc/proto-loader/build/src/index.js
 var require_src2 = __commonJS({
-  "node_modules/.pnpm/@grpc+proto-loader@0.7.10/node_modules/@grpc/proto-loader/build/src/index.js"(exports2) {
+  "node_modules/.pnpm/@grpc+proto-loader@0.7.13/node_modules/@grpc/proto-loader/build/src/index.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
-    exports2.loadFileDescriptorSetFromObject = exports2.loadFileDescriptorSetFromBuffer = exports2.fromJSON = exports2.loadSync = exports2.load = exports2.isAnyExtension = exports2.Long = void 0;
+    exports2.loadFileDescriptorSetFromObject = exports2.loadFileDescriptorSetFromBuffer = exports2.fromJSON = exports2.loadSync = exports2.load = exports2.IdempotencyLevel = exports2.isAnyExtension = exports2.Long = void 0;
     var camelCase = require_lodash();
     var Protobuf = require_protobufjs();
     var descriptor = require_descriptor2();
@@ -11013,6 +11873,12 @@ var require_src2 = __commonJS({
       return "@type" in obj && typeof obj["@type"] === "string";
     }
     exports2.isAnyExtension = isAnyExtension;
+    var IdempotencyLevel;
+    (function(IdempotencyLevel2) {
+      IdempotencyLevel2["IDEMPOTENCY_UNKNOWN"] = "IDEMPOTENCY_UNKNOWN";
+      IdempotencyLevel2["NO_SIDE_EFFECTS"] = "NO_SIDE_EFFECTS";
+      IdempotencyLevel2["IDEMPOTENT"] = "IDEMPOTENT";
+    })(IdempotencyLevel = exports2.IdempotencyLevel || (exports2.IdempotencyLevel = {}));
     var descriptorOptions = {
       longs: String,
       enums: String,
@@ -11061,6 +11927,24 @@ var require_src2 = __commonJS({
         return cls.encode(message).finish();
       };
     }
+    function mapMethodOptions(options) {
+      return (options || []).reduce((obj, item) => {
+        for (const [key, value] of Object.entries(item)) {
+          switch (key) {
+            case "uninterpreted_option":
+              obj.uninterpreted_option.push(item.uninterpreted_option);
+              break;
+            default:
+              obj[key] = value;
+          }
+        }
+        return obj;
+      }, {
+        deprecated: false,
+        idempotency_level: IdempotencyLevel.IDEMPOTENCY_UNKNOWN,
+        uninterpreted_option: []
+      });
+    }
     function createMethodDefinition(method, serviceName, options, fileDescriptors) {
       const requestType = method.resolvedRequestType;
       const responseType = method.resolvedResponseType;
@@ -11075,7 +11959,8 @@ var require_src2 = __commonJS({
         // TODO(murgatroid99): Find a better way to handle this
         originalName: camelCase(method.name),
         requestType: createMessageDefinition(requestType, fileDescriptors),
-        responseType: createMessageDefinition(responseType, fileDescriptors)
+        responseType: createMessageDefinition(responseType, fileDescriptors),
+        options: mapMethodOptions(method.parsedOptions)
       };
     }
     function createServiceDefinition(service, name, options, fileDescriptors) {
@@ -11160,13 +12045,14 @@ var require_src2 = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/channelz.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/channelz.js
 var require_channelz = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/channelz.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/channelz.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
-    exports2.setup = exports2.getChannelzServiceDefinition = exports2.getChannelzHandlers = exports2.unregisterChannelzRef = exports2.registerChannelzSocket = exports2.registerChannelzServer = exports2.registerChannelzSubchannel = exports2.registerChannelzChannel = exports2.ChannelzCallTracker = exports2.ChannelzChildrenTracker = exports2.ChannelzTrace = void 0;
+    exports2.setup = exports2.getChannelzServiceDefinition = exports2.getChannelzHandlers = exports2.unregisterChannelzRef = exports2.registerChannelzSocket = exports2.registerChannelzServer = exports2.registerChannelzSubchannel = exports2.registerChannelzChannel = exports2.ChannelzCallTrackerStub = exports2.ChannelzCallTracker = exports2.ChannelzChildrenTrackerStub = exports2.ChannelzChildrenTracker = exports2.ChannelzTrace = exports2.ChannelzTraceStub = void 0;
     var net_1 = __require("net");
+    var ordered_map_1 = (init_esm(), __toCommonJS(esm_exports));
     var connectivity_state_1 = require_connectivity_state();
     var constants_1 = require_constants();
     var subchannel_address_1 = require_subchannel_address();
@@ -11196,6 +12082,24 @@ var require_channelz = __commonJS({
       };
     }
     var TARGET_RETAINED_TRACES = 32;
+    var DEFAULT_MAX_RESULTS = 100;
+    var ChannelzTraceStub = class {
+      constructor() {
+        this.events = [];
+        this.creationTimestamp = /* @__PURE__ */ new Date();
+        this.eventsLogged = 0;
+      }
+      addTrace() {
+      }
+      getTraceMessage() {
+        return {
+          creation_timestamp: dateToProtoTimestamp(this.creationTimestamp),
+          num_events_logged: this.eventsLogged,
+          events: []
+        };
+      }
+    };
+    exports2.ChannelzTraceStub = ChannelzTraceStub;
     var ChannelzTrace = class {
       constructor() {
         this.events = [];
@@ -11235,99 +12139,62 @@ var require_channelz = __commonJS({
     exports2.ChannelzTrace = ChannelzTrace;
     var ChannelzChildrenTracker = class {
       constructor() {
-        this.channelChildren = /* @__PURE__ */ new Map();
-        this.subchannelChildren = /* @__PURE__ */ new Map();
-        this.socketChildren = /* @__PURE__ */ new Map();
+        this.channelChildren = new ordered_map_1.OrderedMap();
+        this.subchannelChildren = new ordered_map_1.OrderedMap();
+        this.socketChildren = new ordered_map_1.OrderedMap();
+        this.trackerMap = {
+          [
+            "channel"
+            /* EntityTypes.channel */
+          ]: this.channelChildren,
+          [
+            "subchannel"
+            /* EntityTypes.subchannel */
+          ]: this.subchannelChildren,
+          [
+            "socket"
+            /* EntityTypes.socket */
+          ]: this.socketChildren
+        };
       }
       refChild(child) {
-        var _a, _b, _c;
-        switch (child.kind) {
-          case "channel": {
-            const trackedChild = (_a = this.channelChildren.get(child.id)) !== null && _a !== void 0 ? _a : {
-              ref: child,
-              count: 0
-            };
-            trackedChild.count += 1;
-            this.channelChildren.set(child.id, trackedChild);
-            break;
-          }
-          case "subchannel": {
-            const trackedChild = (_b = this.subchannelChildren.get(child.id)) !== null && _b !== void 0 ? _b : {
-              ref: child,
-              count: 0
-            };
-            trackedChild.count += 1;
-            this.subchannelChildren.set(child.id, trackedChild);
-            break;
-          }
-          case "socket": {
-            const trackedChild = (_c = this.socketChildren.get(child.id)) !== null && _c !== void 0 ? _c : {
-              ref: child,
-              count: 0
-            };
-            trackedChild.count += 1;
-            this.socketChildren.set(child.id, trackedChild);
-            break;
-          }
+        const tracker = this.trackerMap[child.kind];
+        const trackedChild = tracker.find(child.id);
+        if (trackedChild.equals(tracker.end())) {
+          tracker.setElement(child.id, {
+            ref: child,
+            count: 1
+          }, trackedChild);
+        } else {
+          trackedChild.pointer[1].count += 1;
         }
       }
       unrefChild(child) {
-        switch (child.kind) {
-          case "channel": {
-            const trackedChild = this.channelChildren.get(child.id);
-            if (trackedChild !== void 0) {
-              trackedChild.count -= 1;
-              if (trackedChild.count === 0) {
-                this.channelChildren.delete(child.id);
-              } else {
-                this.channelChildren.set(child.id, trackedChild);
-              }
-            }
-            break;
-          }
-          case "subchannel": {
-            const trackedChild = this.subchannelChildren.get(child.id);
-            if (trackedChild !== void 0) {
-              trackedChild.count -= 1;
-              if (trackedChild.count === 0) {
-                this.subchannelChildren.delete(child.id);
-              } else {
-                this.subchannelChildren.set(child.id, trackedChild);
-              }
-            }
-            break;
-          }
-          case "socket": {
-            const trackedChild = this.socketChildren.get(child.id);
-            if (trackedChild !== void 0) {
-              trackedChild.count -= 1;
-              if (trackedChild.count === 0) {
-                this.socketChildren.delete(child.id);
-              } else {
-                this.socketChildren.set(child.id, trackedChild);
-              }
-            }
-            break;
+        const tracker = this.trackerMap[child.kind];
+        const trackedChild = tracker.getElementByKey(child.id);
+        if (trackedChild !== void 0) {
+          trackedChild.count -= 1;
+          if (trackedChild.count === 0) {
+            tracker.eraseElementByKey(child.id);
           }
         }
       }
       getChildLists() {
-        const channels2 = [];
-        for (const { ref } of this.channelChildren.values()) {
-          channels2.push(ref);
-        }
-        const subchannels2 = [];
-        for (const { ref } of this.subchannelChildren.values()) {
-          subchannels2.push(ref);
-        }
-        const sockets2 = [];
-        for (const { ref } of this.socketChildren.values()) {
-          sockets2.push(ref);
-        }
-        return { channels: channels2, subchannels: subchannels2, sockets: sockets2 };
+        return {
+          channels: this.channelChildren,
+          subchannels: this.subchannelChildren,
+          sockets: this.socketChildren
+        };
       }
     };
     exports2.ChannelzChildrenTracker = ChannelzChildrenTracker;
+    var ChannelzChildrenTrackerStub = class extends ChannelzChildrenTracker {
+      refChild() {
+      }
+      unrefChild() {
+      }
+    };
+    exports2.ChannelzChildrenTrackerStub = ChannelzChildrenTrackerStub;
     var ChannelzCallTracker = class {
       constructor() {
         this.callsStarted = 0;
@@ -11347,65 +12214,66 @@ var require_channelz = __commonJS({
       }
     };
     exports2.ChannelzCallTracker = ChannelzCallTracker;
-    var nextId = 1;
-    function getNextId() {
-      return nextId++;
-    }
-    var channels = [];
-    var subchannels = [];
-    var servers = [];
-    var sockets = [];
-    function registerChannelzChannel(name, getInfo, channelzEnabled) {
-      const id = getNextId();
-      const ref = { id, name, kind: "channel" };
-      if (channelzEnabled) {
-        channels[id] = { ref, getInfo };
+    var ChannelzCallTrackerStub = class extends ChannelzCallTracker {
+      addCallStarted() {
       }
-      return ref;
-    }
-    exports2.registerChannelzChannel = registerChannelzChannel;
-    function registerChannelzSubchannel(name, getInfo, channelzEnabled) {
-      const id = getNextId();
-      const ref = { id, name, kind: "subchannel" };
-      if (channelzEnabled) {
-        subchannels[id] = { ref, getInfo };
+      addCallSucceeded() {
       }
-      return ref;
-    }
-    exports2.registerChannelzSubchannel = registerChannelzSubchannel;
-    function registerChannelzServer(getInfo, channelzEnabled) {
-      const id = getNextId();
-      const ref = { id, kind: "server" };
-      if (channelzEnabled) {
-        servers[id] = { ref, getInfo };
+      addCallFailed() {
       }
-      return ref;
-    }
-    exports2.registerChannelzServer = registerChannelzServer;
-    function registerChannelzSocket(name, getInfo, channelzEnabled) {
-      const id = getNextId();
-      const ref = { id, name, kind: "socket" };
-      if (channelzEnabled) {
-        sockets[id] = { ref, getInfo };
+    };
+    exports2.ChannelzCallTrackerStub = ChannelzCallTrackerStub;
+    var entityMaps = {
+      [
+        "channel"
+        /* EntityTypes.channel */
+      ]: new ordered_map_1.OrderedMap(),
+      [
+        "subchannel"
+        /* EntityTypes.subchannel */
+      ]: new ordered_map_1.OrderedMap(),
+      [
+        "server"
+        /* EntityTypes.server */
+      ]: new ordered_map_1.OrderedMap(),
+      [
+        "socket"
+        /* EntityTypes.socket */
+      ]: new ordered_map_1.OrderedMap()
+    };
+    var generateRegisterFn = (kind) => {
+      let nextId = 1;
+      function getNextId() {
+        return nextId++;
       }
-      return ref;
-    }
-    exports2.registerChannelzSocket = registerChannelzSocket;
+      const entityMap = entityMaps[kind];
+      return (name, getInfo, channelzEnabled) => {
+        const id = getNextId();
+        const ref = { id, name, kind };
+        if (channelzEnabled) {
+          entityMap.setElement(id, { ref, getInfo });
+        }
+        return ref;
+      };
+    };
+    exports2.registerChannelzChannel = generateRegisterFn(
+      "channel"
+      /* EntityTypes.channel */
+    );
+    exports2.registerChannelzSubchannel = generateRegisterFn(
+      "subchannel"
+      /* EntityTypes.subchannel */
+    );
+    exports2.registerChannelzServer = generateRegisterFn(
+      "server"
+      /* EntityTypes.server */
+    );
+    exports2.registerChannelzSocket = generateRegisterFn(
+      "socket"
+      /* EntityTypes.socket */
+    );
     function unregisterChannelzRef(ref) {
-      switch (ref.kind) {
-        case "channel":
-          delete channels[ref.id];
-          return;
-        case "subchannel":
-          delete subchannels[ref.id];
-          return;
-        case "server":
-          delete servers[ref.id];
-          return;
-        case "socket":
-          delete sockets[ref.id];
-          return;
-      }
+      entityMaps[ref.kind].eraseElementByKey(ref.id);
     }
     exports2.unregisterChannelzRef = unregisterChannelzRef;
     function parseIPv6Section(addressSection) {
@@ -11482,6 +12350,14 @@ var require_channelz = __commonJS({
     }
     function getChannelMessage(channelEntry) {
       const resolvedInfo = channelEntry.getInfo();
+      const channelRef = [];
+      const subchannelRef = [];
+      resolvedInfo.children.channels.forEach((el) => {
+        channelRef.push(channelRefToMessage(el[1].ref));
+      });
+      resolvedInfo.children.subchannels.forEach((el) => {
+        subchannelRef.push(subchannelRefToMessage(el[1].ref));
+      });
       return {
         ref: channelRefToMessage(channelEntry.ref),
         data: {
@@ -11493,13 +12369,16 @@ var require_channelz = __commonJS({
           last_call_started_timestamp: dateToProtoTimestamp(resolvedInfo.callTracker.lastCallStartedTimestamp),
           trace: resolvedInfo.trace.getTraceMessage()
         },
-        channel_ref: resolvedInfo.children.channels.map((ref) => channelRefToMessage(ref)),
-        subchannel_ref: resolvedInfo.children.subchannels.map((ref) => subchannelRefToMessage(ref))
+        channel_ref: channelRef,
+        subchannel_ref: subchannelRef
       };
     }
     function GetChannel(call, callback) {
-      const channelId = Number.parseInt(call.request.channel_id);
-      const channelEntry = channels[channelId];
+      const channelId = parseInt(call.request.channel_id, 10);
+      const channelEntry = entityMaps[
+        "channel"
+        /* EntityTypes.channel */
+      ].getElementByKey(channelId);
       if (channelEntry === void 0) {
         callback({
           code: constants_1.Status.NOT_FOUND,
@@ -11510,26 +12389,28 @@ var require_channelz = __commonJS({
       callback(null, { channel: getChannelMessage(channelEntry) });
     }
     function GetTopChannels(call, callback) {
-      const maxResults = Number.parseInt(call.request.max_results);
+      const maxResults = parseInt(call.request.max_results, 10) || DEFAULT_MAX_RESULTS;
       const resultList = [];
-      let i = Number.parseInt(call.request.start_channel_id);
-      for (; i < channels.length; i++) {
-        const channelEntry = channels[i];
-        if (channelEntry === void 0) {
-          continue;
-        }
-        resultList.push(getChannelMessage(channelEntry));
-        if (resultList.length >= maxResults) {
-          break;
-        }
+      const startId = parseInt(call.request.start_channel_id, 10);
+      const channelEntries = entityMaps[
+        "channel"
+        /* EntityTypes.channel */
+      ];
+      let i;
+      for (i = channelEntries.lowerBound(startId); !i.equals(channelEntries.end()) && resultList.length < maxResults; i = i.next()) {
+        resultList.push(getChannelMessage(i.pointer[1]));
       }
       callback(null, {
         channel: resultList,
-        end: i >= servers.length
+        end: i.equals(channelEntries.end())
       });
     }
     function getServerMessage(serverEntry) {
       const resolvedInfo = serverEntry.getInfo();
+      const listenSocket = [];
+      resolvedInfo.listenerChildren.sockets.forEach((el) => {
+        listenSocket.push(socketRefToMessage(el[1].ref));
+      });
       return {
         ref: serverRefToMessage(serverEntry.ref),
         data: {
@@ -11539,12 +12420,16 @@ var require_channelz = __commonJS({
           last_call_started_timestamp: dateToProtoTimestamp(resolvedInfo.callTracker.lastCallStartedTimestamp),
           trace: resolvedInfo.trace.getTraceMessage()
         },
-        listen_socket: resolvedInfo.listenerChildren.sockets.map((ref) => socketRefToMessage(ref))
+        listen_socket: listenSocket
       };
     }
     function GetServer(call, callback) {
-      const serverId = Number.parseInt(call.request.server_id);
-      const serverEntry = servers[serverId];
+      const serverId = parseInt(call.request.server_id, 10);
+      const serverEntries = entityMaps[
+        "server"
+        /* EntityTypes.server */
+      ];
+      const serverEntry = serverEntries.getElementByKey(serverId);
       if (serverEntry === void 0) {
         callback({
           code: constants_1.Status.NOT_FOUND,
@@ -11555,27 +12440,28 @@ var require_channelz = __commonJS({
       callback(null, { server: getServerMessage(serverEntry) });
     }
     function GetServers(call, callback) {
-      const maxResults = Number.parseInt(call.request.max_results);
+      const maxResults = parseInt(call.request.max_results, 10) || DEFAULT_MAX_RESULTS;
+      const startId = parseInt(call.request.start_server_id, 10);
+      const serverEntries = entityMaps[
+        "server"
+        /* EntityTypes.server */
+      ];
       const resultList = [];
-      let i = Number.parseInt(call.request.start_server_id);
-      for (; i < servers.length; i++) {
-        const serverEntry = servers[i];
-        if (serverEntry === void 0) {
-          continue;
-        }
-        resultList.push(getServerMessage(serverEntry));
-        if (resultList.length >= maxResults) {
-          break;
-        }
+      let i;
+      for (i = serverEntries.lowerBound(startId); !i.equals(serverEntries.end()) && resultList.length < maxResults; i = i.next()) {
+        resultList.push(getServerMessage(i.pointer[1]));
       }
       callback(null, {
         server: resultList,
-        end: i >= servers.length
+        end: i.equals(serverEntries.end())
       });
     }
     function GetSubchannel(call, callback) {
-      const subchannelId = Number.parseInt(call.request.subchannel_id);
-      const subchannelEntry = subchannels[subchannelId];
+      const subchannelId = parseInt(call.request.subchannel_id, 10);
+      const subchannelEntry = entityMaps[
+        "subchannel"
+        /* EntityTypes.subchannel */
+      ].getElementByKey(subchannelId);
       if (subchannelEntry === void 0) {
         callback({
           code: constants_1.Status.NOT_FOUND,
@@ -11584,6 +12470,10 @@ var require_channelz = __commonJS({
         return;
       }
       const resolvedInfo = subchannelEntry.getInfo();
+      const listenSocket = [];
+      resolvedInfo.children.sockets.forEach((el) => {
+        listenSocket.push(socketRefToMessage(el[1].ref));
+      });
       const subchannelMessage = {
         ref: subchannelRefToMessage(subchannelEntry.ref),
         data: {
@@ -11595,7 +12485,7 @@ var require_channelz = __commonJS({
           last_call_started_timestamp: dateToProtoTimestamp(resolvedInfo.callTracker.lastCallStartedTimestamp),
           trace: resolvedInfo.trace.getTraceMessage()
         },
-        socket_ref: resolvedInfo.children.sockets.map((ref) => socketRefToMessage(ref))
+        socket_ref: listenSocket
       };
       callback(null, { subchannel: subchannelMessage });
     }
@@ -11620,8 +12510,11 @@ var require_channelz = __commonJS({
     }
     function GetSocket(call, callback) {
       var _a, _b, _c, _d, _e;
-      const socketId = Number.parseInt(call.request.socket_id);
-      const socketEntry = sockets[socketId];
+      const socketId = parseInt(call.request.socket_id, 10);
+      const socketEntry = entityMaps[
+        "socket"
+        /* EntityTypes.socket */
+      ].getElementByKey(socketId);
       if (socketEntry === void 0) {
         callback({
           code: constants_1.Status.NOT_FOUND,
@@ -11664,8 +12557,11 @@ var require_channelz = __commonJS({
       callback(null, { socket: socketMessage });
     }
     function GetServerSockets(call, callback) {
-      const serverId = Number.parseInt(call.request.server_id);
-      const serverEntry = servers[serverId];
+      const serverId = parseInt(call.request.server_id, 10);
+      const serverEntry = entityMaps[
+        "server"
+        /* EntityTypes.server */
+      ].getElementByKey(serverId);
       if (serverEntry === void 0) {
         callback({
           code: constants_1.Status.NOT_FOUND,
@@ -11673,23 +12569,18 @@ var require_channelz = __commonJS({
         });
         return;
       }
-      const startId = Number.parseInt(call.request.start_socket_id);
-      const maxResults = Number.parseInt(call.request.max_results);
+      const startId = parseInt(call.request.start_socket_id, 10);
+      const maxResults = parseInt(call.request.max_results, 10) || DEFAULT_MAX_RESULTS;
       const resolvedInfo = serverEntry.getInfo();
-      const allSockets = resolvedInfo.sessionChildren.sockets.sort((ref1, ref2) => ref1.id - ref2.id);
+      const allSockets = resolvedInfo.sessionChildren.sockets;
       const resultList = [];
-      let i = 0;
-      for (; i < allSockets.length; i++) {
-        if (allSockets[i].id >= startId) {
-          resultList.push(socketRefToMessage(allSockets[i]));
-          if (resultList.length >= maxResults) {
-            break;
-          }
-        }
+      let i;
+      for (i = allSockets.lowerBound(startId); !i.equals(allSockets.end()) && resultList.length < maxResults; i = i.next()) {
+        resultList.push(socketRefToMessage(i.pointer[1].ref));
       }
       callback(null, {
         socket_ref: resultList,
-        end: i >= allSockets.length
+        end: i.equals(allSockets.end())
       });
     }
     function getChannelzHandlers() {
@@ -11730,9 +12621,9 @@ var require_channelz = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/subchannel.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/subchannel.js
 var require_subchannel = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/subchannel.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/subchannel.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.Subchannel = void 0;
@@ -11769,9 +12660,6 @@ var require_subchannel = __commonJS({
         this.stateListeners = /* @__PURE__ */ new Set();
         this.refcount = 0;
         this.channelzEnabled = true;
-        this.callTracker = new channelz_1.ChannelzCallTracker();
-        this.childrenTracker = new channelz_1.ChannelzChildrenTracker();
-        this.streamTracker = new channelz_1.ChannelzCallTracker();
         const backoffOptions = {
           initialDelay: options["grpc.initial_reconnect_backoff_ms"],
           maxDelay: options["grpc.max_reconnect_backoff_ms"]
@@ -11784,12 +12672,18 @@ var require_subchannel = __commonJS({
         this.keepaliveTime = (_a = options["grpc.keepalive_time_ms"]) !== null && _a !== void 0 ? _a : -1;
         if (options["grpc.enable_channelz"] === 0) {
           this.channelzEnabled = false;
+          this.channelzTrace = new channelz_1.ChannelzTraceStub();
+          this.callTracker = new channelz_1.ChannelzCallTrackerStub();
+          this.childrenTracker = new channelz_1.ChannelzChildrenTrackerStub();
+          this.streamTracker = new channelz_1.ChannelzCallTrackerStub();
+        } else {
+          this.channelzTrace = new channelz_1.ChannelzTrace();
+          this.callTracker = new channelz_1.ChannelzCallTracker();
+          this.childrenTracker = new channelz_1.ChannelzChildrenTracker();
+          this.streamTracker = new channelz_1.ChannelzCallTracker();
         }
-        this.channelzTrace = new channelz_1.ChannelzTrace();
         this.channelzRef = (0, channelz_1.registerChannelzSubchannel)(this.subchannelAddressString, () => this.getChannelzInfo(), this.channelzEnabled);
-        if (this.channelzEnabled) {
-          this.channelzTrace.addTrace("CT_INFO", "Subchannel created");
-        }
+        this.channelzTrace.addTrace("CT_INFO", "Subchannel created");
         this.trace("Subchannel constructed with options " + JSON.stringify(options, void 0, 2));
       }
       getChannelzInfo() {
@@ -11912,12 +12806,8 @@ var require_subchannel = __commonJS({
         this.refTrace("refcount " + this.refcount + " -> " + (this.refcount - 1));
         this.refcount -= 1;
         if (this.refcount === 0) {
-          if (this.channelzEnabled) {
-            this.channelzTrace.addTrace("CT_INFO", "Shutting down");
-          }
-          if (this.channelzEnabled) {
-            (0, channelz_1.unregisterChannelzRef)(this.channelzRef);
-          }
+          this.channelzTrace.addTrace("CT_INFO", "Shutting down");
+          (0, channelz_1.unregisterChannelzRef)(this.channelzRef);
           process.nextTick(() => {
             this.transitionToState([connectivity_state_1.ConnectivityState.CONNECTING, connectivity_state_1.ConnectivityState.READY], connectivity_state_1.ConnectivityState.IDLE);
           });
@@ -12027,9 +12917,9 @@ var require_subchannel = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/resolver-dns.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/resolver-dns.js
 var require_resolver_dns = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/resolver-dns.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/resolver-dns.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.setup = exports2.DEFAULT_PORT = void 0;
@@ -12206,12 +13096,13 @@ var require_resolver_dns = __commonJS({
       startNextResolutionTimer() {
         var _a, _b;
         clearTimeout(this.nextResolutionTimer);
-        this.nextResolutionTimer = (_b = (_a = setTimeout(() => {
+        this.nextResolutionTimer = setTimeout(() => {
           this.stopNextResolutionTimer();
           if (this.continueResolving) {
             this.startResolutionWithBackoff();
           }
-        }, this.minTimeBetweenResolutionsMs)).unref) === null || _b === void 0 ? void 0 : _b.call(_a);
+        }, this.minTimeBetweenResolutionsMs);
+        (_b = (_a = this.nextResolutionTimer).unref) === null || _b === void 0 ? void 0 : _b.call(_a);
         this.isNextResolutionTimerRunning = true;
       }
       stopNextResolutionTimer() {
@@ -12274,9 +13165,9 @@ var require_resolver_dns = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/http_proxy.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/http_proxy.js
 var require_http_proxy = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/http_proxy.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/http_proxy.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.getProxiedConnection = exports2.mapProxyName = void 0;
@@ -12477,9 +13368,9 @@ var require_http_proxy = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/stream-decoder.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/stream-decoder.js
 var require_stream_decoder = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/stream-decoder.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/stream-decoder.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.StreamDecoder = void 0;
@@ -12558,9 +13449,9 @@ var require_stream_decoder = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/subchannel-call.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/subchannel-call.js
 var require_subchannel_call = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/subchannel-call.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/subchannel-call.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.Http2SubchannelCall = void 0;
@@ -12580,6 +13471,37 @@ var require_subchannel_call = __commonJS({
       }
       return "Unknown system error " + errno;
     }
+    function mapHttpStatusCode(code) {
+      const details = `Received HTTP status code ${code}`;
+      let mappedStatusCode;
+      switch (code) {
+        case 400:
+          mappedStatusCode = constants_1.Status.INTERNAL;
+          break;
+        case 401:
+          mappedStatusCode = constants_1.Status.UNAUTHENTICATED;
+          break;
+        case 403:
+          mappedStatusCode = constants_1.Status.PERMISSION_DENIED;
+          break;
+        case 404:
+          mappedStatusCode = constants_1.Status.UNIMPLEMENTED;
+          break;
+        case 429:
+        case 502:
+        case 503:
+        case 504:
+          mappedStatusCode = constants_1.Status.UNAVAILABLE;
+          break;
+        default:
+          mappedStatusCode = constants_1.Status.UNKNOWN;
+      }
+      return {
+        code: mappedStatusCode,
+        details,
+        metadata: new metadata_1.Metadata()
+      };
+    }
     var Http2SubchannelCall = class {
       constructor(http2Stream, callEventTracker, listener, transport, callId) {
         this.http2Stream = http2Stream;
@@ -12594,37 +13516,16 @@ var require_subchannel_call = __commonJS({
         this.readsClosed = false;
         this.statusOutput = false;
         this.unpushedReadMessages = [];
-        this.mappedStatusCode = constants_1.Status.UNKNOWN;
         this.finalStatus = null;
         this.internalError = null;
+        this.serverEndedCall = false;
         http2Stream.on("response", (headers, flags) => {
           let headersString = "";
           for (const header of Object.keys(headers)) {
             headersString += "		" + header + ": " + headers[header] + "\n";
           }
           this.trace("Received server headers:\n" + headersString);
-          switch (headers[":status"]) {
-            case 400:
-              this.mappedStatusCode = constants_1.Status.INTERNAL;
-              break;
-            case 401:
-              this.mappedStatusCode = constants_1.Status.UNAUTHENTICATED;
-              break;
-            case 403:
-              this.mappedStatusCode = constants_1.Status.PERMISSION_DENIED;
-              break;
-            case 404:
-              this.mappedStatusCode = constants_1.Status.UNIMPLEMENTED;
-              break;
-            case 429:
-            case 502:
-            case 503:
-            case 504:
-              this.mappedStatusCode = constants_1.Status.UNAVAILABLE;
-              break;
-            default:
-              this.mappedStatusCode = constants_1.Status.UNKNOWN;
-          }
+          this.httpStatusCode = headers[":status"];
           if (flags & http2.constants.NGHTTP2_FLAG_END_STREAM) {
             this.handleTrailers(headers);
           } else {
@@ -12662,6 +13563,7 @@ var require_subchannel_call = __commonJS({
           this.maybeOutputStatus();
         });
         http2Stream.on("close", () => {
+          this.serverEndedCall = true;
           process.nextTick(() => {
             var _a;
             this.trace("HTTP/2 stream closed with code " + http2Stream.rstCode);
@@ -12675,8 +13577,14 @@ var require_subchannel_call = __commonJS({
                 if (this.finalStatus !== null) {
                   return;
                 }
-                code = constants_1.Status.INTERNAL;
-                details = `Received RST_STREAM with code ${http2Stream.rstCode}`;
+                if (this.httpStatusCode && this.httpStatusCode !== 200) {
+                  const mappedStatus = mapHttpStatusCode(this.httpStatusCode);
+                  code = mappedStatus.code;
+                  details = mappedStatus.details;
+                } else {
+                  code = constants_1.Status.INTERNAL;
+                  details = `Received RST_STREAM with code ${http2Stream.rstCode} (Call ended without gRPC status)`;
+                }
                 break;
               case http2.constants.NGHTTP2_REFUSED_STREAM:
                 code = constants_1.Status.UNAVAILABLE;
@@ -12726,6 +13634,9 @@ var require_subchannel_call = __commonJS({
           }
           this.callEventTracker.onStreamEnd(false);
         });
+      }
+      getDeadlineInfo() {
+        return [`remote_addr=${this.getPeer()}`];
       }
       onDisconnect() {
         this.endCall({
@@ -12790,6 +13701,7 @@ var require_subchannel_call = __commonJS({
         }
       }
       handleTrailers(headers) {
+        this.serverEndedCall = true;
         this.callEventTracker.onStreamEnd(true);
         let headersString = "";
         for (const header of Object.keys(headers)) {
@@ -12803,31 +13715,46 @@ var require_subchannel_call = __commonJS({
           metadata = new metadata_1.Metadata();
         }
         const metadataMap = metadata.getMap();
-        let code = this.mappedStatusCode;
-        if (code === constants_1.Status.UNKNOWN && typeof metadataMap["grpc-status"] === "string") {
+        let status2;
+        if (typeof metadataMap["grpc-status"] === "string") {
           const receivedStatus = Number(metadataMap["grpc-status"]);
-          if (receivedStatus in constants_1.Status) {
-            code = receivedStatus;
-            this.trace("received status code " + receivedStatus + " from server");
-          }
+          this.trace("received status code " + receivedStatus + " from server");
           metadata.remove("grpc-status");
-        }
-        let details = "";
-        if (typeof metadataMap["grpc-message"] === "string") {
-          try {
-            details = decodeURI(metadataMap["grpc-message"]);
-          } catch (e) {
-            details = metadataMap["grpc-message"];
+          let details = "";
+          if (typeof metadataMap["grpc-message"] === "string") {
+            try {
+              details = decodeURI(metadataMap["grpc-message"]);
+            } catch (e) {
+              details = metadataMap["grpc-message"];
+            }
+            metadata.remove("grpc-message");
+            this.trace('received status details string "' + details + '" from server');
           }
-          metadata.remove("grpc-message");
-          this.trace('received status details string "' + details + '" from server');
+          status2 = {
+            code: receivedStatus,
+            details,
+            metadata
+          };
+        } else if (this.httpStatusCode) {
+          status2 = mapHttpStatusCode(this.httpStatusCode);
+          status2.metadata = metadata;
+        } else {
+          status2 = {
+            code: constants_1.Status.UNKNOWN,
+            details: "No status information received",
+            metadata
+          };
         }
-        const status2 = { code, details, metadata };
         this.endCall(status2);
       }
       destroyHttp2Stream() {
         var _a;
-        if (!this.http2Stream.destroyed) {
+        if (this.http2Stream.destroyed) {
+          return;
+        }
+        if (this.serverEndedCall) {
+          this.http2Stream.end();
+        } else {
           let code;
           if (((_a = this.finalStatus) === null || _a === void 0 ? void 0 : _a.code) === constants_1.Status.OK) {
             code = http2.constants.NGHTTP2_NO_ERROR;
@@ -12902,9 +13829,9 @@ var require_subchannel_call = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/call-number.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/call-number.js
 var require_call_number = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/call-number.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/call-number.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.getNextCallNumber = void 0;
@@ -12916,9 +13843,9 @@ var require_call_number = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/transport.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/transport.js
 var require_transport = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/transport.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/transport.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.Http2SubchannelConnector = void 0;
@@ -12954,7 +13881,6 @@ var require_transport = __commonJS({
         this.disconnectListeners = [];
         this.disconnectHandled = false;
         this.channelzEnabled = true;
-        this.streamTracker = new channelz_1.ChannelzCallTracker();
         this.keepalivesSent = 0;
         this.messagesSent = 0;
         this.messagesReceived = 0;
@@ -12963,6 +13889,9 @@ var require_transport = __commonJS({
         this.subchannelAddressString = (0, subchannel_address_1.subchannelAddressToString)(subchannelAddress);
         if (options["grpc.enable_channelz"] === 0) {
           this.channelzEnabled = false;
+          this.streamTracker = new channelz_1.ChannelzCallTrackerStub();
+        } else {
+          this.streamTracker = new channelz_1.ChannelzCallTracker();
         }
         this.channelzRef = (0, channelz_1.registerChannelzSocket)(this.subchannelAddressString, () => this.getChannelzInfo(), this.channelzEnabled);
         this.userAgent = [
@@ -13156,9 +14085,10 @@ var require_transport = __commonJS({
           this.maybeSendPing();
         } else if (!this.keepaliveTimerId && !this.keepaliveTimeoutId) {
           this.keepaliveTrace("Starting keepalive timer for " + this.keepaliveTimeMs + "ms");
-          this.keepaliveTimerId = (_b = (_a = setTimeout(() => {
+          this.keepaliveTimerId = setTimeout(() => {
             this.maybeSendPing();
-          }, this.keepaliveTimeMs)).unref) === null || _b === void 0 ? void 0 : _b.call(_a);
+          }, this.keepaliveTimeMs);
+          (_b = (_a = this.keepaliveTimerId).unref) === null || _b === void 0 ? void 0 : _b.call(_a);
         }
       }
       stopKeepalivePings() {
@@ -13282,7 +14212,7 @@ var require_transport = __commonJS({
           return Promise.reject();
         }
         return new Promise((resolve, reject) => {
-          var _a, _b, _c;
+          var _a, _b, _c, _d;
           let remoteName;
           if (proxyConnectionResult.realTarget) {
             remoteName = (0, uri_parser_1.uriToString)(proxyConnectionResult.realTarget);
@@ -13304,12 +14234,13 @@ var require_transport = __commonJS({
             addressScheme = "https://";
             if (options["grpc.ssl_target_name_override"]) {
               const sslTargetNameOverride = options["grpc.ssl_target_name_override"];
+              const originalCheckServerIdentity = (_b = connectionOptions.checkServerIdentity) !== null && _b !== void 0 ? _b : tls_1.checkServerIdentity;
               connectionOptions.checkServerIdentity = (host, cert) => {
-                return (0, tls_1.checkServerIdentity)(sslTargetNameOverride, cert);
+                return originalCheckServerIdentity(sslTargetNameOverride, cert);
               };
               connectionOptions.servername = sslTargetNameOverride;
             } else {
-              const authorityHostname = (_c = (_b = (0, uri_parser_1.splitHostPort)(targetAuthority)) === null || _b === void 0 ? void 0 : _b.host) !== null && _c !== void 0 ? _c : "localhost";
+              const authorityHostname = (_d = (_c = (0, uri_parser_1.splitHostPort)(targetAuthority)) === null || _c === void 0 ? void 0 : _c.host) !== null && _d !== void 0 ? _d : "localhost";
               connectionOptions.servername = authorityHostname;
             }
             if (proxyConnectionResult.socket) {
@@ -13349,7 +14280,7 @@ var require_transport = __commonJS({
         });
       }
       connect(address, credentials2, options) {
-        var _a, _b;
+        var _a, _b, _c;
         if (this.isShutdown) {
           return Promise.reject();
         }
@@ -13358,17 +14289,18 @@ var require_transport = __commonJS({
           connectionOptions.ALPNProtocols = ["h2"];
           if (options["grpc.ssl_target_name_override"]) {
             const sslTargetNameOverride = options["grpc.ssl_target_name_override"];
+            const originalCheckServerIdentity = (_a = connectionOptions.checkServerIdentity) !== null && _a !== void 0 ? _a : tls_1.checkServerIdentity;
             connectionOptions.checkServerIdentity = (host, cert) => {
-              return (0, tls_1.checkServerIdentity)(sslTargetNameOverride, cert);
+              return originalCheckServerIdentity(sslTargetNameOverride, cert);
             };
             connectionOptions.servername = sslTargetNameOverride;
           } else {
             if ("grpc.http_connect_target" in options) {
-              const targetPath = (0, resolver_1.getDefaultAuthority)((_a = (0, uri_parser_1.parseUri)(options["grpc.http_connect_target"])) !== null && _a !== void 0 ? _a : {
+              const targetPath = (0, resolver_1.getDefaultAuthority)((_b = (0, uri_parser_1.parseUri)(options["grpc.http_connect_target"])) !== null && _b !== void 0 ? _b : {
                 path: "localhost"
               });
               const hostPort = (0, uri_parser_1.splitHostPort)(targetPath);
-              connectionOptions.servername = (_b = hostPort === null || hostPort === void 0 ? void 0 : hostPort.host) !== null && _b !== void 0 ? _b : targetPath;
+              connectionOptions.servername = (_c = hostPort === null || hostPort === void 0 ? void 0 : hostPort.host) !== null && _c !== void 0 ? _c : targetPath;
             }
           }
           if (options["grpc-node.tls_enable_trace"]) {
@@ -13388,9 +14320,9 @@ var require_transport = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/subchannel-pool.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/subchannel-pool.js
 var require_subchannel_pool = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/subchannel-pool.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/subchannel-pool.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.getSubchannelPool = exports2.SubchannelPool = void 0;
@@ -13486,9 +14418,9 @@ var require_subchannel_pool = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/filter-stack.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/filter-stack.js
 var require_filter_stack = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/filter-stack.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/filter-stack.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.FilterStackFactory = exports2.FilterStack = void 0;
@@ -13557,9 +14489,9 @@ var require_filter_stack = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/compression-algorithms.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/compression-algorithms.js
 var require_compression_algorithms = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/compression-algorithms.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/compression-algorithms.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.CompressionAlgorithms = void 0;
@@ -13572,9 +14504,9 @@ var require_compression_algorithms = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/filter.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/filter.js
 var require_filter = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/filter.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/filter.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.BaseFilter = void 0;
@@ -13599,9 +14531,9 @@ var require_filter = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/compression-filter.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/compression-filter.js
 var require_compression_filter = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/compression-filter.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/compression-filter.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.CompressionFilterFactory = exports2.CompressionFilter = void 0;
@@ -13816,9 +14748,9 @@ var require_compression_filter = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/max-message-size-filter.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/max-message-size-filter.js
 var require_max_message_size_filter = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/max-message-size-filter.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/max-message-size-filter.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.MaxMessageSizeFilterFactory = exports2.MaxMessageSizeFilter = void 0;
@@ -13883,12 +14815,12 @@ var require_max_message_size_filter = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/deadline.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/deadline.js
 var require_deadline = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/deadline.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/deadline.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
-    exports2.deadlineToString = exports2.getRelativeTimeout = exports2.getDeadlineTimeoutString = exports2.minDeadline = void 0;
+    exports2.formatDateDifference = exports2.deadlineToString = exports2.getRelativeTimeout = exports2.getDeadlineTimeoutString = exports2.minDeadline = void 0;
     function minDeadline(...deadlineList) {
       let minValue = Infinity;
       for (const deadline of deadlineList) {
@@ -13948,12 +14880,16 @@ var require_deadline = __commonJS({
       }
     }
     exports2.deadlineToString = deadlineToString;
+    function formatDateDifference(startDate, endDate) {
+      return ((endDate.getTime() - startDate.getTime()) / 1e3).toFixed(3) + "s";
+    }
+    exports2.formatDateDifference = formatDateDifference;
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/control-plane-status.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/control-plane-status.js
 var require_control_plane_status = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/control-plane-status.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/control-plane-status.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.restrictControlPlaneStatusCode = void 0;
@@ -13982,9 +14918,9 @@ var require_control_plane_status = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/load-balancing-call.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/load-balancing-call.js
 var require_load_balancing_call = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/load-balancing-call.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/load-balancing-call.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.LoadBalancingCall = void 0;
@@ -14016,6 +14952,7 @@ var require_load_balancing_call = __commonJS({
         this.metadata = null;
         this.listener = null;
         this.onCallEnded = null;
+        this.childStartTime = null;
         const splitPath = this.methodName.split("/");
         let serviceName = "";
         if (splitPath.length >= 2) {
@@ -14023,6 +14960,27 @@ var require_load_balancing_call = __commonJS({
         }
         const hostname = (_b = (_a = (0, uri_parser_1.splitHostPort)(this.host)) === null || _a === void 0 ? void 0 : _a.host) !== null && _b !== void 0 ? _b : "localhost";
         this.serviceUrl = `https://${hostname}/${serviceName}`;
+        this.startTime = /* @__PURE__ */ new Date();
+      }
+      getDeadlineInfo() {
+        var _a, _b;
+        const deadlineInfo = [];
+        if (this.childStartTime) {
+          if (this.childStartTime > this.startTime) {
+            if ((_a = this.metadata) === null || _a === void 0 ? void 0 : _a.getOptions().waitForReady) {
+              deadlineInfo.push("wait_for_ready");
+            }
+            deadlineInfo.push(`LB pick: ${(0, deadline_1.formatDateDifference)(this.startTime, this.childStartTime)}`);
+          }
+          deadlineInfo.push(...this.child.getDeadlineInfo());
+          return deadlineInfo;
+        } else {
+          if ((_b = this.metadata) === null || _b === void 0 ? void 0 : _b.getOptions().waitForReady) {
+            deadlineInfo.push("wait_for_ready");
+          }
+          deadlineInfo.push("Waiting for LB pick");
+        }
+        return deadlineInfo;
       }
       trace(text) {
         logging.trace(constants_1.LogVerbosity.DEBUG, TRACER_NAME, "[" + this.callNumber + "] " + text);
@@ -14031,7 +14989,7 @@ var require_load_balancing_call = __commonJS({
         var _a, _b;
         if (!this.ended) {
           this.ended = true;
-          this.trace("ended with status: code=" + status2.code + ' details="' + status2.details + '"');
+          this.trace("ended with status: code=" + status2.code + ' details="' + status2.details + '" start time=' + this.startTime.toISOString());
           const finalStatus = Object.assign(Object.assign({}, status2), { progress });
           (_a = this.listener) === null || _a === void 0 ? void 0 : _a.onReceiveStatus(finalStatus);
           (_b = this.onCallEnded) === null || _b === void 0 ? void 0 : _b.call(this, finalStatus.code);
@@ -14093,6 +15051,7 @@ var require_load_balancing_call = __commonJS({
                     }
                   }
                 });
+                this.childStartTime = /* @__PURE__ */ new Date();
               } catch (error) {
                 this.trace("Failed to start call on picked subchannel " + subchannelString + " with error " + error.message);
                 this.outputStatus({
@@ -14195,9 +15154,9 @@ var require_load_balancing_call = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/resolving-call.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/resolving-call.js
 var require_resolving_call = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/resolving-call.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/resolving-call.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.ResolvingCall = void 0;
@@ -14228,6 +15187,9 @@ var require_resolving_call = __commonJS({
         this.deadlineTimer = setTimeout(() => {
         }, 0);
         this.filterStack = null;
+        this.deadlineStartTime = null;
+        this.configReceivedTime = null;
+        this.childStartTime = null;
         this.deadline = options.deadline;
         this.host = options.host;
         if (options.parentCall) {
@@ -14249,12 +15211,37 @@ var require_resolving_call = __commonJS({
       }
       runDeadlineTimer() {
         clearTimeout(this.deadlineTimer);
+        this.deadlineStartTime = /* @__PURE__ */ new Date();
         this.trace("Deadline: " + (0, deadline_1.deadlineToString)(this.deadline));
         const timeout = (0, deadline_1.getRelativeTimeout)(this.deadline);
         if (timeout !== Infinity) {
           this.trace("Deadline will be reached in " + timeout + "ms");
           const handleDeadline = () => {
-            this.cancelWithStatus(constants_1.Status.DEADLINE_EXCEEDED, "Deadline exceeded");
+            if (!this.deadlineStartTime) {
+              this.cancelWithStatus(constants_1.Status.DEADLINE_EXCEEDED, "Deadline exceeded");
+              return;
+            }
+            const deadlineInfo = [];
+            const deadlineEndTime = /* @__PURE__ */ new Date();
+            deadlineInfo.push(`Deadline exceeded after ${(0, deadline_1.formatDateDifference)(this.deadlineStartTime, deadlineEndTime)}`);
+            if (this.configReceivedTime) {
+              if (this.configReceivedTime > this.deadlineStartTime) {
+                deadlineInfo.push(`name resolution: ${(0, deadline_1.formatDateDifference)(this.deadlineStartTime, this.configReceivedTime)}`);
+              }
+              if (this.childStartTime) {
+                if (this.childStartTime > this.configReceivedTime) {
+                  deadlineInfo.push(`metadata filters: ${(0, deadline_1.formatDateDifference)(this.configReceivedTime, this.childStartTime)}`);
+                }
+              } else {
+                deadlineInfo.push("waiting for metadata filters");
+              }
+            } else {
+              deadlineInfo.push("waiting for name resolution");
+            }
+            if (this.child) {
+              deadlineInfo.push(...this.child.getDeadlineInfo());
+            }
+            this.cancelWithStatus(constants_1.Status.DEADLINE_EXCEEDED, deadlineInfo.join(","));
           };
           if (timeout <= 0) {
             process.nextTick(handleDeadline);
@@ -14314,6 +15301,7 @@ var require_resolving_call = __commonJS({
           }
           return;
         }
+        this.configReceivedTime = /* @__PURE__ */ new Date();
         const config = configResult.config;
         if (config.status !== constants_1.Status.OK) {
           const { code, details } = (0, control_plane_status_1.restrictControlPlaneStatusCode)(config.status, "Failed to route call to method " + this.method);
@@ -14336,6 +15324,7 @@ var require_resolving_call = __commonJS({
         this.filterStack.sendMetadata(Promise.resolve(this.metadata)).then((filteredMetadata) => {
           this.child = this.channel.createInnerCall(config, this.method, this.host, this.credentials, this.deadline);
           this.trace("Created child [" + this.child.getCallNumber() + "]");
+          this.childStartTime = /* @__PURE__ */ new Date();
           this.child.start(filteredMetadata, {
             onReceiveMetadata: (metadata) => {
               this.trace("Received metadata");
@@ -14442,13 +15431,14 @@ var require_resolving_call = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/retrying-call.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/retrying-call.js
 var require_retrying_call = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/retrying-call.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/retrying-call.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.RetryingCall = exports2.MessageBufferTracker = exports2.RetryThrottler = void 0;
     var constants_1 = require_constants();
+    var deadline_1 = require_deadline();
     var metadata_1 = require_metadata();
     var logging = require_logging();
     var TRACER_NAME = "retrying_call";
@@ -14546,6 +15536,22 @@ var require_retrying_call = __commonJS({
         } else {
           this.state = "TRANSPARENT_ONLY";
         }
+        this.startTime = /* @__PURE__ */ new Date();
+      }
+      getDeadlineInfo() {
+        if (this.underlyingCalls.length === 0) {
+          return [];
+        }
+        const deadlineInfo = [];
+        const latestCall = this.underlyingCalls[this.underlyingCalls.length - 1];
+        if (this.underlyingCalls.length > 1) {
+          deadlineInfo.push(`previous attempts: ${this.underlyingCalls.length - 1}`);
+        }
+        if (latestCall.startTime > this.startTime) {
+          deadlineInfo.push(`time to current attempt start: ${(0, deadline_1.formatDateDifference)(this.startTime, latestCall.startTime)}`);
+        }
+        deadlineInfo.push(...latestCall.call.getDeadlineInfo());
+        return deadlineInfo;
       }
       getCallNumber() {
         return this.callNumber;
@@ -14554,7 +15560,7 @@ var require_retrying_call = __commonJS({
         logging.trace(constants_1.LogVerbosity.DEBUG, TRACER_NAME, "[" + this.callNumber + "] " + text);
       }
       reportStatus(statusObject) {
-        this.trace("ended with status: code=" + statusObject.code + ' details="' + statusObject.details + '"');
+        this.trace("ended with status: code=" + statusObject.code + ' details="' + statusObject.details + '" start time=' + this.startTime.toISOString());
         this.bufferTracker.freeAll(this.callNumber);
         this.writeBufferOffset = this.writeBufferOffset + this.writeBuffer.length;
         this.writeBuffer = [];
@@ -14846,7 +15852,8 @@ var require_retrying_call = __commonJS({
         this.underlyingCalls.push({
           state: "ACTIVE",
           call: child,
-          nextMessageToSend: 0
+          nextMessageToSend: 0,
+          startTime: /* @__PURE__ */ new Date()
         });
         const previousAttempts = this.attempts - 1;
         const initialMetadata = this.initialMetadata.clone();
@@ -15005,9 +16012,9 @@ var require_retrying_call = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/subchannel-interface.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/subchannel-interface.js
 var require_subchannel_interface = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/subchannel-interface.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/subchannel-interface.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.BaseSubchannelWrapper = void 0;
@@ -15082,9 +16089,9 @@ var require_subchannel_interface = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/internal-channel.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/internal-channel.js
 var require_internal_channel = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/internal-channel.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/internal-channel.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.InternalChannel = void 0;
@@ -15539,9 +16546,9 @@ var require_internal_channel = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/channel.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/channel.js
 var require_channel = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/channel.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/channel.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.ChannelImplementation = void 0;
@@ -15596,9 +16603,9 @@ var require_channel = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/server-call.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/server-call.js
 var require_server_call = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/server-call.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/server-call.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.ServerDuplexStreamImpl = exports2.ServerWritableStreamImpl = exports2.ServerReadableStreamImpl = exports2.ServerUnaryCallImpl = exports2.serverErrorToStatus = void 0;
@@ -15705,8 +16712,8 @@ var require_server_call = __commonJS({
       }
       _final(callback) {
         var _a;
-        this.call.sendStatus(Object.assign(Object.assign({}, this.pendingStatus), { metadata: (_a = this.pendingStatus.metadata) !== null && _a !== void 0 ? _a : this.trailingMetadata }));
         callback(null);
+        this.call.sendStatus(Object.assign(Object.assign({}, this.pendingStatus), { metadata: (_a = this.pendingStatus.metadata) !== null && _a !== void 0 ? _a : this.trailingMetadata }));
       }
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       end(metadata) {
@@ -15754,8 +16761,8 @@ var require_server_call = __commonJS({
       }
       _final(callback) {
         var _a;
-        this.call.sendStatus(Object.assign(Object.assign({}, this.pendingStatus), { metadata: (_a = this.pendingStatus.metadata) !== null && _a !== void 0 ? _a : this.trailingMetadata }));
         callback(null);
+        this.call.sendStatus(Object.assign(Object.assign({}, this.pendingStatus), { metadata: (_a = this.pendingStatus.metadata) !== null && _a !== void 0 ? _a : this.trailingMetadata }));
       }
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       end(metadata) {
@@ -15769,9 +16776,9 @@ var require_server_call = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/server-credentials.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/server-credentials.js
 var require_server_credentials = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/server-credentials.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/server-credentials.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.ServerCredentials = void 0;
@@ -15914,9 +16921,9 @@ var require_server_credentials = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/server-interceptors.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/server-interceptors.js
 var require_server_interceptors = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/server-interceptors.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/server-interceptors.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.getServerInterceptingCall = exports2.BaseServerInterceptingCall = exports2.ServerInterceptingCall = exports2.ResponderBuilder = exports2.isInterceptingServerListener = exports2.ServerListenerBuilder = void 0;
@@ -16112,13 +17119,19 @@ var require_server_interceptors = __commonJS({
     };
     var ServerInterceptingCall = class {
       constructor(nextCall, responder) {
+        var _a, _b, _c, _d;
         this.nextCall = nextCall;
         this.processingMetadata = false;
         this.processingMessage = false;
         this.pendingMessage = null;
         this.pendingMessageCallback = null;
         this.pendingStatus = null;
-        this.responder = Object.assign(Object.assign({}, defaultResponder), responder);
+        this.responder = {
+          start: (_a = responder === null || responder === void 0 ? void 0 : responder.start) !== null && _a !== void 0 ? _a : defaultResponder.start,
+          sendMetadata: (_b = responder === null || responder === void 0 ? void 0 : responder.sendMetadata) !== null && _b !== void 0 ? _b : defaultResponder.sendMetadata,
+          sendMessage: (_c = responder === null || responder === void 0 ? void 0 : responder.sendMessage) !== null && _c !== void 0 ? _c : defaultResponder.sendMessage,
+          sendStatus: (_d = responder === null || responder === void 0 ? void 0 : responder.sendStatus) !== null && _d !== void 0 ? _d : defaultResponder.sendStatus
+        };
       }
       processPendingMessage() {
         if (this.pendingMessageCallback) {
@@ -16135,7 +17148,13 @@ var require_server_interceptors = __commonJS({
       }
       start(listener) {
         this.responder.start((interceptedListener) => {
-          const fullInterceptedListener = Object.assign(Object.assign({}, defaultServerListener), interceptedListener);
+          var _a, _b, _c, _d;
+          const fullInterceptedListener = {
+            onReceiveMetadata: (_a = interceptedListener === null || interceptedListener === void 0 ? void 0 : interceptedListener.onReceiveMetadata) !== null && _a !== void 0 ? _a : defaultServerListener.onReceiveMetadata,
+            onReceiveMessage: (_b = interceptedListener === null || interceptedListener === void 0 ? void 0 : interceptedListener.onReceiveMessage) !== null && _b !== void 0 ? _b : defaultServerListener.onReceiveMessage,
+            onReceiveHalfClose: (_c = interceptedListener === null || interceptedListener === void 0 ? void 0 : interceptedListener.onReceiveHalfClose) !== null && _c !== void 0 ? _c : defaultServerListener.onReceiveHalfClose,
+            onCancel: (_d = interceptedListener === null || interceptedListener === void 0 ? void 0 : interceptedListener.onCancel) !== null && _d !== void 0 ? _d : defaultServerListener.onCancel
+          };
           const finalInterceptingListener = new InterceptingServerListenerImpl(fullInterceptedListener, listener);
           this.nextCall.start(finalInterceptingListener);
         });
@@ -16493,9 +17512,8 @@ var require_server_interceptors = __commonJS({
         if (this.checkCancelled()) {
           return;
         }
-        this.notifyOnCancel();
         trace("Request to method " + ((_a = this.handler) === null || _a === void 0 ? void 0 : _a.path) + " ended with status code: " + constants_1.Status[status2.code] + " details: " + status2.details);
-        if (this.stream.headersSent) {
+        if (this.metadataSent) {
           if (!this.wantTrailers) {
             this.wantTrailers = true;
             this.stream.once("wantTrailers", () => {
@@ -16507,8 +17525,11 @@ var require_server_interceptors = __commonJS({
               }
               const trailersToSend = Object.assign({ [GRPC_STATUS_HEADER]: status2.code, [GRPC_MESSAGE_HEADER]: encodeURI(status2.details) }, (_a2 = status2.metadata) === null || _a2 === void 0 ? void 0 : _a2.toHttp2Headers());
               this.stream.sendTrailers(trailersToSend);
+              this.notifyOnCancel();
             });
             this.stream.end();
+          } else {
+            this.notifyOnCancel();
           }
         } else {
           if (this.callEventTracker && !this.streamEnded) {
@@ -16518,6 +17539,7 @@ var require_server_interceptors = __commonJS({
           }
           const trailersToSend = Object.assign(Object.assign({ [GRPC_STATUS_HEADER]: status2.code, [GRPC_MESSAGE_HEADER]: encodeURI(status2.details) }, defaultResponseHeaders), (_b = status2.metadata) === null || _b === void 0 ? void 0 : _b.toHttp2Headers());
           this.stream.respond(trailersToSend, { endStream: true });
+          this.notifyOnCancel();
         }
       }
       startRead() {
@@ -16569,9 +17591,9 @@ var require_server_interceptors = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/server.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/server.js
 var require_server = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/server.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/server.js"(exports2) {
     "use strict";
     var __runInitializers = exports2 && exports2.__runInitializers || function(thisArg, initializers, value) {
       var useValue = arguments.length > 2;
@@ -16582,8 +17604,7 @@ var require_server = __commonJS({
     };
     var __esDecorate = exports2 && exports2.__esDecorate || function(ctor, descriptorIn, decorators, contextIn, initializers, extraInitializers) {
       function accept(f) {
-        if (f !== void 0 && typeof f !== "function")
-          throw new TypeError("Function expected");
+        if (f !== void 0 && typeof f !== "function") throw new TypeError("Function expected");
         return f;
       }
       var kind = contextIn.kind, key = kind === "getter" ? "get" : kind === "setter" ? "set" : "value";
@@ -16592,36 +17613,25 @@ var require_server = __commonJS({
       var _, done = false;
       for (var i = decorators.length - 1; i >= 0; i--) {
         var context = {};
-        for (var p in contextIn)
-          context[p] = p === "access" ? {} : contextIn[p];
-        for (var p in contextIn.access)
-          context.access[p] = contextIn.access[p];
+        for (var p in contextIn) context[p] = p === "access" ? {} : contextIn[p];
+        for (var p in contextIn.access) context.access[p] = contextIn.access[p];
         context.addInitializer = function(f) {
-          if (done)
-            throw new TypeError("Cannot add initializers after decoration has completed");
+          if (done) throw new TypeError("Cannot add initializers after decoration has completed");
           extraInitializers.push(accept(f || null));
         };
         var result = (0, decorators[i])(kind === "accessor" ? { get: descriptor.get, set: descriptor.set } : descriptor[key], context);
         if (kind === "accessor") {
-          if (result === void 0)
-            continue;
-          if (result === null || typeof result !== "object")
-            throw new TypeError("Object expected");
-          if (_ = accept(result.get))
-            descriptor.get = _;
-          if (_ = accept(result.set))
-            descriptor.set = _;
-          if (_ = accept(result.init))
-            initializers.unshift(_);
+          if (result === void 0) continue;
+          if (result === null || typeof result !== "object") throw new TypeError("Object expected");
+          if (_ = accept(result.get)) descriptor.get = _;
+          if (_ = accept(result.set)) descriptor.set = _;
+          if (_ = accept(result.init)) initializers.unshift(_);
         } else if (_ = accept(result)) {
-          if (kind === "field")
-            initializers.unshift(_);
-          else
-            descriptor[key] = _;
+          if (kind === "field") initializers.unshift(_);
+          else descriptor[key] = _;
         }
       }
-      if (target)
-        Object.defineProperty(target, contextIn.name, descriptor);
+      if (target) Object.defineProperty(target, contextIn.name, descriptor);
       done = true;
     };
     Object.defineProperty(exports2, "__esModule", { value: true });
@@ -16640,8 +17650,10 @@ var require_server = __commonJS({
     var UNLIMITED_CONNECTION_AGE_MS = ~(1 << 31);
     var KEEPALIVE_MAX_TIME_MS = ~(1 << 31);
     var KEEPALIVE_TIMEOUT_MS = 2e4;
+    var MAX_CONNECTION_IDLE_MS = ~(1 << 31);
     var { HTTP2_HEADER_PATH } = http2.constants;
     var TRACER_NAME = "server";
+    var kMaxAge = Buffer.from("max_age");
     function noop() {
     }
     function deprecate(message) {
@@ -16684,31 +17696,36 @@ var require_server = __commonJS({
       let _start_decorators;
       return _a = class Server {
         constructor(options) {
-          var _b, _c, _d, _e, _f;
+          var _b, _c, _d, _e, _f, _g;
           this.boundPorts = (__runInitializers(this, _instanceExtraInitializers), /* @__PURE__ */ new Map());
           this.http2Servers = /* @__PURE__ */ new Map();
+          this.sessionIdleTimeouts = /* @__PURE__ */ new Map();
           this.handlers = /* @__PURE__ */ new Map();
           this.sessions = /* @__PURE__ */ new Map();
           this.started = false;
           this.shutdown = false;
           this.serverAddressString = "null";
           this.channelzEnabled = true;
-          this.channelzTrace = new channelz_1.ChannelzTrace();
-          this.callTracker = new channelz_1.ChannelzCallTracker();
-          this.listenerChildrenTracker = new channelz_1.ChannelzChildrenTracker();
-          this.sessionChildrenTracker = new channelz_1.ChannelzChildrenTracker();
           this.options = options !== null && options !== void 0 ? options : {};
           if (this.options["grpc.enable_channelz"] === 0) {
             this.channelzEnabled = false;
+            this.channelzTrace = new channelz_1.ChannelzTraceStub();
+            this.callTracker = new channelz_1.ChannelzCallTrackerStub();
+            this.listenerChildrenTracker = new channelz_1.ChannelzChildrenTrackerStub();
+            this.sessionChildrenTracker = new channelz_1.ChannelzChildrenTrackerStub();
+          } else {
+            this.channelzTrace = new channelz_1.ChannelzTrace();
+            this.callTracker = new channelz_1.ChannelzCallTracker();
+            this.listenerChildrenTracker = new channelz_1.ChannelzChildrenTracker();
+            this.sessionChildrenTracker = new channelz_1.ChannelzChildrenTracker();
           }
-          this.channelzRef = (0, channelz_1.registerChannelzServer)(() => this.getChannelzInfo(), this.channelzEnabled);
-          if (this.channelzEnabled) {
-            this.channelzTrace.addTrace("CT_INFO", "Server created");
-          }
+          this.channelzRef = (0, channelz_1.registerChannelzServer)("server", () => this.getChannelzInfo(), this.channelzEnabled);
+          this.channelzTrace.addTrace("CT_INFO", "Server created");
           this.maxConnectionAgeMs = (_b = this.options["grpc.max_connection_age_ms"]) !== null && _b !== void 0 ? _b : UNLIMITED_CONNECTION_AGE_MS;
           this.maxConnectionAgeGraceMs = (_c = this.options["grpc.max_connection_age_grace_ms"]) !== null && _c !== void 0 ? _c : UNLIMITED_CONNECTION_AGE_MS;
           this.keepaliveTimeMs = (_d = this.options["grpc.keepalive_time_ms"]) !== null && _d !== void 0 ? _d : KEEPALIVE_MAX_TIME_MS;
           this.keepaliveTimeoutMs = (_e = this.options["grpc.keepalive_timeout_ms"]) !== null && _e !== void 0 ? _e : KEEPALIVE_TIMEOUT_MS;
+          this.sessionIdleTimeout = (_f = this.options["grpc.max_connection_idle_ms"]) !== null && _f !== void 0 ? _f : MAX_CONNECTION_IDLE_MS;
           this.commonServerOptions = {
             maxSendHeaderBlockLength: Number.MAX_SAFE_INTEGER
           };
@@ -16722,7 +17739,7 @@ var require_server = __commonJS({
               maxConcurrentStreams: this.options["grpc.max_concurrent_streams"]
             };
           }
-          this.interceptors = (_f = this.options.interceptors) !== null && _f !== void 0 ? _f : [];
+          this.interceptors = (_g = this.options.interceptors) !== null && _g !== void 0 ? _g : [];
           this.trace("Server constructed");
         }
         getChannelzInfo() {
@@ -16733,48 +17750,46 @@ var require_server = __commonJS({
             sessionChildren: this.sessionChildrenTracker.getChildLists()
           };
         }
-        getChannelzSessionInfoGetter(session) {
-          return () => {
-            var _b, _c, _d;
-            const sessionInfo = this.sessions.get(session);
-            const sessionSocket = session.socket;
-            const remoteAddress = sessionSocket.remoteAddress ? (0, subchannel_address_1.stringToSubchannelAddress)(sessionSocket.remoteAddress, sessionSocket.remotePort) : null;
-            const localAddress = sessionSocket.localAddress ? (0, subchannel_address_1.stringToSubchannelAddress)(sessionSocket.localAddress, sessionSocket.localPort) : null;
-            let tlsInfo;
-            if (session.encrypted) {
-              const tlsSocket = sessionSocket;
-              const cipherInfo = tlsSocket.getCipher();
-              const certificate = tlsSocket.getCertificate();
-              const peerCertificate = tlsSocket.getPeerCertificate();
-              tlsInfo = {
-                cipherSuiteStandardName: (_b = cipherInfo.standardName) !== null && _b !== void 0 ? _b : null,
-                cipherSuiteOtherName: cipherInfo.standardName ? null : cipherInfo.name,
-                localCertificate: certificate && "raw" in certificate ? certificate.raw : null,
-                remoteCertificate: peerCertificate && "raw" in peerCertificate ? peerCertificate.raw : null
-              };
-            } else {
-              tlsInfo = null;
-            }
-            const socketInfo = {
-              remoteAddress,
-              localAddress,
-              security: tlsInfo,
-              remoteName: null,
-              streamsStarted: sessionInfo.streamTracker.callsStarted,
-              streamsSucceeded: sessionInfo.streamTracker.callsSucceeded,
-              streamsFailed: sessionInfo.streamTracker.callsFailed,
-              messagesSent: sessionInfo.messagesSent,
-              messagesReceived: sessionInfo.messagesReceived,
-              keepAlivesSent: 0,
-              lastLocalStreamCreatedTimestamp: null,
-              lastRemoteStreamCreatedTimestamp: sessionInfo.streamTracker.lastCallStartedTimestamp,
-              lastMessageSentTimestamp: sessionInfo.lastMessageSentTimestamp,
-              lastMessageReceivedTimestamp: sessionInfo.lastMessageReceivedTimestamp,
-              localFlowControlWindow: (_c = session.state.localWindowSize) !== null && _c !== void 0 ? _c : null,
-              remoteFlowControlWindow: (_d = session.state.remoteWindowSize) !== null && _d !== void 0 ? _d : null
+        getChannelzSessionInfo(session) {
+          var _b, _c, _d;
+          const sessionInfo = this.sessions.get(session);
+          const sessionSocket = session.socket;
+          const remoteAddress = sessionSocket.remoteAddress ? (0, subchannel_address_1.stringToSubchannelAddress)(sessionSocket.remoteAddress, sessionSocket.remotePort) : null;
+          const localAddress = sessionSocket.localAddress ? (0, subchannel_address_1.stringToSubchannelAddress)(sessionSocket.localAddress, sessionSocket.localPort) : null;
+          let tlsInfo;
+          if (session.encrypted) {
+            const tlsSocket = sessionSocket;
+            const cipherInfo = tlsSocket.getCipher();
+            const certificate = tlsSocket.getCertificate();
+            const peerCertificate = tlsSocket.getPeerCertificate();
+            tlsInfo = {
+              cipherSuiteStandardName: (_b = cipherInfo.standardName) !== null && _b !== void 0 ? _b : null,
+              cipherSuiteOtherName: cipherInfo.standardName ? null : cipherInfo.name,
+              localCertificate: certificate && "raw" in certificate ? certificate.raw : null,
+              remoteCertificate: peerCertificate && "raw" in peerCertificate ? peerCertificate.raw : null
             };
-            return socketInfo;
+          } else {
+            tlsInfo = null;
+          }
+          const socketInfo = {
+            remoteAddress,
+            localAddress,
+            security: tlsInfo,
+            remoteName: null,
+            streamsStarted: sessionInfo.streamTracker.callsStarted,
+            streamsSucceeded: sessionInfo.streamTracker.callsSucceeded,
+            streamsFailed: sessionInfo.streamTracker.callsFailed,
+            messagesSent: sessionInfo.messagesSent,
+            messagesReceived: sessionInfo.messagesReceived,
+            keepAlivesSent: sessionInfo.keepAlivesSent,
+            lastLocalStreamCreatedTimestamp: null,
+            lastRemoteStreamCreatedTimestamp: sessionInfo.streamTracker.lastCallStartedTimestamp,
+            lastMessageSentTimestamp: sessionInfo.lastMessageSentTimestamp,
+            lastMessageReceivedTimestamp: sessionInfo.lastMessageReceivedTimestamp,
+            localFlowControlWindow: (_c = session.state.localWindowSize) !== null && _c !== void 0 ? _c : null,
+            remoteFlowControlWindow: (_d = session.state.remoteWindowSize) !== null && _d !== void 0 ? _d : null
           };
+          return socketInfo;
         }
         trace(text) {
           logging.trace(constants_1.LogVerbosity.DEBUG, TRACER_NAME, "(" + this.channelzRef.id + ") " + text);
@@ -16901,9 +17916,7 @@ var require_server = __commonJS({
                 };
               }
               const channelzRef = this.registerListenerToChannelz(boundSubchannelAddress);
-              if (this.channelzEnabled) {
-                this.listenerChildrenTracker.refChild(channelzRef);
-              }
+              this.listenerChildrenTracker.refChild(channelzRef);
               this.http2Servers.set(http2Server, {
                 channelzRef,
                 sessions: /* @__PURE__ */ new Set()
@@ -16950,12 +17963,7 @@ var require_server = __commonJS({
           }
         }
         async bindAddressList(addressList, boundPortObject) {
-          let bindResult;
-          try {
-            bindResult = await this.bindManyPorts(addressList, boundPortObject);
-          } catch (error) {
-            throw error;
-          }
+          const bindResult = await this.bindManyPorts(addressList, boundPortObject);
           if (bindResult.count > 0) {
             if (bindResult.count < addressList.length) {
               logging.log(constants_1.LogVerbosity.INFO, `WARNING Only ${bindResult.count} addresses added out of total ${addressList.length} resolved`);
@@ -17086,7 +18094,7 @@ var require_server = __commonJS({
           this.trace("Closing server with address " + JSON.stringify(server.address()));
           const serverInfo = this.http2Servers.get(server);
           server.close(() => {
-            if (this.channelzEnabled && serverInfo) {
+            if (serverInfo) {
               this.listenerChildrenTracker.unrefChild(serverInfo.channelzRef);
               (0, channelz_1.unregisterChannelzRef)(serverInfo.channelzRef);
             }
@@ -17099,15 +18107,14 @@ var require_server = __commonJS({
           this.trace("Closing session initiated by " + ((_b = session.socket) === null || _b === void 0 ? void 0 : _b.remoteAddress));
           const sessionInfo = this.sessions.get(session);
           const closeCallback = () => {
-            if (this.channelzEnabled && sessionInfo) {
+            if (sessionInfo) {
               this.sessionChildrenTracker.unrefChild(sessionInfo.ref);
               (0, channelz_1.unregisterChannelzRef)(sessionInfo.ref);
             }
-            this.sessions.delete(session);
             callback === null || callback === void 0 ? void 0 : callback();
           };
           if (session.closed) {
-            process.nextTick(closeCallback);
+            queueMicrotask(closeCallback);
           } else {
             session.close(closeCallback);
           }
@@ -17176,14 +18183,13 @@ var require_server = __commonJS({
           const allSessions = /* @__PURE__ */ new Set();
           for (const http2Server of boundPortObject.listeningServers) {
             const serverEntry = this.http2Servers.get(http2Server);
-            if (!serverEntry) {
-              continue;
-            }
-            for (const session of serverEntry.sessions) {
-              allSessions.add(session);
-              this.closeSession(session, () => {
-                allSessions.delete(session);
-              });
+            if (serverEntry) {
+              for (const session of serverEntry.sessions) {
+                allSessions.add(session);
+                this.closeSession(session, () => {
+                  allSessions.delete(session);
+                });
+              }
             }
           }
           (_c = (_b = setTimeout(() => {
@@ -17205,9 +18211,7 @@ var require_server = __commonJS({
             session.destroy(http2.constants.NGHTTP2_CANCEL);
           });
           this.sessions.clear();
-          if (this.channelzEnabled) {
-            (0, channelz_1.unregisterChannelzRef)(this.channelzRef);
-          }
+          (0, channelz_1.unregisterChannelzRef)(this.channelzRef);
           this.shutdown = true;
         }
         register(name, handler, serialize, deserialize, type) {
@@ -17241,9 +18245,7 @@ var require_server = __commonJS({
         tryShutdown(callback) {
           var _b;
           const wrappedCallback = (error) => {
-            if (this.channelzEnabled) {
-              (0, channelz_1.unregisterChannelzRef)(this.channelzRef);
-            }
+            (0, channelz_1.unregisterChannelzRef)(this.channelzRef);
             callback(error);
           };
           let pendingChecks = 0;
@@ -17254,23 +18256,23 @@ var require_server = __commonJS({
             }
           }
           this.shutdown = true;
-          for (const server of this.http2Servers.keys()) {
+          for (const [serverKey, server] of this.http2Servers.entries()) {
             pendingChecks++;
-            const serverString = this.http2Servers.get(server).channelzRef.name;
+            const serverString = server.channelzRef.name;
             this.trace("Waiting for server " + serverString + " to close");
-            this.closeServer(server, () => {
+            this.closeServer(serverKey, () => {
               this.trace("Server " + serverString + " finished closing");
               maybeCallback();
             });
-          }
-          for (const session of this.sessions.keys()) {
-            pendingChecks++;
-            const sessionString = (_b = session.socket) === null || _b === void 0 ? void 0 : _b.remoteAddress;
-            this.trace("Waiting for session " + sessionString + " to close");
-            this.closeSession(session, () => {
-              this.trace("Session " + sessionString + " finished closing");
-              maybeCallback();
-            });
+            for (const session of server.sessions.keys()) {
+              pendingChecks++;
+              const sessionString = (_b = session.socket) === null || _b === void 0 ? void 0 : _b.remoteAddress;
+              this.trace("Waiting for session " + sessionString + " to close");
+              this.closeSession(session, () => {
+                this.trace("Session " + sessionString + " finished closing");
+                maybeCallback();
+              });
+            }
           }
           if (pendingChecks === 0) {
             wrappedCallback();
@@ -17310,12 +18312,11 @@ var require_server = __commonJS({
           var _b, _c;
           const trailersToSend = Object.assign({ "grpc-status": (_b = err.code) !== null && _b !== void 0 ? _b : constants_1.Status.INTERNAL, "grpc-message": err.details, [http2.constants.HTTP2_HEADER_STATUS]: http2.constants.HTTP_STATUS_OK, [http2.constants.HTTP2_HEADER_CONTENT_TYPE]: "application/grpc+proto" }, (_c = err.metadata) === null || _c === void 0 ? void 0 : _c.toHttp2Headers());
           stream.respond(trailersToSend, { endStream: true });
-          if (this.channelzEnabled) {
-            this.callTracker.addCallFailed();
-            channelzSessionInfo === null || channelzSessionInfo === void 0 ? void 0 : channelzSessionInfo.streamTracker.addCallFailed();
-          }
+          this.callTracker.addCallFailed();
+          channelzSessionInfo === null || channelzSessionInfo === void 0 ? void 0 : channelzSessionInfo.streamTracker.addCallFailed();
         }
         _channelzHandler(stream, headers) {
+          this.onStreamOpened(stream);
           const channelzSessionInfo = this.sessions.get(stream.session);
           this.callTracker.addCallStarted();
           channelzSessionInfo === null || channelzSessionInfo === void 0 ? void 0 : channelzSessionInfo.streamTracker.addCallStarted();
@@ -17330,7 +18331,7 @@ var require_server = __commonJS({
             this._respondWithError(getUnimplementedStatusResponse(path), stream, channelzSessionInfo);
             return;
           }
-          let callEventTracker = {
+          const callEventTracker = {
             addMessageSent: () => {
               if (channelzSessionInfo) {
                 channelzSessionInfo.messagesSent += 1;
@@ -17371,6 +18372,7 @@ var require_server = __commonJS({
           }
         }
         _streamHandler(stream, headers) {
+          this.onStreamOpened(stream);
           if (this._verifyContentType(stream, headers) !== true) {
             return;
           }
@@ -17418,76 +18420,73 @@ var require_server = __commonJS({
           }
           this.serverAddressString = serverAddressString;
           const handler = this.channelzEnabled ? this._channelzHandler : this._streamHandler;
+          const sessionHandler = this.channelzEnabled ? this._channelzSessionHandler(http2Server) : this._sessionHandler(http2Server);
           http2Server.on("stream", handler.bind(this));
-          http2Server.on("session", (session) => {
-            var _b, _c, _d, _e, _f, _g;
-            const channelzRef = (0, channelz_1.registerChannelzSocket)((_b = session.socket.remoteAddress) !== null && _b !== void 0 ? _b : "unknown", this.getChannelzSessionInfoGetter(session), this.channelzEnabled);
-            const channelzSessionInfo = {
-              ref: channelzRef,
-              streamTracker: new channelz_1.ChannelzCallTracker(),
-              messagesSent: 0,
-              messagesReceived: 0,
-              lastMessageSentTimestamp: null,
-              lastMessageReceivedTimestamp: null
-            };
-            (_c = this.http2Servers.get(http2Server)) === null || _c === void 0 ? void 0 : _c.sessions.add(session);
-            this.sessions.set(session, channelzSessionInfo);
-            const clientAddress = session.socket.remoteAddress;
-            if (this.channelzEnabled) {
-              this.channelzTrace.addTrace("CT_INFO", "Connection established by client " + clientAddress);
-              this.sessionChildrenTracker.refChild(channelzRef);
-            }
+          http2Server.on("session", sessionHandler);
+        }
+        _sessionHandler(http2Server) {
+          return (session) => {
+            var _b, _c, _d;
+            (_b = this.http2Servers.get(http2Server)) === null || _b === void 0 ? void 0 : _b.sessions.add(session);
             let connectionAgeTimer = null;
             let connectionAgeGraceTimer = null;
+            let keeapliveTimeTimer = null;
+            let keepaliveTimeoutTimer = null;
             let sessionClosedByServer = false;
+            const idleTimeoutObj = this.enableIdleTimeout(session);
             if (this.maxConnectionAgeMs !== UNLIMITED_CONNECTION_AGE_MS) {
               const jitterMagnitude = this.maxConnectionAgeMs / 10;
               const jitter = Math.random() * jitterMagnitude * 2 - jitterMagnitude;
-              connectionAgeTimer = (_e = (_d = setTimeout(() => {
+              connectionAgeTimer = setTimeout(() => {
                 var _b2, _c2;
                 sessionClosedByServer = true;
-                if (this.channelzEnabled) {
-                  this.channelzTrace.addTrace("CT_INFO", "Connection dropped by max connection age from " + clientAddress);
-                }
+                this.trace("Connection dropped by max connection age: " + ((_b2 = session.socket) === null || _b2 === void 0 ? void 0 : _b2.remoteAddress));
                 try {
-                  session.goaway(http2.constants.NGHTTP2_NO_ERROR, ~(1 << 31), Buffer.from("max_age"));
+                  session.goaway(http2.constants.NGHTTP2_NO_ERROR, ~(1 << 31), kMaxAge);
                 } catch (e) {
                   session.destroy();
                   return;
                 }
                 session.close();
                 if (this.maxConnectionAgeGraceMs !== UNLIMITED_CONNECTION_AGE_MS) {
-                  connectionAgeGraceTimer = (_c2 = (_b2 = setTimeout(() => {
+                  connectionAgeGraceTimer = setTimeout(() => {
                     session.destroy();
-                  }, this.maxConnectionAgeGraceMs)).unref) === null || _c2 === void 0 ? void 0 : _c2.call(_b2);
+                  }, this.maxConnectionAgeGraceMs);
+                  (_c2 = connectionAgeGraceTimer.unref) === null || _c2 === void 0 ? void 0 : _c2.call(connectionAgeGraceTimer);
                 }
-              }, this.maxConnectionAgeMs + jitter)).unref) === null || _e === void 0 ? void 0 : _e.call(_d);
+              }, this.maxConnectionAgeMs + jitter);
+              (_c = connectionAgeTimer.unref) === null || _c === void 0 ? void 0 : _c.call(connectionAgeTimer);
             }
-            const keeapliveTimeTimer = (_g = (_f = setInterval(() => {
-              var _b2, _c2;
-              const timeoutTImer = (_c2 = (_b2 = setTimeout(() => {
-                sessionClosedByServer = true;
-                if (this.channelzEnabled) {
-                  this.channelzTrace.addTrace("CT_INFO", "Connection dropped by keepalive timeout from " + clientAddress);
+            if (this.keepaliveTimeMs < KEEPALIVE_MAX_TIME_MS) {
+              keeapliveTimeTimer = setInterval(() => {
+                var _b2;
+                keepaliveTimeoutTimer = setTimeout(() => {
+                  sessionClosedByServer = true;
+                  session.close();
+                }, this.keepaliveTimeoutMs);
+                (_b2 = keepaliveTimeoutTimer.unref) === null || _b2 === void 0 ? void 0 : _b2.call(keepaliveTimeoutTimer);
+                try {
+                  session.ping((err, duration, payload) => {
+                    if (keepaliveTimeoutTimer) {
+                      clearTimeout(keepaliveTimeoutTimer);
+                    }
+                    if (err) {
+                      sessionClosedByServer = true;
+                      this.trace("Connection dropped due to error of a ping frame " + err.message + " return in " + duration);
+                      session.close();
+                    }
+                  });
+                } catch (e) {
+                  clearTimeout(keepaliveTimeoutTimer);
+                  session.destroy();
                 }
-                session.close();
-              }, this.keepaliveTimeoutMs)).unref) === null || _c2 === void 0 ? void 0 : _c2.call(_b2);
-              try {
-                session.ping((err, duration, payload) => {
-                  clearTimeout(timeoutTImer);
-                });
-              } catch (e) {
-                session.destroy();
-              }
-            }, this.keepaliveTimeMs)).unref) === null || _g === void 0 ? void 0 : _g.call(_f);
+              }, this.keepaliveTimeMs);
+              (_d = keeapliveTimeTimer.unref) === null || _d === void 0 ? void 0 : _d.call(keeapliveTimeTimer);
+            }
             session.on("close", () => {
-              var _b2;
-              if (this.channelzEnabled) {
-                if (!sessionClosedByServer) {
-                  this.channelzTrace.addTrace("CT_INFO", "Connection dropped by client " + clientAddress);
-                }
-                this.sessionChildrenTracker.unrefChild(channelzRef);
-                (0, channelz_1.unregisterChannelzRef)(channelzRef);
+              var _b2, _c2;
+              if (!sessionClosedByServer) {
+                this.trace(`Connection dropped by client ${(_b2 = session.socket) === null || _b2 === void 0 ? void 0 : _b2.remoteAddress}`);
               }
               if (connectionAgeTimer) {
                 clearTimeout(connectionAgeTimer);
@@ -17496,19 +18495,173 @@ var require_server = __commonJS({
                 clearTimeout(connectionAgeGraceTimer);
               }
               if (keeapliveTimeTimer) {
-                clearTimeout(keeapliveTimeTimer);
+                clearInterval(keeapliveTimeTimer);
+                if (keepaliveTimeoutTimer) {
+                  clearTimeout(keepaliveTimeoutTimer);
+                }
+              }
+              if (idleTimeoutObj !== null) {
+                clearTimeout(idleTimeoutObj.timeout);
+                this.sessionIdleTimeouts.delete(session);
+              }
+              (_c2 = this.http2Servers.get(http2Server)) === null || _c2 === void 0 ? void 0 : _c2.sessions.delete(session);
+            });
+          };
+        }
+        _channelzSessionHandler(http2Server) {
+          return (session) => {
+            var _b, _c, _d, _e, _f;
+            const channelzRef = (0, channelz_1.registerChannelzSocket)((_c = (_b = session.socket) === null || _b === void 0 ? void 0 : _b.remoteAddress) !== null && _c !== void 0 ? _c : "unknown", this.getChannelzSessionInfo.bind(this, session), this.channelzEnabled);
+            const channelzSessionInfo = {
+              ref: channelzRef,
+              streamTracker: new channelz_1.ChannelzCallTracker(),
+              messagesSent: 0,
+              messagesReceived: 0,
+              keepAlivesSent: 0,
+              lastMessageSentTimestamp: null,
+              lastMessageReceivedTimestamp: null
+            };
+            (_d = this.http2Servers.get(http2Server)) === null || _d === void 0 ? void 0 : _d.sessions.add(session);
+            this.sessions.set(session, channelzSessionInfo);
+            const clientAddress = `${session.socket.remoteAddress}:${session.socket.remotePort}`;
+            this.channelzTrace.addTrace("CT_INFO", "Connection established by client " + clientAddress);
+            this.trace("Connection established by client " + clientAddress);
+            this.sessionChildrenTracker.refChild(channelzRef);
+            let connectionAgeTimer = null;
+            let connectionAgeGraceTimer = null;
+            let keeapliveTimeTimer = null;
+            let keepaliveTimeoutTimer = null;
+            let sessionClosedByServer = false;
+            const idleTimeoutObj = this.enableIdleTimeout(session);
+            if (this.maxConnectionAgeMs !== UNLIMITED_CONNECTION_AGE_MS) {
+              const jitterMagnitude = this.maxConnectionAgeMs / 10;
+              const jitter = Math.random() * jitterMagnitude * 2 - jitterMagnitude;
+              connectionAgeTimer = setTimeout(() => {
+                var _b2;
+                sessionClosedByServer = true;
+                this.channelzTrace.addTrace("CT_INFO", "Connection dropped by max connection age from " + clientAddress);
+                try {
+                  session.goaway(http2.constants.NGHTTP2_NO_ERROR, ~(1 << 31), kMaxAge);
+                } catch (e) {
+                  session.destroy();
+                  return;
+                }
+                session.close();
+                if (this.maxConnectionAgeGraceMs !== UNLIMITED_CONNECTION_AGE_MS) {
+                  connectionAgeGraceTimer = setTimeout(() => {
+                    session.destroy();
+                  }, this.maxConnectionAgeGraceMs);
+                  (_b2 = connectionAgeGraceTimer.unref) === null || _b2 === void 0 ? void 0 : _b2.call(connectionAgeGraceTimer);
+                }
+              }, this.maxConnectionAgeMs + jitter);
+              (_e = connectionAgeTimer.unref) === null || _e === void 0 ? void 0 : _e.call(connectionAgeTimer);
+            }
+            if (this.keepaliveTimeMs < KEEPALIVE_MAX_TIME_MS) {
+              keeapliveTimeTimer = setInterval(() => {
+                var _b2;
+                keepaliveTimeoutTimer = setTimeout(() => {
+                  sessionClosedByServer = true;
+                  this.channelzTrace.addTrace("CT_INFO", "Connection dropped by keepalive timeout from " + clientAddress);
+                  session.close();
+                }, this.keepaliveTimeoutMs);
+                (_b2 = keepaliveTimeoutTimer.unref) === null || _b2 === void 0 ? void 0 : _b2.call(keepaliveTimeoutTimer);
+                try {
+                  session.ping((err, duration, payload) => {
+                    if (keepaliveTimeoutTimer) {
+                      clearTimeout(keepaliveTimeoutTimer);
+                    }
+                    if (err) {
+                      sessionClosedByServer = true;
+                      this.channelzTrace.addTrace("CT_INFO", "Connection dropped due to error of a ping frame " + err.message + " return in " + duration);
+                      session.close();
+                    }
+                  });
+                  channelzSessionInfo.keepAlivesSent += 1;
+                } catch (e) {
+                  clearTimeout(keepaliveTimeoutTimer);
+                  session.destroy();
+                }
+              }, this.keepaliveTimeMs);
+              (_f = keeapliveTimeTimer.unref) === null || _f === void 0 ? void 0 : _f.call(keeapliveTimeTimer);
+            }
+            session.on("close", () => {
+              var _b2;
+              if (!sessionClosedByServer) {
+                this.channelzTrace.addTrace("CT_INFO", "Connection dropped by client " + clientAddress);
+              }
+              this.sessionChildrenTracker.unrefChild(channelzRef);
+              (0, channelz_1.unregisterChannelzRef)(channelzRef);
+              if (connectionAgeTimer) {
+                clearTimeout(connectionAgeTimer);
+              }
+              if (connectionAgeGraceTimer) {
+                clearTimeout(connectionAgeGraceTimer);
+              }
+              if (keeapliveTimeTimer) {
+                clearInterval(keeapliveTimeTimer);
+                if (keepaliveTimeoutTimer) {
+                  clearTimeout(keepaliveTimeoutTimer);
+                }
+              }
+              if (idleTimeoutObj !== null) {
+                clearTimeout(idleTimeoutObj.timeout);
+                this.sessionIdleTimeouts.delete(session);
               }
               (_b2 = this.http2Servers.get(http2Server)) === null || _b2 === void 0 ? void 0 : _b2.sessions.delete(session);
               this.sessions.delete(session);
             });
-          });
+          };
+        }
+        enableIdleTimeout(session) {
+          var _b, _c;
+          if (this.sessionIdleTimeout >= MAX_CONNECTION_IDLE_MS) {
+            return null;
+          }
+          const idleTimeoutObj = {
+            activeStreams: 0,
+            lastIdle: Date.now(),
+            onClose: this.onStreamClose.bind(this, session),
+            timeout: setTimeout(this.onIdleTimeout, this.sessionIdleTimeout, this, session)
+          };
+          (_c = (_b = idleTimeoutObj.timeout).unref) === null || _c === void 0 ? void 0 : _c.call(_b);
+          this.sessionIdleTimeouts.set(session, idleTimeoutObj);
+          const { socket } = session;
+          this.trace("Enable idle timeout for " + socket.remoteAddress + ":" + socket.remotePort);
+          return idleTimeoutObj;
+        }
+        onIdleTimeout(ctx, session) {
+          const { socket } = session;
+          const sessionInfo = ctx.sessionIdleTimeouts.get(session);
+          if (sessionInfo !== void 0 && sessionInfo.activeStreams === 0 && Date.now() - sessionInfo.lastIdle >= ctx.sessionIdleTimeout) {
+            ctx.trace("Session idle timeout triggered for " + (socket === null || socket === void 0 ? void 0 : socket.remoteAddress) + ":" + (socket === null || socket === void 0 ? void 0 : socket.remotePort) + " last idle at " + sessionInfo.lastIdle);
+            ctx.closeSession(session);
+          }
+        }
+        onStreamOpened(stream) {
+          const session = stream.session;
+          const idleTimeoutObj = this.sessionIdleTimeouts.get(session);
+          if (idleTimeoutObj) {
+            idleTimeoutObj.activeStreams += 1;
+            stream.once("close", idleTimeoutObj.onClose);
+          }
+        }
+        onStreamClose(session) {
+          var _b, _c;
+          const idleTimeoutObj = this.sessionIdleTimeouts.get(session);
+          if (idleTimeoutObj) {
+            idleTimeoutObj.activeStreams -= 1;
+            if (idleTimeoutObj.activeStreams === 0) {
+              idleTimeoutObj.lastIdle = Date.now();
+              idleTimeoutObj.timeout.refresh();
+              this.trace("Session onStreamClose" + ((_b = session.socket) === null || _b === void 0 ? void 0 : _b.remoteAddress) + ":" + ((_c = session.socket) === null || _c === void 0 ? void 0 : _c.remotePort) + " at " + idleTimeoutObj.lastIdle);
+            }
+          }
         }
       }, (() => {
         const _metadata = typeof Symbol === "function" && Symbol.metadata ? /* @__PURE__ */ Object.create(null) : void 0;
         _start_decorators = [deprecate("Calling start() is no longer necessary. It can be safely omitted.")];
         __esDecorate(_a, null, _start_decorators, { kind: "method", name: "start", static: false, private: false, access: { has: (obj) => "start" in obj, get: (obj) => obj.start }, metadata: _metadata }, null, _instanceExtraInitializers);
-        if (_metadata)
-          Object.defineProperty(_a, Symbol.metadata, { enumerable: true, configurable: true, writable: true, value: _metadata });
+        if (_metadata) Object.defineProperty(_a, Symbol.metadata, { enumerable: true, configurable: true, writable: true, value: _metadata });
       })(), _a;
     })();
     exports2.Server = Server;
@@ -17700,9 +18853,9 @@ var require_server = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/status-builder.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/status-builder.js
 var require_status_builder = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/status-builder.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/status-builder.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.StatusBuilder = void 0;
@@ -17754,9 +18907,9 @@ var require_status_builder = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/duration.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/duration.js
 var require_duration = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/duration.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/duration.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.isDuration = exports2.durationToMs = exports2.msToDuration = void 0;
@@ -17778,9 +18931,9 @@ var require_duration = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/load-balancer-pick-first.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/load-balancer-pick-first.js
 var require_load_balancer_pick_first = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/load-balancer-pick-first.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/load-balancer-pick-first.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.setup = exports2.LeafLoadBalancer = exports2.PickFirstLoadBalancer = exports2.shuffled = exports2.PickFirstLoadBalancingConfig = void 0;
@@ -17917,7 +19070,9 @@ var require_load_balancer_pick_first = __commonJS({
           this.updateState(connectivity_state_1.ConnectivityState.IDLE, new picker_1.QueuePicker(this));
         } else {
           if (this.stickyTransientFailureMode) {
-            this.updateState(connectivity_state_1.ConnectivityState.TRANSIENT_FAILURE, new picker_1.UnavailablePicker({ details: `No connection established. Last error: ${this.lastError}` }));
+            this.updateState(connectivity_state_1.ConnectivityState.TRANSIENT_FAILURE, new picker_1.UnavailablePicker({
+              details: `No connection established. Last error: ${this.lastError}`
+            }));
           } else {
             this.updateState(connectivity_state_1.ConnectivityState.CONNECTING, new picker_1.QueuePicker(this));
           }
@@ -18017,9 +19172,10 @@ var require_load_balancer_pick_first = __commonJS({
             (_a2 = this.children[subchannelIndex]) === null || _a2 === void 0 ? void 0 : _a2.subchannel.startConnecting();
           });
         }
-        this.connectionDelayTimeout = (_b = (_a = setTimeout(() => {
+        this.connectionDelayTimeout = setTimeout(() => {
           this.startNextSubchannelConnecting(subchannelIndex + 1);
-        }, CONNECTION_DELAY_INTERVAL_MS)).unref) === null || _b === void 0 ? void 0 : _b.call(_a);
+        }, CONNECTION_DELAY_INTERVAL_MS);
+        (_b = (_a = this.connectionDelayTimeout).unref) === null || _b === void 0 ? void 0 : _b.call(_a);
       }
       pickSubchannel(subchannel) {
         if (this.currentPick && subchannel.realSubchannelEquals(this.currentPick)) {
@@ -18168,9 +19324,9 @@ var require_load_balancer_pick_first = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/experimental.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/experimental.js
 var require_experimental = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/experimental.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/experimental.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.BaseSubchannelWrapper = exports2.registerAdminService = exports2.FilterStackFactory = exports2.BaseFilter = exports2.PickResultType = exports2.QueuePicker = exports2.UnavailablePicker = exports2.ChildLoadBalancerHandler = exports2.EndpointMap = exports2.endpointHasAddress = exports2.endpointToString = exports2.subchannelAddressToString = exports2.LeafLoadBalancer = exports2.isLoadBalancerNameRegistered = exports2.parseLoadBalancingConfig = exports2.selectLbConfigFromList = exports2.registerLoadBalancerType = exports2.createChildChannelControlHelper = exports2.BackoffTimeout = exports2.durationToMs = exports2.uriToString = exports2.createResolver = exports2.registerResolver = exports2.log = exports2.trace = void 0;
@@ -18266,9 +19422,9 @@ var require_experimental = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/resolver-uds.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/resolver-uds.js
 var require_resolver_uds = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/resolver-uds.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/resolver-uds.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.setup = void 0;
@@ -18293,6 +19449,7 @@ var require_resolver_uds = __commonJS({
         }
       }
       destroy() {
+        this.hasReturnedResult = false;
       }
       static getDefaultAuthority(target) {
         return "localhost";
@@ -18305,9 +19462,9 @@ var require_resolver_uds = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/resolver-ip.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/resolver-ip.js
 var require_resolver_ip = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/resolver-ip.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/resolver-ip.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.setup = void 0;
@@ -18395,9 +19552,9 @@ var require_resolver_ip = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/load-balancer-round-robin.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/load-balancer-round-robin.js
 var require_load_balancer_round_robin = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/load-balancer-round-robin.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/load-balancer-round-robin.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.setup = exports2.RoundRobinLoadBalancer = void 0;
@@ -18487,7 +19644,9 @@ var require_load_balancer_round_robin = __commonJS({
         } else if (this.countChildrenWithState(connectivity_state_1.ConnectivityState.CONNECTING) > 0) {
           this.updateState(connectivity_state_1.ConnectivityState.CONNECTING, new picker_1.QueuePicker(this));
         } else if (this.countChildrenWithState(connectivity_state_1.ConnectivityState.TRANSIENT_FAILURE) > 0) {
-          this.updateState(connectivity_state_1.ConnectivityState.TRANSIENT_FAILURE, new picker_1.UnavailablePicker({ details: `No connection established. Last error: ${this.lastError}` }));
+          this.updateState(connectivity_state_1.ConnectivityState.TRANSIENT_FAILURE, new picker_1.UnavailablePicker({
+            details: `No connection established. Last error: ${this.lastError}`
+          }));
         } else {
           this.updateState(connectivity_state_1.ConnectivityState.IDLE, new picker_1.QueuePicker(this));
         }
@@ -18542,9 +19701,9 @@ var require_load_balancer_round_robin = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/load-balancer-outlier-detection.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/load-balancer-outlier-detection.js
 var require_load_balancer_outlier_detection = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/load-balancer-outlier-detection.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/load-balancer-outlier-detection.js"(exports2) {
     "use strict";
     var _a;
     Object.defineProperty(exports2, "__esModule", { value: true });
@@ -19035,9 +20194,9 @@ var require_load_balancer_outlier_detection = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/index.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/index.js
 var require_src3 = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.1/node_modules/@grpc/grpc-js/build/src/index.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/index.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.experimental = exports2.ServerInterceptingCall = exports2.ResponderBuilder = exports2.ServerListenerBuilder = exports2.addAdminServicesToServer = exports2.getChannelzHandlers = exports2.getChannelzServiceDefinition = exports2.InterceptorConfigurationError = exports2.InterceptingCall = exports2.RequesterBuilder = exports2.ListenerBuilder = exports2.StatusBuilder = exports2.getClientChannel = exports2.ServerCredentials = exports2.Server = exports2.setLogVerbosity = exports2.setLogger = exports2.load = exports2.loadObject = exports2.CallCredentials = exports2.ChannelCredentials = exports2.waitForClientReady = exports2.closeClient = exports2.Channel = exports2.makeGenericClientConstructor = exports2.makeClientConstructor = exports2.loadPackageDefinition = exports2.Client = exports2.compressionAlgorithms = exports2.propagate = exports2.connectivityState = exports2.status = exports2.logVerbosity = exports2.Metadata = exports2.credentials = void 0;
@@ -19211,9 +20370,9 @@ var require_src3 = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/minimal.js
+// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/minimal.js
 var require_minimal2 = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.2.6/node_modules/protobufjs/minimal.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/minimal.js"(exports2, module2) {
     "use strict";
     module2.exports = require_index_minimal();
   }
@@ -19249,9 +20408,6 @@ _Channel._OPTIONS = {
   // 10MB
 };
 var Channel = _Channel;
-
-// src/document_db.ts
-import { tableFromIPC } from "apache-arrow";
 
 // src/proto/generated/document_db.ts
 var import_grpc_js = __toESM(require_src3(), 1);
@@ -20052,26 +21208,19 @@ LongPrototype.shiftRight = function shiftRight(numBits) {
 };
 LongPrototype.shr = LongPrototype.shiftRight;
 LongPrototype.shiftRightUnsigned = function shiftRightUnsigned(numBits) {
-  if (isLong(numBits))
-    numBits = numBits.toInt();
-  if ((numBits &= 63) === 0)
-    return this;
-  if (numBits < 32)
-    return fromBits(this.low >>> numBits | this.high << 32 - numBits, this.high >>> numBits, this.unsigned);
-  if (numBits === 32)
-    return fromBits(this.high, 0, this.unsigned);
+  if (isLong(numBits)) numBits = numBits.toInt();
+  if ((numBits &= 63) === 0) return this;
+  if (numBits < 32) return fromBits(this.low >>> numBits | this.high << 32 - numBits, this.high >>> numBits, this.unsigned);
+  if (numBits === 32) return fromBits(this.high, 0, this.unsigned);
   return fromBits(this.high >>> numBits - 32, 0, this.unsigned);
 };
 LongPrototype.shru = LongPrototype.shiftRightUnsigned;
 LongPrototype.shr_u = LongPrototype.shiftRightUnsigned;
 LongPrototype.rotateLeft = function rotateLeft(numBits) {
   var b;
-  if (isLong(numBits))
-    numBits = numBits.toInt();
-  if ((numBits &= 63) === 0)
-    return this;
-  if (numBits === 32)
-    return fromBits(this.high, this.low, this.unsigned);
+  if (isLong(numBits)) numBits = numBits.toInt();
+  if ((numBits &= 63) === 0) return this;
+  if (numBits === 32) return fromBits(this.high, this.low, this.unsigned);
   if (numBits < 32) {
     b = 32 - numBits;
     return fromBits(this.low << numBits | this.high >>> b, this.high << numBits | this.low >>> b, this.unsigned);
@@ -20083,12 +21232,9 @@ LongPrototype.rotateLeft = function rotateLeft(numBits) {
 LongPrototype.rotl = LongPrototype.rotateLeft;
 LongPrototype.rotateRight = function rotateRight(numBits) {
   var b;
-  if (isLong(numBits))
-    numBits = numBits.toInt();
-  if ((numBits &= 63) === 0)
-    return this;
-  if (numBits === 32)
-    return fromBits(this.high, this.low, this.unsigned);
+  if (isLong(numBits)) numBits = numBits.toInt();
+  if ((numBits &= 63) === 0) return this;
+  if (numBits === 32) return fromBits(this.high, this.low, this.unsigned);
   if (numBits < 32) {
     b = 32 - numBits;
     return fromBits(this.high << b | this.low >>> numBits, this.low << b | this.high >>> numBits, this.unsigned);
@@ -20688,7 +21834,7 @@ var IndexDescriptor = {
     for (const v of message.fields) {
       writer.uint32(26).string(v);
     }
-    if (message.unique === true) {
+    if (message.unique !== false) {
       writer.uint32(32).bool(message.unique);
     }
     if (message.indexType !== 0) {
@@ -20781,7 +21927,7 @@ var IndexDescriptor = {
     if (message.fields?.length) {
       obj.fields = message.fields;
     }
-    if (message.unique === true) {
+    if (message.unique !== false) {
       obj.unique = message.unique;
     }
     if (message.indexType !== 0) {
@@ -23481,7 +24627,7 @@ var ContainsResponse = {
     if (message.message !== "") {
       writer.uint32(18).string(message.message);
     }
-    if (message.found === true) {
+    if (message.found !== false) {
       writer.uint32(24).bool(message.found);
     }
     if (message.profile !== void 0) {
@@ -23544,7 +24690,7 @@ var ContainsResponse = {
     if (message.message !== "") {
       obj.message = message.message;
     }
-    if (message.found === true) {
+    if (message.found !== false) {
       obj.found = message.found;
     }
     if (message.profile !== void 0) {
@@ -24730,6 +25876,7 @@ var GrpcClient = class {
 
 // src/document_db.ts
 import { readParquet } from "parquet-wasm";
+import { tableFromIPC } from "@apache-arrow/esnext-esm";
 var IndexType = /* @__PURE__ */ ((IndexType2) => {
   IndexType2[IndexType2["kPrimaryKey"] = 0] = "kPrimaryKey";
   IndexType2[IndexType2["kSecondaryKey"] = 1] = "kSecondaryKey";
@@ -25195,7 +26342,7 @@ var PutRequest = {
     if (message.ttl !== 0) {
       writer.uint32(32).int64(message.ttl);
     }
-    if (message.createIfMissing === true) {
+    if (message.createIfMissing !== false) {
       writer.uint32(40).bool(message.createIfMissing);
     }
     return writer;
@@ -25268,7 +26415,7 @@ var PutRequest = {
     if (message.ttl !== 0) {
       obj.ttl = Math.round(message.ttl);
     }
-    if (message.createIfMissing === true) {
+    if (message.createIfMissing !== false) {
       obj.createIfMissing = message.createIfMissing;
     }
     return obj;
@@ -25735,7 +26882,7 @@ var BatchedPutRequest = {
       writer.int64(v);
     }
     writer.ldelim();
-    if (message.createIfMissing === true) {
+    if (message.createIfMissing !== false) {
       writer.uint32(40).bool(message.createIfMissing);
     }
     return writer;
@@ -25815,7 +26962,7 @@ var BatchedPutRequest = {
     if (message.ttls?.length) {
       obj.ttls = message.ttls.map((e) => Math.round(e));
     }
-    if (message.createIfMissing === true) {
+    if (message.createIfMissing !== false) {
       obj.createIfMissing = message.createIfMissing;
     }
     return obj;
@@ -28000,6 +29147,525 @@ var SentenceTransformer = class extends GrpcClient {
     });
   }
 };
+
+// src/proto/generated/system_metrics.ts
+var import_grpc_js6 = __toESM(require_src3(), 1);
+var import_minimal5 = __toESM(require_minimal2(), 1);
+function getSystemMetricsSnapshotResponse_StatusFromJSON(object) {
+  switch (object) {
+    case 0:
+    case "Success":
+      return 0 /* Success */;
+    case -1:
+    case "UNRECOGNIZED":
+    default:
+      return -1 /* UNRECOGNIZED */;
+  }
+}
+function getSystemMetricsSnapshotResponse_StatusToJSON(object) {
+  switch (object) {
+    case 0 /* Success */:
+      return "Success";
+    case -1 /* UNRECOGNIZED */:
+    default:
+      return "UNRECOGNIZED";
+  }
+}
+function createBaseGetSystemMetricsSnapshotRequest() {
+  return { clientName: "", version: "" };
+}
+var GetSystemMetricsSnapshotRequest = {
+  encode(message, writer = import_minimal5.default.Writer.create()) {
+    if (message.clientName !== "") {
+      writer.uint32(10).string(message.clientName);
+    }
+    if (message.version !== "") {
+      writer.uint32(18).string(message.version);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_minimal5.default.Reader ? input : import_minimal5.default.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseGetSystemMetricsSnapshotRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.clientName = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.version = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      clientName: isSet5(object.clientName) ? globalThis.String(object.clientName) : "",
+      version: isSet5(object.version) ? globalThis.String(object.version) : ""
+    };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.clientName !== "") {
+      obj.clientName = message.clientName;
+    }
+    if (message.version !== "") {
+      obj.version = message.version;
+    }
+    return obj;
+  },
+  create(base) {
+    return GetSystemMetricsSnapshotRequest.fromPartial(base ?? {});
+  },
+  fromPartial(object) {
+    const message = createBaseGetSystemMetricsSnapshotRequest();
+    message.clientName = object.clientName ?? "";
+    message.version = object.version ?? "";
+    return message;
+  }
+};
+function createBaseGetSystemMetricsSnapshotResponse() {
+  return { status: 0, snapshot: void 0 };
+}
+var GetSystemMetricsSnapshotResponse = {
+  encode(message, writer = import_minimal5.default.Writer.create()) {
+    if (message.status !== 0) {
+      writer.uint32(8).int32(message.status);
+    }
+    if (message.snapshot !== void 0) {
+      SystemMetricsSnapshot.encode(message.snapshot, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_minimal5.default.Reader ? input : import_minimal5.default.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseGetSystemMetricsSnapshotResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+          message.status = reader.int32();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.snapshot = SystemMetricsSnapshot.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      status: isSet5(object.status) ? getSystemMetricsSnapshotResponse_StatusFromJSON(object.status) : 0,
+      snapshot: isSet5(object.snapshot) ? SystemMetricsSnapshot.fromJSON(object.snapshot) : void 0
+    };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.status !== 0) {
+      obj.status = getSystemMetricsSnapshotResponse_StatusToJSON(message.status);
+    }
+    if (message.snapshot !== void 0) {
+      obj.snapshot = SystemMetricsSnapshot.toJSON(message.snapshot);
+    }
+    return obj;
+  },
+  create(base) {
+    return GetSystemMetricsSnapshotResponse.fromPartial(base ?? {});
+  },
+  fromPartial(object) {
+    const message = createBaseGetSystemMetricsSnapshotResponse();
+    message.status = object.status ?? 0;
+    message.snapshot = object.snapshot !== void 0 && object.snapshot !== null ? SystemMetricsSnapshot.fromPartial(object.snapshot) : void 0;
+    return message;
+  }
+};
+function createBaseSystemMetricsSnapshot() {
+  return { appMetadata: void 0, clusterInfo: void 0 };
+}
+var SystemMetricsSnapshot = {
+  encode(message, writer = import_minimal5.default.Writer.create()) {
+    if (message.appMetadata !== void 0) {
+      ApplicationMetadata.encode(message.appMetadata, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.clusterInfo !== void 0) {
+      ClusterInfo.encode(message.clusterInfo, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_minimal5.default.Reader ? input : import_minimal5.default.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseSystemMetricsSnapshot();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.appMetadata = ApplicationMetadata.decode(reader, reader.uint32());
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.clusterInfo = ClusterInfo.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      appMetadata: isSet5(object.appMetadata) ? ApplicationMetadata.fromJSON(object.appMetadata) : void 0,
+      clusterInfo: isSet5(object.clusterInfo) ? ClusterInfo.fromJSON(object.clusterInfo) : void 0
+    };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.appMetadata !== void 0) {
+      obj.appMetadata = ApplicationMetadata.toJSON(message.appMetadata);
+    }
+    if (message.clusterInfo !== void 0) {
+      obj.clusterInfo = ClusterInfo.toJSON(message.clusterInfo);
+    }
+    return obj;
+  },
+  create(base) {
+    return SystemMetricsSnapshot.fromPartial(base ?? {});
+  },
+  fromPartial(object) {
+    const message = createBaseSystemMetricsSnapshot();
+    message.appMetadata = object.appMetadata !== void 0 && object.appMetadata !== null ? ApplicationMetadata.fromPartial(object.appMetadata) : void 0;
+    message.clusterInfo = object.clusterInfo !== void 0 && object.clusterInfo !== null ? ClusterInfo.fromPartial(object.clusterInfo) : void 0;
+    return message;
+  }
+};
+function createBaseApplicationMetadata() {
+  return { appName: "", version: "", persistentId: "" };
+}
+var ApplicationMetadata = {
+  encode(message, writer = import_minimal5.default.Writer.create()) {
+    if (message.appName !== "") {
+      writer.uint32(10).string(message.appName);
+    }
+    if (message.version !== "") {
+      writer.uint32(18).string(message.version);
+    }
+    if (message.persistentId !== "") {
+      writer.uint32(26).string(message.persistentId);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_minimal5.default.Reader ? input : import_minimal5.default.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseApplicationMetadata();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.appName = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.version = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+          message.persistentId = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      appName: isSet5(object.appName) ? globalThis.String(object.appName) : "",
+      version: isSet5(object.version) ? globalThis.String(object.version) : "",
+      persistentId: isSet5(object.persistentId) ? globalThis.String(object.persistentId) : ""
+    };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.appName !== "") {
+      obj.appName = message.appName;
+    }
+    if (message.version !== "") {
+      obj.version = message.version;
+    }
+    if (message.persistentId !== "") {
+      obj.persistentId = message.persistentId;
+    }
+    return obj;
+  },
+  create(base) {
+    return ApplicationMetadata.fromPartial(base ?? {});
+  },
+  fromPartial(object) {
+    const message = createBaseApplicationMetadata();
+    message.appName = object.appName ?? "";
+    message.version = object.version ?? "";
+    message.persistentId = object.persistentId ?? "";
+    return message;
+  }
+};
+function createBaseClusterInfo() {
+  return { clusterName: "", clusterId: "", nodes: [] };
+}
+var ClusterInfo = {
+  encode(message, writer = import_minimal5.default.Writer.create()) {
+    if (message.clusterName !== "") {
+      writer.uint32(10).string(message.clusterName);
+    }
+    if (message.clusterId !== "") {
+      writer.uint32(18).string(message.clusterId);
+    }
+    for (const v of message.nodes) {
+      NodeInfo.encode(v, writer.uint32(26).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_minimal5.default.Reader ? input : import_minimal5.default.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseClusterInfo();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.clusterName = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.clusterId = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+          message.nodes.push(NodeInfo.decode(reader, reader.uint32()));
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      clusterName: isSet5(object.clusterName) ? globalThis.String(object.clusterName) : "",
+      clusterId: isSet5(object.clusterId) ? globalThis.String(object.clusterId) : "",
+      nodes: globalThis.Array.isArray(object?.nodes) ? object.nodes.map((e) => NodeInfo.fromJSON(e)) : []
+    };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.clusterName !== "") {
+      obj.clusterName = message.clusterName;
+    }
+    if (message.clusterId !== "") {
+      obj.clusterId = message.clusterId;
+    }
+    if (message.nodes?.length) {
+      obj.nodes = message.nodes.map((e) => NodeInfo.toJSON(e));
+    }
+    return obj;
+  },
+  create(base) {
+    return ClusterInfo.fromPartial(base ?? {});
+  },
+  fromPartial(object) {
+    const message = createBaseClusterInfo();
+    message.clusterName = object.clusterName ?? "";
+    message.clusterId = object.clusterId ?? "";
+    message.nodes = object.nodes?.map((e) => NodeInfo.fromPartial(e)) || [];
+    return message;
+  }
+};
+function createBaseNodeInfo() {
+  return { nodeName: "", nodeId: "", nodeIp: "", nodePort: 0 };
+}
+var NodeInfo = {
+  encode(message, writer = import_minimal5.default.Writer.create()) {
+    if (message.nodeName !== "") {
+      writer.uint32(10).string(message.nodeName);
+    }
+    if (message.nodeId !== "") {
+      writer.uint32(18).string(message.nodeId);
+    }
+    if (message.nodeIp !== "") {
+      writer.uint32(26).string(message.nodeIp);
+    }
+    if (message.nodePort !== 0) {
+      writer.uint32(32).int32(message.nodePort);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_minimal5.default.Reader ? input : import_minimal5.default.Reader.create(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseNodeInfo();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+          message.nodeName = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+          message.nodeId = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+          message.nodeIp = reader.string();
+          continue;
+        case 4:
+          if (tag !== 32) {
+            break;
+          }
+          message.nodePort = reader.int32();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+  fromJSON(object) {
+    return {
+      nodeName: isSet5(object.nodeName) ? globalThis.String(object.nodeName) : "",
+      nodeId: isSet5(object.nodeId) ? globalThis.String(object.nodeId) : "",
+      nodeIp: isSet5(object.nodeIp) ? globalThis.String(object.nodeIp) : "",
+      nodePort: isSet5(object.nodePort) ? globalThis.Number(object.nodePort) : 0
+    };
+  },
+  toJSON(message) {
+    const obj = {};
+    if (message.nodeName !== "") {
+      obj.nodeName = message.nodeName;
+    }
+    if (message.nodeId !== "") {
+      obj.nodeId = message.nodeId;
+    }
+    if (message.nodeIp !== "") {
+      obj.nodeIp = message.nodeIp;
+    }
+    if (message.nodePort !== 0) {
+      obj.nodePort = Math.round(message.nodePort);
+    }
+    return obj;
+  },
+  create(base) {
+    return NodeInfo.fromPartial(base ?? {});
+  },
+  fromPartial(object) {
+    const message = createBaseNodeInfo();
+    message.nodeName = object.nodeName ?? "";
+    message.nodeId = object.nodeId ?? "";
+    message.nodeIp = object.nodeIp ?? "";
+    message.nodePort = object.nodePort ?? 0;
+    return message;
+  }
+};
+var SystemMetricsServiceService = {
+  getSnapshot: {
+    path: "/aeca.rpc.SystemMetricsService/get_snapshot",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value) => Buffer.from(GetSystemMetricsSnapshotRequest.encode(value).finish()),
+    requestDeserialize: (value) => GetSystemMetricsSnapshotRequest.decode(value),
+    responseSerialize: (value) => Buffer.from(GetSystemMetricsSnapshotResponse.encode(value).finish()),
+    responseDeserialize: (value) => GetSystemMetricsSnapshotResponse.decode(value)
+  }
+};
+var SystemMetricsServiceClient = (0, import_grpc_js6.makeGenericClientConstructor)(
+  SystemMetricsServiceService,
+  "aeca.rpc.SystemMetricsService"
+);
+function isSet5(value) {
+  return value !== null && value !== void 0;
+}
+
+// src/system_metrics.ts
+var SystemMetrics = class extends GrpcClient {
+  constructor(channel, timeout = void 0) {
+    const client = new SystemMetricsServiceClient(
+      channel.address,
+      channel.credential,
+      channel.options
+    );
+    super(channel, client, timeout);
+  }
+  getSnapshot(clientName = "", version = "") {
+    const request = {
+      clientName,
+      version
+    };
+    return this.createPromise(
+      request,
+      "getSnapshot",
+      (response) => {
+        return response.snapshot;
+      }
+    );
+  }
+};
 export {
   Channel,
   DocumentDB,
@@ -28007,6 +29673,7 @@ export {
   KeyValueDB,
   KeyspaceManager,
   SentenceTransformer,
+  SystemMetrics,
   indexStatusFromJSON2 as indexStatusFromJSON,
   indexTypeFromJSON2 as indexTypeFromJSON
 };

@@ -1,7 +1,7 @@
 import * as grpc from '@grpc/grpc-js';
 import { Client, ServiceError as ServiceError$1, ClientUnaryCall, Metadata, CallOptions, ChannelCredentials, ClientOptions } from '@grpc/grpc-js';
 import _m0 from 'protobufjs/minimal';
-import { Table } from 'apache-arrow';
+import { Table } from '@apache-arrow/esnext-esm';
 
 interface Value {
     null?: boolean | undefined;
@@ -1113,7 +1113,7 @@ declare const Value: {
                 } & { [K_126 in Exclude<keyof I["object"]["value"][string], keyof Value>]: never; }) | undefined;
             } & { [K_127 in Exclude<keyof I["object"]["value"], string | number>]: never; }) | undefined;
         } & { [K_128 in Exclude<keyof I["object"], "value">]: never; }) | undefined;
-    } & { [K_129 in Exclude<keyof I, keyof Value>]: never; }>(base?: I | undefined): Value;
+    } & { [K_129 in Exclude<keyof I, keyof Value>]: never; }>(base?: I): Value;
     fromPartial<I_1 extends {
         null?: boolean | undefined;
         bool?: boolean | undefined;
@@ -3040,7 +3040,7 @@ declare const Array: {
                 } & { [K_94 in Exclude<keyof I["value"][number]["object"]["value"], string | number>]: never; }) | undefined;
             } & { [K_95 in Exclude<keyof I["value"][number]["object"], "value">]: never; }) | undefined;
         } & { [K_96 in Exclude<keyof I["value"][number], keyof Value>]: never; })[] & { [K_97 in Exclude<keyof I["value"], keyof any[]>]: never; }) | undefined;
-    } & { [K_98 in Exclude<keyof I, "value">]: never; }>(base?: I | undefined): Array;
+    } & { [K_98 in Exclude<keyof I, "value">]: never; }>(base?: I): Array;
     fromPartial<I_1 extends {
         value?: any[] | undefined;
     } & {
@@ -4491,7 +4491,7 @@ declare const ObjectType: {
                 } & { [K_70 in Exclude<keyof I["value"][string]["object"], "value">]: never; }) | undefined;
             } & { [K_71 in Exclude<keyof I["value"][string], keyof Value>]: never; }) | undefined;
         } & { [K_72 in Exclude<keyof I["value"], string | number>]: never; }) | undefined;
-    } & { [K_73 in Exclude<keyof I, "value">]: never; }>(base?: I | undefined): ObjectType;
+    } & { [K_73 in Exclude<keyof I, "value">]: never; }>(base?: I): ObjectType;
     fromPartial<I_1 extends {
         value?: {
             [x: string]: any | undefined;
@@ -5590,7 +5590,7 @@ declare const Document$1: {
             } & { [K_53 in Exclude<keyof I["object"]["value"], string | number>]: never; }) | undefined;
         } & { [K_54 in Exclude<keyof I["object"], "value">]: never; }) | undefined;
         json?: string | undefined;
-    } & { [K_55 in Exclude<keyof I, keyof Document$1>]: never; }>(base?: I | undefined): Document$1;
+    } & { [K_55 in Exclude<keyof I, keyof Document$1>]: never; }>(base?: I): Document$1;
     fromPartial<I_1 extends {
         object?: {
             value?: {
@@ -6657,7 +6657,7 @@ declare const IndexDescriptor$1: {
             } & { [K_38 in Exclude<keyof I["options"]["object"], "value">]: never; }) | undefined;
             json?: string | undefined;
         } & { [K_39 in Exclude<keyof I["options"], keyof Document$1>]: never; }) | undefined;
-    } & { [K_40 in Exclude<keyof I, keyof IndexDescriptor$1>]: never; }>(base?: I | undefined): IndexDescriptor$1;
+    } & { [K_40 in Exclude<keyof I, keyof IndexDescriptor$1>]: never; }>(base?: I): IndexDescriptor$1;
     fromPartial<I_1 extends {
         indexId?: number | undefined;
         indexName?: string | undefined;
@@ -7216,7 +7216,7 @@ declare const FTSFieldStats: {
         docSize?: number | undefined;
         sumTermFreq?: number | undefined;
         sumDocFreq?: number | undefined;
-    } & { [K in Exclude<keyof I, keyof FTSFieldStats>]: never; }>(base?: I | undefined): FTSFieldStats;
+    } & { [K in Exclude<keyof I, keyof FTSFieldStats>]: never; }>(base?: I): FTSFieldStats;
     fromPartial<I_1 extends {
         fieldName?: string | undefined;
         totalDocCount?: number | undefined;
@@ -7293,7 +7293,7 @@ declare const FTSIndexStats: {
             sumTermFreq?: number | undefined;
             sumDocFreq?: number | undefined;
         }[]>]: never; }) | undefined;
-    } & { [K_2 in Exclude<keyof I, keyof FTSIndexStats>]: never; }>(base?: I | undefined): FTSIndexStats;
+    } & { [K_2 in Exclude<keyof I, keyof FTSIndexStats>]: never; }>(base?: I): FTSIndexStats;
     fromPartial<I_1 extends {
         docCount?: number | undefined;
         docSize?: number | undefined;
@@ -7458,7 +7458,7 @@ declare const IndexStats$1: {
                 sumDocFreq?: number | undefined;
             }[]>]: never; }) | undefined;
         } & { [K_2 in Exclude<keyof I["ftsStats"], keyof FTSIndexStats>]: never; }) | undefined;
-    } & { [K_3 in Exclude<keyof I, keyof IndexStats$1>]: never; }>(base?: I | undefined): IndexStats$1;
+    } & { [K_3 in Exclude<keyof I, keyof IndexStats$1>]: never; }>(base?: I): IndexStats$1;
     fromPartial<I_1 extends {
         indexId?: number | undefined;
         indexName?: string | undefined;
@@ -8230,7 +8230,7 @@ declare const CollectionInfo$1: {
                 }[] | undefined;
             } | undefined;
         }[]>]: never; }) | undefined;
-    } & { [K_38 in Exclude<keyof I, keyof CollectionInfo$1>]: never; }>(base?: I | undefined): CollectionInfo$1;
+    } & { [K_38 in Exclude<keyof I, keyof CollectionInfo$1>]: never; }>(base?: I): CollectionInfo$1;
     fromPartial<I_1 extends {
         collectionName?: string | undefined;
         indexDescriptors?: {
@@ -8924,7 +8924,7 @@ declare const ProfileInfo$2: {
         filtered?: number | undefined;
         queryDurationUs?: number | undefined;
         serializationDurationUs?: number | undefined;
-    } & { [K in Exclude<keyof I, keyof ProfileInfo$2>]: never; }>(base?: I | undefined): ProfileInfo$2;
+    } & { [K in Exclude<keyof I, keyof ProfileInfo$2>]: never; }>(base?: I): ProfileInfo$2;
     fromPartial<I_1 extends {
         matched?: number | undefined;
         scanned?: number | undefined;
@@ -9583,7 +9583,7 @@ declare const CreateCollectionRequest: {
                 } | undefined;
             }[]>]: never; }) | undefined;
         } & { [K_28 in Exclude<keyof I["collection"], keyof CollectionInfo$1>]: never; }) | undefined;
-    } & { [K_29 in Exclude<keyof I, "collection">]: never; }>(base?: I | undefined): CreateCollectionRequest;
+    } & { [K_29 in Exclude<keyof I, "collection">]: never; }>(base?: I): CreateCollectionRequest;
     fromPartial<I_1 extends {
         collection?: {
             collectionName?: string | undefined;
@@ -10258,7 +10258,7 @@ declare const CreateCollectionResponse: {
             queryDurationUs?: number | undefined;
             serializationDurationUs?: number | undefined;
         } & { [K in Exclude<keyof I["profile"], keyof ProfileInfo$2>]: never; }) | undefined;
-    } & { [K_1 in Exclude<keyof I, keyof CreateCollectionResponse>]: never; }>(base?: I | undefined): CreateCollectionResponse;
+    } & { [K_1 in Exclude<keyof I, keyof CreateCollectionResponse>]: never; }>(base?: I): CreateCollectionResponse;
     fromPartial<I_1 extends {
         status?: number | undefined;
         message?: string | undefined;
@@ -10299,7 +10299,7 @@ declare const DropCollectionRequest: {
         collectionName?: string | undefined;
     } & {
         collectionName?: string | undefined;
-    } & { [K in Exclude<keyof I, "collectionName">]: never; }>(base?: I | undefined): DropCollectionRequest;
+    } & { [K in Exclude<keyof I, "collectionName">]: never; }>(base?: I): DropCollectionRequest;
     fromPartial<I_1 extends {
         collectionName?: string | undefined;
     } & {
@@ -10342,7 +10342,7 @@ declare const DropCollectionResponse: {
             queryDurationUs?: number | undefined;
             serializationDurationUs?: number | undefined;
         } & { [K in Exclude<keyof I["profile"], keyof ProfileInfo$2>]: never; }) | undefined;
-    } & { [K_1 in Exclude<keyof I, keyof DropCollectionResponse>]: never; }>(base?: I | undefined): DropCollectionResponse;
+    } & { [K_1 in Exclude<keyof I, keyof DropCollectionResponse>]: never; }>(base?: I): DropCollectionResponse;
     fromPartial<I_1 extends {
         status?: number | undefined;
         message?: string | undefined;
@@ -10386,7 +10386,7 @@ declare const RenameCollectionRequest: {
     } & {
         oldCollectionName?: string | undefined;
         newCollectionName?: string | undefined;
-    } & { [K in Exclude<keyof I, keyof RenameCollectionRequest>]: never; }>(base?: I | undefined): RenameCollectionRequest;
+    } & { [K in Exclude<keyof I, keyof RenameCollectionRequest>]: never; }>(base?: I): RenameCollectionRequest;
     fromPartial<I_1 extends {
         oldCollectionName?: string | undefined;
         newCollectionName?: string | undefined;
@@ -10431,7 +10431,7 @@ declare const RenameCollectionResponse: {
             queryDurationUs?: number | undefined;
             serializationDurationUs?: number | undefined;
         } & { [K in Exclude<keyof I["profile"], keyof ProfileInfo$2>]: never; }) | undefined;
-    } & { [K_1 in Exclude<keyof I, keyof RenameCollectionResponse>]: never; }>(base?: I | undefined): RenameCollectionResponse;
+    } & { [K_1 in Exclude<keyof I, keyof RenameCollectionResponse>]: never; }>(base?: I): RenameCollectionResponse;
     fromPartial<I_1 extends {
         status?: number | undefined;
         message?: string | undefined;
@@ -10472,7 +10472,7 @@ declare const GetCollectionRequest: {
         collectionName?: string | undefined;
     } & {
         collectionName?: string | undefined;
-    } & { [K in Exclude<keyof I, "collectionName">]: never; }>(base?: I | undefined): GetCollectionRequest;
+    } & { [K in Exclude<keyof I, "collectionName">]: never; }>(base?: I): GetCollectionRequest;
     fromPartial<I_1 extends {
         collectionName?: string | undefined;
     } & {
@@ -11150,7 +11150,7 @@ declare const GetCollectionResponse: {
             queryDurationUs?: number | undefined;
             serializationDurationUs?: number | undefined;
         } & { [K_29 in Exclude<keyof I["profile"], keyof ProfileInfo$2>]: never; }) | undefined;
-    } & { [K_30 in Exclude<keyof I, keyof GetCollectionResponse>]: never; }>(base?: I | undefined): GetCollectionResponse;
+    } & { [K_30 in Exclude<keyof I, keyof GetCollectionResponse>]: never; }>(base?: I): GetCollectionResponse;
     fromPartial<I_1 extends {
         status?: number | undefined;
         message?: string | undefined;
@@ -11825,7 +11825,7 @@ declare const GetCollectionsRequest: {
         collectionNames?: string[] | undefined;
     } & {
         collectionNames?: (string[] & string[] & { [K in Exclude<keyof I["collectionNames"], keyof string[]>]: never; }) | undefined;
-    } & { [K_1 in Exclude<keyof I, "collectionNames">]: never; }>(base?: I | undefined): GetCollectionsRequest;
+    } & { [K_1 in Exclude<keyof I, "collectionNames">]: never; }>(base?: I): GetCollectionsRequest;
     fromPartial<I_1 extends {
         collectionNames?: string[] | undefined;
     } & {
@@ -12619,7 +12619,7 @@ declare const GetCollectionsResponse: {
             queryDurationUs?: number | undefined;
             serializationDurationUs?: number | undefined;
         } & { [K_30 in Exclude<keyof I["profile"], keyof ProfileInfo$2>]: never; }) | undefined;
-    } & { [K_31 in Exclude<keyof I, keyof GetCollectionsResponse>]: never; }>(base?: I | undefined): GetCollectionsResponse;
+    } & { [K_31 in Exclude<keyof I, keyof GetCollectionsResponse>]: never; }>(base?: I): GetCollectionsResponse;
     fromPartial<I_1 extends {
         status?: number | undefined;
         message?: string | undefined;
@@ -13844,7 +13844,7 @@ declare const CreateIndexRequest: {
                 json?: string | undefined;
             } & { [K_30 in Exclude<keyof I["indexDesc"]["options"], keyof Document$1>]: never; }) | undefined;
         } & { [K_31 in Exclude<keyof I["indexDesc"], keyof IndexDescriptor$1>]: never; }) | undefined;
-    } & { [K_32 in Exclude<keyof I, keyof CreateIndexRequest>]: never; }>(base?: I | undefined): CreateIndexRequest;
+    } & { [K_32 in Exclude<keyof I, keyof CreateIndexRequest>]: never; }>(base?: I): CreateIndexRequest;
     fromPartial<I_1 extends {
         collectionName?: string | undefined;
         indexDesc?: {
@@ -14320,7 +14320,7 @@ declare const CreateIndexResponse: {
             queryDurationUs?: number | undefined;
             serializationDurationUs?: number | undefined;
         } & { [K in Exclude<keyof I["profile"], keyof ProfileInfo$2>]: never; }) | undefined;
-    } & { [K_1 in Exclude<keyof I, keyof CreateIndexResponse>]: never; }>(base?: I | undefined): CreateIndexResponse;
+    } & { [K_1 in Exclude<keyof I, keyof CreateIndexResponse>]: never; }>(base?: I): CreateIndexResponse;
     fromPartial<I_1 extends {
         status?: number | undefined;
         message?: string | undefined;
@@ -14364,7 +14364,7 @@ declare const DropIndexRequest: {
     } & {
         collectionName?: string | undefined;
         indexName?: string | undefined;
-    } & { [K in Exclude<keyof I, keyof DropIndexRequest>]: never; }>(base?: I | undefined): DropIndexRequest;
+    } & { [K in Exclude<keyof I, keyof DropIndexRequest>]: never; }>(base?: I): DropIndexRequest;
     fromPartial<I_1 extends {
         collectionName?: string | undefined;
         indexName?: string | undefined;
@@ -14409,7 +14409,7 @@ declare const DropIndexResponse: {
             queryDurationUs?: number | undefined;
             serializationDurationUs?: number | undefined;
         } & { [K in Exclude<keyof I["profile"], keyof ProfileInfo$2>]: never; }) | undefined;
-    } & { [K_1 in Exclude<keyof I, keyof DropIndexResponse>]: never; }>(base?: I | undefined): DropIndexResponse;
+    } & { [K_1 in Exclude<keyof I, keyof DropIndexResponse>]: never; }>(base?: I): DropIndexResponse;
     fromPartial<I_1 extends {
         status?: number | undefined;
         message?: string | undefined;
@@ -14456,7 +14456,7 @@ declare const RenameIndexRequest: {
         collectionName?: string | undefined;
         oldIndexName?: string | undefined;
         newIndexName?: string | undefined;
-    } & { [K in Exclude<keyof I, keyof RenameIndexRequest>]: never; }>(base?: I | undefined): RenameIndexRequest;
+    } & { [K in Exclude<keyof I, keyof RenameIndexRequest>]: never; }>(base?: I): RenameIndexRequest;
     fromPartial<I_1 extends {
         collectionName?: string | undefined;
         oldIndexName?: string | undefined;
@@ -14503,7 +14503,7 @@ declare const RenameIndexResponse: {
             queryDurationUs?: number | undefined;
             serializationDurationUs?: number | undefined;
         } & { [K in Exclude<keyof I["profile"], keyof ProfileInfo$2>]: never; }) | undefined;
-    } & { [K_1 in Exclude<keyof I, keyof RenameIndexResponse>]: never; }>(base?: I | undefined): RenameIndexResponse;
+    } & { [K_1 in Exclude<keyof I, keyof RenameIndexResponse>]: never; }>(base?: I): RenameIndexResponse;
     fromPartial<I_1 extends {
         status?: number | undefined;
         message?: string | undefined;
@@ -14547,7 +14547,7 @@ declare const GetIndexRequest: {
     } & {
         collectionName?: string | undefined;
         indexName?: string | undefined;
-    } & { [K in Exclude<keyof I, keyof GetIndexRequest>]: never; }>(base?: I | undefined): GetIndexRequest;
+    } & { [K in Exclude<keyof I, keyof GetIndexRequest>]: never; }>(base?: I): GetIndexRequest;
     fromPartial<I_1 extends {
         collectionName?: string | undefined;
         indexName?: string | undefined;
@@ -15152,7 +15152,7 @@ declare const GetIndexResponse: {
             queryDurationUs?: number | undefined;
             serializationDurationUs?: number | undefined;
         } & { [K_36 in Exclude<keyof I["profile"], keyof ProfileInfo$2>]: never; }) | undefined;
-    } & { [K_37 in Exclude<keyof I, keyof GetIndexResponse>]: never; }>(base?: I | undefined): GetIndexResponse;
+    } & { [K_37 in Exclude<keyof I, keyof GetIndexResponse>]: never; }>(base?: I): GetIndexResponse;
     fromPartial<I_1 extends {
         status?: number | undefined;
         message?: string | undefined;
@@ -16263,7 +16263,7 @@ declare const Query$1: {
             } & { [K_38 in Exclude<keyof I["query"]["object"], "value">]: never; }) | undefined;
             json?: string | undefined;
         } & { [K_39 in Exclude<keyof I["query"], keyof Document$1>]: never; }) | undefined;
-    } & { [K_40 in Exclude<keyof I, keyof Query$1>]: never; }>(base?: I | undefined): Query$1;
+    } & { [K_40 in Exclude<keyof I, keyof Query$1>]: never; }>(base?: I): Query$1;
     fromPartial<I_1 extends {
         collectionName?: string | undefined;
         query?: {
@@ -17230,7 +17230,7 @@ declare const FindRequest: {
         } & {
             [x: string]: string | undefined;
         } & { [K_34 in Exclude<keyof I["dtypes"], string | number>]: never; }) | undefined;
-    } & { [K_35 in Exclude<keyof I, keyof FindRequest>]: never; }>(base?: I | undefined): FindRequest;
+    } & { [K_35 in Exclude<keyof I, keyof FindRequest>]: never; }>(base?: I): FindRequest;
     fromPartial<I_1 extends {
         query?: {
             collectionName?: string | undefined;
@@ -17706,7 +17706,7 @@ declare const FindResponse: {
             queryDurationUs?: number | undefined;
             serializationDurationUs?: number | undefined;
         } & { [K in Exclude<keyof I["profile"], keyof ProfileInfo$2>]: never; }) | undefined;
-    } & { [K_1 in Exclude<keyof I, keyof FindResponse>]: never; }>(base?: I | undefined): FindResponse;
+    } & { [K_1 in Exclude<keyof I, keyof FindResponse>]: never; }>(base?: I): FindResponse;
     fromPartial<I_1 extends {
         numColumns?: number | undefined;
         numRows?: number | undefined;
@@ -18177,7 +18177,7 @@ declare const FindBatchRequest: {
                 [x: string]: string | undefined;
             } | undefined;
         }[]>]: never; }) | undefined;
-    } & { [K_27 in Exclude<keyof I, "requests">]: never; }>(base?: I | undefined): FindBatchRequest;
+    } & { [K_27 in Exclude<keyof I, "requests">]: never; }>(base?: I): FindBatchRequest;
     fromPartial<I_1 extends {
         requests?: {
             query?: {
@@ -18685,7 +18685,7 @@ declare const FindBatchResponse: {
                 serializationDurationUs?: number | undefined;
             } | undefined;
         }[]>]: never; }) | undefined;
-    } & { [K_3 in Exclude<keyof I, "responses">]: never; }>(base?: I | undefined): FindBatchResponse;
+    } & { [K_3 in Exclude<keyof I, "responses">]: never; }>(base?: I): FindBatchResponse;
     fromPartial<I_1 extends {
         responses?: {
             numColumns?: number | undefined;
@@ -19181,7 +19181,7 @@ declare const CountRequest: {
                 json?: string | undefined;
             } & { [K_30 in Exclude<keyof I["query"]["query"], keyof Document$1>]: never; }) | undefined;
         } & { [K_31 in Exclude<keyof I["query"], keyof Query$1>]: never; }) | undefined;
-    } & { [K_32 in Exclude<keyof I, "query">]: never; }>(base?: I | undefined): CountRequest;
+    } & { [K_32 in Exclude<keyof I, "query">]: never; }>(base?: I): CountRequest;
     fromPartial<I_1 extends {
         query?: {
             collectionName?: string | undefined;
@@ -19643,7 +19643,7 @@ declare const CountResponse: {
             queryDurationUs?: number | undefined;
             serializationDurationUs?: number | undefined;
         } & { [K in Exclude<keyof I["profile"], keyof ProfileInfo$2>]: never; }) | undefined;
-    } & { [K_1 in Exclude<keyof I, keyof CountResponse>]: never; }>(base?: I | undefined): CountResponse;
+    } & { [K_1 in Exclude<keyof I, keyof CountResponse>]: never; }>(base?: I): CountResponse;
     fromPartial<I_1 extends {
         status?: number | undefined;
         message?: string | undefined;
@@ -20102,7 +20102,7 @@ declare const ContainsRequest: {
                 json?: string | undefined;
             } & { [K_30 in Exclude<keyof I["query"]["query"], keyof Document$1>]: never; }) | undefined;
         } & { [K_31 in Exclude<keyof I["query"], keyof Query$1>]: never; }) | undefined;
-    } & { [K_32 in Exclude<keyof I, "query">]: never; }>(base?: I | undefined): ContainsRequest;
+    } & { [K_32 in Exclude<keyof I, "query">]: never; }>(base?: I): ContainsRequest;
     fromPartial<I_1 extends {
         query?: {
             collectionName?: string | undefined;
@@ -20564,7 +20564,7 @@ declare const ContainsResponse: {
             queryDurationUs?: number | undefined;
             serializationDurationUs?: number | undefined;
         } & { [K in Exclude<keyof I["profile"], keyof ProfileInfo$2>]: never; }) | undefined;
-    } & { [K_1 in Exclude<keyof I, keyof ContainsResponse>]: never; }>(base?: I | undefined): ContainsResponse;
+    } & { [K_1 in Exclude<keyof I, keyof ContainsResponse>]: never; }>(base?: I): ContainsResponse;
     fromPartial<I_1 extends {
         status?: number | undefined;
         message?: string | undefined;
@@ -21065,7 +21065,7 @@ declare const InsertRequest: {
                 json?: string | undefined;
             } | undefined;
         }[]>]: never; }) | undefined;
-    } & { [K_33 in Exclude<keyof I, "requests">]: never; }>(base?: I | undefined): InsertRequest;
+    } & { [K_33 in Exclude<keyof I, "requests">]: never; }>(base?: I): InsertRequest;
     fromPartial<I_1 extends {
         requests?: {
             collectionName?: string | undefined;
@@ -21566,7 +21566,7 @@ declare const InsertResponse: {
             queryDurationUs?: number | undefined;
             serializationDurationUs?: number | undefined;
         } & { [K in Exclude<keyof I["profile"], keyof ProfileInfo$2>]: never; }) | undefined;
-    } & { [K_1 in Exclude<keyof I, keyof InsertResponse>]: never; }>(base?: I | undefined): InsertResponse;
+    } & { [K_1 in Exclude<keyof I, keyof InsertResponse>]: never; }>(base?: I): InsertResponse;
     fromPartial<I_1 extends {
         status?: number | undefined;
         message?: string | undefined;
@@ -22633,7 +22633,7 @@ declare const UpdateRequest: {
             } & { [K_80 in Exclude<keyof I["updates"]["object"], "value">]: never; }) | undefined;
             json?: string | undefined;
         } & { [K_81 in Exclude<keyof I["updates"], keyof Document$1>]: never; }) | undefined;
-    } & { [K_82 in Exclude<keyof I, keyof UpdateRequest>]: never; }>(base?: I | undefined): UpdateRequest;
+    } & { [K_82 in Exclude<keyof I, keyof UpdateRequest>]: never; }>(base?: I): UpdateRequest;
     fromPartial<I_1 extends {
         collectionName?: string | undefined;
         filter?: {
@@ -23700,7 +23700,7 @@ declare const UpdateResponse: {
             queryDurationUs?: number | undefined;
             serializationDurationUs?: number | undefined;
         } & { [K in Exclude<keyof I["profile"], keyof ProfileInfo$2>]: never; }) | undefined;
-    } & { [K_1 in Exclude<keyof I, keyof UpdateResponse>]: never; }>(base?: I | undefined): UpdateResponse;
+    } & { [K_1 in Exclude<keyof I, keyof UpdateResponse>]: never; }>(base?: I): UpdateResponse;
     fromPartial<I_1 extends {
         status?: number | undefined;
         message?: string | undefined;
@@ -24199,7 +24199,7 @@ declare const RemoveRequest$1: {
                 json?: string | undefined;
             } | undefined;
         }[]>]: never; }) | undefined;
-    } & { [K_33 in Exclude<keyof I, "requests">]: never; }>(base?: I | undefined): RemoveRequest$1;
+    } & { [K_33 in Exclude<keyof I, "requests">]: never; }>(base?: I): RemoveRequest$1;
     fromPartial<I_1 extends {
         requests?: {
             collectionName?: string | undefined;
@@ -24700,7 +24700,7 @@ declare const RemoveResponse$1: {
             queryDurationUs?: number | undefined;
             serializationDurationUs?: number | undefined;
         } & { [K in Exclude<keyof I["profile"], keyof ProfileInfo$2>]: never; }) | undefined;
-    } & { [K_1 in Exclude<keyof I, keyof RemoveResponse$1>]: never; }>(base?: I | undefined): RemoveResponse$1;
+    } & { [K_1 in Exclude<keyof I, keyof RemoveResponse$1>]: never; }>(base?: I): RemoveResponse$1;
     fromPartial<I_1 extends {
         status?: number | undefined;
         message?: string | undefined;
@@ -25199,7 +25199,7 @@ declare const ExplainRequest: {
                 json?: string | undefined;
             } | undefined;
         }[]>]: never; }) | undefined;
-    } & { [K_33 in Exclude<keyof I, "queries">]: never; }>(base?: I | undefined): ExplainRequest;
+    } & { [K_33 in Exclude<keyof I, "queries">]: never; }>(base?: I): ExplainRequest;
     fromPartial<I_1 extends {
         queries?: {
             collectionName?: string | undefined;
@@ -25688,7 +25688,7 @@ declare const QueryPlan: {
         collectionName?: string | undefined;
         indexName?: string | undefined;
         queryPlan?: string | undefined;
-    } & { [K in Exclude<keyof I, keyof QueryPlan>]: never; }>(base?: I | undefined): QueryPlan;
+    } & { [K in Exclude<keyof I, keyof QueryPlan>]: never; }>(base?: I): QueryPlan;
     fromPartial<I_1 extends {
         status?: number | undefined;
         message?: string | undefined;
@@ -25748,7 +25748,7 @@ declare const ExplainResponse: {
             indexName?: string | undefined;
             queryPlan?: string | undefined;
         }[]>]: never; }) | undefined;
-    } & { [K_2 in Exclude<keyof I, keyof ExplainResponse>]: never; }>(base?: I | undefined): ExplainResponse;
+    } & { [K_2 in Exclude<keyof I, keyof ExplainResponse>]: never; }>(base?: I): ExplainResponse;
     fromPartial<I_1 extends {
         status?: number | undefined;
         queryPlans?: {
@@ -25799,7 +25799,7 @@ declare const TruncateCollectionRequest: {
         collectionName?: string | undefined;
     } & {
         collectionName?: string | undefined;
-    } & { [K in Exclude<keyof I, "collectionName">]: never; }>(base?: I | undefined): TruncateCollectionRequest;
+    } & { [K in Exclude<keyof I, "collectionName">]: never; }>(base?: I): TruncateCollectionRequest;
     fromPartial<I_1 extends {
         collectionName?: string | undefined;
     } & {
@@ -25842,7 +25842,7 @@ declare const TruncateCollectionResponse: {
             queryDurationUs?: number | undefined;
             serializationDurationUs?: number | undefined;
         } & { [K in Exclude<keyof I["profile"], keyof ProfileInfo$2>]: never; }) | undefined;
-    } & { [K_1 in Exclude<keyof I, keyof TruncateCollectionResponse>]: never; }>(base?: I | undefined): TruncateCollectionResponse;
+    } & { [K_1 in Exclude<keyof I, keyof TruncateCollectionResponse>]: never; }>(base?: I): TruncateCollectionResponse;
     fromPartial<I_1 extends {
         status?: number | undefined;
         message?: string | undefined;
@@ -25878,7 +25878,7 @@ declare const ListCollectionsRequest: {
     decode(input: _m0.Reader | Uint8Array, length?: number): ListCollectionsRequest;
     fromJSON(_: any): ListCollectionsRequest;
     toJSON(_: ListCollectionsRequest): unknown;
-    create<I extends {} & {} & { [K in Exclude<keyof I, never>]: never; }>(base?: I | undefined): ListCollectionsRequest;
+    create<I extends {} & {} & { [K in Exclude<keyof I, never>]: never; }>(base?: I): ListCollectionsRequest;
     fromPartial<I_1 extends {} & {} & { [K_1 in Exclude<keyof I_1, never>]: never; }>(_: I_1): ListCollectionsRequest;
 };
 interface ListCollectionsResponse {
@@ -25920,7 +25920,7 @@ declare const ListCollectionsResponse: {
             queryDurationUs?: number | undefined;
             serializationDurationUs?: number | undefined;
         } & { [K_1 in Exclude<keyof I["profile"], keyof ProfileInfo$2>]: never; }) | undefined;
-    } & { [K_2 in Exclude<keyof I, keyof ListCollectionsResponse>]: never; }>(base?: I | undefined): ListCollectionsResponse;
+    } & { [K_2 in Exclude<keyof I, keyof ListCollectionsResponse>]: never; }>(base?: I): ListCollectionsResponse;
     fromPartial<I_1 extends {
         status?: number | undefined;
         message?: string | undefined;
@@ -26279,7 +26279,7 @@ declare const ProfileInfo$1: {
         durationUs?: number | undefined;
     } & {
         durationUs?: number | undefined;
-    } & { [K in Exclude<keyof I, "durationUs">]: never; }>(base?: I | undefined): ProfileInfo$1;
+    } & { [K in Exclude<keyof I, "durationUs">]: never; }>(base?: I): ProfileInfo$1;
     fromPartial<I_1 extends {
         durationUs?: number | undefined;
     } & {
@@ -26310,7 +26310,7 @@ declare const Response: {
         } & {
             durationUs?: number | undefined;
         } & { [K in Exclude<keyof I["profile"], "durationUs">]: never; }) | undefined;
-    } & { [K_1 in Exclude<keyof I, keyof Response>]: never; }>(base?: I | undefined): Response;
+    } & { [K_1 in Exclude<keyof I, keyof Response>]: never; }>(base?: I): Response;
     fromPartial<I_1 extends {
         status?: StatusType$1 | undefined;
         message?: string | undefined;
@@ -26351,7 +26351,7 @@ declare const PutRequest$1: {
         value?: Buffer | undefined;
         ttl?: number | undefined;
         createIfMissing?: boolean | undefined;
-    } & { [K in Exclude<keyof I, keyof PutRequest$1>]: never; }>(base?: I | undefined): PutRequest$1;
+    } & { [K in Exclude<keyof I, keyof PutRequest$1>]: never; }>(base?: I): PutRequest$1;
     fromPartial<I_1 extends {
         keyspaceName?: string | undefined;
         key?: Buffer | undefined;
@@ -26398,7 +26398,7 @@ declare const PutResponse: {
                 durationUs?: number | undefined;
             } & { [K in Exclude<keyof I["response"]["profile"], "durationUs">]: never; }) | undefined;
         } & { [K_1 in Exclude<keyof I["response"], keyof Response>]: never; }) | undefined;
-    } & { [K_2 in Exclude<keyof I, "response">]: never; }>(base?: I | undefined): PutResponse;
+    } & { [K_2 in Exclude<keyof I, "response">]: never; }>(base?: I): PutResponse;
     fromPartial<I_1 extends {
         response?: {
             status?: StatusType$1 | undefined;
@@ -26440,7 +26440,7 @@ declare const RemoveRequest: {
     } & {
         keyspaceName?: string | undefined;
         key?: Buffer | undefined;
-    } & { [K in Exclude<keyof I, keyof RemoveRequest>]: never; }>(base?: I | undefined): RemoveRequest;
+    } & { [K in Exclude<keyof I, keyof RemoveRequest>]: never; }>(base?: I): RemoveRequest;
     fromPartial<I_1 extends {
         keyspaceName?: string | undefined;
         key?: Buffer | undefined;
@@ -26481,7 +26481,7 @@ declare const RemoveResponse: {
                 durationUs?: number | undefined;
             } & { [K in Exclude<keyof I["response"]["profile"], "durationUs">]: never; }) | undefined;
         } & { [K_1 in Exclude<keyof I["response"], keyof Response>]: never; }) | undefined;
-    } & { [K_2 in Exclude<keyof I, "response">]: never; }>(base?: I | undefined): RemoveResponse;
+    } & { [K_2 in Exclude<keyof I, "response">]: never; }>(base?: I): RemoveResponse;
     fromPartial<I_1 extends {
         response?: {
             status?: StatusType$1 | undefined;
@@ -26523,7 +26523,7 @@ declare const GetRequest: {
     } & {
         keyspaceName?: string | undefined;
         key?: Buffer | undefined;
-    } & { [K in Exclude<keyof I, keyof GetRequest>]: never; }>(base?: I | undefined): GetRequest;
+    } & { [K in Exclude<keyof I, keyof GetRequest>]: never; }>(base?: I): GetRequest;
     fromPartial<I_1 extends {
         keyspaceName?: string | undefined;
         key?: Buffer | undefined;
@@ -26567,7 +26567,7 @@ declare const GetResponse: {
             } & { [K in Exclude<keyof I["response"]["profile"], "durationUs">]: never; }) | undefined;
         } & { [K_1 in Exclude<keyof I["response"], keyof Response>]: never; }) | undefined;
         value?: Buffer | undefined;
-    } & { [K_2 in Exclude<keyof I, keyof GetResponse>]: never; }>(base?: I | undefined): GetResponse;
+    } & { [K_2 in Exclude<keyof I, keyof GetResponse>]: never; }>(base?: I): GetResponse;
     fromPartial<I_1 extends {
         response?: {
             status?: StatusType$1 | undefined;
@@ -26611,7 +26611,7 @@ declare const MultiGetRequest: {
     } & {
         keyspaceName?: string | undefined;
         keys?: (Buffer[] & Buffer[] & { [K in Exclude<keyof I["keys"], keyof Buffer[]>]: never; }) | undefined;
-    } & { [K_1 in Exclude<keyof I, keyof MultiGetRequest>]: never; }>(base?: I | undefined): MultiGetRequest;
+    } & { [K_1 in Exclude<keyof I, keyof MultiGetRequest>]: never; }>(base?: I): MultiGetRequest;
     fromPartial<I_1 extends {
         keyspaceName?: string | undefined;
         keys?: Buffer[] | undefined;
@@ -26667,7 +26667,7 @@ declare const MultiGetResponse: {
             } | undefined;
         }[]>]: never; }) | undefined;
         values?: (Buffer[] & Buffer[] & { [K_3 in Exclude<keyof I["values"], keyof Buffer[]>]: never; }) | undefined;
-    } & { [K_4 in Exclude<keyof I, keyof MultiGetResponse>]: never; }>(base?: I | undefined): MultiGetResponse;
+    } & { [K_4 in Exclude<keyof I, keyof MultiGetResponse>]: never; }>(base?: I): MultiGetResponse;
     fromPartial<I_1 extends {
         responses?: {
             status?: StatusType$1 | undefined;
@@ -26732,7 +26732,7 @@ declare const BatchedPutRequest$1: {
         values?: (Buffer[] & Buffer[] & { [K_1 in Exclude<keyof I["values"], keyof Buffer[]>]: never; }) | undefined;
         ttls?: (number[] & number[] & { [K_2 in Exclude<keyof I["ttls"], keyof number[]>]: never; }) | undefined;
         createIfMissing?: boolean | undefined;
-    } & { [K_3 in Exclude<keyof I, keyof BatchedPutRequest$1>]: never; }>(base?: I | undefined): BatchedPutRequest$1;
+    } & { [K_3 in Exclude<keyof I, keyof BatchedPutRequest$1>]: never; }>(base?: I): BatchedPutRequest$1;
     fromPartial<I_1 extends {
         keyspaceName?: string | undefined;
         keys?: Buffer[] | undefined;
@@ -26791,7 +26791,7 @@ declare const BatchedPutResponse: {
                 durationUs?: number | undefined;
             } | undefined;
         }[]>]: never; }) | undefined;
-    } & { [K_3 in Exclude<keyof I, "responses">]: never; }>(base?: I | undefined): BatchedPutResponse;
+    } & { [K_3 in Exclude<keyof I, "responses">]: never; }>(base?: I): BatchedPutResponse;
     fromPartial<I_1 extends {
         responses?: {
             status?: StatusType$1 | undefined;
@@ -26845,7 +26845,7 @@ declare const BatchedRemoveRequest: {
     } & {
         keyspaceName?: string | undefined;
         keys?: (Buffer[] & Buffer[] & { [K in Exclude<keyof I["keys"], keyof Buffer[]>]: never; }) | undefined;
-    } & { [K_1 in Exclude<keyof I, keyof BatchedRemoveRequest>]: never; }>(base?: I | undefined): BatchedRemoveRequest;
+    } & { [K_1 in Exclude<keyof I, keyof BatchedRemoveRequest>]: never; }>(base?: I): BatchedRemoveRequest;
     fromPartial<I_1 extends {
         keyspaceName?: string | undefined;
         keys?: Buffer[] | undefined;
@@ -26898,7 +26898,7 @@ declare const BatchedRemoveResponse: {
                 durationUs?: number | undefined;
             } | undefined;
         }[]>]: never; }) | undefined;
-    } & { [K_3 in Exclude<keyof I, "responses">]: never; }>(base?: I | undefined): BatchedRemoveResponse;
+    } & { [K_3 in Exclude<keyof I, "responses">]: never; }>(base?: I): BatchedRemoveResponse;
     fromPartial<I_1 extends {
         responses?: {
             status?: StatusType$1 | undefined;
@@ -26952,7 +26952,7 @@ declare const BatchedGetRequest: {
     } & {
         keyspaceName?: string | undefined;
         keys?: (Buffer[] & Buffer[] & { [K in Exclude<keyof I["keys"], keyof Buffer[]>]: never; }) | undefined;
-    } & { [K_1 in Exclude<keyof I, keyof BatchedGetRequest>]: never; }>(base?: I | undefined): BatchedGetRequest;
+    } & { [K_1 in Exclude<keyof I, keyof BatchedGetRequest>]: never; }>(base?: I): BatchedGetRequest;
     fromPartial<I_1 extends {
         keyspaceName?: string | undefined;
         keys?: Buffer[] | undefined;
@@ -27008,7 +27008,7 @@ declare const BatchedGetResponse: {
             } | undefined;
         }[]>]: never; }) | undefined;
         values?: (Buffer[] & Buffer[] & { [K_3 in Exclude<keyof I["values"], keyof Buffer[]>]: never; }) | undefined;
-    } & { [K_4 in Exclude<keyof I, keyof BatchedGetResponse>]: never; }>(base?: I | undefined): BatchedGetResponse;
+    } & { [K_4 in Exclude<keyof I, keyof BatchedGetResponse>]: never; }>(base?: I): BatchedGetResponse;
     fromPartial<I_1 extends {
         responses?: {
             status?: StatusType$1 | undefined;
@@ -27061,7 +27061,7 @@ declare const CreateKeyspaceRequest: {
         keyspaceName?: string | undefined;
     } & {
         keyspaceName?: string | undefined;
-    } & { [K in Exclude<keyof I, "keyspaceName">]: never; }>(base?: I | undefined): CreateKeyspaceRequest;
+    } & { [K in Exclude<keyof I, "keyspaceName">]: never; }>(base?: I): CreateKeyspaceRequest;
     fromPartial<I_1 extends {
         keyspaceName?: string | undefined;
     } & {
@@ -27100,7 +27100,7 @@ declare const CreateKeyspaceResponse: {
                 durationUs?: number | undefined;
             } & { [K in Exclude<keyof I["response"]["profile"], "durationUs">]: never; }) | undefined;
         } & { [K_1 in Exclude<keyof I["response"], keyof Response>]: never; }) | undefined;
-    } & { [K_2 in Exclude<keyof I, "response">]: never; }>(base?: I | undefined): CreateKeyspaceResponse;
+    } & { [K_2 in Exclude<keyof I, "response">]: never; }>(base?: I): CreateKeyspaceResponse;
     fromPartial<I_1 extends {
         response?: {
             status?: StatusType$1 | undefined;
@@ -27139,7 +27139,7 @@ declare const DropKeyspaceRequest: {
         keyspaceName?: string | undefined;
     } & {
         keyspaceName?: string | undefined;
-    } & { [K in Exclude<keyof I, "keyspaceName">]: never; }>(base?: I | undefined): DropKeyspaceRequest;
+    } & { [K in Exclude<keyof I, "keyspaceName">]: never; }>(base?: I): DropKeyspaceRequest;
     fromPartial<I_1 extends {
         keyspaceName?: string | undefined;
     } & {
@@ -27178,7 +27178,7 @@ declare const DropKeyspaceResponse: {
                 durationUs?: number | undefined;
             } & { [K in Exclude<keyof I["response"]["profile"], "durationUs">]: never; }) | undefined;
         } & { [K_1 in Exclude<keyof I["response"], keyof Response>]: never; }) | undefined;
-    } & { [K_2 in Exclude<keyof I, "response">]: never; }>(base?: I | undefined): DropKeyspaceResponse;
+    } & { [K_2 in Exclude<keyof I, "response">]: never; }>(base?: I): DropKeyspaceResponse;
     fromPartial<I_1 extends {
         response?: {
             status?: StatusType$1 | undefined;
@@ -27217,7 +27217,7 @@ declare const TruncateKeyspaceRequest: {
         keyspaceName?: string | undefined;
     } & {
         keyspaceName?: string | undefined;
-    } & { [K in Exclude<keyof I, "keyspaceName">]: never; }>(base?: I | undefined): TruncateKeyspaceRequest;
+    } & { [K in Exclude<keyof I, "keyspaceName">]: never; }>(base?: I): TruncateKeyspaceRequest;
     fromPartial<I_1 extends {
         keyspaceName?: string | undefined;
     } & {
@@ -27256,7 +27256,7 @@ declare const TruncateKeyspaceResponse: {
                 durationUs?: number | undefined;
             } & { [K in Exclude<keyof I["response"]["profile"], "durationUs">]: never; }) | undefined;
         } & { [K_1 in Exclude<keyof I["response"], keyof Response>]: never; }) | undefined;
-    } & { [K_2 in Exclude<keyof I, "response">]: never; }>(base?: I | undefined): TruncateKeyspaceResponse;
+    } & { [K_2 in Exclude<keyof I, "response">]: never; }>(base?: I): TruncateKeyspaceResponse;
     fromPartial<I_1 extends {
         response?: {
             status?: StatusType$1 | undefined;
@@ -27290,7 +27290,7 @@ declare const ListKeyspacesRequest: {
     decode(input: _m0.Reader | Uint8Array, length?: number): ListKeyspacesRequest;
     fromJSON(_: any): ListKeyspacesRequest;
     toJSON(_: ListKeyspacesRequest): unknown;
-    create<I extends {} & {} & { [K in Exclude<keyof I, never>]: never; }>(base?: I | undefined): ListKeyspacesRequest;
+    create<I extends {} & {} & { [K in Exclude<keyof I, never>]: never; }>(base?: I): ListKeyspacesRequest;
     fromPartial<I_1 extends {} & {} & { [K_1 in Exclude<keyof I_1, never>]: never; }>(_: I_1): ListKeyspacesRequest;
 };
 interface ListKeyspacesResponse {
@@ -27328,7 +27328,7 @@ declare const ListKeyspacesResponse: {
             } & { [K in Exclude<keyof I["response"]["profile"], "durationUs">]: never; }) | undefined;
         } & { [K_1 in Exclude<keyof I["response"], keyof Response>]: never; }) | undefined;
         keyspaceNames?: (string[] & string[] & { [K_2 in Exclude<keyof I["keyspaceNames"], keyof string[]>]: never; }) | undefined;
-    } & { [K_3 in Exclude<keyof I, keyof ListKeyspacesResponse>]: never; }>(base?: I | undefined): ListKeyspacesResponse;
+    } & { [K_3 in Exclude<keyof I, keyof ListKeyspacesResponse>]: never; }>(base?: I): ListKeyspacesResponse;
     fromPartial<I_1 extends {
         response?: {
             status?: StatusType$1 | undefined;
@@ -27565,7 +27565,7 @@ declare const Tensor$1: {
     } & {
         dims?: number | undefined;
         data?: (number[] & number[] & { [K in Exclude<keyof I["data"], keyof number[]>]: never; }) | undefined;
-    } & { [K_1 in Exclude<keyof I, keyof Tensor$1>]: never; }>(base?: I | undefined): Tensor$1;
+    } & { [K_1 in Exclude<keyof I, keyof Tensor$1>]: never; }>(base?: I): Tensor$1;
     fromPartial<I_1 extends {
         dims?: number | undefined;
         data?: number[] | undefined;
@@ -27586,7 +27586,7 @@ declare const ProfileInfo: {
         durationUs?: number | undefined;
     } & {
         durationUs?: number | undefined;
-    } & { [K in Exclude<keyof I, "durationUs">]: never; }>(base?: I | undefined): ProfileInfo;
+    } & { [K in Exclude<keyof I, "durationUs">]: never; }>(base?: I): ProfileInfo;
     fromPartial<I_1 extends {
         durationUs?: number | undefined;
     } & {
@@ -27608,7 +27608,7 @@ declare const SentenceEncoderRequest: {
     } & {
         modelName?: string | undefined;
         sentences?: (string[] & string[] & { [K in Exclude<keyof I["sentences"], keyof string[]>]: never; }) | undefined;
-    } & { [K_1 in Exclude<keyof I, keyof SentenceEncoderRequest>]: never; }>(base?: I | undefined): SentenceEncoderRequest;
+    } & { [K_1 in Exclude<keyof I, keyof SentenceEncoderRequest>]: never; }>(base?: I): SentenceEncoderRequest;
     fromPartial<I_1 extends {
         modelName?: string | undefined;
         sentences?: string[] | undefined;
@@ -27663,7 +27663,7 @@ declare const SentenceEncoderResponse: {
         } & { [K_3 in Exclude<keyof I["profiles"][number], "durationUs">]: never; })[] & { [K_4 in Exclude<keyof I["profiles"], keyof {
             durationUs?: number | undefined;
         }[]>]: never; }) | undefined;
-    } & { [K_5 in Exclude<keyof I, keyof SentenceEncoderResponse>]: never; }>(base?: I | undefined): SentenceEncoderResponse;
+    } & { [K_5 in Exclude<keyof I, keyof SentenceEncoderResponse>]: never; }>(base?: I): SentenceEncoderResponse;
     fromPartial<I_1 extends {
         status?: StatusType | undefined;
         modelName?: string | undefined;
@@ -27731,4 +27731,511 @@ declare class SentenceTransformer extends GrpcClient<SentenceTransformerServiceC
     encode(sentences: string[]): Promise<Tensor[]>;
 }
 
-export { type BatchedPutRequest, Channel, type CollectionInfo, type Document, DocumentDB, type IndexDescriptor, type IndexStats, IndexType, KeyValueDB, KeyspaceManager, type PutRequest, type Query, type Request, SentenceTransformer, type ServiceError, type Tensor, indexStatusFromJSON, indexTypeFromJSON };
+declare enum GetSystemMetricsSnapshotResponse_Status {
+    Success = 0,
+    UNRECOGNIZED = -1
+}
+interface GetSystemMetricsSnapshotRequest {
+    clientName: string;
+    version: string;
+}
+declare const GetSystemMetricsSnapshotRequest: {
+    encode(message: GetSystemMetricsSnapshotRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): GetSystemMetricsSnapshotRequest;
+    fromJSON(object: any): GetSystemMetricsSnapshotRequest;
+    toJSON(message: GetSystemMetricsSnapshotRequest): unknown;
+    create<I extends {
+        clientName?: string | undefined;
+        version?: string | undefined;
+    } & {
+        clientName?: string | undefined;
+        version?: string | undefined;
+    } & { [K in Exclude<keyof I, keyof GetSystemMetricsSnapshotRequest>]: never; }>(base?: I): GetSystemMetricsSnapshotRequest;
+    fromPartial<I_1 extends {
+        clientName?: string | undefined;
+        version?: string | undefined;
+    } & {
+        clientName?: string | undefined;
+        version?: string | undefined;
+    } & { [K_1 in Exclude<keyof I_1, keyof GetSystemMetricsSnapshotRequest>]: never; }>(object: I_1): GetSystemMetricsSnapshotRequest;
+};
+interface GetSystemMetricsSnapshotResponse {
+    status: GetSystemMetricsSnapshotResponse_Status;
+    snapshot: SystemMetricsSnapshot$1 | undefined;
+}
+declare const GetSystemMetricsSnapshotResponse: {
+    encode(message: GetSystemMetricsSnapshotResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): GetSystemMetricsSnapshotResponse;
+    fromJSON(object: any): GetSystemMetricsSnapshotResponse;
+    toJSON(message: GetSystemMetricsSnapshotResponse): unknown;
+    create<I extends {
+        status?: GetSystemMetricsSnapshotResponse_Status | undefined;
+        snapshot?: {
+            appMetadata?: {
+                appName?: string | undefined;
+                version?: string | undefined;
+                persistentId?: string | undefined;
+            } | undefined;
+            clusterInfo?: {
+                clusterName?: string | undefined;
+                clusterId?: string | undefined;
+                nodes?: {
+                    nodeName?: string | undefined;
+                    nodeId?: string | undefined;
+                    nodeIp?: string | undefined;
+                    nodePort?: number | undefined;
+                }[] | undefined;
+            } | undefined;
+        } | undefined;
+    } & {
+        status?: GetSystemMetricsSnapshotResponse_Status | undefined;
+        snapshot?: ({
+            appMetadata?: {
+                appName?: string | undefined;
+                version?: string | undefined;
+                persistentId?: string | undefined;
+            } | undefined;
+            clusterInfo?: {
+                clusterName?: string | undefined;
+                clusterId?: string | undefined;
+                nodes?: {
+                    nodeName?: string | undefined;
+                    nodeId?: string | undefined;
+                    nodeIp?: string | undefined;
+                    nodePort?: number | undefined;
+                }[] | undefined;
+            } | undefined;
+        } & {
+            appMetadata?: ({
+                appName?: string | undefined;
+                version?: string | undefined;
+                persistentId?: string | undefined;
+            } & {
+                appName?: string | undefined;
+                version?: string | undefined;
+                persistentId?: string | undefined;
+            } & { [K in Exclude<keyof I["snapshot"]["appMetadata"], keyof ApplicationMetadata>]: never; }) | undefined;
+            clusterInfo?: ({
+                clusterName?: string | undefined;
+                clusterId?: string | undefined;
+                nodes?: {
+                    nodeName?: string | undefined;
+                    nodeId?: string | undefined;
+                    nodeIp?: string | undefined;
+                    nodePort?: number | undefined;
+                }[] | undefined;
+            } & {
+                clusterName?: string | undefined;
+                clusterId?: string | undefined;
+                nodes?: ({
+                    nodeName?: string | undefined;
+                    nodeId?: string | undefined;
+                    nodeIp?: string | undefined;
+                    nodePort?: number | undefined;
+                }[] & ({
+                    nodeName?: string | undefined;
+                    nodeId?: string | undefined;
+                    nodeIp?: string | undefined;
+                    nodePort?: number | undefined;
+                } & {
+                    nodeName?: string | undefined;
+                    nodeId?: string | undefined;
+                    nodeIp?: string | undefined;
+                    nodePort?: number | undefined;
+                } & { [K_1 in Exclude<keyof I["snapshot"]["clusterInfo"]["nodes"][number], keyof NodeInfo>]: never; })[] & { [K_2 in Exclude<keyof I["snapshot"]["clusterInfo"]["nodes"], keyof {
+                    nodeName?: string | undefined;
+                    nodeId?: string | undefined;
+                    nodeIp?: string | undefined;
+                    nodePort?: number | undefined;
+                }[]>]: never; }) | undefined;
+            } & { [K_3 in Exclude<keyof I["snapshot"]["clusterInfo"], keyof ClusterInfo>]: never; }) | undefined;
+        } & { [K_4 in Exclude<keyof I["snapshot"], keyof SystemMetricsSnapshot$1>]: never; }) | undefined;
+    } & { [K_5 in Exclude<keyof I, keyof GetSystemMetricsSnapshotResponse>]: never; }>(base?: I): GetSystemMetricsSnapshotResponse;
+    fromPartial<I_1 extends {
+        status?: GetSystemMetricsSnapshotResponse_Status | undefined;
+        snapshot?: {
+            appMetadata?: {
+                appName?: string | undefined;
+                version?: string | undefined;
+                persistentId?: string | undefined;
+            } | undefined;
+            clusterInfo?: {
+                clusterName?: string | undefined;
+                clusterId?: string | undefined;
+                nodes?: {
+                    nodeName?: string | undefined;
+                    nodeId?: string | undefined;
+                    nodeIp?: string | undefined;
+                    nodePort?: number | undefined;
+                }[] | undefined;
+            } | undefined;
+        } | undefined;
+    } & {
+        status?: GetSystemMetricsSnapshotResponse_Status | undefined;
+        snapshot?: ({
+            appMetadata?: {
+                appName?: string | undefined;
+                version?: string | undefined;
+                persistentId?: string | undefined;
+            } | undefined;
+            clusterInfo?: {
+                clusterName?: string | undefined;
+                clusterId?: string | undefined;
+                nodes?: {
+                    nodeName?: string | undefined;
+                    nodeId?: string | undefined;
+                    nodeIp?: string | undefined;
+                    nodePort?: number | undefined;
+                }[] | undefined;
+            } | undefined;
+        } & {
+            appMetadata?: ({
+                appName?: string | undefined;
+                version?: string | undefined;
+                persistentId?: string | undefined;
+            } & {
+                appName?: string | undefined;
+                version?: string | undefined;
+                persistentId?: string | undefined;
+            } & { [K_6 in Exclude<keyof I_1["snapshot"]["appMetadata"], keyof ApplicationMetadata>]: never; }) | undefined;
+            clusterInfo?: ({
+                clusterName?: string | undefined;
+                clusterId?: string | undefined;
+                nodes?: {
+                    nodeName?: string | undefined;
+                    nodeId?: string | undefined;
+                    nodeIp?: string | undefined;
+                    nodePort?: number | undefined;
+                }[] | undefined;
+            } & {
+                clusterName?: string | undefined;
+                clusterId?: string | undefined;
+                nodes?: ({
+                    nodeName?: string | undefined;
+                    nodeId?: string | undefined;
+                    nodeIp?: string | undefined;
+                    nodePort?: number | undefined;
+                }[] & ({
+                    nodeName?: string | undefined;
+                    nodeId?: string | undefined;
+                    nodeIp?: string | undefined;
+                    nodePort?: number | undefined;
+                } & {
+                    nodeName?: string | undefined;
+                    nodeId?: string | undefined;
+                    nodeIp?: string | undefined;
+                    nodePort?: number | undefined;
+                } & { [K_7 in Exclude<keyof I_1["snapshot"]["clusterInfo"]["nodes"][number], keyof NodeInfo>]: never; })[] & { [K_8 in Exclude<keyof I_1["snapshot"]["clusterInfo"]["nodes"], keyof {
+                    nodeName?: string | undefined;
+                    nodeId?: string | undefined;
+                    nodeIp?: string | undefined;
+                    nodePort?: number | undefined;
+                }[]>]: never; }) | undefined;
+            } & { [K_9 in Exclude<keyof I_1["snapshot"]["clusterInfo"], keyof ClusterInfo>]: never; }) | undefined;
+        } & { [K_10 in Exclude<keyof I_1["snapshot"], keyof SystemMetricsSnapshot$1>]: never; }) | undefined;
+    } & { [K_11 in Exclude<keyof I_1, keyof GetSystemMetricsSnapshotResponse>]: never; }>(object: I_1): GetSystemMetricsSnapshotResponse;
+};
+interface SystemMetricsSnapshot$1 {
+    appMetadata: ApplicationMetadata | undefined;
+    clusterInfo: ClusterInfo | undefined;
+}
+declare const SystemMetricsSnapshot$1: {
+    encode(message: SystemMetricsSnapshot$1, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): SystemMetricsSnapshot$1;
+    fromJSON(object: any): SystemMetricsSnapshot$1;
+    toJSON(message: SystemMetricsSnapshot$1): unknown;
+    create<I extends {
+        appMetadata?: {
+            appName?: string | undefined;
+            version?: string | undefined;
+            persistentId?: string | undefined;
+        } | undefined;
+        clusterInfo?: {
+            clusterName?: string | undefined;
+            clusterId?: string | undefined;
+            nodes?: {
+                nodeName?: string | undefined;
+                nodeId?: string | undefined;
+                nodeIp?: string | undefined;
+                nodePort?: number | undefined;
+            }[] | undefined;
+        } | undefined;
+    } & {
+        appMetadata?: ({
+            appName?: string | undefined;
+            version?: string | undefined;
+            persistentId?: string | undefined;
+        } & {
+            appName?: string | undefined;
+            version?: string | undefined;
+            persistentId?: string | undefined;
+        } & { [K in Exclude<keyof I["appMetadata"], keyof ApplicationMetadata>]: never; }) | undefined;
+        clusterInfo?: ({
+            clusterName?: string | undefined;
+            clusterId?: string | undefined;
+            nodes?: {
+                nodeName?: string | undefined;
+                nodeId?: string | undefined;
+                nodeIp?: string | undefined;
+                nodePort?: number | undefined;
+            }[] | undefined;
+        } & {
+            clusterName?: string | undefined;
+            clusterId?: string | undefined;
+            nodes?: ({
+                nodeName?: string | undefined;
+                nodeId?: string | undefined;
+                nodeIp?: string | undefined;
+                nodePort?: number | undefined;
+            }[] & ({
+                nodeName?: string | undefined;
+                nodeId?: string | undefined;
+                nodeIp?: string | undefined;
+                nodePort?: number | undefined;
+            } & {
+                nodeName?: string | undefined;
+                nodeId?: string | undefined;
+                nodeIp?: string | undefined;
+                nodePort?: number | undefined;
+            } & { [K_1 in Exclude<keyof I["clusterInfo"]["nodes"][number], keyof NodeInfo>]: never; })[] & { [K_2 in Exclude<keyof I["clusterInfo"]["nodes"], keyof {
+                nodeName?: string | undefined;
+                nodeId?: string | undefined;
+                nodeIp?: string | undefined;
+                nodePort?: number | undefined;
+            }[]>]: never; }) | undefined;
+        } & { [K_3 in Exclude<keyof I["clusterInfo"], keyof ClusterInfo>]: never; }) | undefined;
+    } & { [K_4 in Exclude<keyof I, keyof SystemMetricsSnapshot$1>]: never; }>(base?: I): SystemMetricsSnapshot$1;
+    fromPartial<I_1 extends {
+        appMetadata?: {
+            appName?: string | undefined;
+            version?: string | undefined;
+            persistentId?: string | undefined;
+        } | undefined;
+        clusterInfo?: {
+            clusterName?: string | undefined;
+            clusterId?: string | undefined;
+            nodes?: {
+                nodeName?: string | undefined;
+                nodeId?: string | undefined;
+                nodeIp?: string | undefined;
+                nodePort?: number | undefined;
+            }[] | undefined;
+        } | undefined;
+    } & {
+        appMetadata?: ({
+            appName?: string | undefined;
+            version?: string | undefined;
+            persistentId?: string | undefined;
+        } & {
+            appName?: string | undefined;
+            version?: string | undefined;
+            persistentId?: string | undefined;
+        } & { [K_5 in Exclude<keyof I_1["appMetadata"], keyof ApplicationMetadata>]: never; }) | undefined;
+        clusterInfo?: ({
+            clusterName?: string | undefined;
+            clusterId?: string | undefined;
+            nodes?: {
+                nodeName?: string | undefined;
+                nodeId?: string | undefined;
+                nodeIp?: string | undefined;
+                nodePort?: number | undefined;
+            }[] | undefined;
+        } & {
+            clusterName?: string | undefined;
+            clusterId?: string | undefined;
+            nodes?: ({
+                nodeName?: string | undefined;
+                nodeId?: string | undefined;
+                nodeIp?: string | undefined;
+                nodePort?: number | undefined;
+            }[] & ({
+                nodeName?: string | undefined;
+                nodeId?: string | undefined;
+                nodeIp?: string | undefined;
+                nodePort?: number | undefined;
+            } & {
+                nodeName?: string | undefined;
+                nodeId?: string | undefined;
+                nodeIp?: string | undefined;
+                nodePort?: number | undefined;
+            } & { [K_6 in Exclude<keyof I_1["clusterInfo"]["nodes"][number], keyof NodeInfo>]: never; })[] & { [K_7 in Exclude<keyof I_1["clusterInfo"]["nodes"], keyof {
+                nodeName?: string | undefined;
+                nodeId?: string | undefined;
+                nodeIp?: string | undefined;
+                nodePort?: number | undefined;
+            }[]>]: never; }) | undefined;
+        } & { [K_8 in Exclude<keyof I_1["clusterInfo"], keyof ClusterInfo>]: never; }) | undefined;
+    } & { [K_9 in Exclude<keyof I_1, keyof SystemMetricsSnapshot$1>]: never; }>(object: I_1): SystemMetricsSnapshot$1;
+};
+interface ApplicationMetadata {
+    appName: string;
+    version: string;
+    persistentId: string;
+}
+declare const ApplicationMetadata: {
+    encode(message: ApplicationMetadata, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): ApplicationMetadata;
+    fromJSON(object: any): ApplicationMetadata;
+    toJSON(message: ApplicationMetadata): unknown;
+    create<I extends {
+        appName?: string | undefined;
+        version?: string | undefined;
+        persistentId?: string | undefined;
+    } & {
+        appName?: string | undefined;
+        version?: string | undefined;
+        persistentId?: string | undefined;
+    } & { [K in Exclude<keyof I, keyof ApplicationMetadata>]: never; }>(base?: I): ApplicationMetadata;
+    fromPartial<I_1 extends {
+        appName?: string | undefined;
+        version?: string | undefined;
+        persistentId?: string | undefined;
+    } & {
+        appName?: string | undefined;
+        version?: string | undefined;
+        persistentId?: string | undefined;
+    } & { [K_1 in Exclude<keyof I_1, keyof ApplicationMetadata>]: never; }>(object: I_1): ApplicationMetadata;
+};
+interface ClusterInfo {
+    clusterName: string;
+    clusterId: string;
+    nodes: NodeInfo[];
+}
+declare const ClusterInfo: {
+    encode(message: ClusterInfo, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): ClusterInfo;
+    fromJSON(object: any): ClusterInfo;
+    toJSON(message: ClusterInfo): unknown;
+    create<I extends {
+        clusterName?: string | undefined;
+        clusterId?: string | undefined;
+        nodes?: {
+            nodeName?: string | undefined;
+            nodeId?: string | undefined;
+            nodeIp?: string | undefined;
+            nodePort?: number | undefined;
+        }[] | undefined;
+    } & {
+        clusterName?: string | undefined;
+        clusterId?: string | undefined;
+        nodes?: ({
+            nodeName?: string | undefined;
+            nodeId?: string | undefined;
+            nodeIp?: string | undefined;
+            nodePort?: number | undefined;
+        }[] & ({
+            nodeName?: string | undefined;
+            nodeId?: string | undefined;
+            nodeIp?: string | undefined;
+            nodePort?: number | undefined;
+        } & {
+            nodeName?: string | undefined;
+            nodeId?: string | undefined;
+            nodeIp?: string | undefined;
+            nodePort?: number | undefined;
+        } & { [K in Exclude<keyof I["nodes"][number], keyof NodeInfo>]: never; })[] & { [K_1 in Exclude<keyof I["nodes"], keyof {
+            nodeName?: string | undefined;
+            nodeId?: string | undefined;
+            nodeIp?: string | undefined;
+            nodePort?: number | undefined;
+        }[]>]: never; }) | undefined;
+    } & { [K_2 in Exclude<keyof I, keyof ClusterInfo>]: never; }>(base?: I): ClusterInfo;
+    fromPartial<I_1 extends {
+        clusterName?: string | undefined;
+        clusterId?: string | undefined;
+        nodes?: {
+            nodeName?: string | undefined;
+            nodeId?: string | undefined;
+            nodeIp?: string | undefined;
+            nodePort?: number | undefined;
+        }[] | undefined;
+    } & {
+        clusterName?: string | undefined;
+        clusterId?: string | undefined;
+        nodes?: ({
+            nodeName?: string | undefined;
+            nodeId?: string | undefined;
+            nodeIp?: string | undefined;
+            nodePort?: number | undefined;
+        }[] & ({
+            nodeName?: string | undefined;
+            nodeId?: string | undefined;
+            nodeIp?: string | undefined;
+            nodePort?: number | undefined;
+        } & {
+            nodeName?: string | undefined;
+            nodeId?: string | undefined;
+            nodeIp?: string | undefined;
+            nodePort?: number | undefined;
+        } & { [K_3 in Exclude<keyof I_1["nodes"][number], keyof NodeInfo>]: never; })[] & { [K_4 in Exclude<keyof I_1["nodes"], keyof {
+            nodeName?: string | undefined;
+            nodeId?: string | undefined;
+            nodeIp?: string | undefined;
+            nodePort?: number | undefined;
+        }[]>]: never; }) | undefined;
+    } & { [K_5 in Exclude<keyof I_1, keyof ClusterInfo>]: never; }>(object: I_1): ClusterInfo;
+};
+interface NodeInfo {
+    nodeName: string;
+    nodeId: string;
+    nodeIp: string;
+    nodePort: number;
+}
+declare const NodeInfo: {
+    encode(message: NodeInfo, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): NodeInfo;
+    fromJSON(object: any): NodeInfo;
+    toJSON(message: NodeInfo): unknown;
+    create<I extends {
+        nodeName?: string | undefined;
+        nodeId?: string | undefined;
+        nodeIp?: string | undefined;
+        nodePort?: number | undefined;
+    } & {
+        nodeName?: string | undefined;
+        nodeId?: string | undefined;
+        nodeIp?: string | undefined;
+        nodePort?: number | undefined;
+    } & { [K in Exclude<keyof I, keyof NodeInfo>]: never; }>(base?: I): NodeInfo;
+    fromPartial<I_1 extends {
+        nodeName?: string | undefined;
+        nodeId?: string | undefined;
+        nodeIp?: string | undefined;
+        nodePort?: number | undefined;
+    } & {
+        nodeName?: string | undefined;
+        nodeId?: string | undefined;
+        nodeIp?: string | undefined;
+        nodePort?: number | undefined;
+    } & { [K_1 in Exclude<keyof I_1, keyof NodeInfo>]: never; }>(object: I_1): NodeInfo;
+};
+type SystemMetricsServiceService = typeof SystemMetricsServiceService;
+declare const SystemMetricsServiceService: {
+    readonly getSnapshot: {
+        readonly path: "/aeca.rpc.SystemMetricsService/get_snapshot";
+        readonly requestStream: false;
+        readonly responseStream: false;
+        readonly requestSerialize: (value: GetSystemMetricsSnapshotRequest) => Buffer;
+        readonly requestDeserialize: (value: Buffer) => GetSystemMetricsSnapshotRequest;
+        readonly responseSerialize: (value: GetSystemMetricsSnapshotResponse) => Buffer;
+        readonly responseDeserialize: (value: Buffer) => GetSystemMetricsSnapshotResponse;
+    };
+};
+interface SystemMetricsServiceClient extends Client {
+    getSnapshot(request: GetSystemMetricsSnapshotRequest, callback: (error: ServiceError$1 | null, response: GetSystemMetricsSnapshotResponse) => void): ClientUnaryCall;
+    getSnapshot(request: GetSystemMetricsSnapshotRequest, metadata: Metadata, callback: (error: ServiceError$1 | null, response: GetSystemMetricsSnapshotResponse) => void): ClientUnaryCall;
+    getSnapshot(request: GetSystemMetricsSnapshotRequest, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError$1 | null, response: GetSystemMetricsSnapshotResponse) => void): ClientUnaryCall;
+}
+declare const SystemMetricsServiceClient: {
+    new (address: string, credentials: ChannelCredentials, options?: Partial<ClientOptions>): SystemMetricsServiceClient;
+    service: typeof SystemMetricsServiceService;
+    serviceName: string;
+};
+
+type SystemMetricsSnapshot = SystemMetricsSnapshot$1;
+declare class SystemMetrics extends GrpcClient<SystemMetricsServiceClient> {
+    constructor(channel: Channel, timeout?: number | undefined);
+    getSnapshot(clientName?: string, version?: string): Promise<SystemMetricsSnapshot>;
+}
+
+export { type BatchedPutRequest, Channel, type CollectionInfo, type Document, DocumentDB, type IndexDescriptor, type IndexStats, IndexType, KeyValueDB, KeyspaceManager, type PutRequest, type Query, type Request, SentenceTransformer, type ServiceError, SystemMetrics, type SystemMetricsSnapshot, type Tensor, indexStatusFromJSON, indexTypeFromJSON };
