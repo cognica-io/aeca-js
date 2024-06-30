@@ -2,7 +2,7 @@
 
 A Javascript client for Aeca database server.
 
-## Install
+## Installation
 
 ```
 npm install @aeca/client

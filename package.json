@@ -1,7 +1,7 @@
 {
   "name": "@aeca/client",
   "description": "Javascript client for Aeca database",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "homepage": "https://aeca.ai",
   "repository": {
     "type": "git",

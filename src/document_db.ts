@@ -43,8 +43,18 @@ export type CollectionInfo = {
   indexDescriptors: IndexDescriptor[]
   indexStats: IndexStats[]
 }
-interface DataFrame {
-  data: Table<any>
+export type ReturnType = "arrow" | "object"
+export interface FindOptions {
+  limit?: number
+  indexColumns?: string[]
+  columns?: string[]
+  dtypes?: { [key: string]: string }
+  format?: ReturnType
+}
+export type ObjectType = any[]
+export type DataFormat = ObjectType | Table<any>
+export interface DataFrame<T extends DataFormat> {
+  data: T
   meta?: Document
 }
 
@@ -58,42 +68,38 @@ export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
     super(channel, client, timeout)
   }
 
-  find(
+  find<T extends DataFormat = ObjectType>(
     collectionName: string,
     query: Document,
-    limit?: number,
-    indexColumns?: string[],
-    columns?: string[],
-    dtypes?: { [key: string]: string },
-  ): Promise<DataFrame | null>
-  find(request: Request): Promise<DataFrame | null>
-  find(
+    options?: FindOptions,
+  ): Promise<DataFrame<T> | null>
+  find<T extends DataFormat = ObjectType>(
+    request: Request,
+  ): Promise<DataFrame<T> | null>
+  find<T extends DataFormat = ObjectType>(
     request: string | Request,
     query?: Document,
-    limit?: number,
-    indexColumns?: string[],
-    columns?: string[],
-    dtypes?: { [key: string]: string },
-  ) {
+    options?: FindOptions,
+  ): Promise<DataFrame<T> | null> {
     let findRequest
     if (typeof request === "string") {
       findRequest = DocumentDB.toFindRequest({
-        collectionName: request,
+        collectionName: request!,
         query: query!,
-        limit: limit,
-        indexColumns: indexColumns,
-        columns: columns,
-        dtypes: dtypes,
+        limit: options?.limit,
+        indexColumns: options?.indexColumns,
+        columns: options?.columns,
+        dtypes: options?.dtypes,
       })
     } else {
       findRequest = DocumentDB.toFindRequest(request)
     }
     return this.createPromise<
-      DataFrame | null,
+      DataFrame<T> | null,
       proto.FindRequest,
       proto.FindResponse
     >(findRequest, "find", (response: proto.FindResponse) => {
-      return DocumentDB.toDataFrame(response)
+      return DocumentDB.toDataFrame(response, options?.format)
     })
   }
 
@@ -108,19 +114,22 @@ export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
     })
   }
 
-  findBatch(requests: Request[]) {
+  findBatch<T extends DataFormat = ObjectType>(
+    requests: Request[],
+    format: ReturnType = "object",
+  ) {
     const findRequests: proto.FindBatchRequest = {
       requests: requests.map((request) => {
         return DocumentDB.toFindRequest(request)
       }),
     }
     return this.createPromise<
-      (DataFrame | null)[],
+      (DataFrame<T> | null)[],
       proto.FindBatchRequest,
       proto.FindBatchResponse
     >(findRequests, "findBatch", (response: proto.FindBatchResponse) => {
       return response.responses.map((response) =>
-        DocumentDB.toDataFrame(response),
+        DocumentDB.toDataFrame(response, format),
       )
     })
   }
@@ -320,12 +329,11 @@ export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
     query: Document,
     dtypes: { [key: string]: string } | undefined = undefined,
   ) {
-    return this.find({
-      collectionName: collectionName,
-      query: query,
+    return this.find<Table<any>>(collectionName, query, {
       dtypes: dtypes,
+      format: "arrow",
     }).then((result): boolean => {
-      if (result) {
+      if (result && result.data) {
         return result.data.numRows == 0
       }
       return true
@@ -347,21 +355,66 @@ export class DocumentDB extends GrpcClient<proto.DocumentDBServiceClient> {
 
   private static async toDataFrame(
     response: proto.FindResponse,
-  ): Promise<DataFrame | null> {
+    format: ReturnType = "object",
+  ): Promise<DataFrame<DataFormat> | null> {
     if (response.numRows) {
       const arrowBuffer = readParquet(response.buffer)
       const df = tableFromIPC(arrowBuffer.intoIPCStream())
-      const meta_json = df.schema.metadata.get("pandas")
+      const metaJson = df.schema.metadata.get("pandas")
+
       let meta
-      if (meta_json) {
-        meta = JSON.parse(meta_json)
+      if (metaJson) {
+        meta = JSON.parse(metaJson)
+      }
+
+      let data = df
+      if (format === "object") {
+        data = this.parseMetadata(meta, df.toArray())
       }
       return {
-        data: df,
-        meta: meta,
+        data: data,
+        meta,
       }
     }
     return null
+  }
+
+  private static identity(value: string | undefined) {
+    return value
+  }
+
+  private static toJson(text: string | undefined) {
+    if (!text) {
+      return text
+    }
+
+    try {
+      return JSON.parse(text)
+    } catch (error) {
+      return text
+    }
+  }
+
+  private static parseMetadata(meta: any, df: any): any {
+    const transformMap = Object.fromEntries(
+      meta.columns.map((column: any) => {
+        let entry = [column.name, this.identity]
+        if (column.metadata && column.metadata.hasOwnProperty("encoding")) {
+          if (column.metadata.encoding == "json") {
+            entry = [column.name, this.toJson]
+          }
+        }
+        return entry
+      }),
+    )
+
+    return df.map((row: any) => {
+      const entries = Object.keys(row).map((key) => {
+        const converted = transformMap[key](row[key])
+        return [key, converted]
+      })
+      return Object.fromEntries(entries)
+    })
   }
 
   private static fromCollectionInfo(

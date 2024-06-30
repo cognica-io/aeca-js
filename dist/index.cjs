@@ -33,9 +33,9 @@ var __toESM = (mod2, isNodeMode, target) => (target = mod2 != null ? __create(__
 ));
 var __toCommonJS = (mod2) => __copyProps(__defProp({}, "__esModule", { value: true }), mod2);
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/constants.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/constants.js
 var require_constants = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/constants.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/constants.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.DEFAULT_MAX_RECEIVE_MESSAGE_LENGTH = exports2.DEFAULT_MAX_SEND_MESSAGE_LENGTH = exports2.Propagate = exports2.LogVerbosity = exports2.Status = void 0;
@@ -79,12 +79,12 @@ var require_constants = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/package.json
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/package.json
 var require_package = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/package.json"(exports2, module2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/package.json"(exports2, module2) {
     module2.exports = {
       name: "@grpc/grpc-js",
-      version: "1.10.8",
+      version: "1.10.9",
       description: "gRPC Library for Node - pure JS implementation",
       homepage: "https://grpc.io/",
       repository: "https://github.com/grpc/grpc-node/tree/master/packages/grpc-js",
@@ -171,9 +171,9 @@ var require_package = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/logging.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/logging.js
 var require_logging = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/logging.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/logging.js"(exports2) {
     "use strict";
     var _a;
     var _b;
@@ -272,9 +272,9 @@ var require_logging = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/error.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/error.js
 var require_error = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/error.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/error.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.getErrorCode = exports2.getErrorMessage = void 0;
@@ -297,9 +297,9 @@ var require_error = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/metadata.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/metadata.js
 var require_metadata = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/metadata.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/metadata.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.Metadata = void 0;
@@ -518,9 +518,9 @@ var require_metadata = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/call-credentials.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/call-credentials.js
 var require_call_credentials = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/call-credentials.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/call-credentials.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.CallCredentials = void 0;
@@ -651,9 +651,9 @@ var require_call_credentials = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/tls-helpers.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/tls-helpers.js
 var require_tls_helpers = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/tls-helpers.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/tls-helpers.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.getDefaultRootsData = exports2.CIPHER_SUITES = void 0;
@@ -674,9 +674,9 @@ var require_tls_helpers = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/channel-credentials.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/channel-credentials.js
 var require_channel_credentials = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/channel-credentials.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/channel-credentials.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.ChannelCredentials = void 0;
@@ -826,9 +826,9 @@ var require_channel_credentials = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/load-balancer.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/load-balancer.js
 var require_load_balancer = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/load-balancer.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/load-balancer.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.selectLbConfigFromList = exports2.getDefaultConfig = exports2.parseLoadBalancingConfig = exports2.isLoadBalancerNameRegistered = exports2.createLoadBalancer = exports2.registerDefaultLoadBalancerType = exports2.registerLoadBalancerType = exports2.createChildChannelControlHelper = void 0;
@@ -918,9 +918,9 @@ var require_load_balancer = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/service-config.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/service-config.js
 var require_service_config = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/service-config.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/service-config.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.extractAndSelectServiceConfig = exports2.validateServiceConfig = exports2.validateRetryThrottling = void 0;
@@ -1262,9 +1262,9 @@ var require_service_config = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/connectivity-state.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/connectivity-state.js
 var require_connectivity_state = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/connectivity-state.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/connectivity-state.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.ConnectivityState = void 0;
@@ -1279,9 +1279,9 @@ var require_connectivity_state = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/uri-parser.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/uri-parser.js
 var require_uri_parser = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/uri-parser.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/uri-parser.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.uriToString = exports2.combineHostPort = exports2.splitHostPort = exports2.parseUri = void 0;
@@ -1374,9 +1374,9 @@ var require_uri_parser = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/resolver.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/resolver.js
 var require_resolver = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/resolver.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/resolver.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.mapUriDefaultScheme = exports2.getDefaultAuthority = exports2.createResolver = exports2.registerDefaultScheme = exports2.registerResolver = void 0;
@@ -1425,9 +1425,9 @@ var require_resolver = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/picker.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/picker.js
 var require_picker = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/picker.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/picker.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.QueuePicker = exports2.UnavailablePicker = exports2.PickResultType = void 0;
@@ -1486,9 +1486,9 @@ var require_picker = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/backoff-timeout.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/backoff-timeout.js
 var require_backoff_timeout = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/backoff-timeout.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/backoff-timeout.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.BackoffTimeout = void 0;
@@ -1615,9 +1615,9 @@ var require_backoff_timeout = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/load-balancer-child-handler.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/load-balancer-child-handler.js
 var require_load_balancer_child_handler = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/load-balancer-child-handler.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/load-balancer-child-handler.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.ChildLoadBalancerHandler = void 0;
@@ -1746,9 +1746,9 @@ var require_load_balancer_child_handler = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/resolving-load-balancer.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/resolving-load-balancer.js
 var require_resolving_load_balancer = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/resolving-load-balancer.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/resolving-load-balancer.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.ResolvingLoadBalancer = void 0;
@@ -1989,9 +1989,9 @@ var require_resolving_load_balancer = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/channel-options.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/channel-options.js
 var require_channel_options = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/channel-options.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/channel-options.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.channelOptionsEqual = exports2.recognizedOptions = void 0;
@@ -2044,9 +2044,9 @@ var require_channel_options = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/subchannel-address.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/subchannel-address.js
 var require_subchannel_address = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/subchannel-address.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/subchannel-address.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.EndpointMap = exports2.endpointHasAddress = exports2.endpointToString = exports2.endpointEqual = exports2.stringToSubchannelAddress = exports2.subchannelAddressToString = exports2.subchannelAddressEqual = exports2.isTcpSubchannelAddress = void 0;
@@ -3192,9 +3192,9 @@ var init_esm = __esm({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/admin.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/admin.js
 var require_admin = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/admin.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/admin.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.addAdminServicesToServer = exports2.registerAdminService = void 0;
@@ -3212,9 +3212,9 @@ var require_admin = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/call.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/call.js
 var require_call = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/call.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/call.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.ClientDuplexStreamImpl = exports2.ClientWritableStreamImpl = exports2.ClientReadableStreamImpl = exports2.ClientUnaryCallImpl = exports2.callErrorFromStatus = void 0;
@@ -3333,9 +3333,9 @@ ${callerStack}`;
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/call-interface.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/call-interface.js
 var require_call_interface = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/call-interface.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/call-interface.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.InterceptingListenerImpl = exports2.isInterceptingListener = void 0;
@@ -3401,9 +3401,9 @@ var require_call_interface = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/client-interceptors.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/client-interceptors.js
 var require_client_interceptors = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/client-interceptors.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/client-interceptors.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.getInterceptingCall = exports2.InterceptingCall = exports2.RequesterBuilder = exports2.ListenerBuilder = exports2.InterceptorConfigurationError = void 0;
@@ -3748,9 +3748,9 @@ var require_client_interceptors = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/client.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/client.js
 var require_client = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/client.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/client.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.Client = void 0;
@@ -4121,9 +4121,9 @@ var require_client = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/make-client.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/make-client.js
 var require_make_client = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/make-client.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/make-client.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.loadPackageDefinition = exports2.makeClientConstructor = void 0;
@@ -5089,9 +5089,9 @@ var require_pool = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/util/longbits.js
+// node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/util/longbits.js
 var require_longbits = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/util/longbits.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/util/longbits.js"(exports2, module2) {
     "use strict";
     module2.exports = LongBits;
     var util = require_minimal();
@@ -5191,9 +5191,9 @@ var require_longbits = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/util/minimal.js
+// node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/util/minimal.js
 var require_minimal = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/util/minimal.js"(exports2) {
+  "node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/util/minimal.js"(exports2) {
     "use strict";
     var util = exports2;
     util.asPromise = require_aspromise();
@@ -5366,9 +5366,9 @@ var require_minimal = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/writer.js
+// node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/writer.js
 var require_writer = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/writer.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/writer.js"(exports2, module2) {
     "use strict";
     module2.exports = Writer;
     var util = require_minimal();
@@ -5557,9 +5557,9 @@ var require_writer = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/writer_buffer.js
+// node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/writer_buffer.js
 var require_writer_buffer = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/writer_buffer.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/writer_buffer.js"(exports2, module2) {
     "use strict";
     module2.exports = BufferWriter;
     var Writer = require_writer();
@@ -5607,9 +5607,9 @@ var require_writer_buffer = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/reader.js
+// node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/reader.js
 var require_reader = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/reader.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/reader.js"(exports2, module2) {
     "use strict";
     module2.exports = Reader;
     var util = require_minimal();
@@ -5830,9 +5830,9 @@ var require_reader = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/reader_buffer.js
+// node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/reader_buffer.js
 var require_reader_buffer = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/reader_buffer.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/reader_buffer.js"(exports2, module2) {
     "use strict";
     module2.exports = BufferReader;
     var Reader = require_reader();
@@ -5853,9 +5853,9 @@ var require_reader_buffer = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/rpc/service.js
+// node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/rpc/service.js
 var require_service = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/rpc/service.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/rpc/service.js"(exports2, module2) {
     "use strict";
     module2.exports = Service;
     var util = require_minimal();
@@ -5928,26 +5928,26 @@ var require_service = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/rpc.js
+// node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/rpc.js
 var require_rpc = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/rpc.js"(exports2) {
+  "node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/rpc.js"(exports2) {
     "use strict";
     var rpc = exports2;
     rpc.Service = require_service();
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/roots.js
+// node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/roots.js
 var require_roots = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/roots.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/roots.js"(exports2, module2) {
     "use strict";
     module2.exports = {};
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/index-minimal.js
+// node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/index-minimal.js
 var require_index_minimal = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/index-minimal.js"(exports2) {
+  "node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/index-minimal.js"(exports2) {
     "use strict";
     var protobuf = exports2;
     protobuf.build = "minimal";
@@ -6135,9 +6135,9 @@ var require_path = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/types.js
+// node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/types.js
 var require_types = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/types.js"(exports2) {
+  "node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/types.js"(exports2) {
     "use strict";
     var types = exports2;
     var util = require_util();
@@ -6314,9 +6314,9 @@ var require_types = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/field.js
+// node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/field.js
 var require_field = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/field.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/field.js"(exports2, module2) {
     "use strict";
     module2.exports = Field;
     var ReflectionObject = require_object();
@@ -6463,9 +6463,9 @@ var require_field = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/oneof.js
+// node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/oneof.js
 var require_oneof = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/oneof.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/oneof.js"(exports2, module2) {
     "use strict";
     module2.exports = OneOf;
     var ReflectionObject = require_object();
@@ -6562,9 +6562,9 @@ var require_oneof = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/namespace.js
+// node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/namespace.js
 var require_namespace = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/namespace.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/namespace.js"(exports2, module2) {
     "use strict";
     module2.exports = Namespace;
     var ReflectionObject = require_object();
@@ -6772,9 +6772,9 @@ var require_namespace = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/mapfield.js
+// node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/mapfield.js
 var require_mapfield = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/mapfield.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/mapfield.js"(exports2, module2) {
     "use strict";
     module2.exports = MapField;
     var Field = require_field();
@@ -6828,9 +6828,9 @@ var require_mapfield = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/method.js
+// node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/method.js
 var require_method = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/method.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/method.js"(exports2, module2) {
     "use strict";
     module2.exports = Method;
     var ReflectionObject = require_object();
@@ -6896,9 +6896,9 @@ var require_method = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/service.js
+// node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/service.js
 var require_service2 = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/service.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/service.js"(exports2, module2) {
     "use strict";
     module2.exports = Service;
     var Namespace = require_namespace();
@@ -6990,9 +6990,9 @@ var require_service2 = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/message.js
+// node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/message.js
 var require_message = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/message.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/message.js"(exports2, module2) {
     "use strict";
     module2.exports = Message;
     var util = require_minimal();
@@ -7031,9 +7031,9 @@ var require_message = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/decoder.js
+// node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/decoder.js
 var require_decoder = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/decoder.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/decoder.js"(exports2, module2) {
     "use strict";
     module2.exports = decoder;
     var Enum = require_enum();
@@ -7084,9 +7084,9 @@ var require_decoder = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/verifier.js
+// node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/verifier.js
 var require_verifier = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/verifier.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/verifier.js"(exports2, module2) {
     "use strict";
     module2.exports = verifier;
     var Enum = require_enum();
@@ -7189,9 +7189,9 @@ var require_verifier = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/converter.js
+// node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/converter.js
 var require_converter = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/converter.js"(exports2) {
+  "node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/converter.js"(exports2) {
     "use strict";
     var converter = exports2;
     var Enum = require_enum();
@@ -7391,9 +7391,9 @@ var require_converter = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/wrappers.js
+// node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/wrappers.js
 var require_wrappers = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/wrappers.js"(exports2) {
+  "node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/wrappers.js"(exports2) {
     "use strict";
     var wrappers = exports2;
     var Message = require_message();
@@ -7442,9 +7442,9 @@ var require_wrappers = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/type.js
+// node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/type.js
 var require_type = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/type.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/type.js"(exports2, module2) {
     "use strict";
     module2.exports = Type;
     var Namespace = require_namespace();
@@ -7759,9 +7759,9 @@ var require_type = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/root.js
+// node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/root.js
 var require_root = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/root.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/root.js"(exports2, module2) {
     "use strict";
     module2.exports = Root;
     var Namespace = require_namespace();
@@ -7988,9 +7988,9 @@ var require_root = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/util.js
+// node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/util.js
 var require_util = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/util.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/util.js"(exports2, module2) {
     "use strict";
     var util = module2.exports = require_minimal();
     var roots = require_roots();
@@ -8100,9 +8100,9 @@ var require_util = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/object.js
+// node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/object.js
 var require_object = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/object.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/object.js"(exports2, module2) {
     "use strict";
     module2.exports = ReflectionObject;
     ReflectionObject.className = "ReflectionObject";
@@ -8232,9 +8232,9 @@ var require_object = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/enum.js
+// node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/enum.js
 var require_enum = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/enum.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/enum.js"(exports2, module2) {
     "use strict";
     module2.exports = Enum;
     var ReflectionObject = require_object();
@@ -8326,9 +8326,9 @@ var require_enum = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/encoder.js
+// node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/encoder.js
 var require_encoder = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/encoder.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/encoder.js"(exports2, module2) {
     "use strict";
     module2.exports = encoder;
     var Enum = require_enum();
@@ -8375,9 +8375,9 @@ var require_encoder = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/index-light.js
+// node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/index-light.js
 var require_index_light = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/index-light.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/index-light.js"(exports2, module2) {
     "use strict";
     var protobuf = module2.exports = require_index_minimal();
     protobuf.build = "light";
@@ -8421,9 +8421,9 @@ var require_index_light = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/tokenize.js
+// node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/tokenize.js
 var require_tokenize = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/tokenize.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/tokenize.js"(exports2, module2) {
     "use strict";
     module2.exports = tokenize;
     var delimRe = /[\s{}=;:[\],'"()<>]/g;
@@ -8668,9 +8668,9 @@ var require_tokenize = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/parse.js
+// node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/parse.js
 var require_parse = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/parse.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/parse.js"(exports2, module2) {
     "use strict";
     module2.exports = parse;
     parse.filename = null;
@@ -9311,9 +9311,9 @@ var require_parse = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/common.js
+// node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/common.js
 var require_common = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/common.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/common.js"(exports2, module2) {
     "use strict";
     module2.exports = common;
     var commonRe = /\/|\./;
@@ -9643,9 +9643,9 @@ var require_common = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/index.js
+// node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/index.js
 var require_src = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/src/index.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/src/index.js"(exports2, module2) {
     "use strict";
     var protobuf = module2.exports = require_index_light();
     protobuf.build = "full";
@@ -9656,17 +9656,17 @@ var require_src = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/index.js
+// node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/index.js
 var require_protobufjs = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/index.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/index.js"(exports2, module2) {
     "use strict";
     module2.exports = require_src();
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/google/protobuf/descriptor.json
+// node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/google/protobuf/descriptor.json
 var require_descriptor = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/google/protobuf/descriptor.json"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/google/protobuf/descriptor.json"(exports2, module2) {
     module2.exports = {
       nested: {
         google: {
@@ -10409,9 +10409,9 @@ var require_descriptor = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/ext/descriptor/index.js
+// node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/ext/descriptor/index.js
 var require_descriptor2 = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/ext/descriptor/index.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/ext/descriptor/index.js"(exports2, module2) {
     "use strict";
     var $protobuf = require_protobufjs();
     module2.exports = exports2 = $protobuf.descriptor = $protobuf.Root.fromJSON(require_descriptor()).lookup(".google.protobuf");
@@ -10910,9 +10910,9 @@ var require_descriptor2 = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/google/protobuf/api.json
+// node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/google/protobuf/api.json
 var require_api = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/google/protobuf/api.json"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/google/protobuf/api.json"(exports2, module2) {
     module2.exports = {
       nested: {
         google: {
@@ -11034,9 +11034,9 @@ var require_api = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/google/protobuf/source_context.json
+// node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/google/protobuf/source_context.json
 var require_source_context = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/google/protobuf/source_context.json"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/google/protobuf/source_context.json"(exports2, module2) {
     module2.exports = {
       nested: {
         google: {
@@ -11060,9 +11060,9 @@ var require_source_context = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/google/protobuf/type.json
+// node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/google/protobuf/type.json
 var require_type2 = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/google/protobuf/type.json"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/google/protobuf/type.json"(exports2, module2) {
     module2.exports = {
       nested: {
         google: {
@@ -12040,9 +12040,9 @@ var require_src2 = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/channelz.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/channelz.js
 var require_channelz = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/channelz.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/channelz.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.setup = exports2.getChannelzServiceDefinition = exports2.getChannelzHandlers = exports2.unregisterChannelzRef = exports2.registerChannelzSocket = exports2.registerChannelzServer = exports2.registerChannelzSubchannel = exports2.registerChannelzChannel = exports2.ChannelzCallTrackerStub = exports2.ChannelzCallTracker = exports2.ChannelzChildrenTrackerStub = exports2.ChannelzChildrenTracker = exports2.ChannelzTrace = exports2.ChannelzTraceStub = void 0;
@@ -12616,9 +12616,9 @@ var require_channelz = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/subchannel.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/subchannel.js
 var require_subchannel = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/subchannel.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/subchannel.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.Subchannel = void 0;
@@ -12912,9 +12912,9 @@ var require_subchannel = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/resolver-dns.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/resolver-dns.js
 var require_resolver_dns = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/resolver-dns.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/resolver-dns.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.setup = exports2.DEFAULT_PORT = void 0;
@@ -13160,9 +13160,9 @@ var require_resolver_dns = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/http_proxy.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/http_proxy.js
 var require_http_proxy = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/http_proxy.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/http_proxy.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.getProxiedConnection = exports2.mapProxyName = void 0;
@@ -13363,9 +13363,9 @@ var require_http_proxy = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/stream-decoder.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/stream-decoder.js
 var require_stream_decoder = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/stream-decoder.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/stream-decoder.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.StreamDecoder = void 0;
@@ -13376,7 +13376,8 @@ var require_stream_decoder = __commonJS({
       ReadState2[ReadState2["READING_MESSAGE"] = 2] = "READING_MESSAGE";
     })(ReadState || (ReadState = {}));
     var StreamDecoder = class {
-      constructor() {
+      constructor(maxReadMessageLength) {
+        this.maxReadMessageLength = maxReadMessageLength;
         this.readState = ReadState.NO_DATA;
         this.readCompressFlag = Buffer.alloc(1);
         this.readPartialSize = Buffer.alloc(4);
@@ -13408,6 +13409,9 @@ var require_stream_decoder = __commonJS({
               readHead += toRead;
               if (this.readSizeRemaining === 0) {
                 this.readMessageSize = this.readPartialSize.readUInt32BE(0);
+                if (this.maxReadMessageLength !== -1 && this.readMessageSize > this.maxReadMessageLength) {
+                  throw new Error(`Received message larger than max (${this.readMessageSize} vs ${this.maxReadMessageLength})`);
+                }
                 this.readMessageRemaining = this.readMessageSize;
                 if (this.readMessageRemaining > 0) {
                   this.readState = ReadState.READING_MESSAGE;
@@ -13444,9 +13448,9 @@ var require_stream_decoder = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/subchannel-call.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/subchannel-call.js
 var require_subchannel_call = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/subchannel-call.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/subchannel-call.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.Http2SubchannelCall = void 0;
@@ -13499,12 +13503,12 @@ var require_subchannel_call = __commonJS({
     }
     var Http2SubchannelCall = class {
       constructor(http2Stream, callEventTracker, listener, transport, callId) {
+        var _a;
         this.http2Stream = http2Stream;
         this.callEventTracker = callEventTracker;
         this.listener = listener;
         this.transport = transport;
         this.callId = callId;
-        this.decoder = new stream_decoder_1.StreamDecoder();
         this.isReadFilterPending = false;
         this.isPushPending = false;
         this.canPush = false;
@@ -13514,6 +13518,8 @@ var require_subchannel_call = __commonJS({
         this.finalStatus = null;
         this.internalError = null;
         this.serverEndedCall = false;
+        const maxReceiveMessageLength = (_a = transport.getOptions()["grpc.max_receive_message_length"]) !== null && _a !== void 0 ? _a : constants_1.DEFAULT_MAX_RECEIVE_MESSAGE_LENGTH;
+        this.decoder = new stream_decoder_1.StreamDecoder(maxReceiveMessageLength);
         http2Stream.on("response", (headers, flags) => {
           let headersString = "";
           for (const header of Object.keys(headers)) {
@@ -13546,7 +13552,13 @@ var require_subchannel_call = __commonJS({
             return;
           }
           this.trace("receive HTTP/2 data frame of length " + data.length);
-          const messages = this.decoder.write(data);
+          let messages;
+          try {
+            messages = this.decoder.write(data);
+          } catch (e) {
+            this.cancelWithStatus(constants_1.Status.RESOURCE_EXHAUSTED, e.message);
+            return;
+          }
           for (const message of messages) {
             this.trace("parsed message of length " + message.length);
             this.callEventTracker.addMessageReceived();
@@ -13560,9 +13572,9 @@ var require_subchannel_call = __commonJS({
         http2Stream.on("close", () => {
           this.serverEndedCall = true;
           process.nextTick(() => {
-            var _a;
+            var _a2;
             this.trace("HTTP/2 stream closed with code " + http2Stream.rstCode);
-            if (((_a = this.finalStatus) === null || _a === void 0 ? void 0 : _a.code) === constants_1.Status.OK) {
+            if (((_a2 = this.finalStatus) === null || _a2 === void 0 ? void 0 : _a2.code) === constants_1.Status.OK) {
               return;
             }
             let code;
@@ -13824,9 +13836,9 @@ var require_subchannel_call = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/call-number.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/call-number.js
 var require_call_number = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/call-number.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/call-number.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.getNextCallNumber = void 0;
@@ -13838,9 +13850,9 @@ var require_call_number = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/transport.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/transport.js
 var require_transport = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/transport.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/transport.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.Http2SubchannelConnector = void 0;
@@ -13865,6 +13877,7 @@ var require_transport = __commonJS({
     var Http2Transport = class {
       constructor(session, subchannelAddress, options, remoteName) {
         this.session = session;
+        this.options = options;
         this.remoteName = remoteName;
         this.keepaliveTimeMs = -1;
         this.keepaliveTimeoutMs = KEEPALIVE_TIMEOUT_MS;
@@ -14188,6 +14201,9 @@ var require_transport = __commonJS({
       getPeerName() {
         return this.subchannelAddressString;
       }
+      getOptions() {
+        return this.options;
+      }
       shutdown() {
         this.session.close();
         (0, channelz_1.unregisterChannelzRef)(this.channelzRef);
@@ -14315,9 +14331,9 @@ var require_transport = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/subchannel-pool.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/subchannel-pool.js
 var require_subchannel_pool = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/subchannel-pool.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/subchannel-pool.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.getSubchannelPool = exports2.SubchannelPool = void 0;
@@ -14413,9 +14429,9 @@ var require_subchannel_pool = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/filter-stack.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/filter-stack.js
 var require_filter_stack = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/filter-stack.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/filter-stack.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.FilterStackFactory = exports2.FilterStack = void 0;
@@ -14484,9 +14500,9 @@ var require_filter_stack = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/compression-algorithms.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/compression-algorithms.js
 var require_compression_algorithms = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/compression-algorithms.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/compression-algorithms.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.CompressionAlgorithms = void 0;
@@ -14499,9 +14515,9 @@ var require_compression_algorithms = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/filter.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/filter.js
 var require_filter = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/filter.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/filter.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.BaseFilter = void 0;
@@ -14526,9 +14542,9 @@ var require_filter = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/compression-filter.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/compression-filter.js
 var require_compression_filter = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/compression-filter.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/compression-filter.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.CompressionFilterFactory = exports2.CompressionFilter = void 0;
@@ -14586,6 +14602,10 @@ var require_compression_filter = __commonJS({
       }
     };
     var DeflateHandler = class extends CompressionHandler {
+      constructor(maxRecvMessageLength) {
+        super();
+        this.maxRecvMessageLength = maxRecvMessageLength;
+      }
       compressMessage(message) {
         return new Promise((resolve, reject) => {
           zlib.deflate(message, (err, output) => {
@@ -14599,17 +14619,33 @@ var require_compression_filter = __commonJS({
       }
       decompressMessage(message) {
         return new Promise((resolve, reject) => {
-          zlib.inflate(message, (err, output) => {
-            if (err) {
-              reject(err);
-            } else {
-              resolve(output);
+          let totalLength = 0;
+          const messageParts = [];
+          const decompresser = zlib.createInflate();
+          decompresser.on("data", (chunk) => {
+            messageParts.push(chunk);
+            totalLength += chunk.byteLength;
+            if (this.maxRecvMessageLength !== -1 && totalLength > this.maxRecvMessageLength) {
+              decompresser.destroy();
+              reject({
+                code: constants_1.Status.RESOURCE_EXHAUSTED,
+                details: `Received message that decompresses to a size larger than ${this.maxRecvMessageLength}`
+              });
             }
           });
+          decompresser.on("end", () => {
+            resolve(Buffer.concat(messageParts));
+          });
+          decompresser.write(message);
+          decompresser.end();
         });
       }
     };
     var GzipHandler = class extends CompressionHandler {
+      constructor(maxRecvMessageLength) {
+        super();
+        this.maxRecvMessageLength = maxRecvMessageLength;
+      }
       compressMessage(message) {
         return new Promise((resolve, reject) => {
           zlib.gzip(message, (err, output) => {
@@ -14623,13 +14659,25 @@ var require_compression_filter = __commonJS({
       }
       decompressMessage(message) {
         return new Promise((resolve, reject) => {
-          zlib.unzip(message, (err, output) => {
-            if (err) {
-              reject(err);
-            } else {
-              resolve(output);
+          let totalLength = 0;
+          const messageParts = [];
+          const decompresser = zlib.createGunzip();
+          decompresser.on("data", (chunk) => {
+            messageParts.push(chunk);
+            totalLength += chunk.byteLength;
+            if (this.maxRecvMessageLength !== -1 && totalLength > this.maxRecvMessageLength) {
+              decompresser.destroy();
+              reject({
+                code: constants_1.Status.RESOURCE_EXHAUSTED,
+                details: `Received message that decompresses to a size larger than ${this.maxRecvMessageLength}`
+              });
             }
           });
+          decompresser.on("end", () => {
+            resolve(Buffer.concat(messageParts));
+          });
+          decompresser.write(message);
+          decompresser.end();
         });
       }
     };
@@ -14645,34 +14693,35 @@ var require_compression_filter = __commonJS({
         return Promise.reject(new Error(`Compression method not supported: ${this.compressionName}`));
       }
     };
-    function getCompressionHandler(compressionName) {
+    function getCompressionHandler(compressionName, maxReceiveMessageSize) {
       switch (compressionName) {
         case "identity":
           return new IdentityHandler();
         case "deflate":
-          return new DeflateHandler();
+          return new DeflateHandler(maxReceiveMessageSize);
         case "gzip":
-          return new GzipHandler();
+          return new GzipHandler(maxReceiveMessageSize);
         default:
           return new UnknownHandler(compressionName);
       }
     }
     var CompressionFilter = class extends filter_1.BaseFilter {
       constructor(channelOptions, sharedFilterConfig) {
-        var _a;
+        var _a, _b;
         super();
         this.sharedFilterConfig = sharedFilterConfig;
         this.sendCompression = new IdentityHandler();
         this.receiveCompression = new IdentityHandler();
         this.currentCompressionAlgorithm = "identity";
         const compressionAlgorithmKey = channelOptions["grpc.default_compression_algorithm"];
+        this.maxReceiveMessageLength = (_a = channelOptions["grpc.max_receive_message_length"]) !== null && _a !== void 0 ? _a : constants_1.DEFAULT_MAX_RECEIVE_MESSAGE_LENGTH;
         if (compressionAlgorithmKey !== void 0) {
           if (isCompressionAlgorithmKey(compressionAlgorithmKey)) {
             const clientSelectedEncoding = compression_algorithms_1.CompressionAlgorithms[compressionAlgorithmKey];
-            const serverSupportedEncodings = (_a = sharedFilterConfig.serverSupportedEncodingHeader) === null || _a === void 0 ? void 0 : _a.split(",");
+            const serverSupportedEncodings = (_b = sharedFilterConfig.serverSupportedEncodingHeader) === null || _b === void 0 ? void 0 : _b.split(",");
             if (!serverSupportedEncodings || serverSupportedEncodings.includes(clientSelectedEncoding)) {
               this.currentCompressionAlgorithm = clientSelectedEncoding;
-              this.sendCompression = getCompressionHandler(this.currentCompressionAlgorithm);
+              this.sendCompression = getCompressionHandler(this.currentCompressionAlgorithm, -1);
             }
           } else {
             logging.log(constants_1.LogVerbosity.ERROR, `Invalid value provided for grpc.default_compression_algorithm option: ${compressionAlgorithmKey}`);
@@ -14695,7 +14744,7 @@ var require_compression_filter = __commonJS({
         if (receiveEncoding.length > 0) {
           const encoding = receiveEncoding[0];
           if (typeof encoding === "string") {
-            this.receiveCompression = getCompressionHandler(encoding);
+            this.receiveCompression = getCompressionHandler(encoding, this.maxReceiveMessageLength);
           }
         }
         metadata.remove("grpc-encoding");
@@ -14743,76 +14792,9 @@ var require_compression_filter = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/max-message-size-filter.js
-var require_max_message_size_filter = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/max-message-size-filter.js"(exports2) {
-    "use strict";
-    Object.defineProperty(exports2, "__esModule", { value: true });
-    exports2.MaxMessageSizeFilterFactory = exports2.MaxMessageSizeFilter = void 0;
-    var filter_1 = require_filter();
-    var constants_1 = require_constants();
-    var metadata_1 = require_metadata();
-    var MaxMessageSizeFilter = class extends filter_1.BaseFilter {
-      constructor(options) {
-        super();
-        this.maxSendMessageSize = constants_1.DEFAULT_MAX_SEND_MESSAGE_LENGTH;
-        this.maxReceiveMessageSize = constants_1.DEFAULT_MAX_RECEIVE_MESSAGE_LENGTH;
-        if ("grpc.max_send_message_length" in options) {
-          this.maxSendMessageSize = options["grpc.max_send_message_length"];
-        }
-        if ("grpc.max_receive_message_length" in options) {
-          this.maxReceiveMessageSize = options["grpc.max_receive_message_length"];
-        }
-      }
-      async sendMessage(message) {
-        if (this.maxSendMessageSize === -1) {
-          return message;
-        } else {
-          const concreteMessage = await message;
-          if (concreteMessage.message.length > this.maxSendMessageSize) {
-            throw {
-              code: constants_1.Status.RESOURCE_EXHAUSTED,
-              details: `Sent message larger than max (${concreteMessage.message.length} vs. ${this.maxSendMessageSize})`,
-              metadata: new metadata_1.Metadata()
-            };
-          } else {
-            return concreteMessage;
-          }
-        }
-      }
-      async receiveMessage(message) {
-        if (this.maxReceiveMessageSize === -1) {
-          return message;
-        } else {
-          const concreteMessage = await message;
-          if (concreteMessage.length > this.maxReceiveMessageSize) {
-            throw {
-              code: constants_1.Status.RESOURCE_EXHAUSTED,
-              details: `Received message larger than max (${concreteMessage.length} vs. ${this.maxReceiveMessageSize})`,
-              metadata: new metadata_1.Metadata()
-            };
-          } else {
-            return concreteMessage;
-          }
-        }
-      }
-    };
-    exports2.MaxMessageSizeFilter = MaxMessageSizeFilter;
-    var MaxMessageSizeFilterFactory = class {
-      constructor(options) {
-        this.options = options;
-      }
-      createFilter() {
-        return new MaxMessageSizeFilter(this.options);
-      }
-    };
-    exports2.MaxMessageSizeFilterFactory = MaxMessageSizeFilterFactory;
-  }
-});
-
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/deadline.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/deadline.js
 var require_deadline = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/deadline.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/deadline.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.formatDateDifference = exports2.deadlineToString = exports2.getRelativeTimeout = exports2.getDeadlineTimeoutString = exports2.minDeadline = void 0;
@@ -14882,9 +14864,9 @@ var require_deadline = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/control-plane-status.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/control-plane-status.js
 var require_control_plane_status = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/control-plane-status.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/control-plane-status.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.restrictControlPlaneStatusCode = void 0;
@@ -14913,9 +14895,9 @@ var require_control_plane_status = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/load-balancing-call.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/load-balancing-call.js
 var require_load_balancing_call = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/load-balancing-call.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/load-balancing-call.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.LoadBalancingCall = void 0;
@@ -15149,9 +15131,9 @@ var require_load_balancing_call = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/resolving-call.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/resolving-call.js
 var require_resolving_call = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/resolving-call.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/resolving-call.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.ResolvingCall = void 0;
@@ -15426,9 +15408,9 @@ var require_resolving_call = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/retrying-call.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/retrying-call.js
 var require_retrying_call = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/retrying-call.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/retrying-call.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.RetryingCall = exports2.MessageBufferTracker = exports2.RetryThrottler = void 0;
@@ -16007,9 +15989,9 @@ var require_retrying_call = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/subchannel-interface.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/subchannel-interface.js
 var require_subchannel_interface = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/subchannel-interface.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/subchannel-interface.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.BaseSubchannelWrapper = void 0;
@@ -16084,9 +16066,9 @@ var require_subchannel_interface = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/internal-channel.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/internal-channel.js
 var require_internal_channel = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/internal-channel.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/internal-channel.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.InternalChannel = void 0;
@@ -16099,7 +16081,6 @@ var require_internal_channel = __commonJS({
     var compression_filter_1 = require_compression_filter();
     var resolver_1 = require_resolver();
     var logging_1 = require_logging();
-    var max_message_size_filter_1 = require_max_message_size_filter();
     var http_proxy_1 = require_http_proxy();
     var uri_parser_1 = require_uri_parser();
     var connectivity_state_1 = require_connectivity_state();
@@ -16280,7 +16261,6 @@ var require_internal_channel = __commonJS({
           }
         });
         this.filterStackFactory = new filter_stack_1.FilterStackFactory([
-          new max_message_size_filter_1.MaxMessageSizeFilterFactory(this.options),
           new compression_filter_1.CompressionFilterFactory(this, this.options)
         ]);
         this.trace("Channel constructed with options " + JSON.stringify(options, void 0, 2));
@@ -16541,9 +16521,9 @@ var require_internal_channel = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/channel.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/channel.js
 var require_channel = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/channel.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/channel.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.ChannelImplementation = void 0;
@@ -16598,9 +16578,9 @@ var require_channel = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/server-call.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/server-call.js
 var require_server_call = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/server-call.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/server-call.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.ServerDuplexStreamImpl = exports2.ServerWritableStreamImpl = exports2.ServerReadableStreamImpl = exports2.ServerUnaryCallImpl = exports2.serverErrorToStatus = void 0;
@@ -16771,9 +16751,9 @@ var require_server_call = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/server-credentials.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/server-credentials.js
 var require_server_credentials = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/server-credentials.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/server-credentials.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.ServerCredentials = void 0;
@@ -16916,9 +16896,9 @@ var require_server_credentials = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/server-interceptors.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/server-interceptors.js
 var require_server_interceptors = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/server-interceptors.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/server-interceptors.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.getServerInterceptingCall = exports2.BaseServerInterceptingCall = exports2.ServerInterceptingCall = exports2.ResponderBuilder = exports2.isInterceptingServerListener = exports2.ServerListenerBuilder = void 0;
@@ -16927,11 +16907,8 @@ var require_server_interceptors = __commonJS({
     var http2 = require("http2");
     var error_1 = require_error();
     var zlib = require("zlib");
-    var util_1 = require("util");
     var stream_decoder_1 = require_stream_decoder();
     var logging = require_logging();
-    var unzip = (0, util_1.promisify)(zlib.unzip);
-    var inflate = (0, util_1.promisify)(zlib.inflate);
     var TRACER_NAME = "server_call";
     function trace(text) {
       logging.trace(constants_1.LogVerbosity.DEBUG, TRACER_NAME, text);
@@ -17237,7 +17214,6 @@ var require_server_interceptors = __commonJS({
         this.wantTrailers = false;
         this.cancelNotified = false;
         this.incomingEncoding = "identity";
-        this.decoder = new stream_decoder_1.StreamDecoder();
         this.readQueue = [];
         this.isReadPending = false;
         this.receivedHalfClose = false;
@@ -17271,6 +17247,7 @@ var require_server_interceptors = __commonJS({
         if ("grpc.max_receive_message_length" in options) {
           this.maxReceiveMessageSize = options["grpc.max_receive_message_length"];
         }
+        this.decoder = new stream_decoder_1.StreamDecoder(this.maxReceiveMessageSize);
         const metadata = metadata_1.Metadata.fromHttp2Headers(headers);
         if (logging.isTracerEnabled(TRACER_NAME)) {
           trace("Request to " + this.handler.path + " received headers " + JSON.stringify(metadata.toJSON()));
@@ -17363,18 +17340,41 @@ var require_server_interceptors = __commonJS({
         return output;
       }
       decompressMessage(message, encoding) {
-        switch (encoding) {
-          case "deflate":
-            return inflate(message.subarray(5));
-          case "gzip":
-            return unzip(message.subarray(5));
-          case "identity":
-            return message.subarray(5);
-          default:
-            return Promise.reject({
-              code: constants_1.Status.UNIMPLEMENTED,
-              details: `Received message compressed with unsupported encoding "${encoding}"`
+        const messageContents = message.subarray(5);
+        if (encoding === "identity") {
+          return messageContents;
+        } else if (encoding === "deflate" || encoding === "gzip") {
+          let decompresser;
+          if (encoding === "deflate") {
+            decompresser = zlib.createInflate();
+          } else {
+            decompresser = zlib.createGunzip();
+          }
+          return new Promise((resolve, reject) => {
+            let totalLength = 0;
+            const messageParts = [];
+            decompresser.on("data", (chunk) => {
+              messageParts.push(chunk);
+              totalLength += chunk.byteLength;
+              if (this.maxReceiveMessageSize !== -1 && totalLength > this.maxReceiveMessageSize) {
+                decompresser.destroy();
+                reject({
+                  code: constants_1.Status.RESOURCE_EXHAUSTED,
+                  details: `Received message that decompresses to a size larger than ${this.maxReceiveMessageSize}`
+                });
+              }
             });
+            decompresser.on("end", () => {
+              resolve(Buffer.concat(messageParts));
+            });
+            decompresser.write(messageContents);
+            decompresser.end();
+          });
+        } else {
+          return Promise.reject({
+            code: constants_1.Status.UNIMPLEMENTED,
+            details: `Received message compressed with unsupported encoding "${encoding}"`
+          });
         }
       }
       async decompressAndMaybePush(queueEntry) {
@@ -17383,7 +17383,13 @@ var require_server_interceptors = __commonJS({
         }
         const compressed = queueEntry.compressedMessage.readUInt8(0) === 1;
         const compressedMessageEncoding = compressed ? this.incomingEncoding : "identity";
-        const decompressedMessage = await this.decompressMessage(queueEntry.compressedMessage, compressedMessageEncoding);
+        let decompressedMessage;
+        try {
+          decompressedMessage = await this.decompressMessage(queueEntry.compressedMessage, compressedMessageEncoding);
+        } catch (err) {
+          this.sendStatus(err);
+          return;
+        }
         try {
           queueEntry.parsedMessage = this.handler.deserialize(decompressedMessage);
         } catch (err) {
@@ -17413,17 +17419,15 @@ var require_server_interceptors = __commonJS({
           return;
         }
         trace("Request to " + this.handler.path + " received data frame of size " + data.length);
-        const rawMessages = this.decoder.write(data);
+        let rawMessages;
+        try {
+          rawMessages = this.decoder.write(data);
+        } catch (e) {
+          this.sendStatus({ code: constants_1.Status.RESOURCE_EXHAUSTED, details: e.message });
+          return;
+        }
         for (const messageBytes of rawMessages) {
           this.stream.pause();
-          if (this.maxReceiveMessageSize !== -1 && messageBytes.length - 5 > this.maxReceiveMessageSize) {
-            this.sendStatus({
-              code: constants_1.Status.RESOURCE_EXHAUSTED,
-              details: `Received message larger than max (${messageBytes.length - 5} vs. ${this.maxReceiveMessageSize})`,
-              metadata: null
-            });
-            return;
-          }
           const queueEntry = {
             type: "COMPRESSED",
             compressedMessage: messageBytes,
@@ -17586,9 +17590,9 @@ var require_server_interceptors = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/server.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/server.js
 var require_server = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/server.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/server.js"(exports2) {
     "use strict";
     var __runInitializers = exports2 && exports2.__runInitializers || function(thisArg, initializers, value) {
       var useValue = arguments.length > 2;
@@ -18848,9 +18852,9 @@ var require_server = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/status-builder.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/status-builder.js
 var require_status_builder = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/status-builder.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/status-builder.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.StatusBuilder = void 0;
@@ -18902,9 +18906,9 @@ var require_status_builder = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/duration.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/duration.js
 var require_duration = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/duration.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/duration.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.isDuration = exports2.durationToMs = exports2.msToDuration = void 0;
@@ -18926,9 +18930,9 @@ var require_duration = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/load-balancer-pick-first.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/load-balancer-pick-first.js
 var require_load_balancer_pick_first = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/load-balancer-pick-first.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/load-balancer-pick-first.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.setup = exports2.LeafLoadBalancer = exports2.PickFirstLoadBalancer = exports2.shuffled = exports2.PickFirstLoadBalancingConfig = void 0;
@@ -19319,9 +19323,9 @@ var require_load_balancer_pick_first = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/experimental.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/experimental.js
 var require_experimental = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/experimental.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/experimental.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.BaseSubchannelWrapper = exports2.registerAdminService = exports2.FilterStackFactory = exports2.BaseFilter = exports2.PickResultType = exports2.QueuePicker = exports2.UnavailablePicker = exports2.ChildLoadBalancerHandler = exports2.EndpointMap = exports2.endpointHasAddress = exports2.endpointToString = exports2.subchannelAddressToString = exports2.LeafLoadBalancer = exports2.isLoadBalancerNameRegistered = exports2.parseLoadBalancingConfig = exports2.selectLbConfigFromList = exports2.registerLoadBalancerType = exports2.createChildChannelControlHelper = exports2.BackoffTimeout = exports2.durationToMs = exports2.uriToString = exports2.createResolver = exports2.registerResolver = exports2.log = exports2.trace = void 0;
@@ -19417,9 +19421,9 @@ var require_experimental = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/resolver-uds.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/resolver-uds.js
 var require_resolver_uds = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/resolver-uds.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/resolver-uds.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.setup = void 0;
@@ -19457,9 +19461,9 @@ var require_resolver_uds = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/resolver-ip.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/resolver-ip.js
 var require_resolver_ip = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/resolver-ip.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/resolver-ip.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.setup = void 0;
@@ -19547,9 +19551,9 @@ var require_resolver_ip = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/load-balancer-round-robin.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/load-balancer-round-robin.js
 var require_load_balancer_round_robin = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/load-balancer-round-robin.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/load-balancer-round-robin.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.setup = exports2.RoundRobinLoadBalancer = void 0;
@@ -19696,9 +19700,9 @@ var require_load_balancer_round_robin = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/load-balancer-outlier-detection.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/load-balancer-outlier-detection.js
 var require_load_balancer_outlier_detection = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/load-balancer-outlier-detection.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/load-balancer-outlier-detection.js"(exports2) {
     "use strict";
     var _a;
     Object.defineProperty(exports2, "__esModule", { value: true });
@@ -20189,9 +20193,9 @@ var require_load_balancer_outlier_detection = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/index.js
+// node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/index.js
 var require_src3 = __commonJS({
-  "node_modules/.pnpm/@grpc+grpc-js@1.10.8/node_modules/@grpc/grpc-js/build/src/index.js"(exports2) {
+  "node_modules/.pnpm/@grpc+grpc-js@1.10.9/node_modules/@grpc/grpc-js/build/src/index.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.experimental = exports2.ServerInterceptingCall = exports2.ResponderBuilder = exports2.ServerListenerBuilder = exports2.addAdminServicesToServer = exports2.getChannelzHandlers = exports2.getChannelzServiceDefinition = exports2.InterceptorConfigurationError = exports2.InterceptingCall = exports2.RequesterBuilder = exports2.ListenerBuilder = exports2.StatusBuilder = exports2.getClientChannel = exports2.ServerCredentials = exports2.Server = exports2.setLogVerbosity = exports2.setLogger = exports2.load = exports2.loadObject = exports2.CallCredentials = exports2.ChannelCredentials = exports2.waitForClientReady = exports2.closeClient = exports2.Channel = exports2.makeGenericClientConstructor = exports2.makeClientConstructor = exports2.loadPackageDefinition = exports2.Client = exports2.compressionAlgorithms = exports2.propagate = exports2.connectivityState = exports2.status = exports2.logVerbosity = exports2.Metadata = exports2.credentials = void 0;
@@ -20365,9 +20369,9 @@ var require_src3 = __commonJS({
   }
 });
 
-// node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/minimal.js
+// node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/minimal.js
 var require_minimal2 = __commonJS({
-  "node_modules/.pnpm/protobufjs@7.3.0/node_modules/protobufjs/minimal.js"(exports2, module2) {
+  "node_modules/.pnpm/protobufjs@7.3.2/node_modules/protobufjs/minimal.js"(exports2, module2) {
     "use strict";
     module2.exports = require_index_minimal();
   }
@@ -25906,22 +25910,22 @@ var DocumentDB = class _DocumentDB extends GrpcClient {
     );
     super(channel, client, timeout);
   }
-  find(request, query, limit, indexColumns, columns, dtypes) {
+  find(request, query, options) {
     let findRequest;
     if (typeof request === "string") {
       findRequest = _DocumentDB.toFindRequest({
         collectionName: request,
         query,
-        limit,
-        indexColumns,
-        columns,
-        dtypes
+        limit: options?.limit,
+        indexColumns: options?.indexColumns,
+        columns: options?.columns,
+        dtypes: options?.dtypes
       });
     } else {
       findRequest = _DocumentDB.toFindRequest(request);
     }
     return this.createPromise(findRequest, "find", (response) => {
-      return _DocumentDB.toDataFrame(response);
+      return _DocumentDB.toDataFrame(response, options?.format);
     });
   }
   findRaw(request) {
@@ -25930,7 +25934,7 @@ var DocumentDB = class _DocumentDB extends GrpcClient {
       return response.buffer;
     });
   }
-  findBatch(requests) {
+  findBatch(requests, format = "object") {
     const findRequests = {
       requests: requests.map((request) => {
         return _DocumentDB.toFindRequest(request);
@@ -25938,7 +25942,7 @@ var DocumentDB = class _DocumentDB extends GrpcClient {
     };
     return this.createPromise(findRequests, "findBatch", (response) => {
       return response.responses.map(
-        (response2) => _DocumentDB.toDataFrame(response2)
+        (response2) => _DocumentDB.toDataFrame(response2, format)
       );
     });
   }
@@ -26096,12 +26100,11 @@ var DocumentDB = class _DocumentDB extends GrpcClient {
     );
   }
   empty(collectionName, query, dtypes = void 0) {
-    return this.find({
-      collectionName,
-      query,
-      dtypes
+    return this.find(collectionName, query, {
+      dtypes,
+      format: "arrow"
     }).then((result) => {
-      if (result) {
+      if (result && result.data) {
         return result.data.numRows == 0;
       }
       return true;
@@ -26119,21 +26122,58 @@ var DocumentDB = class _DocumentDB extends GrpcClient {
       dtypes: request.dtypes
     });
   }
-  static async toDataFrame(response) {
+  static async toDataFrame(response, format = "object") {
     if (response.numRows) {
       const arrowBuffer = (0, import_parquet_wasm.readParquet)(response.buffer);
       const df = (0, import_esnext_esm.tableFromIPC)(arrowBuffer.intoIPCStream());
-      const meta_json = df.schema.metadata.get("pandas");
+      const metaJson = df.schema.metadata.get("pandas");
       let meta;
-      if (meta_json) {
-        meta = JSON.parse(meta_json);
+      if (metaJson) {
+        meta = JSON.parse(metaJson);
+      }
+      let data = df;
+      if (format === "object") {
+        data = this.parseMetadata(meta, df.toArray());
       }
       return {
-        data: df,
+        data,
         meta
       };
     }
     return null;
+  }
+  static identity(value) {
+    return value;
+  }
+  static toJson(text) {
+    if (!text) {
+      return text;
+    }
+    try {
+      return JSON.parse(text);
+    } catch (error) {
+      return text;
+    }
+  }
+  static parseMetadata(meta, df) {
+    const transformMap = Object.fromEntries(
+      meta.columns.map((column) => {
+        let entry = [column.name, this.identity];
+        if (column.metadata && column.metadata.hasOwnProperty("encoding")) {
+          if (column.metadata.encoding == "json") {
+            entry = [column.name, this.toJson];
+          }
+        }
+        return entry;
+      })
+    );
+    return df.map((row) => {
+      const entries = Object.keys(row).map((key) => {
+        const converted = transformMap[key](row[key]);
+        return [key, converted];
+      });
+      return Object.fromEntries(entries);
+    });
   }
   static fromCollectionInfo(collection) {
     return {

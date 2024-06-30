@@ -11,7 +11,7 @@ interface Value {
     double?: number | undefined;
     string?: string | undefined;
     array?: Array | undefined;
-    object?: ObjectType | undefined;
+    object?: ObjectType$1 | undefined;
 }
 declare const Value: {
     encode(message: Value, writer?: _m0.Writer): _m0.Writer;
@@ -3864,16 +3864,16 @@ declare const Array: {
         } & { [K_195 in Exclude<keyof I_1["value"][number], keyof Value>]: never; })[] & { [K_196 in Exclude<keyof I_1["value"], keyof any[]>]: never; }) | undefined;
     } & { [K_197 in Exclude<keyof I_1, "value">]: never; }>(object: I_1): Array;
 };
-interface ObjectType {
+interface ObjectType$1 {
     value: {
         [key: string]: Value;
     };
 }
-declare const ObjectType: {
-    encode(message: ObjectType, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): ObjectType;
-    fromJSON(object: any): ObjectType;
-    toJSON(message: ObjectType): unknown;
+declare const ObjectType$1: {
+    encode(message: ObjectType$1, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): ObjectType$1;
+    fromJSON(object: any): ObjectType$1;
+    toJSON(message: ObjectType$1): unknown;
     create<I extends {
         value?: {
             [x: string]: any | undefined;
@@ -4491,7 +4491,7 @@ declare const ObjectType: {
                 } & { [K_70 in Exclude<keyof I["value"][string]["object"], "value">]: never; }) | undefined;
             } & { [K_71 in Exclude<keyof I["value"][string], keyof Value>]: never; }) | undefined;
         } & { [K_72 in Exclude<keyof I["value"], string | number>]: never; }) | undefined;
-    } & { [K_73 in Exclude<keyof I, "value">]: never; }>(base?: I): ObjectType;
+    } & { [K_73 in Exclude<keyof I, "value">]: never; }>(base?: I): ObjectType$1;
     fromPartial<I_1 extends {
         value?: {
             [x: string]: any | undefined;
@@ -5109,10 +5109,10 @@ declare const ObjectType: {
                 } & { [K_144 in Exclude<keyof I_1["value"][string]["object"], "value">]: never; }) | undefined;
             } & { [K_145 in Exclude<keyof I_1["value"][string], keyof Value>]: never; }) | undefined;
         } & { [K_146 in Exclude<keyof I_1["value"], string | number>]: never; }) | undefined;
-    } & { [K_147 in Exclude<keyof I_1, "value">]: never; }>(object: I_1): ObjectType;
+    } & { [K_147 in Exclude<keyof I_1, "value">]: never; }>(object: I_1): ObjectType$1;
 };
 interface Document$1 {
-    object?: ObjectType | undefined;
+    object?: ObjectType$1 | undefined;
     json?: string | undefined;
 }
 declare const Document$1: {
@@ -26225,18 +26225,28 @@ type CollectionInfo = {
     indexDescriptors: IndexDescriptor[];
     indexStats: IndexStats[];
 };
-interface DataFrame {
-    data: Table<any>;
+type ReturnType = "arrow" | "object";
+interface FindOptions {
+    limit?: number;
+    indexColumns?: string[];
+    columns?: string[];
+    dtypes?: {
+        [key: string]: string;
+    };
+    format?: ReturnType;
+}
+type ObjectType = any[];
+type DataFormat = ObjectType | Table<any>;
+interface DataFrame<T extends DataFormat> {
+    data: T;
     meta?: Document;
 }
 declare class DocumentDB extends GrpcClient<DocumentDBServiceClient> {
     constructor(channel: Channel, timeout?: number | undefined);
-    find(collectionName: string, query: Document, limit?: number, indexColumns?: string[], columns?: string[], dtypes?: {
-        [key: string]: string;
-    }): Promise<DataFrame | null>;
-    find(request: Request): Promise<DataFrame | null>;
+    find<T extends DataFormat = ObjectType>(collectionName: string, query: Document, options?: FindOptions): Promise<DataFrame<T> | null>;
+    find<T extends DataFormat = ObjectType>(request: Request): Promise<DataFrame<T> | null>;
     findRaw(request: Request): Promise<Buffer | null>;
-    findBatch(requests: Request[]): Promise<(DataFrame | null)[]>;
+    findBatch<T extends DataFormat = ObjectType>(requests: Request[], format?: ReturnType): Promise<(DataFrame<T> | null)[]>;
     insert(collectionName: string, docs: Document | Document[]): Promise<unknown>;
     update(collectionName: string, filter: Document, updates: Document): Promise<unknown>;
     remove(collectionName: string, docs: Document | Document[]): Promise<unknown>;
@@ -26256,6 +26266,9 @@ declare class DocumentDB extends GrpcClient<DocumentDBServiceClient> {
     } | undefined): Promise<boolean>;
     private static toFindRequest;
     private static toDataFrame;
+    private static identity;
+    private static toJson;
+    private static parseMetadata;
     private static fromCollectionInfo;
     private static toIndexDescriptor;
     private static fromIndexDescriptor;
@@ -28238,4 +28251,4 @@ declare class SystemMetrics extends GrpcClient<SystemMetricsServiceClient> {
     getSnapshot(clientName?: string, version?: string): Promise<SystemMetricsSnapshot>;
 }
 
-export { type BatchedPutRequest, Channel, type CollectionInfo, type Document, DocumentDB, type IndexDescriptor, type IndexStats, IndexType, KeyValueDB, KeyspaceManager, type PutRequest, type Query, type Request, SentenceTransformer, type ServiceError, SystemMetrics, type SystemMetricsSnapshot, type Tensor, indexStatusFromJSON, indexTypeFromJSON };
+export { type BatchedPutRequest, Channel, type CollectionInfo, type DataFormat, type DataFrame, type Document, DocumentDB, type FindOptions, type IndexDescriptor, type IndexStats, IndexType, KeyValueDB, KeyspaceManager, type ObjectType, type PutRequest, type Query, type Request, type ReturnType, SentenceTransformer, type ServiceError, SystemMetrics, type SystemMetricsSnapshot, type Tensor, indexStatusFromJSON, indexTypeFromJSON };
