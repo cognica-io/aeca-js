@@ -110,7 +110,7 @@ describe("DocumentDB", () => {
 
   test("update", async () => {
     await doc_db.update(_COLLECTION, { author: "finn" }, { title: "test" })
-    const data = (await doc_db.find(_COLLECTION, { author: "finn" }))!.data.toArray()
+    const data = (await doc_db.find(_COLLECTION, { author: "finn" }))!.data
     expect(data[0].title).toEqual("test")
   })
 
@@ -122,7 +122,7 @@ describe("DocumentDB", () => {
 
   test("find", async () => {
     const df = await doc_db.find(_COLLECTION, { author: "tim" })
-    expect(df!.data.numRows).toBeGreaterThan(0)
+    expect(df!.data.length).toBeGreaterThan(0)
   })
 
   test("find.fts", async () => {
@@ -131,7 +131,7 @@ describe("DocumentDB", () => {
         query: "content:database",
       },
     })
-    const result = df!.data.toArray()
+    const result = df!.data
     expect(result[0].content).toContain("database")
   })
 

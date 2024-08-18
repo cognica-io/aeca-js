@@ -38,7 +38,7 @@ export class GrpcClient<ClientType> {
     request: Request,
     methodName: keyof ClientType,
     response_mapper: (response: Response) => any = () => null,
-    waitForReady: boolean = true,
+    waitForReady: boolean = false,
   ) {
     const metadata = new Metadata()
     if (waitForReady) {
