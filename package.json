@@ -1,7 +1,7 @@
 {
   "name": "@cognica/client",
   "description": "Javascript client for Cognica database",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "homepage": "https://cognica.io",
   "repository": {
     "type": "git",
@@ -56,23 +56,23 @@
   "author": "finn@cognica.io",
   "license": "Apache-2.0",
   "devDependencies": {
-    "@grpc/grpc-js": "^1.10.9",
+    "@grpc/grpc-js": "^1.12.5",
     "@protobuf-ts/protoc": "^2.9.4",
-    "@types/jest": "^29.5.12",
-    "eslint": "^8.57.0",
+    "@types/jest": "^29.5.14",
+    "eslint": "^9.19.0",
     "jest": "^29.7.0",
-    "long": "^5.2.3",
-    "prettier": "^3.3.2",
+    "long": "^5.2.4",
+    "prettier": "^3.4.2",
     "prettier-eslint": "^16.3.0",
-    "protobufjs": "^7.3.2",
-    "ts-jest": "^29.1.4",
+    "protobufjs": "^7.4.0",
+    "ts-jest": "^29.2.5",
     "ts-node": "^10.9.2",
-    "ts-proto": "^1.180.0",
-    "tsup": "^8.1.0",
-    "typescript": "^5.4.5"
+    "ts-proto": "^2.6.1",
+    "tsup": "^8.3.6",
+    "typescript": "^5.7.3"
   },
   "dependencies": {
-    "@apache-arrow/esnext-esm": "^16.1.0",
+    "@apache-arrow/esnext-esm": "^19.0.0",
     "parquet-wasm": "^0.6.1"
   }
 }
