@@ -1,17 +1,17 @@
-# Aeca Javascript Client
+# Cognica Javascript Client
 
-A Javascript client for Aeca database server.
+A Javascript client for Cognica database server.
 
 ## Installation
 
 ```
-npm install @aeca/client
+npm install @cognica/client
 ```
 
 ## Example
 
 ```typescript
-const collection = "aeca.js.test"
+const collection = "cognica.js.test"
 const channel = new Channel("localhost", 10080)
 const doc_db = new DocumentDB(channel)
 

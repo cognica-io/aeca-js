@@ -1,7 +1,7 @@
 //
-// Aeca
+// Cognica
 //
-// Copyright (c) 2024 Aeca
+// Copyright (c) 2024 Cognica
 //
 
 import { Channel, SystemMetrics } from "@/index"

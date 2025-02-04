@@ -8,6 +8,6 @@ protoc --plugin=node_modules/.bin/protoc-gen-ts_proto \
     --ts_proto_opt=esModuleInterop=true \
     --ts_proto_opt=addGrpcMetadata=true \
     --ts_proto_opt=outputServices=grpc-js \
-    -I src/proto/aeca \
+    -I src/proto/cognica \
     --ts_proto_out=src/proto/generated \
-    src/proto/aeca/*.proto
+    src/proto/cognica/*.proto

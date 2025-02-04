@@ -1,13 +1,12 @@
 //
-// Aeca
+// Cognica
 //
-// Copyright (c) 2024 Aeca
+// Copyright (c) 2024 Cognica
 //
 
 import { Channel, SentenceTransformer } from "@/index"
 
-const _MODEL_NAME =
-  "sentence-transformers/paraphrase-multilingual-mpnet-base-v2"
+const _MODEL_NAME = "intfloat/multilingual-e5-small"
 
 describe("SentenceTransformer", () => {
   const channel = new Channel("localhost", 10080)

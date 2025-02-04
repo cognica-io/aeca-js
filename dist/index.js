@@ -25834,7 +25834,7 @@ var GrpcClient = class {
     this._client = client;
     this._timeout = timeout;
   }
-  createPromise(request, methodName, response_mapper = () => null, waitForReady = true) {
+  createPromise(request, methodName, response_mapper = () => null, waitForReady = false) {
     const metadata = new import_grpc_js2.Metadata();
     if (waitForReady) {
       metadata.setOptions({ waitForReady });
